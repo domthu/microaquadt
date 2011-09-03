@@ -1,0 +1,16 @@
+<h1>Editing code_type</h1>
+
+<% form_for(@code_type) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @code_type %> |
+<%= link_to 'Back', code_types_path %>

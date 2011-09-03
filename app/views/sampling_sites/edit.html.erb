@@ -1,0 +1,32 @@
+<h1>Editing sampling_site</h1>
+
+<% form_for(@sampling_site) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :Code %><br />
+    <%= f.text_field :Code %>
+  </p>
+  <p>
+    <%= f.label :sampling_site %><br />
+    <%= f.text_field :sampling_site %>
+  </p>
+  <p>
+    <%= f.label :water_type %><br />
+    <%= f.text_field :water_type %>
+  </p>
+  <p>
+    <%= f.label :water_use %><br />
+    <%= f.text_field :water_use %>
+  </p>
+  <p>
+    <%= f.label :geo %><br />
+    <%= f.text_field :geo %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @sampling_site %> |
+<%= link_to 'Back', sampling_sites_path %>

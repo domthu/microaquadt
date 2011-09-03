@@ -1,0 +1,32 @@
+<h1>Listing partners</h1>
+
+<table>
+  <tr>
+    <th>Fp7 number</th>
+    <th>Name</th>
+    <th>State</th>
+    <th>Address</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Site</th>
+  </tr>
+
+<% @partners.each do |partner| %>
+  <tr>
+    <td><%=h partner.fp7_Number %></td>
+    <td><%=h partner.Name %></td>
+    <td><%=h partner.State %></td>
+    <td><%=h partner.Address %></td>
+    <td><%=h partner.Phone %></td>
+    <td><%=h partner.Email %></td>
+    <td><%=h partner.Site %></td>
+    <td><%= link_to 'Show', partner %></td>
+    <td><%= link_to 'Edit', edit_partner_path(partner) %></td>
+    <td><%= link_to 'Destroy', partner, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New partner', new_partner_path %>

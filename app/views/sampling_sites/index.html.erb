@@ -1,0 +1,28 @@
+<h1>Listing sampling_sites</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Sampling site</th>
+    <th>Water type</th>
+    <th>Water use</th>
+    <th>Geo</th>
+  </tr>
+
+<% @sampling_sites.each do |sampling_site| %>
+  <tr>
+    <td><%=h sampling_site.Code %></td>
+    <td><%=h sampling_site.sampling_site %></td>
+    <td><%=h sampling_site.water_type %></td>
+    <td><%=h sampling_site.water_use %></td>
+    <td><%=h sampling_site.geo %></td>
+    <td><%= link_to 'Show', sampling_site %></td>
+    <td><%= link_to 'Edit', edit_sampling_site_path(sampling_site) %></td>
+    <td><%= link_to 'Destroy', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New sampling_site', new_sampling_site_path %>

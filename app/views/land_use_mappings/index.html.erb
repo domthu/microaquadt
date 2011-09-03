@@ -1,0 +1,22 @@
+<h1>Listing land_use_mappings</h1>
+
+<table>
+  <tr>
+    <th>Note</th>
+    <th>Water sample</th>
+  </tr>
+
+<% @land_use_mappings.each do |land_use_mapping| %>
+  <tr>
+    <td><%=h land_use_mapping.note %></td>
+    <td><%=h land_use_mapping.water_sample %></td>
+    <td><%= link_to 'Show', land_use_mapping %></td>
+    <td><%= link_to 'Edit', edit_land_use_mapping_path(land_use_mapping) %></td>
+    <td><%= link_to 'Destroy', land_use_mapping, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New land_use_mapping', new_land_use_mapping_path %>

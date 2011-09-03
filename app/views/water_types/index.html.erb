@@ -1,0 +1,20 @@
+<h1>Listing water_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @water_types.each do |water_type| %>
+  <tr>
+    <td><%=h water_type.name %></td>
+    <td><%= link_to 'Show', water_type %></td>
+    <td><%= link_to 'Edit', edit_water_type_path(water_type) %></td>
+    <td><%= link_to 'Destroy', water_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New water_type', new_water_type_path %>

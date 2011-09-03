@@ -1,0 +1,661 @@
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 19:50:17) [GET]
+Rendering home/index
+Completed in 98ms (View: 96, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 19:50:26) [GET]
+Rendering home/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 19:52:07) [GET]
+Rendering home/index
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 19:52:39) [GET]
+Rendering home/index
+Completed in 19ms (View: 18, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 19:55:58) [GET]
+Rendering home/index
+Completed in 6ms (View: 5, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-08-21 20:00:22) [GET]
+
+ActionController::RoutingError (No route matches "/home/index.html" with {:method=>:get}):
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 20:00:30) [GET]
+Rendering home/index
+Completed in 15ms (View: 8, DB: 0) | 200 OK [http://localhost/home/index]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 20:00:37) [GET]
+Rendering home/index
+Completed in 3ms (View: 1, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 20:00:42) [GET]
+Rendering home/index
+Completed in 2ms (View: 1, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (3.6ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-08-21 20:00:47) [GET]
+
+ActionController::RoutingError (No route matches "/home2" with {:method=>:get}):
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 20:00:50) [GET]
+Rendering home/index
+Completed in 2ms (View: 1, DB: 1) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing HomeController#index (for 127.0.0.1 at 2011-08-21 20:02:34) [GET]
+Rendering home/index
+Completed in 7ms (View: 5, DB: 0) | 200 OK [http://localhost/home]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-08-21 20:14:49) [GET]
+
+ActionController::RoutingError (No route matches "/" with {:method=>:get}):
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-08-21 20:22:53) [GET]
+
+ActionController::RoutingError (No route matches "/" with {:method=>:get}):
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2011-08-21 20:22:54) [GET]
+
+ActionController::RoutingError (No route matches "/" with {:method=>:get}):
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /home/dom/.rvm/rubies/ruby-1.8.7-p352/lib/ruby/1.8/webrick/server.rb:82:in `start'
+
+Rendering rescues/layout (not_found)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (24.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (420.1ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (23.0ms)[0m   [0;1mSHOW KEYS FROM `schema_migrations`[0m
+  [4;35;1mSQL (352.4ms)[0m   [0mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+  [4;36;1mSQL (177.1ms)[0m   [0;1mCREATE TABLE `posts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `title` varchar(255), `content` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (128.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110821201842')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (28.6ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (309.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (263.8ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+  [4;36;1mSQL (374.0ms)[0m   [0;1mCREATE TABLE `water_uses` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (142.4ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901000314')[0m
+  [4;36;1mSQL (3.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (137.2ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `water_uses`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (91.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (11.6ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (72.1ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (53.3ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (24.6ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `water_uses`[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+  [4;36;1mSQL (167.1ms)[0m   [0;1mCREATE TABLE `water_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (70.8ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901000800')[0m
+  [4;36;1mSQL (5.2ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (25.7ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `water_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `water_types`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `water_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `water_uses`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `water_uses`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (9.4ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+  [4;36;1mSQL (315.9ms)[0m   [0;1mCREATE TABLE `code_types` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (71.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901000836')[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (17.5ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `posts`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW KEYS FROM `posts`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `water_types`[0m
+  [4;36;1mSQL (2.8ms)[0m   [0;1mdescribe `water_types`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `water_types`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `water_uses`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+  [4;36;1mSQL (332.1ms)[0m   [0;1mCREATE TABLE `geos` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `lon` decimal, `lat` decimal, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (70.9ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901000919')[0m
+  [4;36;1mSQL (6.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (40.5ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `water_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `water_types`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `water_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `water_uses`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `water_uses`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+  [4;36;1mSQL (327.9ms)[0m   [0;1mCREATE TABLE `people` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `firstname` varchar(255), `LastName` varchar(255), `Phone` varchar(255), `Email` varchar(255), `Town` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (70.5ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901001038')[0m
+  [4;36;1mSQL (21.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mdescribe `people`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `posts`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `posts`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `water_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mdescribe `water_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `water_types`[0m
+  [4;36;1mSQL (6.3ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `water_uses`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (192.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (25.8ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (131.1ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (43.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+Migrating to CreatePartners (20110901001132)
+  [4;36;1mSQL (1452.8ms)[0m   [0;1mCREATE TABLE `partners` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `fp7_Number` int(11), `Name` varchar(255), `State` varchar(255), `Address` text, `Phone` varchar(255), `Email` varchar(255), `Site` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (227.6ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901001132')[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (43.6ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (430.6ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (41.0ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (201.0ms)[0m   [0mSHOW FIELDS FROM `partners`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `partners`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `partners`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mdescribe `people`[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mSHOW KEYS FROM `people`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `water_types`[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mdescribe `water_types`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `water_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `water_uses`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `water_uses`[0m
+  [4;35;1mSQL (2.1ms)[0m   [0mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (19.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (110.9ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (27.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+Migrating to CreatePartners (20110901001132)
+Migrating to CreatePartnerPeople (20110901001223)
+  [4;36;1mSQL (293.3ms)[0m   [0;1mCREATE TABLE `partner_people` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `partner_id` int(11), `person_id` int(11), `IsPrincipalInvestigator` tinyint(1), `IsAdministratorResponsable` tinyint(1), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (72.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901001223')[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (23.6ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (39.8ms)[0m   [0mSHOW FIELDS FROM `partner_people`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `partner_people`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `partner_people`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `partners`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `partners`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `partners`[0m
+  [4;35;1mSQL (11.5ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `people`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `posts`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `posts`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `water_types`[0m
+  [4;36;1mSQL (4.1ms)[0m   [0;1mdescribe `water_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `water_types`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `water_uses`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (51.9ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+Migrating to CreatePartners (20110901001132)
+Migrating to CreatePartnerPeople (20110901001223)
+Migrating to CreateSamplingSites (20110901001312)
+  [4;36;1mSQL (193.1ms)[0m   [0;1mCREATE TABLE `sampling_sites` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `Code` varchar(255), `sampling_site_id` int(11), `water_type_id` int(11), `water_use_id` int(11), `geo_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (113.7ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901001312')[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (28.2ms)[0m   [0mSHOW FIELDS FROM `partner_people`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mdescribe `partner_people`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `partner_people`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `partners`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mdescribe `partners`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `partners`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `people`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `posts`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `posts`[0m
+  [4;35;1mSQL (14.9ms)[0m   [0mSHOW FIELDS FROM `sampling_sites`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mdescribe `sampling_sites`[0m
+  [4;35;1mSQL (11.4ms)[0m   [0mSHOW KEYS FROM `sampling_sites`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `water_types`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mdescribe `water_types`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `water_types`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `water_uses`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mdescribe `water_uses`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+Migrating to CreatePartners (20110901001132)
+Migrating to CreatePartnerPeople (20110901001223)
+Migrating to CreateSamplingSites (20110901001312)
+Migrating to CreateWaterSamples (20110901001340)
+  [4;36;1mSQL (224.7ms)[0m   [0;1mCREATE TABLE `water_samples` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `Temperature` decimal, `Turbidity` decimal, `Conductivity` decimal, `Ph` decimal, `water_sample_id` int(11), `Code` varchar(255), `meteorological_data_id` int(11), `water_type_id` int(11), `water_use_id` int(11), `sampling_site_id` int(11), `partner_id` int(11), `geo_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (71.2ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901001340')[0m
+  [4;36;1mSQL (5.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `partner_people`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `partner_people`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `partner_people`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `partners`[0m
+  [4;35;1mSQL (5.3ms)[0m   [0mdescribe `partners`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `partners`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mSQL (2.9ms)[0m   [0;1mdescribe `people`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `posts`[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW KEYS FROM `posts`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `sampling_sites`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mdescribe `sampling_sites`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `sampling_sites`[0m
+  [4;36;1mSQL (38.9ms)[0m   [0;1mSHOW FIELDS FROM `water_samples`[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mdescribe `water_samples`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `water_samples`[0m
+  [4;35;1mSQL (7.2ms)[0m   [0mSHOW FIELDS FROM `water_types`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `water_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `water_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `water_uses`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+Migrating to CreatePartners (20110901001132)
+Migrating to CreatePartnerPeople (20110901001223)
+Migrating to CreateSamplingSites (20110901001312)
+Migrating to CreateWaterSamples (20110901001340)
+Migrating to CreateLandUseMappings (20110901001411)
+  [4;36;1mSQL (290.5ms)[0m   [0;1mCREATE TABLE `land_use_mappings` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `note` varchar(255), `water_sample_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (228.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901001411')[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (168.7ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (4.2ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (122.2ms)[0m   [0mSHOW FIELDS FROM `land_use_mappings`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `land_use_mappings`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `land_use_mappings`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `partner_people`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `partner_people`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `partner_people`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW FIELDS FROM `partners`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mdescribe `partners`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `partners`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `people`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `people`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `sampling_sites`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `sampling_sites`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `sampling_sites`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `water_samples`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `water_samples`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `water_samples`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `water_types`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `water_types`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `water_types`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW FIELDS FROM `water_uses`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `water_uses`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+Migrating to CreatePartners (20110901001132)
+Migrating to CreatePartnerPeople (20110901001223)
+Migrating to CreateSamplingSites (20110901001312)
+Migrating to CreateWaterSamples (20110901001340)
+Migrating to CreateLandUseMappings (20110901001411)
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (103.4ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `land_use_mappings`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `land_use_mappings`[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mSHOW KEYS FROM `land_use_mappings`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `partner_people`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `partner_people`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `partner_people`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `partners`[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mdescribe `partners`[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSHOW KEYS FROM `partners`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mdescribe `people`[0m
+  [4;36;1mSQL (3.5ms)[0m   [0;1mSHOW KEYS FROM `people`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `sampling_sites`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `sampling_sites`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW KEYS FROM `sampling_sites`[0m
+  [4;35;1mSQL (3.1ms)[0m   [0mSHOW FIELDS FROM `water_samples`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `water_samples`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `water_samples`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW FIELDS FROM `water_types`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `water_types`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `water_types`[0m
+  [4;35;1mSQL (3.6ms)[0m   [0mSHOW FIELDS FROM `water_uses`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `water_uses`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (61.7ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (18.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+Migrating to CreatePartners (20110901001132)
+Migrating to CreatePartnerPeople (20110901001223)
+Migrating to CreateSamplingSites (20110901001312)
+Migrating to CreateWaterSamples (20110901001340)
+Migrating to CreateLandUseMappings (20110901001411)
+Migrating to CreateProtocols (20110901001531)
+  [4;36;1mSQL (2391.1ms)[0m   [0;1mCREATE TABLE `protocols` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `GrowthProtocol` text, `TreatmentProtocol` text, `ExtractProtocol` text, `LabelProtocol` text, `HybProtocol` text, `ScanProtocol` text, `DataProcessing` text, `alueDefinition` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (214.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110901001531')[0m
+  [4;36;1mSQL (36.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (244.6ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (41.8ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `land_use_mappings`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `land_use_mappings`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `land_use_mappings`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW FIELDS FROM `partner_people`[0m
+  [4;35;1mSQL (4.2ms)[0m   [0mdescribe `partner_people`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW KEYS FROM `partner_people`[0m
+  [4;35;1mSQL (32.2ms)[0m   [0mSHOW FIELDS FROM `partners`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `partners`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `partners`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW FIELDS FROM `people`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mdescribe `people`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSHOW KEYS FROM `people`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `posts`[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mdescribe `posts`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `posts`[0m
+  [4;36;1mSQL (64.0ms)[0m   [0;1mSHOW FIELDS FROM `protocols`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mdescribe `protocols`[0m
+  [4;36;1mSQL (99.7ms)[0m   [0;1mSHOW KEYS FROM `protocols`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW FIELDS FROM `sampling_sites`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mdescribe `sampling_sites`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `sampling_sites`[0m
+  [4;36;1mSQL (110.0ms)[0m   [0;1mSHOW FIELDS FROM `water_samples`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `water_samples`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `water_samples`[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW FIELDS FROM `water_types`[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mdescribe `water_types`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSHOW KEYS FROM `water_types`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
+  [4;35;1mSQL (6.1ms)[0m   [0mdescribe `water_uses`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m

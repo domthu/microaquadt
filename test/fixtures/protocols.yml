@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  GrowthProtocol: MyText
+  TreatmentProtocol: MyText
+  ExtractProtocol: MyText
+  LabelProtocol: MyText
+  HybProtocol: MyText
+  ScanProtocol: MyText
+  DataProcessing: MyText
+  alueDefinition: MyText
+
+two:
+  GrowthProtocol: MyText
+  TreatmentProtocol: MyText
+  ExtractProtocol: MyText
+  LabelProtocol: MyText
+  HybProtocol: MyText
+  ScanProtocol: MyText
+  DataProcessing: MyText
+  alueDefinition: MyText

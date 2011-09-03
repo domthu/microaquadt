@@ -1,0 +1,63 @@
+<p>
+  <b>Temperature:</b>
+  <%=h @water_sample.Temperature %>
+</p>
+
+<p>
+  <b>Turbidity:</b>
+  <%=h @water_sample.Turbidity %>
+</p>
+
+<p>
+  <b>Conductivity:</b>
+  <%=h @water_sample.Conductivity %>
+</p>
+
+<p>
+  <b>Ph:</b>
+  <%=h @water_sample.Ph %>
+</p>
+
+<p>
+  <b>Water sample:</b>
+  <%=h @water_sample.water_sample %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%=h @water_sample.Code %>
+</p>
+
+<p>
+  <b>Meteorological data:</b>
+  <%=h @water_sample.meteorological_data %>
+</p>
+
+<p>
+  <b>Water type:</b>
+  <%=h @water_sample.water_type %>
+</p>
+
+<p>
+  <b>Water use:</b>
+  <%=h @water_sample.water_use %>
+</p>
+
+<p>
+  <b>Sampling site:</b>
+  <%=h @water_sample.sampling_site %>
+</p>
+
+<p>
+  <b>Partner:</b>
+  <%=h @water_sample.partner %>
+</p>
+
+<p>
+  <b>Geo:</b>
+  <%=h @water_sample.geo %>
+</p>
+
+
+<%= link_to 'Edit', edit_water_sample_path(@water_sample) %> |
+<%= link_to 'Back', water_samples_path %>

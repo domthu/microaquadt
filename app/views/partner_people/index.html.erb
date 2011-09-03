@@ -1,0 +1,26 @@
+<h1>Listing partner_people</h1>
+
+<table>
+  <tr>
+    <th>Partner</th>
+    <th>Person</th>
+    <th>Isprincipalinvestigator</th>
+    <th>Isadministratorresponsable</th>
+  </tr>
+
+<% @partner_people.each do |partner_person| %>
+  <tr>
+    <td><%=h partner_person.partner %></td>
+    <td><%=h partner_person.person %></td>
+    <td><%=h partner_person.IsPrincipalInvestigator %></td>
+    <td><%=h partner_person.IsAdministratorResponsable %></td>
+    <td><%= link_to 'Show', partner_person %></td>
+    <td><%= link_to 'Edit', edit_partner_person_path(partner_person) %></td>
+    <td><%= link_to 'Destroy', partner_person, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New partner_person', new_partner_person_path %>

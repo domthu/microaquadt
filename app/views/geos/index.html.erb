@@ -1,0 +1,24 @@
+<h1>Listing geos</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Lon</th>
+    <th>Lat</th>
+  </tr>
+
+<% @geos.each do |geo| %>
+  <tr>
+    <td><%=h geo.name %></td>
+    <td><%=h geo.lon %></td>
+    <td><%=h geo.lat %></td>
+    <td><%= link_to 'Show', geo %></td>
+    <td><%= link_to 'Edit', edit_geo_path(geo) %></td>
+    <td><%= link_to 'Destroy', geo, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New geo', new_geo_path %>

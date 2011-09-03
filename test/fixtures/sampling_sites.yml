@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  Code: MyString
+  sampling_site: 
+  water_type: 
+  water_use: 
+  geo: 
+
+two:
+  Code: MyString
+  sampling_site: 
+  water_type: 
+  water_use: 
+  geo: 

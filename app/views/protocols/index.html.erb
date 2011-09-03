@@ -1,0 +1,34 @@
+<h1>Listing protocols</h1>
+
+<table>
+  <tr>
+    <th>Growthprotocol</th>
+    <th>Treatmentprotocol</th>
+    <th>Extractprotocol</th>
+    <th>Labelprotocol</th>
+    <th>Hybprotocol</th>
+    <th>Scanprotocol</th>
+    <th>Dataprocessing</th>
+    <th>Aluedefinition</th>
+  </tr>
+
+<% @protocols.each do |protocol| %>
+  <tr>
+    <td><%=h protocol.GrowthProtocol %></td>
+    <td><%=h protocol.TreatmentProtocol %></td>
+    <td><%=h protocol.ExtractProtocol %></td>
+    <td><%=h protocol.LabelProtocol %></td>
+    <td><%=h protocol.HybProtocol %></td>
+    <td><%=h protocol.ScanProtocol %></td>
+    <td><%=h protocol.DataProcessing %></td>
+    <td><%=h protocol.alueDefinition %></td>
+    <td><%= link_to 'Show', protocol %></td>
+    <td><%= link_to 'Edit', edit_protocol_path(protocol) %></td>
+    <td><%= link_to 'Destroy', protocol, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New protocol', new_protocol_path %>

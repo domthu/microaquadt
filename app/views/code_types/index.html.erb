@@ -1,0 +1,20 @@
+<h1>Listing code_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @code_types.each do |code_type| %>
+  <tr>
+    <td><%=h code_type.name %></td>
+    <td><%= link_to 'Show', code_type %></td>
+    <td><%= link_to 'Edit', edit_code_type_path(code_type) %></td>
+    <td><%= link_to 'Destroy', code_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New code_type', new_code_type_path %>

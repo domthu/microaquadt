@@ -1,0 +1,16 @@
+<h1>Editing water_use</h1>
+
+<% form_for(@water_use) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @water_use %> |
+<%= link_to 'Back', water_uses_path %>

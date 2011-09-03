@@ -1,0 +1,28 @@
+<h1>Editing partner_person</h1>
+
+<% form_for(@partner_person) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :partner %><br />
+    <%= f.text_field :partner %>
+  </p>
+  <p>
+    <%= f.label :person %><br />
+    <%= f.text_field :person %>
+  </p>
+  <p>
+    <%= f.label :IsPrincipalInvestigator %><br />
+    <%= f.check_box :IsPrincipalInvestigator %>
+  </p>
+  <p>
+    <%= f.label :IsAdministratorResponsable %><br />
+    <%= f.check_box :IsAdministratorResponsable %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @partner_person %> |
+<%= link_to 'Back', partner_people_path %>

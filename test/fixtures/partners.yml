@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  fp7_Number: 1
+  Name: MyString
+  State: MyString
+  Address: MyText
+  Phone: MyString
+  Email: MyString
+  Site: MyString
+
+two:
+  fp7_Number: 1
+  Name: MyString
+  State: MyString
+  Address: MyText
+  Phone: MyString
+  Email: MyString
+  Site: MyString

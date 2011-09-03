@@ -1,0 +1,23 @@
+<p>
+  <b>Partner:</b>
+  <%=h @partner_person.partner %>
+</p>
+
+<p>
+  <b>Person:</b>
+  <%=h @partner_person.person %>
+</p>
+
+<p>
+  <b>Isprincipalinvestigator:</b>
+  <%=h @partner_person.IsPrincipalInvestigator %>
+</p>
+
+<p>
+  <b>Isadministratorresponsable:</b>
+  <%=h @partner_person.IsAdministratorResponsable %>
+</p>
+
+
+<%= link_to 'Edit', edit_partner_person_path(@partner_person) %> |
+<%= link_to 'Back', partner_people_path %>

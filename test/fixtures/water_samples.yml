@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  Temperature: 9.99
+  Turbidity: 9.99
+  Conductivity: 9.99
+  Ph: 9.99
+  water_sample: 
+  Code: MyString
+  meteorological_data: 
+  water_type: 
+  water_use: 
+  sampling_site: 
+  partner: 
+  geo: 
+
+two:
+  Temperature: 9.99
+  Turbidity: 9.99
+  Conductivity: 9.99
+  Ph: 9.99
+  water_sample: 
+  Code: MyString
+  meteorological_data: 
+  water_type: 
+  water_use: 
+  sampling_site: 
+  partner: 
+  geo: 

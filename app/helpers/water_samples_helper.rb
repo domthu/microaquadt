@@ -1,0 +1,2 @@
+module WaterSamplesHelper
+end

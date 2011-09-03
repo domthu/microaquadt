@@ -1,0 +1,31 @@
+<h1>New person</h1>
+
+<% form_for(@person) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :firstname %><br />
+    <%= f.text_field :firstname %>
+  </p>
+  <p>
+    <%= f.label :LastName %><br />
+    <%= f.text_field :LastName %>
+  </p>
+  <p>
+    <%= f.label :Phone %><br />
+    <%= f.text_field :Phone %>
+  </p>
+  <p>
+    <%= f.label :Email %><br />
+    <%= f.text_field :Email %>
+  </p>
+  <p>
+    <%= f.label :Town %><br />
+    <%= f.text_field :Town %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', people_path %>
