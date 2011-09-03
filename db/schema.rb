@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110901001531) do
+ActiveRecord::Schema.define(:version => 20110903181202) do
 
   create_table "code_types", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(:version => 20110901001531) do
   create_table "land_use_mappings", :force => true do |t|
     t.string   "note"
     t.integer  "water_sample_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "microposts", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,6 +97,13 @@ ActiveRecord::Schema.define(:version => 20110901001531) do
     t.integer  "water_type_id"
     t.integer  "water_use_id"
     t.integer  "geo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

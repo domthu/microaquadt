@@ -659,3 +659,73 @@ Migrating to CreateProtocols (20110901001531)
   [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
   [4;35;1mSQL (6.1ms)[0m   [0mdescribe `water_uses`[0m
   [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (103.6ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (127.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (430.3ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (548.9ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePosts (20110821201842)
+Migrating to CreateWaterUses (20110901000314)
+Migrating to CreateWaterTypes (20110901000800)
+Migrating to CreateCodeTypes (20110901000836)
+Migrating to CreateGeos (20110901000919)
+Migrating to CreatePeople (20110901001038)
+Migrating to CreatePartners (20110901001132)
+Migrating to CreatePartnerPeople (20110901001223)
+Migrating to CreateSamplingSites (20110901001312)
+Migrating to CreateWaterSamples (20110901001340)
+Migrating to CreateLandUseMappings (20110901001411)
+Migrating to CreateProtocols (20110901001531)
+Migrating to CreateUsers (20110903180152)
+  [4;36;1mSQL (498.4ms)[0m   [0;1mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (180.3ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110903180152')[0m
+Migrating to CreateMicroposts (20110903181202)
+  [4;36;1mSQL (303.7ms)[0m   [0;1mCREATE TABLE `microposts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `content` varchar(255), `user_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (71.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20110903181202')[0m
+  [4;36;1mSQL (21.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (438.4ms)[0m   [0mSHOW FIELDS FROM `code_types`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `code_types`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW KEYS FROM `code_types`[0m
+  [4;36;1mSQL (39.0ms)[0m   [0;1mSHOW FIELDS FROM `geos`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `geos`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW KEYS FROM `geos`[0m
+  [4;35;1mSQL (16.6ms)[0m   [0mSHOW FIELDS FROM `land_use_mappings`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mdescribe `land_use_mappings`[0m
+  [4;35;1mSQL (18.6ms)[0m   [0mSHOW KEYS FROM `land_use_mappings`[0m
+  [4;36;1mSQL (42.2ms)[0m   [0;1mSHOW FIELDS FROM `microposts`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `microposts`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW KEYS FROM `microposts`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `partner_people`[0m
+  [4;36;1mSQL (1.8ms)[0m   [0;1mdescribe `partner_people`[0m
+  [4;35;1mSQL (17.9ms)[0m   [0mSHOW KEYS FROM `partner_people`[0m
+  [4;36;1mSQL (19.6ms)[0m   [0;1mSHOW FIELDS FROM `partners`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mdescribe `partners`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW KEYS FROM `partners`[0m
+  [4;35;1mSQL (28.2ms)[0m   [0mSHOW FIELDS FROM `people`[0m
+  [4;36;1mSQL (1.9ms)[0m   [0;1mdescribe `people`[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW KEYS FROM `people`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `posts`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `posts`[0m
+  [4;36;1mSQL (8.3ms)[0m   [0;1mSHOW KEYS FROM `posts`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW FIELDS FROM `protocols`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mdescribe `protocols`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW KEYS FROM `protocols`[0m
+  [4;36;1mSQL (6.4ms)[0m   [0;1mSHOW FIELDS FROM `sampling_sites`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `sampling_sites`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW KEYS FROM `sampling_sites`[0m
+  [4;35;1mSQL (10.7ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (8.3ms)[0m   [0;1mSHOW FIELDS FROM `water_samples`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mdescribe `water_samples`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `water_samples`[0m
+  [4;35;1mSQL (29.2ms)[0m   [0mSHOW FIELDS FROM `water_types`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `water_types`[0m
+  [4;35;1mSQL (13.4ms)[0m   [0mSHOW KEYS FROM `water_types`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `water_uses`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `water_uses`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW KEYS FROM `water_uses`[0m
+  [4;36;1mSQL (29.6ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (59.6ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Load (201.4ms)[0m   [0;1mSELECT * FROM `users` LIMIT 1[0m

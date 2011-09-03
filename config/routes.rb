@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :microposts
+
+  map.resources :users
+
   map.resources :protocols
 
   map.resources :land_use_mappings
