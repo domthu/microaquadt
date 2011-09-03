@@ -750,3 +750,26 @@ Completed in 20ms (View: 17, DB: 0) | 200 OK [http://localhost/Pages/home]
 Processing PagesController#contact (for 127.0.0.1 at 2011-09-03 23:51:11) [GET]
 Rendering pages/contact
 Completed in 42ms (View: 30, DB: 0) | 200 OK [http://localhost/Pages/contact]
+  [4;36;1mSQL (40.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (68.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PagesController#contact (for 127.0.0.1 at 2011-09-04 00:12:13) [GET]
+Rendering pages/contact
+Completed in 139ms (View: 136, DB: 108) | 200 OK [http://localhost/Pages/contact]
+  [4;36;1mSQL (20.3ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (26.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PagesController#contact (for 127.0.0.1 at 2011-09-04 00:24:21) [GET]
+Rendering template within layouts/application
+Rendering pages/contact
+Completed in 187ms (View: 132, DB: 46) | 200 OK [http://localhost/Pages/contact]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PagesController#about (for 127.0.0.1 at 2011-09-04 00:24:34) [GET]
+Rendering template within layouts/application
+Rendering pages/about
+Completed in 30ms (View: 26, DB: 0) | 200 OK [http://localhost/Pages/about]
