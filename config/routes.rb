@@ -7,8 +7,6 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :land_use_mappings
 
-  map.resources :land_use_mappings
-
   map.resources :water_samples
 
   map.resources :sampling_sites
@@ -27,9 +25,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :water_uses
 
-  map.resources :water_uses
-
   map.resources :posts
+
+  # Routes for static pages.
+  map.contact '/contact', :controller => 'pages', :action => 'contact'
+  map.about   '/about',   :controller => 'pages', :action => 'about'
+  map.help    '/help',    :controller => 'pages', :action => 'help'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -65,8 +66,10 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   # map.root :controller => "welcome"
   map.root :controller => "home"
+  #test DOMTHU: other possibility
+  #map.root :controller => 'pages', :action => 'home'
 
-  # See how all your routes lay out with "rake routes"
+ # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should

@@ -1,0 +1,28 @@
+      <div id="header">
+        <% logo = image_tag("uaqua1_logo2.png", :alt => "Microaqua bioinfo", :class => "round") %>
+        <%= link_to logo, root_path %>
+        <ul class="navigation round">
+          <li><%= link_to "Home", '/' %></li>
+          <li><%= link_to "Help", help_path %></li>
+          <li><%= link_to "Sign in", '#' %></li>
+        </ul>
+        <ul class="navigation round">
+          <li><%= link_to "code_types", code_types_path %></li>
+          <li><%= link_to "geos", geos_path %></li>
+          <li><%= link_to "land_use_mappings", land_use_mappings_path %></li>
+          <li><%= link_to "water_uses", water_uses_path %></li>
+          <li><%= link_to "water_types", water_types_path %></li>
+          <li><%= link_to "sampling_sites", sampling_sites_path %></li>
+          <li><%= link_to "water_samples", water_samples_path %></li>
+        </ul>
+        <ul class="navigation round">
+          <li><%= link_to "partners", partners_path %></li>
+          <li><%= link_to "people", people_path %></li>
+          <li><%= link_to "partner_people", partner_people_path %></li>
+          <li><%= link_to "protocols", protocols_path %></li>
+          <li><%= link_to "users", users_path %></li>
+
+          <li><%= link_to "microposts", microposts_path %></li>
+          <li><%= link_to "posts", posts_path %></li>
+        </ul>
+      </div>  
