@@ -110,4 +110,10 @@ a.signup_button {
   float: none;
 }
 
+/* row title and row box*/
+.rowlbl{color: darkgreen;font-weight: bold;font-family: Courier,monospace;font-size: 100%;}
+.rowboxout{margin-top: 0.5em;width: 100%;margin-bottom: 2em;color: #070707;}
+.rowboxin{width: 670px;background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #999999;
+    padding-right: 1.5em;}
 
