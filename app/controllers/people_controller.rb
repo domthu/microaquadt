@@ -3,6 +3,7 @@ class PeopleController < ApplicationController
   # GET /people.xml
   def index
     @people = Person.all
+    @title = "peoples"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,14 +11,11 @@ class PeopleController < ApplicationController
     end
   end
 
-  def people
-    @title = "people"
-  end
-
   # GET /people/1
   # GET /people/1.xml
   def show
     @person = Person.find(params[:id])
+    @title = "peoples"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +27,7 @@ class PeopleController < ApplicationController
   # GET /people/new.xml
   def new
     @person = Person.new
+    @title = "people"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,6 +38,7 @@ class PeopleController < ApplicationController
   # GET /people/1/edit
   def edit
     @person = Person.find(params[:id])
+    @title = "people"
   end
 
   # POST /people
@@ -61,6 +61,7 @@ class PeopleController < ApplicationController
   # PUT /people/1.xml
   def update
     @person = Person.find(params[:id])
+    @title = "people"
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
@@ -78,6 +79,7 @@ class PeopleController < ApplicationController
   def destroy
     @person = Person.find(params[:id])
     @person.destroy
+    @title = "people"
 
     respond_to do |format|
       format.html { redirect_to(people_url) }

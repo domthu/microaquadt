@@ -3,6 +3,7 @@ class SamplingSitesController < ApplicationController
   # GET /sampling_sites.xml
   def index
     @sampling_sites = SamplingSite.all
+    @title = "Sampling sites"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class SamplingSitesController < ApplicationController
   # GET /sampling_sites/1.xml
   def show
     @sampling_site = SamplingSite.find(params[:id])
+    @title = "Sampling sites"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class SamplingSitesController < ApplicationController
   # GET /sampling_sites/new.xml
   def new
     @sampling_site = SamplingSite.new
+    @title = "Sampling site"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +38,14 @@ class SamplingSitesController < ApplicationController
   # GET /sampling_sites/1/edit
   def edit
     @sampling_site = SamplingSite.find(params[:id])
+    @title = "Sampling site"
   end
 
   # POST /sampling_sites
   # POST /sampling_sites.xml
   def create
     @sampling_site = SamplingSite.new(params[:sampling_site])
+    @title = "Sampling site"
 
     respond_to do |format|
       if @sampling_site.save
@@ -57,6 +62,7 @@ class SamplingSitesController < ApplicationController
   # PUT /sampling_sites/1.xml
   def update
     @sampling_site = SamplingSite.find(params[:id])
+    @title = "Sampling site"
 
     respond_to do |format|
       if @sampling_site.update_attributes(params[:sampling_site])
@@ -74,6 +80,7 @@ class SamplingSitesController < ApplicationController
   def destroy
     @sampling_site = SamplingSite.find(params[:id])
     @sampling_site.destroy
+    @title = "Sampling site"
 
     respond_to do |format|
       format.html { redirect_to(sampling_sites_url) }

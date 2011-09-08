@@ -3,6 +3,7 @@ class WaterSamplesController < ApplicationController
   # GET /water_samples.xml
   def index
     @water_samples = WaterSample.all
+    @title = "Water samples"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class WaterSamplesController < ApplicationController
   # GET /water_samples/1.xml
   def show
     @water_sample = WaterSample.find(params[:id])
+    @title = "Water samples"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class WaterSamplesController < ApplicationController
   # GET /water_samples/new.xml
   def new
     @water_sample = WaterSample.new
+    @title = "Water sample"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +38,14 @@ class WaterSamplesController < ApplicationController
   # GET /water_samples/1/edit
   def edit
     @water_sample = WaterSample.find(params[:id])
+    @title = "Water sample"
   end
 
   # POST /water_samples
   # POST /water_samples.xml
   def create
     @water_sample = WaterSample.new(params[:water_sample])
+    @title = "Water sample"
 
     respond_to do |format|
       if @water_sample.save
@@ -57,6 +62,7 @@ class WaterSamplesController < ApplicationController
   # PUT /water_samples/1.xml
   def update
     @water_sample = WaterSample.find(params[:id])
+    @title = "Water sample"
 
     respond_to do |format|
       if @water_sample.update_attributes(params[:water_sample])
@@ -74,6 +80,7 @@ class WaterSamplesController < ApplicationController
   def destroy
     @water_sample = WaterSample.find(params[:id])
     @water_sample.destroy
+    @title = "Water sample"
 
     respond_to do |format|
       format.html { redirect_to(water_samples_url) }

@@ -11,7 +11,6 @@ class WaterTypesController < ApplicationController
     end
   end
 
-
   # GET /water_types/1
   # GET /water_types/1.xml
   def show

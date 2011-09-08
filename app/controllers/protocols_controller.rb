@@ -3,6 +3,7 @@ class ProtocolsController < ApplicationController
   # GET /protocols.xml
   def index
     @protocols = Protocol.all
+    @title = "protocols"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,14 +11,11 @@ class ProtocolsController < ApplicationController
     end
   end
 
-  def protocols
-    @title = "protocols"
-  end
-
   # GET /protocols/1
   # GET /protocols/1.xml
   def show
     @protocol = Protocol.find(params[:id])
+    @title = "protocols"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +27,7 @@ class ProtocolsController < ApplicationController
   # GET /protocols/new.xml
   def new
     @protocol = Protocol.new
+    @title = "protocol"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,12 +38,14 @@ class ProtocolsController < ApplicationController
   # GET /protocols/1/edit
   def edit
     @protocol = Protocol.find(params[:id])
+    @title = "protocol"
   end
 
   # POST /protocols
   # POST /protocols.xml
   def create
     @protocol = Protocol.new(params[:protocol])
+    @title = "protocol"
 
     respond_to do |format|
       if @protocol.save
@@ -61,6 +62,7 @@ class ProtocolsController < ApplicationController
   # PUT /protocols/1.xml
   def update
     @protocol = Protocol.find(params[:id])
+    @title = "protocol"
 
     respond_to do |format|
       if @protocol.update_attributes(params[:protocol])
@@ -78,6 +80,7 @@ class ProtocolsController < ApplicationController
   def destroy
     @protocol = Protocol.find(params[:id])
     @protocol.destroy
+    @title = "protocol"
 
     respond_to do |format|
       format.html { redirect_to(protocols_url) }

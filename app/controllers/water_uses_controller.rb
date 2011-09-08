@@ -3,6 +3,7 @@ class WaterUsesController < ApplicationController
   # GET /water_uses.xml
   def index
     @water_uses = WaterUse.all
+    @title = "water uses"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,15 +11,11 @@ class WaterUsesController < ApplicationController
     end
   end
 
-
-  def water_uses
-    @title = "water uses"
-  end
-
   # GET /water_uses/1
   # GET /water_uses/1.xml
   def show
     @water_use = WaterUse.find(params[:id])
+    @title = "water uses"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,6 +27,7 @@ class WaterUsesController < ApplicationController
   # GET /water_uses/new.xml
   def new
     @water_use = WaterUse.new
+    @title = "water use"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,12 +38,14 @@ class WaterUsesController < ApplicationController
   # GET /water_uses/1/edit
   def edit
     @water_use = WaterUse.find(params[:id])
+    @title = "water use"
   end
 
   # POST /water_uses
   # POST /water_uses.xml
   def create
     @water_use = WaterUse.new(params[:water_use])
+    @title = "water use"
 
     respond_to do |format|
       if @water_use.save
@@ -62,6 +62,7 @@ class WaterUsesController < ApplicationController
   # PUT /water_uses/1.xml
   def update
     @water_use = WaterUse.find(params[:id])
+    @title = "water use"
 
     respond_to do |format|
       if @water_use.update_attributes(params[:water_use])
@@ -79,6 +80,7 @@ class WaterUsesController < ApplicationController
   def destroy
     @water_use = WaterUse.find(params[:id])
     @water_use.destroy
+    @title = "water use"
 
     respond_to do |format|
       format.html { redirect_to(water_uses_url) }

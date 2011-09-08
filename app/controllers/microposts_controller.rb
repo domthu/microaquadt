@@ -3,6 +3,7 @@ class MicropostsController < ApplicationController
   # GET /microposts.xml
   def index
     @microposts = Micropost.all
+    @title = "microposts"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,14 +11,11 @@ class MicropostsController < ApplicationController
     end
   end
 
-  def microposts
-    @title = "microposts"
-  end
-
   # GET /microposts/1
   # GET /microposts/1.xml
   def show
     @micropost = Micropost.find(params[:id])
+    @title = "microposts"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +27,7 @@ class MicropostsController < ApplicationController
   # GET /microposts/new.xml
   def new
     @micropost = Micropost.new
+    @title = "micropost"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,12 +38,14 @@ class MicropostsController < ApplicationController
   # GET /microposts/1/edit
   def edit
     @micropost = Micropost.find(params[:id])
+    @title = "micropost"
   end
 
   # POST /microposts
   # POST /microposts.xml
   def create
     @micropost = Micropost.new(params[:micropost])
+    @title = "micropost"
 
     respond_to do |format|
       if @micropost.save
@@ -61,6 +62,7 @@ class MicropostsController < ApplicationController
   # PUT /microposts/1.xml
   def update
     @micropost = Micropost.find(params[:id])
+    @title = "micropost"
 
     respond_to do |format|
       if @micropost.update_attributes(params[:micropost])
@@ -78,6 +80,7 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost = Micropost.find(params[:id])
     @micropost.destroy
+    @title = "micropost"
 
     respond_to do |format|
       format.html { redirect_to(microposts_url) }

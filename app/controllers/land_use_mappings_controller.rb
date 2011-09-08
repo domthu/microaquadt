@@ -6,6 +6,7 @@ class LandUseMappingsController < ApplicationController
 
   def index
     @land_use_mappings = LandUseMapping.all
+    @title = "land use mappings"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,15 +14,11 @@ class LandUseMappingsController < ApplicationController
     end
   end
 
-
-  def land_use_mappings
-    @title = "land use mappings"
-  end
-
   # GET /land_use_mappings/1
   # GET /land_use_mappings/1.xml
   def show
     @land_use_mapping = LandUseMapping.find(params[:id])
+    @title = "land use mappings"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,6 +30,7 @@ class LandUseMappingsController < ApplicationController
   # GET /land_use_mappings/new.xml
   def new
     @land_use_mapping = LandUseMapping.new
+    @title = "land use mapping"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,12 +41,14 @@ class LandUseMappingsController < ApplicationController
   # GET /land_use_mappings/1/edit
   def edit
     @land_use_mapping = LandUseMapping.find(params[:id])
+    @title = "land use mapping"
   end
 
   # POST /land_use_mappings
   # POST /land_use_mappings.xml
   def create
     @land_use_mapping = LandUseMapping.new(params[:land_use_mapping])
+    @title = "land use mapping"
 
     respond_to do |format|
       if @land_use_mapping.save
@@ -65,6 +65,7 @@ class LandUseMappingsController < ApplicationController
   # PUT /land_use_mappings/1.xml
   def update
     @land_use_mapping = LandUseMapping.find(params[:id])
+    @title = "land use mapping"
 
     respond_to do |format|
       if @land_use_mapping.update_attributes(params[:land_use_mapping])
@@ -82,6 +83,7 @@ class LandUseMappingsController < ApplicationController
   def destroy
     @land_use_mapping = LandUseMapping.find(params[:id])
     @land_use_mapping.destroy
+    @title = "land use mapping"
 
     respond_to do |format|
       format.html { redirect_to(land_use_mappings_url) }

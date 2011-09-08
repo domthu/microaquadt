@@ -3,6 +3,7 @@ class PartnersController < ApplicationController
   # GET /partners.xml
   def index
     @partners = Partner.all
+    @title = "partners"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,14 +11,11 @@ class PartnersController < ApplicationController
     end
   end
 
-  def partners
-    @title = "partners"
-  end
-
   # GET /partners/1
   # GET /partners/1.xml
   def show
     @partner = Partner.find(params[:id])
+    @title = "partners"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +27,7 @@ class PartnersController < ApplicationController
   # GET /partners/new.xml
   def new
     @partner = Partner.new
+    @title = "partner"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,12 +38,14 @@ class PartnersController < ApplicationController
   # GET /partners/1/edit
   def edit
     @partner = Partner.find(params[:id])
+    @title = "partner"
   end
 
   # POST /partners
   # POST /partners.xml
   def create
     @partner = Partner.new(params[:partner])
+    @title = "partner"
 
     respond_to do |format|
       if @partner.save
@@ -61,6 +62,7 @@ class PartnersController < ApplicationController
   # PUT /partners/1.xml
   def update
     @partner = Partner.find(params[:id])
+    @title = "partner"
 
     respond_to do |format|
       if @partner.update_attributes(params[:partner])
@@ -78,6 +80,7 @@ class PartnersController < ApplicationController
   def destroy
     @partner = Partner.find(params[:id])
     @partner.destroy
+    @title = "partner"
 
     respond_to do |format|
       format.html { redirect_to(partners_url) }

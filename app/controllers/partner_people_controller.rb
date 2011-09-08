@@ -3,6 +3,7 @@ class PartnerPeopleController < ApplicationController
   # GET /partner_people.xml
   def index
     @partner_people = PartnerPerson.all
+    @title = "association partners <--> peoples"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,14 +11,11 @@ class PartnerPeopleController < ApplicationController
     end
   end
 
-  def partner_people
-    @title = "association partner <--> people"
-  end
-
   # GET /partner_people/1
   # GET /partner_people/1.xml
   def show
     @partner_person = PartnerPerson.find(params[:id])
+    @title = "association partners <--> peoples"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +27,7 @@ class PartnerPeopleController < ApplicationController
   # GET /partner_people/new.xml
   def new
     @partner_person = PartnerPerson.new
+    @title = "association partner <--> people"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,12 +38,14 @@ class PartnerPeopleController < ApplicationController
   # GET /partner_people/1/edit
   def edit
     @partner_person = PartnerPerson.find(params[:id])
+    @title = "association partner <--> people"
   end
 
   # POST /partner_people
   # POST /partner_people.xml
   def create
     @partner_person = PartnerPerson.new(params[:partner_person])
+    @title = "association partner <--> people"
 
     respond_to do |format|
       if @partner_person.save
@@ -61,6 +62,7 @@ class PartnerPeopleController < ApplicationController
   # PUT /partner_people/1.xml
   def update
     @partner_person = PartnerPerson.find(params[:id])
+    @title = "association partner <--> people"
 
     respond_to do |format|
       if @partner_person.update_attributes(params[:partner_person])
@@ -78,6 +80,7 @@ class PartnerPeopleController < ApplicationController
   def destroy
     @partner_person = PartnerPerson.find(params[:id])
     @partner_person.destroy
+    @title = "association partner <--> people"
 
     respond_to do |format|
       format.html { redirect_to(partner_people_url) }

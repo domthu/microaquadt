@@ -3,6 +3,7 @@ class GeosController < ApplicationController
   # GET /geos.xml
   def index
     @geos = Geo.all
+    @title = "Geographical positions"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,15 +11,11 @@ class GeosController < ApplicationController
     end
   end
 
-
-  def geos
-    @title = "Geographical position"
-  end
-
   # GET /geos/1
   # GET /geos/1.xml
   def show
     @geo = Geo.find(params[:id])
+    @title = "Geographical positions"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,6 +27,7 @@ class GeosController < ApplicationController
   # GET /geos/new.xml
   def new
     @geo = Geo.new
+    @title = "Geographical position"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,12 +38,14 @@ class GeosController < ApplicationController
   # GET /geos/1/edit
   def edit
     @geo = Geo.find(params[:id])
+    @title = "Geographical position"
   end
 
   # POST /geos
   # POST /geos.xml
   def create
     @geo = Geo.new(params[:geo])
+    @title = "Geographical position"
 
     respond_to do |format|
       if @geo.save
@@ -62,6 +62,7 @@ class GeosController < ApplicationController
   # PUT /geos/1.xml
   def update
     @geo = Geo.find(params[:id])
+    @title = "Geographical position"
 
     respond_to do |format|
       if @geo.update_attributes(params[:geo])
@@ -79,6 +80,7 @@ class GeosController < ApplicationController
   def destroy
     @geo = Geo.find(params[:id])
     @geo.destroy
+    @title = "Geographical position"
 
     respond_to do |format|
       format.html { redirect_to(geos_url) }

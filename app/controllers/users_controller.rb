@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     @users = User.all
+    @title = "users"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,14 +11,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def users
-    @title = "users"
-  end
-
   # GET /users/1
   # GET /users/1.xml
   def show
     @user = User.find(params[:id])
+    @title = "users"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +27,7 @@ class UsersController < ApplicationController
   # GET /users/new.xml
   def new
     @user = User.new
+    @title = "user"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,12 +38,14 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @title = "user"
   end
 
   # POST /users
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    @title = "user"
 
     respond_to do |format|
       if @user.save
@@ -61,6 +62,7 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
+    @title = "user"
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -78,6 +80,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    @title = "user"
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
