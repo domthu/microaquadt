@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :water_samples
+
+  map.resources :sampling_sites
+
   map.resources :microposts
 
   map.resources :users

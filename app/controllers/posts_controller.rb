@@ -10,6 +10,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def posts
+    @title = "posts"
+  end
+
   # GET /posts/1
   # GET /posts/1.xml
   def show

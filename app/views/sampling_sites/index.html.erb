@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Code</th>
-    <th>Sampling site</th>
     <th>Water type</th>
     <th>Water use</th>
     <th>Geo</th>
@@ -12,7 +11,6 @@
 <% @sampling_sites.each do |sampling_site| %>
   <tr>
     <td><%=h sampling_site.Code %></td>
-    <td><%=h sampling_site.sampling_site %></td>
     <td><%=h sampling_site.water_type %></td>
     <td><%=h sampling_site.water_use %></td>
     <td><%=h sampling_site.geo %></td>

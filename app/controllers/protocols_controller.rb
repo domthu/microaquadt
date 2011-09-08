@@ -10,6 +10,10 @@ class ProtocolsController < ApplicationController
     end
   end
 
+  def protocols
+    @title = "protocols"
+  end
+
   # GET /protocols/1
   # GET /protocols/1.xml
   def show

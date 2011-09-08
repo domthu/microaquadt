@@ -1,6 +1,9 @@
 class LandUseMappingsController < ApplicationController
   # GET /land_use_mappings
   # GET /land_use_mappings.xml
+
+  layout 'application'
+
   def index
     @land_use_mappings = LandUseMapping.all
 
@@ -8,6 +11,11 @@ class LandUseMappingsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @land_use_mappings }
     end
+  end
+
+
+  def land_use_mappings
+    @title = "land use mappings"
   end
 
   # GET /land_use_mappings/1

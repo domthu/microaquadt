@@ -10,6 +10,11 @@ class GeosController < ApplicationController
     end
   end
 
+
+  def geos
+    @title = "Geographical position"
+  end
+
   # GET /geos/1
   # GET /geos/1.xml
   def show

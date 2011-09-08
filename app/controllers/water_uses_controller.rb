@@ -10,6 +10,11 @@ class WaterUsesController < ApplicationController
     end
   end
 
+
+  def water_uses
+    @title = "water uses"
+  end
+
   # GET /water_uses/1
   # GET /water_uses/1.xml
   def show

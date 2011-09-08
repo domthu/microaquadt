@@ -10,6 +10,10 @@ class MicropostsController < ApplicationController
     end
   end
 
+  def microposts
+    @title = "microposts"
+  end
+
   # GET /microposts/1
   # GET /microposts/1.xml
   def show

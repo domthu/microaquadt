@@ -10,6 +10,11 @@ class CodeTypesController < ApplicationController
     end
   end
 
+
+  def code_types
+    @title = "code types"
+  end
+
   # GET /code_types/1
   # GET /code_types/1.xml
   def show

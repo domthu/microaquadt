@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def users
+    @title = "users"
+  end
+
   # GET /users/1
   # GET /users/1.xml
   def show

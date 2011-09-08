@@ -10,6 +10,10 @@ class PartnersController < ApplicationController
     end
   end
 
+  def partners
+    @title = "partners"
+  end
+
   # GET /partners/1
   # GET /partners/1.xml
   def show
