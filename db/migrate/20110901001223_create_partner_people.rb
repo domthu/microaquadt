@@ -1,8 +1,8 @@
 class CreatePartnerPeople < ActiveRecord::Migration
   def self.up
     create_table :partner_people do |t|
-      t.references :partner
-      t.references :person
+      t.references :partners
+      t.references :persons
       t.boolean :IsPrincipalInvestigator
       t.boolean :IsAdministratorResponsable
 

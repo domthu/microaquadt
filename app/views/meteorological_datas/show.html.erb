@@ -1,0 +1,43 @@
+<p>
+  <b>Temperature:</b>
+  <%=h @meteorological_data.Temperature %>
+</p>
+
+<p>
+  <b>Moisture:</b>
+  <%=h @meteorological_data.Moisture %>
+</p>
+
+<p>
+  <b>Pressure:</b>
+  <%=h @meteorological_data.Pressure %>
+</p>
+
+<p>
+  <b>Windspeed:</b>
+  <%=h @meteorological_data.WindSpeed %>
+</p>
+
+<p>
+  <b>Winddirection:</b>
+  <%=h @meteorological_data.WindDirection %>
+</p>
+
+<p>
+  <b>Waterflow:</b>
+  <%=h @meteorological_data.WaterFlow %>
+</p>
+
+<p>
+  <b>Lightintensity:</b>
+  <%=h @meteorological_data.LightIntensity %>
+</p>
+
+<p>
+  <b>Rainfallevents:</b>
+  <%=h @meteorological_data.RainfallEvents %>
+</p>
+
+
+<%= link_to 'Edit', edit_meteorological_data_path(@meteorological_data) %> |
+<%= link_to 'Back', meteorological_datas_path %>

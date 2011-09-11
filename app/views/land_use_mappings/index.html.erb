@@ -2,12 +2,14 @@
 
 <table>
   <tr>
+    <th>Name</th>
     <th>Note</th>
     <th>Water sample</th>
   </tr>
 
 <% @land_use_mappings.each do |land_use_mapping| %>
   <tr>
+    <td><%=h land_use_mapping.name %></td>
     <td><%=h land_use_mapping.note %></td>
     <td><%=h land_use_mapping.water_sample %></td>
     <td><%= link_to 'Show', land_use_mapping %></td>

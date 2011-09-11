@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :meteorological_datas
+
+  map.resources :meteorological_datas
+
   map.resources :water_samples
 
   map.resources :sampling_sites

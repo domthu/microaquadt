@@ -1,0 +1,43 @@
+<h1>New meteorological_data</h1>
+
+<% form_for(@meteorological_data) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :Temperature %><br />
+    <%= f.text_field :Temperature %>
+  </p>
+  <p>
+    <%= f.label :Moisture %><br />
+    <%= f.text_field :Moisture %>
+  </p>
+  <p>
+    <%= f.label :Pressure %><br />
+    <%= f.text_field :Pressure %>
+  </p>
+  <p>
+    <%= f.label :WindSpeed %><br />
+    <%= f.text_field :WindSpeed %>
+  </p>
+  <p>
+    <%= f.label :WindDirection %><br />
+    <%= f.text_field :WindDirection %>
+  </p>
+  <p>
+    <%= f.label :WaterFlow %><br />
+    <%= f.text_field :WaterFlow %>
+  </p>
+  <p>
+    <%= f.label :LightIntensity %><br />
+    <%= f.text_field :LightIntensity %>
+  </p>
+  <p>
+    <%= f.label :RainfallEvents %><br />
+    <%= f.text_field :RainfallEvents %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', meteorological_datas_path %>

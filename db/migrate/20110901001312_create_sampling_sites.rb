@@ -2,10 +2,9 @@ class CreateSamplingSites < ActiveRecord::Migration
   def self.up
     create_table :sampling_sites do |t|
       t.string :Code
-      t.references :sampling_site
-      t.references :water_type
-      t.references :water_use
-      t.references :geo
+      t.references :water_types
+      t.references :water_uses
+      t.references :geos, :polymorphic => {:default => 'Site'} 
 
       t.timestamps
     end
@@ -15,3 +14,5 @@ class CreateSamplingSites < ActiveRecord::Migration
     drop_table :sampling_sites
   end
 end
+
+

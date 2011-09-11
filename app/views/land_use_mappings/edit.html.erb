@@ -4,8 +4,12 @@
   <%= f.error_messages %>
 
   <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
     <%= f.label :note %><br />
-    <%= f.text_field :note %>
+    <%= f.text_area :note %>
   </p>
   <p>
     <%= f.label :water_sample %><br />
@@ -17,4 +21,4 @@
 <% end %>
 
 <%= link_to 'Show', @land_use_mapping %> |
-<%= link_to 'Back', land_use_mappings_path %>
+<%= link_to 'Back to list', land_use_mappings_path %>

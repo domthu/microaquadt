@@ -1,4 +1,8 @@
 <p>
+  <b>Name:</b>
+  <%=h @land_use_mapping.name %>
+</p>
+<p>
   <b>Note:</b>
   <%=h @land_use_mapping.note %>
 </p>
@@ -10,4 +14,4 @@
 
 
 <%= link_to 'Edit', edit_land_use_mapping_path(@land_use_mapping) %> |
-<%= link_to 'Back', land_use_mappings_path %>
+<%= link_to 'Back to list', land_use_mappings_path %>

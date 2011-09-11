@@ -4,8 +4,12 @@
   <%= f.error_messages %>
 
   <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
     <%= f.label :note %><br />
-    <%= f.text_field :note %>
+    <%= f.text_area :note %>
   </p>
   <p>
     <%= f.label :water_sample %><br />

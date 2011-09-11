@@ -1,0 +1,34 @@
+<h1>Listing meteorological_datas</h1>
+
+<table>
+  <tr>
+    <th>Temperature</th>
+    <th>Moisture</th>
+    <th>Pressure</th>
+    <th>Windspeed</th>
+    <th>Winddirection</th>
+    <th>Waterflow</th>
+    <th>Lightintensity</th>
+    <th>Rainfallevents</th>
+  </tr>
+
+<% @meteorological_datas.each do |meteorological_data| %>
+  <tr>
+    <td><%=h meteorological_data.Temperature %></td>
+    <td><%=h meteorological_data.Moisture %></td>
+    <td><%=h meteorological_data.Pressure %></td>
+    <td><%=h meteorological_data.WindSpeed %></td>
+    <td><%=h meteorological_data.WindDirection %></td>
+    <td><%=h meteorological_data.WaterFlow %></td>
+    <td><%=h meteorological_data.LightIntensity %></td>
+    <td><%=h meteorological_data.RainfallEvents %></td>
+    <td><%= link_to 'Show', meteorological_data %></td>
+    <td><%= link_to 'Edit', edit_meteorological_data_path(meteorological_data) %></td>
+    <td><%= link_to 'Destroy', meteorological_data, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New meteorological_data', new_meteorological_data_path %>

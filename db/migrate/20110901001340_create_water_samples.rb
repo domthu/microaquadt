@@ -5,14 +5,14 @@ class CreateWaterSamples < ActiveRecord::Migration
       t.decimal :Turbidity
       t.decimal :Conductivity
       t.decimal :Ph
-      t.references :water_sample
       t.string :Code
-      t.references :meteorological_data
-      t.references :water_type
-      t.references :water_use
-      t.references :sampling_site
-      t.references :partner
-      t.references :geo
+      t.references :meteorological_datas
+      t.references :water_types
+      t.references :water_uses
+      t.references :partners
+      t.references :land_use_mappings 
+	  t.references :sampling_sites 
+	  t.references :geos, :polymorphic => {:default => 'Water'} 
 
       t.timestamps
     end

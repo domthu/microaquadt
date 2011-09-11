@@ -1,8 +1,8 @@
 class CreateLandUseMappings < ActiveRecord::Migration
   def self.up
     create_table :land_use_mappings do |t|
-      t.string :note
-      t.references :water_sample
+      t.string :name
+      t.text :note
 
       t.timestamps
     end
