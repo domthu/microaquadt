@@ -1,8 +1,10 @@
+<h2>
+  <%= h @user.name %>
+</h2>
 <p>
   <b>Name:</b>
   <%=h @user.name %>
 </p>
-
 <p>
   <b>Email:</b>
   <%=h @user.email %>
@@ -11,3 +13,4 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
