@@ -1,6 +1,7 @@
 class CreateMeteorologicalDatas < ActiveRecord::Migration
   def self.up
     create_table :meteorological_datas do |t|
+	  t.name :string, :null => false
       t.decimal :Temperature
       t.decimal :Moisture
       t.decimal :Pressure

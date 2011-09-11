@@ -1,13 +1,14 @@
 class CreatePartners < ActiveRecord::Migration
   def self.up
     create_table :partners do |t|
-      t.integer :fp7_Number
-      t.string :Name
-      t.string :State
+      t.integer :fp7_Number, :null => false
+      t.string :Name, :null => false
+      t.string :State, :null => false
       t.text :Address
       t.string :Phone
-      t.string :Email
+      t.string :Email, :null => false
       t.string :Site
+      t.binary :logo
 
       t.timestamps
     end

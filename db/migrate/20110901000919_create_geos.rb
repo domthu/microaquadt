@@ -1,9 +1,9 @@
 class CreateGeos < ActiveRecord::Migration
   def self.up
     create_table :geos do |t|
-      t.string :name
-      t.decimal :lon
-      t.decimal :lat
+      t.string :name, :null => false
+      t.decimal :lon, :null => false
+      t.decimal :lat, :null => false
 
       t.timestamps
     end

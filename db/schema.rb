@@ -12,21 +12,21 @@
 ActiveRecord::Schema.define(:version => 20110911150557) do
 
   create_table "code_types", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "geos", :force => true do |t|
-    t.string   "name"
-    t.integer  "lon",        :limit => 10, :precision => 10, :scale => 0
-    t.integer  "lat",        :limit => 10, :precision => 10, :scale => 0
+    t.string   "name",                                                    :null => false
+    t.integer  "lon",        :limit => 10, :precision => 10, :scale => 0, :null => false
+    t.integer  "lat",        :limit => 10, :precision => 10, :scale => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "land_use_mappings", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -62,36 +62,39 @@ ActiveRecord::Schema.define(:version => 20110911150557) do
   end
 
   create_table "partners", :force => true do |t|
-    t.integer  "fp7_Number"
-    t.string   "Name"
-    t.string   "State"
+    t.integer  "fp7_Number", :null => false
+    t.string   "Name",       :null => false
+    t.string   "State",      :null => false
     t.text     "Address"
     t.string   "Phone"
-    t.string   "Email"
-    t.string   "Site"rmation) that was performed earlier
+    t.string   "Email",      :null => false
+    t.string   "Site"
+    t.binary   "logo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "people", :force => true do |t|
-    t.string   "firstname"
-    t.string   "LastName"
+    t.string   "firstname",  :null => false
+    t.string   "LastName",   :null => false
     t.string   "Phone"
-    t.string   "Email"
+    t.string   "Email",      :null => false
     t.string   "Town"
+    t.binary   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "name"
-    t.string   "title"
+    t.string   "name",       :null => false
+    t.string   "title",      :null => false
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "protocols", :force => true do |t|
+    t.string   "name",              :null => false
     t.text     "GrowthProtocol"
     t.text     "TreatmentProtocol"
     t.text     "ExtractProtocol"
@@ -105,7 +108,7 @@ ActiveRecord::Schema.define(:version => 20110911150557) do
   end
 
   create_table "sampling_sites", :force => true do |t|
-    t.string   "Code"
+    t.string   "Code",                               :null => false
     t.integer  "water_types_id"
     t.integer  "water_uses_id"
     t.integer  "geos_id"
@@ -115,18 +118,18 @@ ActiveRecord::Schema.define(:version => 20110911150557) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "water_samples", :force => true do |t|
+    t.string   "Code",                                                                                      :null => false
     t.integer  "Temperature",             :limit => 10, :precision => 10, :scale => 0
     t.integer  "Turbidity",               :limit => 10, :precision => 10, :scale => 0
     t.integer  "Conductivity",            :limit => 10, :precision => 10, :scale => 0
     t.integer  "Ph",                      :limit => 10, :precision => 10, :scale => 0
-    t.string   "Code"
     t.integer  "meteorological_datas_id"
     t.integer  "water_types_id"
     t.integer  "water_uses_id"
@@ -140,13 +143,13 @@ ActiveRecord::Schema.define(:version => 20110911150557) do
   end
 
   create_table "water_types", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "water_uses", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

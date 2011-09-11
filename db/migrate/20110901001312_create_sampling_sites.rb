@@ -1,7 +1,7 @@
 class CreateSamplingSites < ActiveRecord::Migration
   def self.up
     create_table :sampling_sites do |t|
-      t.string :Code
+      t.string :Code, :null => false
       t.references :water_types
       t.references :water_uses
       t.references :geos, :polymorphic => {:default => 'Site'} 

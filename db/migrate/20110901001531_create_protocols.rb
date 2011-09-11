@@ -1,6 +1,7 @@
 class CreateProtocols < ActiveRecord::Migration
   def self.up
     create_table :protocols do |t|
+	  t.string :name, :null => false	
       t.text :GrowthProtocol
       t.text :TreatmentProtocol
       t.text :ExtractProtocol

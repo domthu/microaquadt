@@ -1,7 +1,7 @@
 class CreateWaterUses < ActiveRecord::Migration
   def self.up
     create_table :water_uses do |t|
-      t.string :name
+      t.string :name, :null => false
 
       t.timestamps
     end

@@ -1,11 +1,11 @@
 class CreateWaterSamples < ActiveRecord::Migration
   def self.up
     create_table :water_samples do |t|
+      t.string :Code, :null => false
       t.decimal :Temperature
       t.decimal :Turbidity
       t.decimal :Conductivity
       t.decimal :Ph
-      t.string :Code
       t.references :meteorological_datas
       t.references :water_types
       t.references :water_uses
