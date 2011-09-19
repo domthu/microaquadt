@@ -8,28 +8,29 @@
     <%= f.text_field :fp7_Number %>
   </p>
   <p>
-    <%= f.label :Name %><br />
-    <%= f.text_field :Name %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.label :State %><br />
-    <%= f.text_field :State %>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
   </p>
   <p>
-    <%= f.label :Address %><br />
-    <%= f.text_area :Address %>
+    <%= f.label :address %><br />
+    <%= f.text_area :address %>
   </p>
   <p>
-    <%= f.label :Phone %><br />
-    <%= f.text_field :Phone %>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
   </p>
   <p>
-    <%= f.label :Email %><br />
-    <%= f.text_field :Email %>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+    email_field(:f, :email)
   </p>
   <p>
-    <%= f.label :Site %><br />
-    <%= f.text_field :Site %>
+    <%= f.label :site %><br />
+    <%= f.text_field :site %>
   </p>
   <p>
     <%= f.submit 'Update' %>
@@ -38,3 +39,4 @@
 
 <%= link_to 'Show', @partner %> |
 <%= link_to 'Back', partners_path %>
+

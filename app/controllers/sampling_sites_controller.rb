@@ -1,9 +1,20 @@
 class SamplingSitesController < ApplicationController
   # GET /sampling_sites
   # GET /sampling_sites.xml
+
+  #before_filter :find_water_use, :only => [:show, :edit, :update]
+  #private def find_water_use
+  #  #Model name
+  #  @wu = WaterUse.find(params[:water_uses_id])
+  #end
+
   def index
     @sampling_sites = SamplingSite.all
     @title = "Sampling sites"
+    #@wu = WaterUse.find(@sampling_site.water_uses_id)
+    #@wt = WaterType.find(@sampling_site.water_types_id)
+    #@lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
+    #@g = Geo.find(@sampling_site.geos_id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +26,14 @@ class SamplingSitesController < ApplicationController
   # GET /sampling_sites/1.xml
   def show
     @sampling_site = SamplingSite.find(params[:id])
+    if @sampling_site.nil?
+        redirect_to :action => "index"
+    end
     @title = "Sampling sites"
+    @wu = WaterUse.find(@sampling_site.water_uses_id)
+    @wt = WaterType.find(@sampling_site.water_types_id)
+    @lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
+    @g = Geo.find(@sampling_site.geos_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -88,3 +106,4 @@ class SamplingSitesController < ApplicationController
     end
   end
 end
+

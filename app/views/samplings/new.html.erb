@@ -1,0 +1,87 @@
+<h1>New sampling</h1>
+
+<% form_for(@sampling) do |f| %>
+  <%= f.error_messages %>
+
+<fieldset><legend class="leg">General data</legend>
+  <div class="field">
+    <%= f.label :sampling_site_id %><br />
+    <%= select :sampling,:sampling_site_id, SamplingSite.find(:all).collect{|p| [p.code + " " + p.name, p.id]}%>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :partner_id %><br />
+    <div style="display:none;"> fixnum to string select :sampling, :partner,Partner.find(:all).collect{|p| [p.fp7_Number + " " + p.name, p.id]} </div>
+    <%= select :sampling, :partner_id, Partner.find(:all).collect{|p| [p.name, p.id]}%>
+  </div>
+  <div class="field" style="display:none;"> problem strutturale filter --> wfilter
+    <= f.label :wfilter ><br />
+    <= select :sampling,:filter,Wfilter.find(:all).collect{|p| [p.name, p.id]}>
+  </div>
+  <div class="field">
+    <%= f.label :samplingDate %><br />
+    <%= date_select :sampling, :samplingDate %>
+  </div>
+
+</fieldset>
+
+<fieldset><legend class="leg">Technical data</legend>
+  <div class="field">
+    <%= f.label :temperature %><br />
+    <%= f.text_field :temperature %>
+  </div>
+  <div class="field">
+    <%= f.label :moisture %><br />
+    <%= f.text_field :moisture %>
+  </div>
+  <div class="field">
+    <%= f.label :pressure %><br />
+    <%= f.text_field :pressure %>
+  </div>
+  <div class="field">
+    <%= f.label :windSpeed %><br />
+    <%= f.text_field :windSpeed %>
+  </div>
+  <div class="field">
+    <%= f.label :windDirection %><br />
+    <%= f.text_field :windDirection %>
+  </div>
+  <div class="field">
+    <%= f.label :waterFlow %><br />
+    <%= f.text_field :waterFlow %>
+  </div>
+  <div class="field">
+    <%= f.label :lightIntensity %><br />
+    <%= f.text_field :lightIntensity %>
+  </div>
+  <div class="field">
+    <%= f.label :rainfallEvents %><br />
+    <%= f.text_field :rainfallEvents %>
+  </div>
+  <div class="field">
+    <%= f.label :depth %><br />
+    <%= f.text_field :depth %>
+  </div>
+</fieldset>
+
+
+  <div class="field">
+    <%= f.label :pfilter %><br />
+    <%= f.text_area :pfilter %>
+  </div>
+
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', samplings_path %>
+

@@ -1,4 +1,9 @@
 class PartnerPeopleController < ApplicationController
+
+  # since partner will create relationships with person
+  #but person cannot reach partner by himself
+  attr_accessible :partner_id
+
   # GET /partner_people
   # GET /partner_people.xml
   def index
@@ -88,3 +93,4 @@ class PartnerPeopleController < ApplicationController
     end
   end
 end
+

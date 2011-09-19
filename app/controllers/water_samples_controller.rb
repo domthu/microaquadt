@@ -15,7 +15,11 @@ class WaterSamplesController < ApplicationController
   # GET /water_samples/1.xml
   def show
     @water_sample = WaterSample.find(params[:id])
+    if @water_sample.nil?
+        redirect_to :action => "index"
+    end
     @title = "Water samples"
+    @s = Sampling.find(@water_sample.samplings_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -88,3 +92,4 @@ class WaterSamplesController < ApplicationController
     end
   end
 end
+

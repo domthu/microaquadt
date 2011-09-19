@@ -1,4 +1,9 @@
 class GeosController < ApplicationController
+
+  def show_name(self)
+    render :text => self.name + "23"
+  end
+
   # GET /geos
   # GET /geos.xml
   def index
@@ -88,3 +93,4 @@ class GeosController < ApplicationController
     end
   end
 end
+

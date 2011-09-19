@@ -1,24 +1,27 @@
 class CreateWaterSamples < ActiveRecord::Migration
   def self.up
     create_table :water_samples do |t|
-      t.string :Code, :null => false
-      t.decimal :Temperature
-      t.decimal :Turbidity
-      t.decimal :Conductivity
-      t.decimal :Ph
-      t.references :meteorological_datas
-      t.references :water_types
-      t.references :water_uses
-      t.references :partners
-      t.references :land_use_mappings 
-	  t.references :sampling_sites 
-	  t.references :geos, :polymorphic => {:default => 'Water'} 
+      t.string :code, :null => false
+      t.decimal :temperature
+      t.decimal :turbidity
+      t.decimal :conductivity
+      t.decimal :phosphates
+      t.decimal :nitrates
+      t.decimal :volume
+      t.decimal :ph
+      #t.references :meteorological_datas
+      t.integer :samplings_id, :null => false
+      t.datetime :samplingDate, :null => false
+      t.text :note
 
       t.timestamps
     end
+
+    add_index :water_samples, :samplings_id
   end
 
   def self.down
     drop_table :water_samples
   end
 end
+

@@ -1,0 +1,21 @@
+<h1>Listing filters</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @wfilters.each do |wfilter| %>
+  <tr>
+    <td><%=h wfilter.name %></td>
+    <td><%= link_to 'Show', wfilter %></td>
+    <td><%= link_to 'Edit', edit_wfilter_path(wfilter) %></td>
+    <td><%= link_to 'Destroy', wfilter, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New wfilter', new_wfilter_path %>
+

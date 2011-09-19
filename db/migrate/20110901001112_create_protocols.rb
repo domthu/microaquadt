@@ -1,7 +1,7 @@
 class CreateProtocols < ActiveRecord::Migration
   def self.up
     create_table :protocols do |t|
-	  t.string :name, :null => false	
+	    t.string :name, :null => false
       t.text :GrowthProtocol
       t.text :TreatmentProtocol
       t.text :ExtractProtocol
@@ -9,7 +9,10 @@ class CreateProtocols < ActiveRecord::Migration
       t.text :HybProtocol
       t.text :ScanProtocol
       t.text :DataProcessing
-      t.text :alueDefinition
+      t.text :ValueDefinition
+
+      #t.references posso creare un protocol
+      t.integer :water_samples_id, :null => false
 
       t.timestamps
     end
@@ -19,3 +22,4 @@ class CreateProtocols < ActiveRecord::Migration
     drop_table :protocols
   end
 end
+

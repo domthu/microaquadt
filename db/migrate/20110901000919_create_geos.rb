@@ -13,3 +13,4 @@ class CreateGeos < ActiveRecord::Migration
     drop_table :geos
   end
 end
+

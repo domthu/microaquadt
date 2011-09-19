@@ -1,43 +1,53 @@
       <div id="header">
 	<table><tr><td rowspan="5">
-        <% logo = image_tag("uaqua1_logo2.png", :alt => "Microaqua bioinfo", :class => "round") %>
-        <%= link_to logo, root_path %>
+	      <%= link_to appHelperLogo, root_path %>
 	</td><td>
         <ul class="navigation round">
           <li><%= link_to "Home", '/' %></li>
+          <% if signed_in? %>
+            <li><%= link_to "Profile", current_user %></li>
+          <% end %>
 			    <li><a href="http://microaqua.eu/" target="_blank">External site</a></li>
 			    <li><a href="http://engeebee.com/dpmicroaqua/" target="_blank">Project mgt</a></li>
+          <% if signed_in? %>
+            <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign in", signin_path %></li>
+          <% end %>
         </ul>
 		<br />
 	</td></tr><tr><td>
         <ul class="navigation round">
-			<li><%= link_to "land use mapping", land_use_mappings_path %></li>
-			<li><%= link_to "sampling site", sampling_sites_path %></li>
-			<li><%= link_to "water sample", water_samples_path %></li>
-			<li><%= link_to "geo", geos_path %></li>
+			    <li><%= link_to "sampling site", sampling_sites_path %></li>
+			    <li><%= link_to "sampling", samplings_path %></li>
+			    <li><%= link_to "water sample", water_samples_path %></li>
         </ul>
 		<br />
 	</td></tr><tr><td>
+        <ul class="navigation round">
+			    <li><%= link_to "land use mapping", land_use_mappings_path %></li>
+			    <li><%= link_to "geo", geos_path %></li>
+			    <li><%= link_to "water use", water_uses_path %></li>
+			    <li><%= link_to "water type", water_types_path %></li>
+			    <li><%= link_to "partner", partners_path %></li>
+			    <li><%= link_to "filter", wfilters_path %></li>
+    			<li><%= link_to "protocol", protocols_path %></li>
+        </ul>
+		<br />
+	</td></tr><tr><td>
+	</td></tr><tr><td style="" >
         <ul class="navigation round">
 			<li><%= link_to "user", users_path %></li>
-			<li><%= link_to "partner", partners_path %></li>
 			<li><%= link_to "people", people_path %></li>
 			<li><%= link_to "partner people", partner_people_path %></li>
         </ul>
 		<br />
-	</td></tr><tr><td>
+	</td></tr><tr><td style="" >
         <ul class="navigation round">
-			<li><%= link_to "water use", water_uses_path %></li>
-			<li><%= link_to "water type", water_types_path %></li>
 			<li><%= link_to "code type", code_types_path %></li>
 			<li><%= link_to "meteorological data", meteorological_datas_path %></li>
-        </ul>
-		<br />
-	</td></tr><tr><td>
-        <ul class="navigation round">
-			<li><%= link_to "protocol", protocols_path %></li>
-			<li><%= link_to "micropost", microposts_path %></li>
-			<li><%= link_to "post", posts_path %></li>
+			    <li><%= link_to "micropost", microposts_path %></li>
+			    <li><%= link_to "post", posts_path %></li>
         </ul>
 	</td></tr></table>
       </div>

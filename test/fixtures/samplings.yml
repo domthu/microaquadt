@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  Temperature: 9.99
+  Moisture: 9.99
+  Pressure: 9.99
+  WindSpeed: 9.99
+  WindDirection: MyString
+  WaterFlow: 9.99
+  LightIntensity: 9.99
+  RainfallEvents: 9.99
+  Temperature: 9.99
+  sampling_site: 
+  code: MyString
+  partner: 
+
+two:
+  Temperature: 9.99
+  Moisture: 9.99
+  Pressure: 9.99
+  WindSpeed: 9.99
+  WindDirection: MyString
+  WaterFlow: 9.99
+  LightIntensity: 9.99
+  RainfallEvents: 9.99
+  Temperature: 9.99
+  sampling_site: 
+  code: MyString
+  partner: 

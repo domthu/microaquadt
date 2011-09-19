@@ -5,34 +5,39 @@
 
 <p>
   <b>Name:</b>
-  <%=h @partner.Name %>
+  <%=h @partner.name %>
 </p>
 
 <p>
   <b>State:</b>
-  <%=h @partner.State %>
+  <%=h @partner.state %>
 </p>
 
 <p>
   <b>Address:</b>
-  <%=h @partner.Address %>
+  <%=h @partner.address %>
 </p>
 
 <p>
   <b>Phone:</b>
-  <%=h @partner.Phone %>
+  <%=h @partner.phone %>
 </p>
 
 <p>
-  <b>Email:</b>
-  <%=h @partner.Email %>
+  <b>email:</b>
+  <%=h @partner.email %>
+  <div style="display:none">
+  email_field(:user, :email)
+  email_field(@partner, :email)
+  </div>
 </p>
 
 <p>
   <b>Site:</b>
-  <%=h @partner.Site %>
+  <%=h @partner.site %>
 </p>
 
 
 <%= link_to 'Edit', edit_partner_path(@partner) %> |
 <%= link_to 'Back', partners_path %>
+

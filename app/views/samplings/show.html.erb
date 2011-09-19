@@ -1,0 +1,69 @@
+<p>
+  <b>Sampling site:</b>
+  <%=h @ss.code + " " + @ss.name %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%=h @sampling.code %>
+</p>
+
+<p>
+  <b>Partner:</b>
+  <%=h @pt.name %>
+</p>
+
+<p>
+  <b>Temperature:</b>
+  <%=h @sampling.temperature %>
+</p>
+
+<p>
+  <b>Moisture:</b>
+  <%=h @sampling.moisture %>
+</p>
+
+<p>
+  <b>Pressure:</b>
+  <%=h @sampling.pressure %>
+</p>
+
+<p>
+  <b>Windspeed:</b>
+  <%=h @sampling.windSpeed %>
+</p>
+
+<p>
+  <b>Winddirection:</b>
+  <%=h @sampling.windDirection %>
+</p>
+
+<p>
+  <b>Waterflow:</b>
+  <%=h @sampling.waterFlow %>
+</p>
+
+<p>
+  <b>Lightintensity:</b>
+  <%=h @sampling.lightIntensity %>
+</p>
+
+<p>
+  <b>Rainfallevents:</b>
+  <%=h @sampling.rainfallEvents %>
+</p>
+
+<p>
+  <b>Depth:</b>
+  <%=h @sampling.depth %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%=h @sampling.note %>
+</p>
+
+
+<%= link_to 'Edit', edit_sampling_path(@sampling) %> |
+<%= link_to 'Back', samplings_path %>
+

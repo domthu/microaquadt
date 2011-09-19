@@ -5,7 +5,7 @@
 
   <p>
     <%= f.label :GrowthProtocol %><br />
-    <%= f.text_area :GrowthProtocol %>
+    <%= f.text_area :GrowthProtocol, :size => "60x12"  %>
   </p>
   <p>
     <%= f.label :TreatmentProtocol %><br />
@@ -32,8 +32,8 @@
     <%= f.text_area :DataProcessing %>
   </p>
   <p>
-    <%= f.label :alueDefinition %><br />
-    <%= f.text_area :alueDefinition %>
+    <%= f.label :ValueDefinition %><br />
+    <%= f.text_area :ValueDefinition %>
   </p>
   <p>
     <%= f.submit 'Create' %>
@@ -41,3 +41,4 @@
 <% end %>
 
 <%= link_to 'Back', protocols_path %>
+

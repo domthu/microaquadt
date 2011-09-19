@@ -1,24 +1,27 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :meteorological_datas
+  map.resources :wfilters
+
+  map.resources :filters
+
+  map.resources :filters
+
+  map.resources :samplings
+
+  map.resources :samplings
 
   map.resources :meteorological_datas
-
-  map.resources :water_samples
-
-  map.resources :sampling_sites
 
   map.resources :microposts
 
   map.resources :users
   map.signup '/signup',   :controller => 'users', :action => 'new'
+  map.resources :sessions, :only => [:new, :create, :destroy]
+  map.signin  '/signin',  :controller => 'sessions', :action => 'new'
+  map.signout '/signout', :controller => 'sessions', :action => 'destroy'
 
   map.resources :protocols
 
   map.resources :land_use_mappings
-
-  map.resources :water_samples
-
-  map.resources :sampling_sites
 
   map.resources :partner_people
 
@@ -34,7 +37,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :water_uses
 
-  map.resources :posts
+  map.resources :posts, :has_many => :comments
+
+  map.resources :sampling_sites, :has_one => :water_uses
+
+  map.resources :water_samples
 
   # Routes for static pages.
   map.contact '/contact', :controller => 'pages', :action => 'contact'
@@ -59,7 +66,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Sample resource route with sub-resources:
   #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
+
   # Sample resource route with more complex sub-resources
   #   map.resources :products do |products|
   #     products.resources :comments
@@ -86,3 +93,4 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
+

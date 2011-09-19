@@ -1,58 +1,54 @@
 <p>
-  <b>Temperature:</b>
-  <%=h @water_sample.Temperature %>
-</p>
-
-<p>
-  <b>Turbidity:</b>
-  <%=h @water_sample.Turbidity %>
-</p>
-
-<p>
-  <b>Conductivity:</b>
-  <%=h @water_sample.Conductivity %>
-</p>
-
-<p>
-  <b>Ph:</b>
-  <%=h @water_sample.Ph %>
-</p>
-
-<p>
-  <b>Sampling site:</b>
-  <%=h @water_sample.sampling_site %>
+  <b>Sampling:</b>
+  <%=h @s.code + " " + @s.samplingDate.to_s %>
 </p>
 
 <p>
   <b>Code:</b>
-  <%=h @water_sample.Code %>
+  <%=h @water_sample.code %>
 </p>
 
 <p>
-  <b>Meteorological data:</b>
-  <%=h @water_sample.meteorological_data %>
+  <b>Temperature:</b>
+  <%=h @water_sample.temperature %>
 </p>
 
 <p>
-  <b>Water type:</b>
-  <%=h @water_sample.water_type %>
+  <b>Turbidity:</b>
+  <%=h @water_sample.turbidity %>
 </p>
 
 <p>
-  <b>Water use:</b>
-  <%=h @water_sample.water_use %>
+  <b>Conductivity:</b>
+  <%=h @water_sample.conductivity %>
 </p>
 
 <p>
-  <b>Partner:</b>
-  <%=h @water_sample.partner %>
+  <b>Phosphates:</b>
+  <%=h @water_sample.phosphates %>
 </p>
 
 <p>
-  <b>Geo:</b>
-  <%=h @water_sample.geo %>
+  <b>Nitrates:</b>
+  <%=h @water_sample.nitrates %>
+</p>
+
+<p>
+  <b>Volume:</b>
+  <%=h @water_sample.volume %>
+</p>
+
+<p>
+  <b>Ph:</b>
+  <%=h @water_sample.ph %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%=h @water_sample.note %>
 </p>
 
 
 <%= link_to 'Edit', edit_water_sample_path(@water_sample) %> |
 <%= link_to 'Back', water_samples_path %>
+

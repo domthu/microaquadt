@@ -4,12 +4,13 @@ one:
   firstname: MyString
   LastName: MyString
   Phone: MyString
-  Email: MyString
+  email: MyString
   Town: MyString
 
 two:
   firstname: MyString
   LastName: MyString
   Phone: MyString
-  Email: MyString
+  email: MyString
   Town: MyString
+

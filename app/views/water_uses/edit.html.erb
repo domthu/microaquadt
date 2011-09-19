@@ -3,14 +3,19 @@
 <% form_for(@water_use) do |f| %>
   <%= f.error_messages %>
 
-  <p>
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </p>
-  <p>
+  </div>
+  <div class="actions">
     <%= f.submit 'Update' %>
-  </p>
+  </div>
 <% end %>
 
 <%= link_to 'Show', @water_use %> |
 <%= link_to 'Back', water_uses_path %>
+

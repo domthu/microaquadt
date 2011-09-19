@@ -1,23 +1,33 @@
 <p>
   <b>Code:</b>
-  <%=h @sampling_site.Code %>
+  <%=h @sampling_site.code %>
 </p>
-
+<p>
+  <b>Name:</b>
+  <%=h @sampling_site.name %>
+</p>
 <p>
   <b>Water type:</b>
   <%=h @sampling_site.water_type %>
+  <%=h @wt.code + " " + @wt.name %>
 </p>
 
 <p>
   <b>Water use:</b>
-  <%=h @sampling_site.water_use %>
+  <%=h @wu.code + " " + @wu.name %>
+</p>
+
+<p>
+  <b>Land use mapping:</b>
+  <%=h @lum.name %>
 </p>
 
 <p>
   <b>Geo:</b>
-  <%=h @sampling_site.geo %>
+  <%=h @g.name %>
 </p>
 
 
 <%= link_to 'Edit', edit_sampling_site_path(@sampling_site) %> |
 <%= link_to 'Back', sampling_sites_path %>
+

@@ -6,7 +6,7 @@ one:
   State: MyString
   Address: MyText
   Phone: MyString
-  Email: MyString
+  email: MyString
   Site: MyString
 
 two:
@@ -15,5 +15,6 @@ two:
   State: MyString
   Address: MyText
   Phone: MyString
-  Email: MyString
+  email: MyString
   Site: MyString
+

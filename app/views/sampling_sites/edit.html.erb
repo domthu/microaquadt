@@ -1,28 +1,82 @@
-<h1>Editing sampling_site</h1>
+<h1>Editing sampling site</h1>
 
 <% form_for(@sampling_site) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :Code %><br />
-    <%= f.text_field :Code %>
-  </p>
-  <p>
-    <%= f.label :water_type %><br />
-    <%= f.text_field :water_type %>
-  </p>
-  <p>
-    <%= f.label :water_use %><br />
-    <%= f.text_field :water_use %>
-  </p>
-  <p>
-    <%= f.label :geo %><br />
-    <%= f.text_field :geo %>
-  </p>
-  <p>
+ <fieldset><legend class="leg">General data</legend>
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+   </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :water_types_id %><br />
+    <%= select :sampling_site,:water_types_id,WaterType.find(:all).collect{|p| [p.code + " " + p.name, p.id]}%>
+  </div>
+  <div class="field">
+    <%= f.label :water_uses_id %><br />
+    <%= select :sampling_site,:water_uses_id,WaterUse.find(:all).collect{|p| [p.code + " " + p.name, p.id]}%>
+  </div>
+  <div class="field">
+    <%= f.label :land_use_mappings_id %><br />
+    <%= select :sampling_site,:land_use_mappings_id,LandUseMapping.find(:all).collect{|p| [p.name, p.id]}%>
+    <div style="display:none"> t.string   "geos_type" </div>
+  </div>
+  <div class="field">
+    <%= f.label :geos_id %><br />
+    <%= select :sampling_site,:geos_id,Geo.find(:all).collect{|p| [p.name, p.id]}%>
+  </div>
+</fieldset>
+
+<fieldset><legend class="leg">Technical data</legend>
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :aptitudeTypology %><br />
+    <%= f.text_field :aptitudeTypology %>
+  </div>
+  <div class="field">
+    <%= f.label :catchmentArea %><br />
+    <%= f.text_field :catchmentArea %>
+  </div>
+  <div class="field">
+    <%= f.label :Geology %><br />
+    <%= f.text_field :geology %>
+  </div>
+
+  <div class="field">
+    <%= f.label :depth %><br />
+    <%= f.text_field :depth %>
+  </div>
+  <div class="field">
+    <%= f.label :sizeTypology %><br />
+    <%= f.text_field :sizeTypology %>
+  </div>
+  <div class="field">
+    <%= f.label :salinity %><br />
+    <%= f.text_field :salinity %>
+  </div>
+  <div class="field">
+    <%= f.label :tidalRange %><br />
+    <%= f.text_field :tidalRange %>
+  </div>
+</fieldset>
+
+  <div class="field">
+    <%= f.label :Note %><br />
+    <%= f.text_area :note %>
+  </div>
+
+   <div class="actions">
     <%= f.submit 'Update' %>
-  </p>
+   </div>
 <% end %>
 
 <%= link_to 'Show', @sampling_site %> |
 <%= link_to 'Back', sampling_sites_path %>
+

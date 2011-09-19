@@ -2,11 +2,13 @@
 
 <table>
   <tr>
+    <th>Code</th>
     <th>Name</th>
   </tr>
 
 <% @water_types.each do |water_type| %>
   <tr>
+    <td><%=h water_type.code %></td>
     <td><%=h water_type.name %></td>
     <td><%= link_to 'Show', water_type %></td>
     <td><%= link_to 'Edit', edit_water_type_path(water_type) %></td>
@@ -18,3 +20,4 @@
 <br />
 
 <%= link_to 'New water_type', new_water_type_path %>
+

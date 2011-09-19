@@ -3,53 +3,61 @@
 <% form_for(@water_sample) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :Temperature %><br />
-    <%= f.text_field :Temperature %>
-  </p>
-  <p>
-    <%= f.label :Turbidity %><br />
-    <%= f.text_field :Turbidity %>
-  </p>
-  <p>
-    <%= f.label :Conductivity %><br />
-    <%= f.text_field :Conductivity %>
-  </p>
-  <p>
-    <%= f.label :Ph %><br />
-    <%= f.text_field :Ph %>
-  </p>
-  <p>
-    <%= f.label :sampling_site %><br />
-    <%= f.text_field :sampling_site %>
-  </p>
-  <p>
-    <%= f.label :Code %><br />
-    <%= f.text_field :Code %>
-  </p>
-  <p>
-    <%= f.label :meteorological_data %><br />
-    <%= f.text_field :meteorological_data %>
-  </p>
-  <p>
-    <%= f.label :water_type %><br />
-    <%= f.text_field :water_type %>
-  </p>
-  <p>
-    <%= f.label :water_use %><br />
-    <%= f.text_field :water_use %>
-  </p>
-  <p>
-    <%= f.label :partner %><br />
-    <%= f.text_field :partner %>
-  </p>
-  <p>
-    <%= f.label :geo %><br />
-    <%= f.text_field :geo %>
-  </p>
-  <p>
+<fieldset><legend class="leg">General data</legend>
+  <div class="field">
+    <%= f.label :samplings_id %><br />
+    <%= select :water_sample,:samplings_id, Sampling.find(:all).collect{|p| [p.code + " " + p.samplingDate.to_s, p.id]}%>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :samplingDate %><br />
+    <%= date_select :water_sample, :samplingDate %>
+  </div>
+</fieldset>
+
+<fieldset><legend class="leg">Technical data</legend>
+  <div class="field">
+    <%= f.label :temperature %><br />
+    <%= f.text_field :temperature %>
+  </div>
+  <div class="field">
+    <%= f.label :turbidity %><br />
+    <%= f.text_field :turbidity %>
+  </div>
+  <div class="field">
+    <%= f.label :conductivity %><br />
+    <%= f.text_field :conductivity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phosphates %><br />
+    <%= f.text_field :phosphates %>
+  </div>
+  <div class="field">
+    <%= f.label :nitrates %><br />
+    <%= f.text_field :nitrates %>
+  </div>
+  <div class="field">
+    <%= f.label :volume %><br />
+    <%= f.text_field :volume %>
+  </div>
+  <div class="field">
+    <%= f.label :ph %><br />
+    <%= f.text_field :ph %>
+  </div>
+</fieldset>
+
+  <div class="field">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div>
+  <div class="actions">
     <%= f.submit 'Create' %>
-  </p>
+  </div>
 <% end %>
 
 <%= link_to 'Back', water_samples_path %>
+

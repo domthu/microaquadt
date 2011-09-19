@@ -4,7 +4,7 @@ class CreatePeople < ActiveRecord::Migration
       t.string :firstname, :null => false
       t.string :LastName, :null => false
       t.string :Phone
-      t.string :Email, :null => false
+      t.string :email, :null => false
       t.string :Town
       t.binary :avatar
 
@@ -16,3 +16,4 @@ class CreatePeople < ActiveRecord::Migration
     drop_table :people
   end
 end
+

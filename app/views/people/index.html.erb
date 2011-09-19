@@ -5,7 +5,7 @@
     <th>Firstname</th>
     <th>Lastname</th>
     <th>Phone</th>
-    <th>Email</th>
+    <th>email</th>
     <th>Town</th>
   </tr>
 
@@ -14,7 +14,7 @@
     <td><%=h person.firstname %></td>
     <td><%=h person.LastName %></td>
     <td><%=h person.Phone %></td>
-    <td><%=h person.Email %></td>
+    <td><%=h person.email %></td>
     <td><%=h person.Town %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
@@ -26,3 +26,4 @@
 <br />
 
 <%= link_to 'New person', new_person_path %>
+

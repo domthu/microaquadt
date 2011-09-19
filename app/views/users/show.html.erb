@@ -1,14 +1,18 @@
-<h2>
-  <%= h @user.name %>
-</h2>
-<p>
-  <b>Name:</b>
-  <%=h @user.name %>
-</p>
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
+<table class="profile">
+  <tr>
+    <td class="main">
+      <h2>
+        <div style="display: none;"><= gravatar_for @user %></div>
+        <%= h @user.name %>
+      </h2>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= h @user.name %><br />
+      <strong>Email</strong> <%= h @user.email %><br />
+      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
+    </td>
+  </tr>
+</table>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
