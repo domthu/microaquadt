@@ -1,4 +1,5 @@
-class MicropostsController < ApplicationController
+class MicropostsController < AuthController
+
   # GET /microposts
   # GET /microposts.xml
   def index
@@ -88,3 +89,4 @@ class MicropostsController < ApplicationController
     end
   end
 end
+

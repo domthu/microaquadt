@@ -1,4 +1,13 @@
-class UsersController < ApplicationController
+class UsersController < AuthController
+  #By default, before filters apply to every action in a controller,
+  #so here we restrict the filter to act only on the :edit and :update actions
+  #by passing the :only options hash.
+  before_filter :authenticate, :only => [:index, :edit, :update]
+  #only Requiring the right user to change own contents
+  #before_filter :correct_user, :only => [:edit, :update, :new, :create, :destroy]
+  #20110922 NC solo superuser can do somthing on user and partner
+  before_filter :correct_user, :only => [:edit, :update, :new, :create, :destroy]
+
   #do not write to log password
   filter_parameter_logging :password
 
@@ -28,21 +37,25 @@ class UsersController < ApplicationController
 
   # GET /users/new
   # GET /users/new.xml
+  # map.signup '/signup',   :controller => 'users', :action => 'new'
+  #Nell'applicazione Microaqua non ci devono essere registrazione di utente
+  #quindi fare il redirect_to signin
   def new
-    #use for form_for
-    @user = User.new
-    @title = "user"
+    #Signup redirect to sign_in
+    redirect_to signin_path
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
-    end
-  end
+    #ATTENZIONE o fa render o fa redirect per una action
+    ##use for form_for
+    #@user = User.new
+      if !current_user?(@user)
+        flash[:notice] = "Only the partner who create the risorse can modify it."
+      end
+ #@title = "user"
 
-  # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-    @title = @user.name #"user"
+    #respond_to do |format|
+    #  format.html # new.html.erb
+    #  format.xml  { render :xml => @user }
+    #end
   end
 
   # POST /users
@@ -82,34 +95,67 @@ class UsersController < ApplicationController
   end
 
 
+  # GET /users/1/edit
+  def edit
+    #Removing the superfluous @user variable assignments.
+    #@user = User.find(params[:id])  --> Yet done in def correct_user
+    @title = @user.name #"user"
+  end
+
   # PUT /users/1
   # PUT /users/1.xml
   def update
-    @user = User.find(params[:id])
+    #Removing the superfluous @user variable assignments.
+    #@user = User.find(params[:id])  --> Yet done in def correct_user
     @title = @user.name #"user"
 
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated."
+      redirect_to @user
+    else
+      @title = "Edit user"
+      render 'edit'
     end
+
+    #respond_to do |format|
+    #  if @user.update_attributes(params[:user])
+    #    format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+    #    format.xml  { head :ok }
+    #  else
+    #    format.html { render :action => "edit" }
+    #    format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+    #  end
+    #end
   end
 
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    @title = @user.name #"user"
+    redirect_to users_path
+    #@user = User.find(params[:id])
+    #@user.destroy
+    #@title = @user.name #"user"
 
-    respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
-    end
+    #respond_to do |format|
+    #  format.html { redirect_to(users_url) }
+    #  format.xml  { head :ok }
+    #end
   end
+
+  private
+
+    def correct_user
+      @user = User.find(params[:id])
+      #uses the current_user? method,
+      #which (as with deny_access) we will define in the Sessions helper
+      #reroute() unless current_user?(@user)
+      #20110922 NC solo superuser can do somthing on user and partner
+      reroute() unless signed_in_and_master?
+    end
+
+    def reroute()
+      flash[:notice] = "Only the partner can modify his own profile."
+      redirect_to(user_path(@user))
+    end
 end
 

@@ -7,16 +7,18 @@ body {
 }
 
 #header {
-  padding-top: 20px;
+  padding-top: 5px; /*20px*/
 }
 
 #header img {
-  padding: 1em;
+  padding: 0.5em; /*1em*/
   background: #fff;
 }
 
+#header table {margin-bottom: 0em; background-color: transparent;}
+
 #content {
-  margin-top: 1em;
+  margin-top: 0em; /*1em*/
   font-size: 120%;
   padding: 20px;
   background: #fff;
@@ -187,4 +189,45 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+/* Users list index page */
+ul.users {
+  margin-top: 1em;
+}
+
+.users li {
+  list-style: none;
+}
+
+.transparent {background-color: transparent;}
+
+/*    LOGIN     */
+.passicon {
+    margin-left: 5px; height: 24px;
+    background: url("../images/login-set.png") no-repeat scroll left 0 transparent;
+}
+.passicon:hover {
+    background: url("../images/login-set.png") no-repeat scroll left -24px transparent;
+}
+.usericon {
+    margin-left: 5px; height: 24px;
+    background: url("../images/login-set.png") no-repeat scroll left -48px transparent;
+}
+.usericon:hover {
+    background: url("../images/login-set.png") no-repeat scroll left -72px transparent;
+}
+div.passicon div input, div.usericon div input {
+    border: 0 none;
+    font-size: 0.829em;
+    margin: 0;
+    padding: 0;
+}
+div.passicon div.form-item, div.usericon div.form-item {
+    margin: 0;
+    padding: 0;
+    margin-left: 30px;
+}
+
+/* show edit new */
+.show{margin:5px; padding:5px; float:left; width:30%;}
 

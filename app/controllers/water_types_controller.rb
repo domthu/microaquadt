@@ -1,4 +1,5 @@
-class WaterTypesController < ApplicationController
+class WaterTypesController < AuthController
+
   # GET /water_types
   # GET /water_types.xml
   def index
@@ -88,3 +89,4 @@ class WaterTypesController < ApplicationController
     end
   end
 end
+

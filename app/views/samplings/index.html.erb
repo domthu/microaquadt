@@ -13,8 +13,10 @@
     <td><%=h sampling.code %></td>
     <td><%=h Partner.find(sampling.partner_id).verbose_me %></td>
     <td><%= link_to 'Show', sampling %></td>
-    <td><%= link_to 'Edit', edit_sampling_path(sampling) %></td>
-    <td><%= link_to 'Destroy', sampling, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if auth_user(sampling.partner_id) %>
+      <td><%= link_to 'Edit', edit_sampling_path(sampling) %></td>
+      <td><%= link_to 'Delete', sampling, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

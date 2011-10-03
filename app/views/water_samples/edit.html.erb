@@ -1,4 +1,4 @@
-<h1>Editing water_sample</h1>
+<h1>Editing water sample</h1>
 
 <% form_for(@water_sample) do |f| %>
   <%= f.error_messages %>
@@ -6,7 +6,7 @@
 <fieldset><legend class="leg">General data</legend>
   <div class="field">
     <%= f.label :samplings_id %><br />
-    <%= select :water_sample,:samplings_id,Sampling.find(:all).collect{|p| [p.code + " " + p.samplingDate.to_s, p.id]}%>
+    <h3><%= @sampling.verbose_me%></h3>
   </div>
   <div class="field">
     <%= f.label :code %><br />

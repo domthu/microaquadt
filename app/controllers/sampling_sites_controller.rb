@@ -1,4 +1,5 @@
-class SamplingSitesController < ApplicationController
+class SamplingSitesController < AuthController
+
   # GET /sampling_sites
   # GET /sampling_sites.xml
 

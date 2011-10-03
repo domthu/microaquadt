@@ -2,6 +2,10 @@ class SessionsController < ApplicationController
 
   def new
     @title = "Sign in"
+  end
+
+  def create
+    @title = "create session"
     #we do not use params[:session][:email] --> params[:session][:username]
     user = User.authenticate(params[:session][:name],
                              params[:session][:password])
@@ -18,12 +22,17 @@ class SessionsController < ApplicationController
     else
       # Sign the user in and redirect to the user's show page.
       sign_in user
-      redirect_to user
+      #Friendly forwarding
+      #redirect_to user
+      @partner = @partner = Partner.find(:first, :conditions => [ "user_id = ?", user.id])
+      #if !@partner.nil? && signed_in_and_master?
+      #if !@partner.nil?
+      #  redirect_back_or @partner
+      #else
+      #  redirect_back_or user
+      #end
+      redirect_back_or samplings_url
     end
-  end
-
-  def create
-    @title = "create session"
   end
 
   def destroy

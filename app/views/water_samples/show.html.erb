@@ -1,54 +1,56 @@
-<p>
+<div class="show">
   <b>Sampling:</b>
   <%=h @s.code + " " + @s.samplingDate.to_s %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Code:</b>
   <%=h @water_sample.code %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Temperature:</b>
   <%=h @water_sample.temperature %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Turbidity:</b>
   <%=h @water_sample.turbidity %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Conductivity:</b>
   <%=h @water_sample.conductivity %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Phosphates:</b>
   <%=h @water_sample.phosphates %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Nitrates:</b>
   <%=h @water_sample.nitrates %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Volume:</b>
   <%=h @water_sample.volume %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Ph:</b>
   <%=h @water_sample.ph %>
-</p>
+</div>
 
+<br />
 <p>
   <b>Note:</b>
   <%=h @water_sample.note %>
 </p>
 
-
-<%= link_to 'Edit', edit_water_sample_path(@water_sample) %> |
+<% if auth_sample(@water_sample.samplings_id) %>
+  <%= link_to 'Edit', edit_water_sample_path(@water_sample) %> |
+<% end %>
 <%= link_to 'Back', water_samples_path %>
 

@@ -4,15 +4,19 @@
   <tr>
     <th>Sampling</th>
     <th>Code</th>
+    <th>Partner</th>
   </tr>
 
 <% @water_samples.each do |water_sample| %>
   <tr>
     <td><%=h Sampling.find(water_sample.samplings_id).verbose_me %></td>
     <td><%=h water_sample.code %></td>
-    <td><%= link_to 'Show', water_sample %></td>
-    <td><%= link_to 'Edit', edit_water_sample_path(water_sample) %></td>
-    <td><%= link_to 'Destroy', water_sample, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%=h related_partner(water_sample.samplings_id) %></td>
+    <% if auth_sample(water_sample.samplings_id) %>
+      <td><%= link_to 'Show', water_sample %></td>
+      <td><%= link_to 'Edit', edit_water_sample_path(water_sample) %></td>
+      <td><%= link_to 'Delete', water_sample, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

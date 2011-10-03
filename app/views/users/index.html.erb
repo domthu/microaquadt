@@ -1,6 +1,28 @@
 <h1>Listing users</h1>
 
-<table>
+<div style="display:none;"> will_paginate </div>
+
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <table><tr><td width="200px">
+        <div style='display:none;'>gravatar_for user, :size => 30 </div>
+        <%= image_tag("http://www.gravatar.com/avatar.php?gravatar_id=#{Digest::MD5::hexdigest(user.email)}", :alt => 'Avatar', :class => 'avatar')  %>
+      </td><td>
+        <h2><%= link_to h(user.name), user %></h2>
+        <h3>
+          <% @partner = Partner.find(:first, :conditions => [ "user_id = ?", user.id])
+          #@partner = Partner.find_by_user(:first, :conditions => [ "user_id = ?", user.id])
+          if !@partner.nil? %>
+            <%= @partner.name %>
+          <% end %>
+        </h3>
+      </td></tr></table>
+    </li>
+  <% end %>
+</ul>
+
+<table style="display:none;">
   <tr>
     <th>Name</th>
     <th>Email</th>
@@ -12,11 +34,14 @@
     <td><%=h user.email %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td style="display:none;"><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
+<div style="display:none;"> will_paginate </div>
+
 <br />
 
 <%= link_to 'New user', new_user_path %>
+

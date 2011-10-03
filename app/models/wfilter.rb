@@ -1,4 +1,7 @@
 class Wfilter < ActiveRecord::Base
-    has_many :sampling
+  validates_presence_of :name
+
+  #has_many :sampling
+  belongs_to :sampling_site
 end
 

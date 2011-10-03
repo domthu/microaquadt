@@ -20,7 +20,7 @@
     <td><%=h Geo.find(sampling_site.geos_id).name %></td>
     <td><%= link_to 'Show', sampling_site %></td>
     <td><%= link_to 'Edit', edit_sampling_site_path(sampling_site) %></td>
-    <td><%= link_to 'Destroy', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

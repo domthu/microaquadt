@@ -1,4 +1,10 @@
-class PartnersController < ApplicationController
+class PartnersController < AuthController
+
+  #only Requiring the right user to change own contents
+  #before_filter :correct_user, :only => [:edit, :update]
+  #20110922 NC solo superuser can do somthing on user and partner
+  before_filter :correct_user, :only => [:edit, :update, :new, :create, :destroy]
+
   # GET /partners
   # GET /partners.xml
   def index
@@ -26,18 +32,20 @@ class PartnersController < ApplicationController
   # GET /partners/new
   # GET /partners/new.xml
   def new
-    @partner = Partner.new
-    @title = "partner"
+    #Non creare nuovi partners dentro l'applicazione
+    redirect_to partners_path
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @partner }
-    end
+    #@partner = Partner.new
+    #@title = "partner"
+    #respond_to do |format|
+    #  format.html # new.html.erb
+    #  format.xml  { render :xml => @partner }
+    #end
   end
 
   # GET /partners/1/edit
   def edit
-    @partner = Partner.find(params[:id])
+    #@partner = Partner.find(params[:id])
     @title = "partner"
   end
 
@@ -61,7 +69,7 @@ class PartnersController < ApplicationController
   # PUT /partners/1
   # PUT /partners/1.xml
   def update
-    @partner = Partner.find(params[:id])
+    #@partner = Partner.find(params[:id])
     @title = "partner"
 
     respond_to do |format|
@@ -78,13 +86,34 @@ class PartnersController < ApplicationController
   # DELETE /partners/1
   # DELETE /partners/1.xml
   def destroy
-    @partner = Partner.find(params[:id])
-    @partner.destroy
-    @title = "partner"
+    redirect_to partners_path
 
-    respond_to do |format|
-      format.html { redirect_to(partners_url) }
-      format.xml  { head :ok }
-    end
+    #@partner = Partner.find(params[:id])
+    #@partner.destroy
+    #@title = "partner"
+
+    #respond_to do |format|
+    #  format.html { redirect_to(partners_url) }
+    #  format.xml  { head :ok }
+    #end
   end
+
+  private
+
+    def correct_user
+      @partner = Partner.find(params[:id])
+      @user = User.find(@partner.user_id)
+      #uses the current_user? method,
+      #which (as with deny_access) we will define in the Sessions helper
+      #reroute() unless current_user?(@user)
+      #20110922 NC solo superuser can do somthing on user and partner
+      reroute() unless signed_in_and_master?
+    end
+
+    def reroute()
+      flash[:notice] = "Only the partner can modify his own identity card."
+      redirect_to(partners_path)
+    end
+
 end
+

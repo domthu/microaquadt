@@ -1,4 +1,5 @@
-class PostsController < ApplicationController
+class PostsController < AuthController
+
   # GET /posts
   # GET /posts.xml
   def index
@@ -85,3 +86,4 @@ class PostsController < ApplicationController
     end
   end
 end
+

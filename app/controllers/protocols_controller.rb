@@ -1,4 +1,5 @@
-class ProtocolsController < ApplicationController
+class ProtocolsController < AuthController
+
   # GET /protocols
   # GET /protocols.xml
   def index
@@ -88,3 +89,4 @@ class ProtocolsController < ApplicationController
     end
   end
 end
+

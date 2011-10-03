@@ -38,11 +38,49 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def signed_in_and_master?
+    signed_in? && (current_user.name == 'admin_microaqua'  ||  current_user.name == 'roberto')
+  end
+
   #Call from SessionsController sign_out
   def sign_out
     cookies.delete(:remember_token)
     self.current_user = nil
   end
 
+  #PROTECT PAGE using before_filter :authenticate, :only => [:edit, :update]
+  def current_user?(user)
+    user == current_user
+  end
+
+  def deny_access
+    #storing the location of the request
+    store_location  #Friendly forwarding
+    flash[:notice] = "Please sign in to access this page."
+    redirect_to signin_path
+  end
+
+  def deny_access_destroy
+    flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+    redirect_to request.request_uri
+  end
+
+  #Friendly forwarding
+  def store_location
+    #puts the requested URL in the session variable under the key :return_to
+    session[:return_to] = request.request_uri
+  end
+
+  #redirect to the requested URL if it exists, or some default URL otherwise.
+  #This method is needed in the Session create action to redirect after successful signin
+  def redirect_back_or(default)
+    #redirect_to(session[:return_to] || default)
+    redirect_to(session[:return_to] || default)
+    clear_return_to
+  end
+
+  def clear_return_to
+    session[:return_to] = nil
+  end
 end
 

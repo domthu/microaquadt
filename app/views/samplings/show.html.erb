@@ -1,69 +1,71 @@
-<p>
+<div class="show">
   <b>Sampling site:</b>
   <%=h @ss.code + " " + @ss.name %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Code:</b>
   <%=h @sampling.code %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Partner:</b>
   <%=h @pt.name %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Temperature:</b>
   <%=h @sampling.temperature %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Moisture:</b>
   <%=h @sampling.moisture %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Pressure:</b>
   <%=h @sampling.pressure %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Windspeed:</b>
   <%=h @sampling.windSpeed %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Winddirection:</b>
   <%=h @sampling.windDirection %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Waterflow:</b>
   <%=h @sampling.waterFlow %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Lightintensity:</b>
   <%=h @sampling.lightIntensity %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Rainfallevents:</b>
   <%=h @sampling.rainfallEvents %>
-</p>
+</div>
 
-<p>
+<div class="show">
   <b>Depth:</b>
   <%=h @sampling.depth %>
-</p>
+</div>
 
+<br />
 <p>
   <b>Note:</b>
   <%=h @sampling.note %>
 </p>
 
-
-<%= link_to 'Edit', edit_sampling_path(@sampling) %> |
+<% if auth_user(@sampling.partner_id) %>
+  <%= link_to 'Edit', edit_sampling_path(@sampling) %> |
+<% end %>
 <%= link_to 'Back', samplings_path %>
 

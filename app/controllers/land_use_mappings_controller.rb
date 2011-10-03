@@ -1,4 +1,5 @@
-class LandUseMappingsController < ApplicationController
+class LandUseMappingsController < AuthController
+
   # GET /land_use_mappings
   # GET /land_use_mappings.xml
 
@@ -91,3 +92,4 @@ class LandUseMappingsController < ApplicationController
     end
   end
 end
+

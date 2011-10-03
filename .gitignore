@@ -1,3 +1,4 @@
+lib/tasks/import.rake
 config/*.yml
 config/database.yml
 *.sqlite3
@@ -14,3 +15,4 @@ doc/
 .bundle
 *.lock
 *.out
+

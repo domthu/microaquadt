@@ -18,12 +18,14 @@
     <td><%=h partner.email %></td>
     <td><%= link_to 'Show', partner %></td>
     <td><%= link_to 'Edit', edit_partner_path(partner) %></td>
-    <td><%= link_to 'Destroy', partner, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td style="display:none;"><%= link_to 'Delete', partner, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<div style="display:none;">
 <%= link_to 'New partner', new_partner_path %>
+</div>
 

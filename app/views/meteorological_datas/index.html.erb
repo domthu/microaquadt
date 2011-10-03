@@ -24,7 +24,7 @@
     <td><%=h meteorological_data.RainfallEvents %></td>
     <td><%= link_to 'Show', meteorological_data %></td>
     <td><%= link_to 'Edit', edit_meteorological_data_path(meteorological_data) %></td>
-    <td><%= link_to 'Destroy', meteorological_data, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', meteorological_data, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -32,3 +32,4 @@
 <br />
 
 <%= link_to 'New meteorological_data', new_meteorological_data_path %>
+

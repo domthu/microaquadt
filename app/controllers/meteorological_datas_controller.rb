@@ -1,4 +1,5 @@
-class MeteorologicalDatasController < ApplicationController
+class MeteorologicalDatasController < AuthController
+
   # GET /meteorological_datas
   # GET /meteorological_datas.xml
   def index
@@ -81,3 +82,4 @@ class MeteorologicalDatasController < ApplicationController
     end
   end
 end
+

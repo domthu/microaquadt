@@ -20,7 +20,8 @@
 
 class Sampling < ActiveRecord::Base
   validates_presence_of :code
-  validates_uniqueness_of :code, :case_sensitive => false, :scope => :samplings_id
+  validates_uniqueness_of :code, :case_sensitive => false
+  #, :scope => :samplings_id --> kappao undefined method `samplings_id'
 
   validates_numericality_of :temperature, :less_than => 100
   validates_numericality_of :moisture, :less_than => 100
@@ -34,9 +35,9 @@ class Sampling < ActiveRecord::Base
   #name of the model in lowercase
   belongs_to :sampling_site
   belongs_to :partner
-  belongs_to :wfilter
+  #belongs_to :wfilter
 
-  has_many :water_sample
+  has_many :water_sample, :dependent => :destroy
 
 
   #In order for form_for to work,

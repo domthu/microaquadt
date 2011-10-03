@@ -1,10 +1,18 @@
 <table class="profile">
   <tr>
-    <td class="main">
-      <h2>
-        <div style="display: none;"><= gravatar_for @user %></div>
-        <%= h @user.name %>
-      </h2>
+    <td width="200px">
+        <div style='display:none;'>gravatar_for @user, :size => 30 </div>
+        <%= image_tag("http://www.gravatar.com/avatar.php?gravatar_id=#{Digest::MD5::hexdigest(@user.email)}", :alt => 'Avatar', :class => 'avatar')  %>
+        <div style='display:none;'>image_tag avatar_url(@user) </div>
+    </td><td style="text-align:left;" class="main">
+      <h2><%= h @user.name %></h2>
+      <h3>
+        <% @partner = Partner.find(:first, :conditions => [ "user_id = ?", @user.id])
+        #@partner = Partner.find_by_user(:first, :conditions => [ "user_id = ?", @user.id])
+        if !@partner.nil? %>
+          <%= link_to @partner.verbose_me, partner_path(@partner) %>
+        <% end %>
+      </h3>
     </td>
     <td class="sidebar round">
       <strong>Name</strong> <%= h @user.name %><br />

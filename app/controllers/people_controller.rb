@@ -1,4 +1,5 @@
-class PeopleController < ApplicationController
+class PeopleController < AuthController
+
   # GET /people
   # GET /people.xml
   def index
@@ -87,3 +88,4 @@ class PeopleController < ApplicationController
     end
   end
 end
+

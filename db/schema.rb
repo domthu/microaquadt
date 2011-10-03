@@ -25,13 +25,6 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.datetime "updated_at"
   end
 
-  create_table "filters", :force => true do |t|
-    t.string   "name",       :null => false
-    t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "geos", :force => true do |t|
     t.string   "name",                                                    :null => false
     t.integer  "lon",        :limit => 10, :precision => 10, :scale => 0, :null => false
@@ -83,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
 
   create_table "partners", :force => true do |t|
     t.integer  "fp7_Number", :null => false
+    t.string   "code",       :null => false
     t.string   "name",       :null => false
     t.string   "state",      :null => false
     t.text     "address"
@@ -95,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.datetime "updated_at"
   end
 
-  add_index "partners", ["email"], :name => "index_partners_on_email", :unique => true
+  add_index "partners", ["name"], :name => "index_partners_on_name", :unique => true
   add_index "partners", ["user_id"], :name => "index_partners_on_user_id"
 
   create_table "people", :force => true do |t|
@@ -128,10 +122,13 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.text     "HybProtocol"
     t.text     "ScanProtocol"
     t.text     "DataProcessing"
-    t.text     "alueDefinition"
+    t.text     "ValueDefinition"
+    t.integer  "water_samples_id",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "protocols", ["water_samples_id"], :name => "index_protocols_on_water_samples_id"
 
   create_table "sampling_sites", :force => true do |t|
     t.string   "code",                                                                                  :null => false
@@ -144,10 +141,9 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.string   "sizeTypology"
     t.integer  "salinity",             :limit => 10, :precision => 10, :scale => 0
     t.integer  "tidalRange",           :limit => 10, :precision => 10, :scale => 0
-    t.string   "otherInformation"
-    t.integer  "water_types_id"
-    t.integer  "water_uses_id"
-    t.integer  "land_use_mappings_id"
+    t.integer  "water_types_id",                                                                        :null => false
+    t.integer  "water_uses_id",                                                                         :null => false
+    t.integer  "land_use_mappings_id",                                                                  :null => false
     t.integer  "geos_id"
     t.string   "geos_type",                                                         :default => "Site"
     t.text     "note"
@@ -161,7 +157,7 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
   add_index "sampling_sites", ["water_uses_id"], :name => "index_sampling_sites_on_water_uses_id"
 
   create_table "samplings", :force => true do |t|
-    t.string   "code"
+    t.string   "code",                                                          :null => false
     t.integer  "temperature",      :limit => 10, :precision => 10, :scale => 0
     t.integer  "moisture",         :limit => 10, :precision => 10, :scale => 0
     t.integer  "pressure",         :limit => 10, :precision => 10, :scale => 0
@@ -171,10 +167,9 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.integer  "lightIntensity",   :limit => 10, :precision => 10, :scale => 0
     t.integer  "rainfallEvents",   :limit => 10, :precision => 10, :scale => 0
     t.integer  "depth",            :limit => 10, :precision => 10, :scale => 0
-    t.integer  "sampling_site_id"
-    t.integer  "partner_id"
-    t.integer  "wfilter_id"
-    t.datetime "samplingDate"
+    t.integer  "sampling_site_id",                                              :null => false
+    t.integer  "partner_id",                                                    :null => false
+    t.datetime "samplingDate",                                                  :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -182,7 +177,6 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
 
   add_index "samplings", ["partner_id"], :name => "index_samplings_on_partner_id"
   add_index "samplings", ["sampling_site_id"], :name => "index_samplings_on_sampling_site_id"
-  add_index "samplings", ["wfilter_id"], :name => "index_samplings_on_filter_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",               :null => false
@@ -207,8 +201,8 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.integer  "nitrates",     :limit => 10, :precision => 10, :scale => 0
     t.integer  "volume",       :limit => 10, :precision => 10, :scale => 0
     t.integer  "ph",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "samplings_id"
-    t.datetime "samplingDate"
+    t.integer  "samplings_id",                                              :null => false
+    t.datetime "samplingDate",                                              :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -233,8 +227,11 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
   create_table "wfilters", :force => true do |t|
     t.string   "name"
     t.text     "note"
+    t.integer  "water_samples_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "wfilters", ["water_samples_id"], :name => "index_wfilters_on_water_samples_id"
 
 end

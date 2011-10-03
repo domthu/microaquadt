@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class CommentsController < AuthController
 
   def index
 	  @post = Post.find(params[:post_id])

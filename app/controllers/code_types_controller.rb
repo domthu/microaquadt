@@ -1,4 +1,5 @@
-class CodeTypesController < ApplicationController
+class CodeTypesController < AuthController
+
   # GET /code_types
   # GET /code_types.xml
   def index
@@ -88,3 +89,4 @@ class CodeTypesController < ApplicationController
     end
   end
 end
+

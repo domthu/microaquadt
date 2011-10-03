@@ -2,6 +2,7 @@ class CreatePartners < ActiveRecord::Migration
   def self.up
     create_table :partners do |t|
       t.integer :fp7_Number, :null => false
+      t.string :code, :null => false
       t.string :name, :null => false
       t.string :state, :null => false
       t.text :address

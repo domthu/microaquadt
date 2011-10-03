@@ -1,4 +1,4 @@
-<h1>Listing geos</h1>
+<h1>Listing Geographical positions</h1>
 
 <table>
   <tr>
@@ -14,7 +14,7 @@
     <td><%=h geo.lat %></td>
     <td><%= link_to 'Show', geo %></td>
     <td><%= link_to 'Edit', edit_geo_path(geo) %></td>
-    <td><%= link_to 'Destroy', geo, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', geo, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -22,3 +22,4 @@
 <br />
 
 <%= link_to 'New geo', new_geo_path %>
+

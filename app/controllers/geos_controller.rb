@@ -1,8 +1,4 @@
-class GeosController < ApplicationController
-
-  def show_name(self)
-    render :text => self.name + "23"
-  end
+class GeosController < AuthController
 
   # GET /geos
   # GET /geos.xml

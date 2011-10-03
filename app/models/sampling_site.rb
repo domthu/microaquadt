@@ -22,7 +22,8 @@
 class SamplingSite < ActiveRecord::Base
   #validates_presence_of :code, :water_type, :water_use, :geo
   validates_presence_of :code
-  validates_uniqueness_of :code, :case_sensitive => false, :scope => :sampling_sites_id
+  validates_uniqueness_of :code, :case_sensitive => false
+  #, :scope => :sampling_sites_id  --> Kappao undefined method `sampling_sites_id'
 
   #Rails used to have a country_select helper for choosing countries,
   #but this has been extracted to the country_select plugin.
@@ -37,7 +38,7 @@ class SamplingSite < ActiveRecord::Base
   belongs_to :geo
   has_one :land_use_mapping
 
-  has_many :sampling
+  has_many :sampling, :dependent => :destroy
 
   #In order for form_for to work,
   attr_reader :verbose_me

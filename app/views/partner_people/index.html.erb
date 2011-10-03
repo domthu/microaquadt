@@ -16,7 +16,7 @@
     <td><%=h partner_person.IsAdministratorResponsable %></td>
     <td><%= link_to 'Show', partner_person %></td>
     <td><%= link_to 'Edit', edit_partner_person_path(partner_person) %></td>
-    <td><%= link_to 'Destroy', partner_person, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', partner_person, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
@@ -24,3 +24,4 @@
 <br />
 
 <%= link_to 'New partner_person', new_partner_person_path %>
+

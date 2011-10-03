@@ -1,4 +1,5 @@
-class WfiltersController < ApplicationController
+class WfiltersController < AuthController
+
   # GET /wfilters
   # GET /wfilters.xml
   def index

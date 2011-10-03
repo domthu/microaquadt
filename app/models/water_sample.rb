@@ -17,7 +17,8 @@
 class WaterSample < ActiveRecord::Base
   validates_presence_of :code
   #http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000087
-  validates_uniqueness_of :code, :case_sensitive => false, :scope => :water_samples_id
+  validates_uniqueness_of :code, :case_sensitive => false
+  #, :scope => :water_samples_id --> kappao undefined method `water_samples_id'
 
   validates_numericality_of :temperature, :less_than => 100
   validates_numericality_of :turbidity, :less_than => 100
@@ -29,6 +30,9 @@ class WaterSample < ActiveRecord::Base
 
   #name of the model in lowercase
   belongs_to :sampling
+
+  has_many :wfilter, :dependent => :destroy
+  has_many :protocol, :dependent => :destroy
 
   #In order for form_for to work,
   attr_reader :verbose_me

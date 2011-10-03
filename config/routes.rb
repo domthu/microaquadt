@@ -1,10 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :wfilters
 
-  map.resources :filters
-
-  map.resources :filters
-
   map.resources :samplings
 
   map.resources :samplings

@@ -1,9 +1,21 @@
-class WaterSamplesController < ApplicationController
+class WaterSamplesController < AuthController
+
+  #only Requiring the right user to change own contents
+  before_filter :correct_user, :only => [:show, :edit, :update]
+
+#http://apidock.com/rails/ActionView/Helpers/FormHelper/form_for
+#Routers:
+#map.resources :water_sample, :has_one => [:wfilter]
+#Views:
+#form_for [@water_sample, @wfilter, :url => water_sample_wfilter_url(@water_sample) do |f|
+#...
+#end
+
   # GET /water_samples
   # GET /water_samples.xml
   def index
     @water_samples = WaterSample.all
-    @title = "Water samples"
+    @title = "List Water samples"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,8 +53,10 @@ class WaterSamplesController < ApplicationController
 
   # GET /water_samples/1/edit
   def edit
-    @water_sample = WaterSample.find(params[:id])
+    #@water_sample = WaterSample.find(params[:id])  --> Yet done in def correct_user
     @title = "Water sample"
+    #Cannot change the sample set during creation
+    #<%= select :water_sample,:samplings_id,Sampling.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   end
 
   # POST /water_samples
@@ -65,7 +79,7 @@ class WaterSamplesController < ApplicationController
   # PUT /water_samples/1
   # PUT /water_samples/1.xml
   def update
-    @water_sample = WaterSample.find(params[:id])
+    #@water_sample = WaterSample.find(params[:id])  --> Yet done in def correct_user
     @title = "Water sample"
 
     respond_to do |format|
@@ -91,5 +105,24 @@ class WaterSamplesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+  private
+
+    def correct_user
+      @water_sample = WaterSample.find(params[:id])
+      @sampling = Sampling.find(@water_sample.samplings_id)
+      @partner = Partner.find(@sampling.partner_id)
+      @user = User.find(@partner.user_id)
+      #uses the current_user? method,
+      #which (as with deny_access) we will define in the Sessions helper
+      reroute() unless current_user?(@user)
+    end
+
+    def reroute()
+      flash[:notice] = "Only the partner who create the water sample can modify it."
+      redirect_to(water_samples_path)
+    end
+
 end
 

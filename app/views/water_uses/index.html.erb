@@ -1,4 +1,4 @@
-<h1>Listing water_uses</h1>
+<h1>Listing water uses</h1>
 
 <table>
   <tr>
@@ -12,7 +12,7 @@
     <td><%=h water_use.name %></td>
     <td><%= link_to 'Show', water_use %></td>
     <td><%= link_to 'Edit', edit_water_use_path(water_use) %></td>
-    <td><%= link_to 'Destroy', water_use, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', water_use, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

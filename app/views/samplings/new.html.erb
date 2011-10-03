@@ -15,7 +15,9 @@
   <div class="field">
     <%= f.label :partner_id %><br />
     <div style="display:none;"> fixnum to string select :sampling, :partner,Partner.find(:all).collect{|p| [p.fp7_Number + " " + p.name, p.id]} </div>
-    <%= select :sampling, :partner_id, Partner.find(:all).collect{|p| [p.name, p.id]}%>
+    <%= collection_select(:sampling, :partner_id, @partners, :id, :verbose_me,
+      options ={}, :class =>"partner")
+      %>
   </div>
   <div class="field" style="display:none;"> problem strutturale filter --> wfilter
     <= f.label :wfilter ><br />
@@ -68,10 +70,7 @@
 </fieldset>
 
 
-  <div class="field">
-    <%= f.label :pfilter %><br />
-    <%= f.text_area :pfilter %>
-  </div>
+  <div  style="display:none;">pfilter & Protocol</div>
 
   <div class="field">
     <%= f.label :note %><br />

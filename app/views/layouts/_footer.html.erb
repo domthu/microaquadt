@@ -1,11 +1,50 @@
 <div id="footer">
   <ul class="navigation round">
-    <li><%= link_to "About", about_path %></li>
-    <li><%= link_to "Contact", contact_path %></li>
-    <li><%= link_to "Sign up", signup_path %></li>
-	  <li><%= link_to "Help", help_path %></li>
-    <li><a href="http://unicam.it/" target="_blank">Unicam</a></li>
-    <li><a href="http://engeebee.com/" target="_blank">engeebee</a></li>
+    <% if signed_in_and_master? %>
+      <li><%= link_to "About", about_path %></li>
+      <li><%= link_to "Contact", contact_path %></li>
+      <li><%= link_to "Help", help_path %></li>
+      <li><a href="http://unicam.it/" target="_blank">Unicam</a></li>
+      <li><a href="http://engeebee.com/" target="_blank">engeebee</a></li>
+      <li><%= link_to "Sign up", signup_path %></li>
+      <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+    <% else
+      if signed_in? %>
+        <li><%= link_to "Partner", current_user %></li>
+        <li style="display:none;"><%= link_to "Settings", edit_user_path(current_user) %></li>
+        <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+      <% else
+          if not request.url.include? 'signin' %>
+            <li><%= link_to "Sign in", signin_path %></li>
+      <%  end
+        end
+      end %>
   </ul>
+
+  <% if signed_in_and_master? %>
+    <br />
+    <ul class="navigation round">
+      <li><%= link_to "land use mapping", land_use_mappings_path %></li>
+      <li><%= link_to "geo", geos_path %></li>
+      <li><%= link_to "water use", water_uses_path %></li>
+      <li><%= link_to "water type", water_types_path %></li>
+      <li><%= link_to "partner", partners_path %></li>
+      <li><%= link_to "filter", wfilters_path %></li>
+		  <li><%= link_to "protocol", protocols_path %></li>
+    </ul>
+    <br />
+    <ul class="navigation round">
+      <li><%= link_to "Users", users_path %></li>
+      <li><%= link_to "people", people_path %></li>
+      <li><%= link_to "partner people", partner_people_path %></li>
+    </ul>
+    <br />
+    <ul class="navigation round">
+      <li><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "meteorological data", meteorological_datas_path %></li>
+      <li><%= link_to "micropost", microposts_path %></li>
+      <li><%= link_to "post", posts_path %></li>
+    </ul>
+  <% end %>
 </div>
 

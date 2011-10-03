@@ -13,7 +13,6 @@ class CreateSamplings < ActiveRecord::Migration
       t.decimal :depth
       t.references :sampling_site, :null => false
       t.references :partner, :null => false
-      t.references :wfilter, :null => true
       t.datetime :samplingDate, :null => false
       t.text :note
 
@@ -22,7 +21,6 @@ class CreateSamplings < ActiveRecord::Migration
 
     add_index :samplings, :partner_id
     add_index :samplings, :sampling_site_id
-    add_index :samplings, :filter_id
 end
 
   def self.down

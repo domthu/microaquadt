@@ -4,21 +4,22 @@
   <%= f.error_messages %>
 
 <fieldset><legend class="leg">General data</legend>
+<h1><%= @is_Auth %></h1>
   <div class="field">
     <%= f.label :sampling_site_id %><br />
-    <%= select :sampling,:sampling_site_id,SamplingSite.find(:all).collect{|p| [p.code + " " + p.name, p.id]}%>
+    <h3><%= @ss.verbose_me %></h3>
+  </div>
+  <div class="field">
+    <%= f.label :partner_id %><br />
+    <div style="display:none;">  select :sampling, :partner,Partner.find(:all).collect{|p| [p.fp7_Number + " " + p.name, p.id]} </div>
+    <h3><%= @partner.verbose_me %></h3>
   </div>
   <div class="field">
     <%= f.label :code %><br />
     <%= f.text_field :code %>
   </div>
-  <div class="field">
-    <%= f.label :partner_id %><br />
-    <div style="display:none;">  select :sampling, :partner,Partner.find(:all).collect{|p| [p.fp7_Number + " " + p.name, p.id]} </div>
-    <%= select :sampling, :partner_id,Partner.find(:all).collect{|p| [p.name, p.id]}%>
-  </div>
   <div class="field" style="display:none;">
-    <= f.label :wfilter ><br />
+    <= f.label :wfilter e protocols ><br />
     <= select :sampling,:wfilter,Wfilter.find(:all).collect{|p| [p.name, p.id]} >
   </div>
   <div class="field">

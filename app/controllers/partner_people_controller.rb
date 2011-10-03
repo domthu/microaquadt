@@ -1,8 +1,12 @@
-class PartnerPeopleController < ApplicationController
+class PartnerPeopleController < AuthController
 
   # since partner will create relationships with person
   #but person cannot reach partner by himself
-  attr_accessible :partner_id
+
+# rem after read log onto JUSTHOST mongrel.log 
+#attr_accessible :partner_id  --> Kappao undefined method `attr_accessible'
+
+
 
   # GET /partner_people
   # GET /partner_people.xml

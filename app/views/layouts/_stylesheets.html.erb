@@ -1,5 +1,9 @@
     <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
     <%= stylesheet_link_tag 'blueprint/print',  :media => 'print' %>
     <!--[if lt IE 8]><%= stylesheet_link_tag 'blueprint/ie' %><![endif]-->
-    <%= stylesheet_link_tag 'microaqua', :media => 'screen' %>    
+    <%= stylesheet_link_tag 'microaqua', :media => 'screen' %>
     <div style="display:none"> stylesheet_link_tag 'scaffold', :media => 'screen' </div>
+
+    <%= javascript_include_tag 'microaqua.js' %>
+    <%= javascript_include_tag :defaults %>
+
