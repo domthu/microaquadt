@@ -5,12 +5,12 @@ class CreateWfilters < ActiveRecord::Migration
       t.text :note
 
       #t.references posso creare un filter
-      t.integer :water_samples_id, :null => false
+      t.integer :water_sample_id, :null => false
 
       t.timestamps
     end
 
-    add_index :wfilters, :water_samples_id
+    add_index :wfilters, :water_sample_id
 
   end
 

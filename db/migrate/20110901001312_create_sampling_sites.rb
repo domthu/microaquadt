@@ -3,7 +3,6 @@ class CreateSamplingSites < ActiveRecord::Migration
     create_table :sampling_sites do |t|
       t.string :code, :null => false
       t.string :name
-      t.string :country
       t.string :aptitudeTypology
       t.string :catchmentArea
       t.string :geology
@@ -15,6 +14,7 @@ class CreateSamplingSites < ActiveRecord::Migration
       t.references :water_uses, :null => false
       #t.integer :water_uses_id
       t.references :land_use_mappings, :null => false
+      t.references :country, :null => false
       t.references :geos, :polymorphic => {:default => 'Site'}
       t.text :note
 
@@ -25,10 +25,17 @@ class CreateSamplingSites < ActiveRecord::Migration
     add_index :sampling_sites, :water_uses_id
     add_index :sampling_sites, :land_use_mappings_id
     add_index :sampling_sites, :geos_id
+    add_index :sampling_sites, :country_id
 
   end
 
   def self.down
+    remove_index :sampling_sites, :water_types_id
+    remove_index :sampling_sites, :water_uses_id
+    remove_index :sampling_sites, :land_use_mappings_id
+    remove_index :sampling_sites, :geos_id
+    remove_index :sampling_sites, :country_id
+
     drop_table :sampling_sites
   end
 end

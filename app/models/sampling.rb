@@ -21,36 +21,40 @@
 class Sampling < ActiveRecord::Base
   validates_presence_of :code
   validates_uniqueness_of :code, :case_sensitive => false
-  #, :scope => :samplings_id --> kappao undefined method `samplings_id'
+  validates_length_of :code, :maximum=>15
+  #, :scope => :sampling_id --> kappao undefined method `samplingS_id'
 
-  validates_numericality_of :temperature, :less_than => 100
-  validates_numericality_of :moisture, :less_than => 100
-  validates_numericality_of :pressure, :less_than => 100
-  validates_numericality_of :windSpeed, :less_than => 100
-  validates_numericality_of :waterFlow, :less_than => 100
-  validates_numericality_of :lightIntensity, :less_than => 100
-  validates_numericality_of :rainfallEvents, :less_than => 100
-  validates_numericality_of :depth, :less_than => 100
+  validates_numericality_of :temperature, :allow_nil => true, :less_than => 100
+  validates_numericality_of :moisture, :allow_nil => true, :less_than => 100
+  validates_numericality_of :pressure, :allow_nil => true, :less_than => 100
+  validates_numericality_of :windSpeed, :allow_nil => true, :less_than => 100
+  validates_numericality_of :waterFlow, :allow_nil => true, :less_than => 100
+  validates_numericality_of :lightIntensity, :allow_nil => true, :less_than => 100
+  validates_numericality_of :rainfallEvents, :allow_nil => true, :less_than => 100
+  validates_numericality_of :depth, :allow_nil => true, :less_than => 100
 
   #name of the model in lowercase
-  belongs_to :sampling_site
-  belongs_to :partner
+  belongs_to :sampling_site  #, :null => false
+  belongs_to :partner  #, :null => false  --> Unknown key(s): null
   #belongs_to :wfilter
+  validates_presence_of :sampling_site
+  validates_presence_of :partner
 
+  #:dependent => :delete_all vs :destroy (call destroy children event)
   has_many :water_sample, :dependent => :destroy
 
 
   #In order for form_for to work,
   attr_reader :verbose_me
   def verbose_me
-    return self.code + ' ' + self.samplingDate.to_s # + partner.verbose_me
+    #return self.code + ' ' + self.samplingDate.to_s # + partner.verbose_me
+    return self.code + ' ' + self.samplingDate.strftime("%y%m%d")
   end
   #def Sampling.verbose_me
   #  @@verbose_me ||=  "Kappaooo "
   #end
 
-
-#attr_reader :total_temperature
+  #attr_reader :total_temperature
 #def Sampling.total_temperature
 #  @@total_temperature ||= Sampling.sum(:temperature)
 #end

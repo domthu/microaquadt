@@ -37,7 +37,7 @@ class SamplingSite < ActiveRecord::Base
   belongs_to :water_use  #In this case SamplingSite have field water_uses_id
   belongs_to :geo
   has_one :land_use_mapping
-
+  has_one :country
   has_many :sampling, :dependent => :destroy
 
   #In order for form_for to work,

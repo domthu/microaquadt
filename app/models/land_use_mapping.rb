@@ -8,5 +8,11 @@ class LandUseMapping < ActiveRecord::Base
 		:maximum => 50,
 		:too_long => "{{count}} characters is the maximum allowed"
   has_many :sampling_site
+
+  attr_reader :verbose_me
+  def verbose_me
+    return self.name
+  end
+
 end
 

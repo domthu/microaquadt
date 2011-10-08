@@ -7,7 +7,7 @@
 #    t.integer  "nitrates",     :limit => 10, :precision => 10, :scale => 0
 #    t.integer  "volume",       :limit => 10, :precision => 10, :scale => 0
 #    t.integer  "ph",           :limit => 10, :precision => 10, :scale => 0
-#    t.integer  "samplings_id", :null => false
+#    t.integer  "sampling_id", :null => false
 #    t.datetime "samplingDate", :null => false
 #    t.text     "note"
 #    t.datetime "created_at"
@@ -18,21 +18,24 @@ class WaterSample < ActiveRecord::Base
   validates_presence_of :code
   #http://ar.rubyonrails.org/classes/ActiveRecord/Validations/ClassMethods.html#M000087
   validates_uniqueness_of :code, :case_sensitive => false
-  #, :scope => :water_samples_id --> kappao undefined method `water_samples_id'
+  validates_length_of :code, :maximum=>19
+  #, :scope => :water_sample_id --> kappao undefined method `water_samples_id'
 
-  validates_numericality_of :temperature, :less_than => 100
-  validates_numericality_of :turbidity, :less_than => 100
-  validates_numericality_of :conductivity, :less_than => 100
-  validates_numericality_of :phosphates, :less_than => 100
-  validates_numericality_of :nitrates, :less_than => 100
-  validates_numericality_of :volume, :less_than => 100
-  validates_numericality_of :ph, :less_than => 14
+  validates_numericality_of :temperature, :allow_nil => true, :less_than => 100
+  validates_numericality_of :turbidity, :allow_nil => true, :less_than => 100
+  validates_numericality_of :conductivity, :allow_nil => true, :less_than => 100
+  validates_numericality_of :phosphates, :allow_nil => true, :less_than => 100
+  validates_numericality_of :nitrates, :allow_nil => true, :less_than => 100
+  validates_numericality_of :volume, :allow_nil => true, :less_than => 100
+  validates_numericality_of :ph, :allow_nil => true, :less_than => 14
 
   #name of the model in lowercase
-  belongs_to :sampling
+  belongs_to :sampling #, :null => false
+  validates_presence_of :sampling
 
-  has_many :wfilter, :dependent => :destroy
-  has_many :protocol, :dependent => :destroy
+  #We don't need to call destroy method of child so use delete_all directly
+  has_many :wfilter, :dependent => :delete_all
+  has_many :protocol, :dependent => :delete_all
 
   #In order for form_for to work,
   attr_reader :verbose_me

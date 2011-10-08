@@ -1,44 +1,54 @@
-<div class="show">
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "filter", wfilters_path %></li>
+	    <li><%= link_to "protocol", protocols_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<div class="show select">
   <b>Sampling:</b>
   <%=h @s.code + " " + @s.samplingDate.to_s %>
 </div>
 
-<div class="show">
+<div class="show cod">
   <b>Code:</b>
   <%=h @water_sample.code %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Temperature:</b>
   <%=h @water_sample.temperature %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Turbidity:</b>
   <%=h @water_sample.turbidity %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Conductivity:</b>
   <%=h @water_sample.conductivity %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Phosphates:</b>
   <%=h @water_sample.phosphates %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Nitrates:</b>
   <%=h @water_sample.nitrates %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Volume:</b>
   <%=h @water_sample.volume %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Ph:</b>
   <%=h @water_sample.ph %>
 </div>
@@ -49,7 +59,7 @@
   <%=h @water_sample.note %>
 </p>
 
-<% if auth_sample(@water_sample.samplings_id) %>
+<% if auth_sample(@water_sample.sampling_id) %>
   <%= link_to 'Edit', edit_water_sample_path(@water_sample) %> |
 <% end %>
 <%= link_to 'Back', water_samples_path %>

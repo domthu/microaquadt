@@ -1,3 +1,15 @@
+<table>
+<tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "land use mapping", land_use_mappings_path %></li>
+      <li><%= link_to "water use", water_uses_path %></li>
+      <li><%= link_to "water type", water_types_path %></li>
+      <li><%= link_to "country", countries_path %></li>
+      <li><%= link_to "geo", geos_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <p>
   <b>Code:</b>
   <%=h @sampling_site.code %>
@@ -15,6 +27,11 @@
 <p>
   <b>Water use:</b>
   <%=h @wu.code + " " + @wu.name %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @state.name %>
 </p>
 
 <p>

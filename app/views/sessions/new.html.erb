@@ -1,7 +1,7 @@
 <h2>Sign in</h2>
 
 <% form_for(:session, :url => sessions_path) do |f| %>
-  <div class="field">
+  <div class="login">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
@@ -9,7 +9,7 @@
     <%= f.label :email %><br />
     <%= f.text_field :email %>
   </div>
-  <div class="field">
+  <div class="login">
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </div>

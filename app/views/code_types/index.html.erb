@@ -1,16 +1,22 @@
-<h1>Listing code_types</h1>
+<h1>Listing code types</h1>
 
 <table>
   <tr>
+    <th>Code</th>
     <th>Name</th>
+    <th>Partner</th>
   </tr>
 
 <% @code_types.each do |code_type| %>
   <tr>
+    <td class="code"><%=h code_type.code %></td>
     <td><%=h code_type.name %></td>
+    <td><%=h Partner.find(code_type.partner_id).verbose_me %></td>
     <td><%= link_to 'Show', code_type %></td>
-    <td><%= link_to 'Edit', edit_code_type_path(code_type) %></td>
-    <td><%= link_to 'Destroy', code_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if auth_user(code_type.partner_id) or signed_in_and_master? %>
+      <td><%= link_to 'Edit', edit_code_type_path(code_type) %></td>
+      <td><%= link_to 'Delete', code_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
@@ -18,3 +24,4 @@
 <br />
 
 <%= link_to 'New code_type', new_code_type_path %>
+

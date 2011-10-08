@@ -144,21 +144,24 @@ td.sidebar {
 }
 
 /* form_for */
-div.field, div.actions {
-  margin-bottom: 10px;
-}
-
+div.field, div.actions {margin-bottom: 10px;}
+div.field{border: solid 0px red;float:left; margin:5px;}
+div.select{margin:5px;}
+div.actions, div.seq {clear: both;}
+div.actions, div.login {font-weight: bold; margin-left:200px;}
+div.login input{width: 200px;}
+div.num input {width: 50px;}
+div.area text_area{width: 80%;}
+div.seq input {/*font-family: monospace; font-size:1.4em;*/ width:700px;}
+div.txt input {width: 400px;}
+div.txtshort input {width: 150px;}
+div.cod input {width: 30px;font-weight: bold;
+  font-family: monospace;font-size: 1.6em;}
+div.select select{/*color: #000000;font-family: monospace;font-size: 1.1em;*/}
+div.date {/*color: darkblue;*/}
 .leg{border-color:blue;}
-
-.fieldWithErrors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-
-.fieldWithErrors label {
-  color: #fff;
-}
+.fieldWithErrors {padding: 2px;background-color: #E9967A;display: table;}
+.fieldWithErrors label {color: #fff;}
 
 #errorExplanation {
   width: 400px;
@@ -230,4 +233,5 @@ div.passicon div.form-item, div.usericon div.form-item {
 
 /* show edit new */
 .show{margin:5px; padding:5px; float:left; width:30%;}
+.taleft{text-align: left; margin: 5px;}
 

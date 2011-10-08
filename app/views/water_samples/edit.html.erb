@@ -1,18 +1,28 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "filter", wfilters_path %></li>
+	    <li><%= link_to "protocol", protocols_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>Editing water sample</h1>
 
 <% form_for(@water_sample) do |f| %>
   <%= f.error_messages %>
 
 <fieldset><legend class="leg">General data</legend>
-  <div class="field">
-    <%= f.label :samplings_id %><br />
+  <div class="field select">
+    <%= f.label :sampling_id, "select sampling" %><br />
     <h3><%= @sampling.verbose_me%></h3>
   </div>
-  <div class="field">
-    <%= f.label :code %><br />
-    <%= f.text_field :code %>
+  <div class="field cod">
+    Code<br />
+    <h2><%= @code %></h2>
   </div>
-  <div class="field">
+  <div class="field date">
     <%= f.label :samplingDate %><br />
     <%= date_select :water_sample, :samplingDate %>
   </div>
@@ -21,38 +31,38 @@
 
 <fieldset><legend class="leg">Technical data</legend>
 
-  <div class="field">
+  <div class="field num">
     <%= f.label :temperature %><br />
     <%= f.text_field :temperature %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :turbidity %><br />
     <%= f.text_field :turbidity %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :conductivity %><br />
     <%= f.text_field :conductivity %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :phosphates %><br />
     <%= f.text_field :phosphates %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :nitrates %><br />
     <%= f.text_field :nitrates %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :volume %><br />
     <%= f.text_field :volume %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :ph %><br />
     <%= f.text_field :ph %>
   </div>
 
 </fieldset>
 
-  <div class="field">
+  <div class="field area">
     <%= f.label :note %><br />
     <%= f.text_area :note, :size => "60x12"  %>
   </div>

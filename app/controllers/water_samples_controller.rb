@@ -31,7 +31,7 @@ class WaterSamplesController < AuthController
         redirect_to :action => "index"
     end
     @title = "Water samples"
-    @s = Sampling.find(@water_sample.samplings_id)
+    @s = Sampling.find(@water_sample.sampling_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -45,6 +45,22 @@ class WaterSamplesController < AuthController
     @water_sample = WaterSample.new
     @title = "Water sample"
 
+    @s_c = Sampling.count()
+    if @s_c.nil? or @s_c == 0
+      flash[:error] = "No sampling found! create first someone..."
+      redirect_to :action => "index"
+      return
+    end
+
+    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    if @pt.nil?
+      @s = Sampling.all()
+    else
+      @s = Sampling.all(:conditions => [ "partner_id = ?", @pt.id])
+    end
+    @sx = @s.first
+    @codegen = get_code(@sx)
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @water_sample }
@@ -55,8 +71,10 @@ class WaterSamplesController < AuthController
   def edit
     #@water_sample = WaterSample.find(params[:id])  --> Yet done in def correct_user
     @title = "Water sample"
+    @code = @water_sample.code
+    @sampling = Partner.find(@water_sample.sampling_id)
     #Cannot change the sample set during creation
-    #<%= select :water_sample,:samplings_id,Sampling.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    #<%= select :water_sample,:sampling_id,Sampling.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   end
 
   # POST /water_samples
@@ -64,6 +82,9 @@ class WaterSamplesController < AuthController
   def create
     @water_sample = WaterSample.new(params[:water_sample])
     @title = "Water sample"
+
+    @sx = Sampling.find(@water_sample.sampling_id)
+    @water_sample.code = get_code(@sx)
 
     respond_to do |format|
       if @water_sample.save
@@ -111,7 +132,7 @@ class WaterSamplesController < AuthController
 
     def correct_user
       @water_sample = WaterSample.find(params[:id])
-      @sampling = Sampling.find(@water_sample.samplings_id)
+      @sampling = Sampling.find(@water_sample.sampling_id)
       @partner = Partner.find(@sampling.partner_id)
       @user = User.find(@partner.user_id)
       #uses the current_user? method,
@@ -123,6 +144,28 @@ class WaterSamplesController < AuthController
       flash[:notice] = "Only the partner who create the water sample can modify it."
       redirect_to(water_samples_path)
     end
+
+    def get_code(psampling)
+      @codegen = "???"
+      if psampling.nil?
+        return @codegen
+      end
+
+      #@pt = Sampling.find(psampling)
+      @pid = psampling.id
+      @codegen += psampling.code
+
+      @cnt = WaterSample.calculate(:count, :all, :conditions => ['sampling_id = ' + @pid.to_s ])
+      if @cnt.nil? or @cnt == 0
+        @cnt = 1
+      else
+         @cnt += 1
+      end
+      @codegen += "%03d" % @cnt
+
+      return @codegen
+    end
+
 
 end
 

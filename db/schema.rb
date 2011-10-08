@@ -9,13 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110919091627) do
+ActiveRecord::Schema.define(:version => 20111006071011) do
 
   create_table "code_types", :force => true do |t|
+    t.string   "code",       :null => false
     t.string   "name",       :null => false
+    t.integer  "partner_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "code_types", ["partner_id"], :name => "index_code_types_on_partner_id"
 
   create_table "comments", :force => true do |t|
     t.string   "commenter"
@@ -25,10 +29,17 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.datetime "updated_at"
   end
 
+  create_table "countries", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "geos", :force => true do |t|
-    t.string   "name",                                                    :null => false
-    t.integer  "lon",        :limit => 10, :precision => 10, :scale => 0, :null => false
-    t.integer  "lat",        :limit => 10, :precision => 10, :scale => 0, :null => false
+    t.string   "name",       :null => false
+    t.integer  "lon",        :null => false
+    t.integer  "lat",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,14 +52,51 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
   end
 
   create_table "meteorological_datas", :force => true do |t|
-    t.integer  "Temperature",    :limit => 10, :precision => 10, :scale => 0
-    t.integer  "Moisture",       :limit => 10, :precision => 10, :scale => 0
-    t.integer  "Pressure",       :limit => 10, :precision => 10, :scale => 0
-    t.integer  "WindSpeed",      :limit => 10, :precision => 10, :scale => 0
+    t.integer  "Temperature"
+    t.integer  "Moisture"
+    t.integer  "Pressure"
+    t.integer  "WindSpeed"
     t.string   "WindDirection"
-    t.integer  "WaterFlow",      :limit => 10, :precision => 10, :scale => 0
-    t.integer  "LightIntensity", :limit => 10, :precision => 10, :scale => 0
-    t.integer  "RainfallEvents", :limit => 10, :precision => 10, :scale => 0
+    t.integer  "WaterFlow"
+    t.integer  "LightIntensity"
+    t.integer  "RainfallEvents"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "micro_arra_analysis_files", :force => true do |t|
+    t.integer  "microarraydata_id"
+    t.text     "info"
+    t.string   "MIANE_Standard"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "micro_array_datas", :force => true do |t|
+    t.string   "gpr_title"
+    t.string   "gpr_file_title"
+    t.binary   "gpr_file"
+    t.text     "comment_text"
+    t.date     "loaded_at"
+    t.integer  "partner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "micro_array_images", :force => true do |t|
+    t.integer  "microarraydata_id"
+    t.string   "name"
+    t.binary   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "micro_array_validations", :force => true do |t|
+    t.integer  "microarraydata_id"
+    t.integer  "CellCount",         :limit => 10, :precision => 10, :scale => 0
+    t.integer  "QPCR_decimal",      :limit => 10, :precision => 10, :scale => 0
+    t.integer  "QPCR_Culture",      :limit => 10, :precision => 10, :scale => 0
+    t.integer  "Chemscan",          :limit => 10, :precision => 10, :scale => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -61,6 +109,36 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
   end
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
+
+  create_table "names", :force => true do |t|
+    t.integer  "tax_id"
+    t.string   "name_txt"
+    t.string   "unique_name"
+    t.string   "name_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "names", ["name_txt"], :name => "index_names_on_name_txt"
+  add_index "names", ["tax_id"], :name => "index_names_on_tax_id"
+
+  create_table "nodes", :force => true do |t|
+    t.integer  "rank"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "oligo_sequences", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "partner_id",   :null => false
+    t.string   "DNA_Sequence"
+    t.integer  "tax_id_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "oligo_sequences", ["partner_id"], :name => "index_oligo_sequences_on_partner_id"
 
   create_table "partner_people", :force => true do |t|
     t.integer  "partner_id"
@@ -78,17 +156,18 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.integer  "fp7_Number", :null => false
     t.string   "code",       :null => false
     t.string   "name",       :null => false
-    t.string   "state",      :null => false
     t.text     "address"
     t.string   "phone"
     t.string   "email",      :null => false
     t.string   "site"
     t.binary   "logo"
-    t.integer  "user_id"
+    t.integer  "user_id",    :null => false
+    t.integer  "country_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "partners", ["email"], :name => "index_partners_on_email", :unique => true
   add_index "partners", ["name"], :name => "index_partners_on_name", :unique => true
   add_index "partners", ["user_id"], :name => "index_partners_on_user_id"
 
@@ -123,53 +202,54 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
     t.text     "ScanProtocol"
     t.text     "DataProcessing"
     t.text     "ValueDefinition"
-    t.integer  "water_samples_id",  :null => false
+    t.integer  "water_sample_id",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "protocols", ["water_samples_id"], :name => "index_protocols_on_water_samples_id"
+  add_index "protocols", ["water_sample_id"], :name => "index_protocols_on_water_sample_id"
 
   create_table "sampling_sites", :force => true do |t|
-    t.string   "code",                                                                                  :null => false
+    t.string   "code",                                     :null => false
     t.string   "name"
-    t.string   "country"
     t.string   "aptitudeTypology"
     t.string   "catchmentArea"
     t.string   "geology"
     t.string   "depth"
     t.string   "sizeTypology"
-    t.integer  "salinity",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "tidalRange",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "water_types_id",                                                                        :null => false
-    t.integer  "water_uses_id",                                                                         :null => false
-    t.integer  "land_use_mappings_id",                                                                  :null => false
+    t.integer  "salinity"
+    t.integer  "tidalRange"
+    t.integer  "water_types_id",                           :null => false
+    t.integer  "water_uses_id",                            :null => false
+    t.integer  "land_use_mappings_id",                     :null => false
+    t.integer  "country_id",                               :null => false
     t.integer  "geos_id"
-    t.string   "geos_type",                                                         :default => "Site"
+    t.string   "geos_type",            :default => "Site"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "sampling_sites", ["country_id"], :name => "index_sampling_sites_on_country_id"
   add_index "sampling_sites", ["geos_id"], :name => "index_sampling_sites_on_geos_id"
   add_index "sampling_sites", ["land_use_mappings_id"], :name => "index_sampling_sites_on_land_use_mappings_id"
   add_index "sampling_sites", ["water_types_id"], :name => "index_sampling_sites_on_water_types_id"
   add_index "sampling_sites", ["water_uses_id"], :name => "index_sampling_sites_on_water_uses_id"
 
   create_table "samplings", :force => true do |t|
-    t.string   "code",                                                          :null => false
-    t.integer  "temperature",      :limit => 10, :precision => 10, :scale => 0
-    t.integer  "moisture",         :limit => 10, :precision => 10, :scale => 0
-    t.integer  "pressure",         :limit => 10, :precision => 10, :scale => 0
-    t.integer  "windSpeed",        :limit => 10, :precision => 10, :scale => 0
+    t.string   "code",             :null => false
+    t.integer  "temperature"
+    t.integer  "moisture"
+    t.integer  "pressure"
+    t.integer  "windSpeed"
     t.string   "windDirection"
-    t.integer  "waterFlow",        :limit => 10, :precision => 10, :scale => 0
-    t.integer  "lightIntensity",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "rainfallEvents",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "depth",            :limit => 10, :precision => 10, :scale => 0
-    t.integer  "sampling_site_id",                                              :null => false
-    t.integer  "partner_id",                                                    :null => false
-    t.datetime "samplingDate",                                                  :null => false
+    t.integer  "waterFlow"
+    t.integer  "lightIntensity"
+    t.integer  "rainfallEvents"
+    t.integer  "depth"
+    t.integer  "sampling_site_id", :null => false
+    t.integer  "partner_id",       :null => false
+    t.datetime "samplingDate",     :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -193,22 +273,22 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
   create_table "water_samples", :force => true do |t|
-    t.string   "code",                                                      :null => false
-    t.integer  "temperature",  :limit => 10, :precision => 10, :scale => 0
-    t.integer  "turbidity",    :limit => 10, :precision => 10, :scale => 0
-    t.integer  "conductivity", :limit => 10, :precision => 10, :scale => 0
-    t.integer  "phosphates",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "nitrates",     :limit => 10, :precision => 10, :scale => 0
-    t.integer  "volume",       :limit => 10, :precision => 10, :scale => 0
-    t.integer  "ph",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "samplings_id",                                              :null => false
-    t.datetime "samplingDate",                                              :null => false
+    t.string   "code",         :null => false
+    t.integer  "temperature"
+    t.integer  "turbidity"
+    t.integer  "conductivity"
+    t.integer  "phosphates"
+    t.integer  "nitrates"
+    t.integer  "volume"
+    t.integer  "ph"
+    t.integer  "sampling_id",  :null => false
+    t.datetime "samplingDate", :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "water_samples", ["samplings_id"], :name => "index_water_samples_on_samplings_id"
+  add_index "water_samples", ["sampling_id"], :name => "index_water_samples_on_sampling_id"
 
   create_table "water_types", :force => true do |t|
     t.string   "code",       :null => false
@@ -227,11 +307,11 @@ ActiveRecord::Schema.define(:version => 20110919091627) do
   create_table "wfilters", :force => true do |t|
     t.string   "name"
     t.text     "note"
-    t.integer  "water_samples_id", :null => false
+    t.integer  "water_sample_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "wfilters", ["water_samples_id"], :name => "index_wfilters_on_water_samples_id"
+  add_index "wfilters", ["water_sample_id"], :name => "index_wfilters_on_water_sample_id"
 
 end

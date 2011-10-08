@@ -24,6 +24,8 @@ class CreateSamplings < ActiveRecord::Migration
 end
 
   def self.down
+    remove_index :samplings, :partner_id
+    remove_index :samplings, :sampling_site_id
     drop_table :samplings
   end
 end

@@ -1,7 +1,21 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :wfilters
+  map.resources :micro_array_images
 
-  map.resources :samplings
+  map.resources :micro_arra_analysis_files
+
+  map.resources :micro_array_validations
+
+  map.resources :micro_array_datas
+
+  map.resources :names
+
+  map.resources :oligo_sequences
+
+  map.resources :nodes
+
+  map.resources :countries
+
+  map.resources :wfilters
 
   map.resources :samplings
 

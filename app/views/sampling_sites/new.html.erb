@@ -1,67 +1,79 @@
+<table>
+<tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "land use mapping", land_use_mappings_path %></li>
+      <li><%= link_to "water use", water_uses_path %></li>
+      <li><%= link_to "water type", water_types_path %></li>
+      <li><%= link_to "country", countries_path %></li>
+      <li><%= link_to "geo", geos_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>New sampling site</h1>
 
 <% form_for(@sampling_site) do |f| %>
   <%= f.error_messages %>
 
 <fieldset><legend class="leg">General data</legend>
-  <div class="field">
+  <div class="field txtshort">
     <%= f.label :code %><br />
     <%= f.text_field :code %>
     <div style="display:none"> text_field_with_label f, :code </div>
   </div>
-  <div class="field">
+  <div class="field txt">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :water_types_id %><br />
-    <%= select :sampling_site,:water_types_id,WaterType.find(:all).collect{|p| [p.code + " " + p.name, p.id]}%>
+  <div class="field select">
+    <%= f.label :water_types_id, "Select Water Type" %><br />
+    <%= select :sampling_site,:water_types_id,WaterType.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
-  <div class="field">
-    <%= f.label :water_uses_id %><br />
-    <%= select :sampling_site,:water_uses_id,WaterUse.find(:all).collect{|p| [p.code + " " + p.name, p.id]}%>
+  <div class="field select">
+    <%= f.label :water_uses_id, "Select Water Use" %><br />
+    <%= select :sampling_site,:water_uses_id,WaterUse.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
-  <div class="field">
-    <%= f.label :land_use_mappings_id %><br />
-    <%= select :sampling_site,:land_use_mappings_id,LandUseMapping.find(:all).collect{|p| [p.name, p.id]}%>
+  <div class="field select">
+    <%= f.label :land_use_mappings_id, "Select Land use mapping" %><br />
+    <%= select :sampling_site,:land_use_mappings_id,LandUseMapping.find(:all).collect{|p| [p.verbose_me, p.id]}%>
     <div style="display:none"> t.string   "geos_type" </div>
   </div>
-   <div class="field">
-    <%= f.label :geos_id %><br />
-    <%= select :sampling_site,:geos_id,Geo.find(:all).collect{|p| [p.name, p.id]}%>
+  <div class="field select">
+    <%= f.label :country_id, "Select country" %><br />
+    <%= select :sampling_site,:country_id,Country.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+  <div class="field select">
+    <%= f.label :geos_id, "Select Geographical place" %><br />
+    <%= select :sampling_site,:geos_id,Geo.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
 </fieldset>
 <fieldset><legend class="leg">Technical data</legend>
-  <div class="field">
-    <%= f.label :country %><br />
-    <%= f.text_field :country %>
-  </div>
-  <div class="field">
+  <div class="field txtshort">
     <%= f.label :aptitudeTypology %><br />
     <%= f.text_field :aptitudeTypology %>
   </div>
-  <div class="field">
+  <div class="field txtshort">
     <%= f.label :catchmentArea %><br />
     <%= f.text_field :catchmentArea %>
   </div>
-  <div class="field">
+  <div class="field txtshort">
     <%= f.label :Geology %><br />
     <%= f.text_field :geology %>
   </div>
 
-  <div class="field">
+  <div class="field txtshort">
     <%= f.label :depth %><br />
     <%= f.text_field :depth %>
   </div>
-  <div class="field">
+  <div class="field txtshort">
     <%= f.label :sizeTypology %><br />
     <%= f.text_field :sizeTypology %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :salinity %><br />
     <%= f.text_field :salinity %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :tidalRange %><br />
     <%= f.text_field :tidalRange %>
   </div>

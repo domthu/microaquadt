@@ -1,3 +1,11 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "code type", code_types_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>Listing samplings</h1>
 
 <table>
@@ -13,7 +21,7 @@
     <td><%=h sampling.code %></td>
     <td><%=h Partner.find(sampling.partner_id).verbose_me %></td>
     <td><%= link_to 'Show', sampling %></td>
-    <% if auth_user(sampling.partner_id) %>
+    <% if auth_user(sampling.partner_id) or signed_in_and_master? %>
       <td><%= link_to 'Edit', edit_sampling_path(sampling) %></td>
       <td><%= link_to 'Delete', sampling, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>

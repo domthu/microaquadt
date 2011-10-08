@@ -1,16 +1,30 @@
-<h1>Editing code_type</h1>
+<h1>Editing code type</h1>
 
 <% form_for(@code_type) do |f| %>
   <%= f.error_messages %>
 
-  <p>
+<fieldset><legend class="leg">General data</legend>
+  <div class="field cod">
+    Code
+    <h1><%=h @code_type.code %></h1>
+  </div>
+  <div class="field txt">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </p>
-  <p>
+  </div>
+
+  <div class="field select">
+    <%= f.label :partner_id, :value => "Partner" %><br />
+    <h3><%= @partner.verbose_me %></h3>
+  </div>
+
+</fieldset>
+
+  <div class="actions">
     <%= f.submit 'Update' %>
-  </p>
+  </div>
 <% end %>
 
 <%= link_to 'Show', @code_type %> |
 <%= link_to 'Back', code_types_path %>
+

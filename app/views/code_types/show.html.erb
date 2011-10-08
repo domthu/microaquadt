@@ -1,8 +1,21 @@
-<p>
+<div class="show cod">
+  <b>Code:</b>
+  <%=h @code_type.code %>
+</div>
+
+<div class="show txt">
   <b>Name:</b>
   <%=h @code_type.name %>
-</p>
+</div>
+
+<div class="show txt">
+  <b>Partner:</b>
+  <%=h @pt.verbose_me %>
+</div>
 
 
-<%= link_to 'Edit', edit_code_type_path(@code_type) %> |
+<% if auth_user(@code_type.partner_id) %>
+  <%= link_to 'Edit', edit_code_type_path(@code_type) %> |
+<% end %>
 <%= link_to 'Back', code_types_path %>
+

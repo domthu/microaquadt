@@ -1,59 +1,67 @@
-<div class="show">
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "code type", code_types_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<div class="show select">
   <b>Sampling site:</b>
   <%=h @ss.code + " " + @ss.name %>
 </div>
 
-<div class="show">
+<div class="show cod">
   <b>Code:</b>
   <%=h @sampling.code %>
 </div>
 
-<div class="show">
+<div class="show txt">
   <b>Partner:</b>
   <%=h @pt.name %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Temperature:</b>
   <%=h @sampling.temperature %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Moisture:</b>
   <%=h @sampling.moisture %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Pressure:</b>
   <%=h @sampling.pressure %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Windspeed:</b>
   <%=h @sampling.windSpeed %>
 </div>
 
-<div class="show">
+<div class="show txt">
   <b>Winddirection:</b>
   <%=h @sampling.windDirection %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Waterflow:</b>
   <%=h @sampling.waterFlow %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Lightintensity:</b>
   <%=h @sampling.lightIntensity %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Rainfallevents:</b>
   <%=h @sampling.rainfallEvents %>
 </div>
 
-<div class="show">
+<div class="show num">
   <b>Depth:</b>
   <%=h @sampling.depth %>
 </div>

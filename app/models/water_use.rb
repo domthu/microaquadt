@@ -8,5 +8,13 @@ class WaterUse < ActiveRecord::Base
 		:maximum => 50,
 		:too_long => "{{count}} characters is the maximum allowed"
 	has_many :sampling_site
+
+
+  #In order for form_for to work,
+  attr_reader :verbose_me
+  def verbose_me
+    return self.code + ' ' + self.name
+  end
+
 end
 

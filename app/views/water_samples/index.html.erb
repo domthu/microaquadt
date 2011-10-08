@@ -1,3 +1,13 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "filter", wfilters_path %></li>
+	    <li><%= link_to "protocol", protocols_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>Listing water samples</h1>
 
 <table>
@@ -9,10 +19,10 @@
 
 <% @water_samples.each do |water_sample| %>
   <tr>
-    <td><%=h Sampling.find(water_sample.samplings_id).verbose_me %></td>
+    <td><%=h Sampling.find(water_sample.sampling_id).verbose_me %></td>
     <td><%=h water_sample.code %></td>
-    <td><%=h related_partner(water_sample.samplings_id) %></td>
-    <% if auth_sample(water_sample.samplings_id) %>
+    <td><%=h related_partner(water_sample.sampling_id) %></td>
+    <% if auth_sample(water_sample.sampling_id) %>
       <td><%= link_to 'Show', water_sample %></td>
       <td><%= link_to 'Edit', edit_water_sample_path(water_sample) %></td>
       <td><%= link_to 'Delete', water_sample, :confirm => 'Are you sure?', :method => :delete %></td>

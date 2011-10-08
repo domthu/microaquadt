@@ -10,7 +10,8 @@ class CreateWaterSamples < ActiveRecord::Migration
       t.decimal :volume
       t.decimal :ph
       #t.references :meteorological_datas
-      t.integer :samplings_id, :null => false
+      #nome del modello al singolare_id
+      t.integer :sampling_id, :null => false
       t.datetime :samplingDate, :null => false
       #Non devo poter creare un water sample senza dover
       #creare un filter o protocols
@@ -22,9 +23,9 @@ class CreateWaterSamples < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :water_samples, :samplings_id
-    #add_index :water_samples, :wfilters_id
-    #add_index :water_samples, :protocols_id
+    add_index :water_samples, :sampling_id
+    #add_index :water_samples, :wfilter_id
+    #add_index :water_samples, :protocol_id
   end
 
   def self.down

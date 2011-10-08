@@ -1,15 +1,26 @@
-<h1>New code_type</h1>
+<h1>New code type</h1>
 
 <% form_for(@code_type) do |f| %>
   <%= f.error_messages %>
 
-  <p>
+  <div class="field cod">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+  <div class="field txt">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </p>
-  <p>
+  </div>
+  <div class="field select">
+    <%= f.label :partner_id %><br />
+    <%= select :code_type,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+
+  <div class="actions">
     <%= f.submit 'Create' %>
-  </p>
+  </div>
+
 <% end %>
 
 <%= link_to 'Back', code_types_path %>
+

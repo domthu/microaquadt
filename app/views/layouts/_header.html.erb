@@ -8,7 +8,7 @@
   <ul class="navigation round">
     <li><%= link_to "Internal site", root_path  %></li>
     <li><a href="http://microaqua.eu/" target="_blank">External site</a></li>
-    <li><a href="http://engeebee.com/dpmicroaqua/" target="_blank">Project mgt</a></li>
+    <li><a href="http://engeebee.com/dpmicroaqua/" target="_blank">Reports</a></li>
   </ul>
 
   <% if signed_in? %>
@@ -24,15 +24,60 @@
     </td></tr><tr><td class="transparent">
 
     <ul class="navigation round">
-      <li><%= link_to "sampling site", sampling_sites_path %></li>
-      <li><%= link_to "sampling", samplings_path %></li>
-      <li><%= link_to "water sample", water_samples_path %></li>
+      <li><%= link_to "Sampling site", sampling_sites_path %></li>
+      <li><%= link_to "Sampling", samplings_path %></li>
+      <li><%= link_to "Water sample", water_samples_path %></li>
+      <li><%= link_to "Oligo sequence", oligo_sequences_path %></li>
+      <li><%= link_to "Micro array", micro_array_datas_path %></li>
     </ul>
     <br />
 
   <% end %>
 
-  </td></tr></table>
+
+  </table>
+
+<div style="display:none;">
+  refactor using params[:controller] from hash url
+  <% if signed_in? %>
+  <table>
+  <tr class="taleft" width="70%"><td class="taleft">
+      <ul class="navigation round taleft">
+        <li><%= link_to "land use mapping", land_use_mappings_path %></li>
+        <li><%= link_to "geo", geos_path %></li>
+        <li><%= link_to "water use", water_uses_path %></li>
+        <li><%= link_to "water type", water_types_path %></li>
+      </ul>
+    </td></tr>
+  </table>
+
+  <table>
+    <tr class="taleft" width="70%"><td class="taleft">
+      <ul class="navigation round taleft">
+        <li><%= link_to "taxonomy", names_path %></li>
+        <li><%= link_to "taxonomy nodes", nodes_path %></li>
+      </ul>
+    </td><td class="taleft">
+      <ul class="navigation round taleft">
+        <li><%= link_to "code type", code_types_path %></li>
+      </ul>
+    </td></tr>
+  </table>
+
+  <table>
+  <tr class="taleft" width="70%"><td class="taleft">
+      <ul class="navigation round taleft">
+        <li><%= link_to "code type", code_types_path %></li>
+        <li><%= link_to "filter", wfilters_path %></li>
+		    <li><%= link_to "protocol", protocols_path %></li>
+      </ul>
+    </td></tr>
+  </table>
+
+  <% end %>
+</div>
+
+
 </div>
 <br />
 

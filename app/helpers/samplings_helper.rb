@@ -7,6 +7,5 @@ module SamplingsHelper
     @auth_user = (@user.id == current_user.id)
   end
 
-
 end
 

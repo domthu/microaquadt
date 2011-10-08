@@ -13,7 +13,7 @@
   <tr>
     <td><%=h partner.fp7_Number %></td>
     <td><%=h partner.name %></td>
-    <td><%=h partner.state %></td>
+    <td><%=h Country.find(sampling_site.country_id).name %></td>
     <td><%=h partner.phone %></td>
     <td><%=h partner.email %></td>
     <td><%= link_to 'Show', partner %></td>

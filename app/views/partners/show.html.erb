@@ -1,41 +1,41 @@
-<p>
+<div class="show txt">
   <b>Fp7 number:</b>
   <%=h @partner.fp7_Number %>
-</p>
+</div>
 
-<p>
+<div class="show txt">
   <b>Name:</b>
   <%=h @partner.name %>
-</p>
+</div>
 
-<p>
+<div class="show cod">
   <b>State:</b>
-  <%=h @partner.state %>
-</p>
+  <%=h @partner.country.name %>
+</div>
 
-<p>
+<div class="show area">
   <b>Address:</b>
   <%=h @partner.address %>
-</p>
+</div>
 
-<p>
+<div class="show txt">
   <b>Phone:</b>
   <%=h @partner.phone %>
-</p>
+</div>
 
-<p>
+<div class="show txt">
   <b>email:</b>
   <%=h @partner.email %>
   <div style="display:none">
   email_field(:user, :email)
   email_field(@partner, :email)
   </div>
-</p>
+</div>
 
-<p>
+<div class="show txt">
   <b>Site:</b>
   <%=h @partner.site %>
-</p>
+</div>
 
 
 <%= link_to 'Edit', edit_partner_path(@partner) %> |

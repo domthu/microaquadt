@@ -1,3 +1,15 @@
+<table>
+<tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "land use mapping", land_use_mappings_path %></li>
+      <li><%= link_to "water use", water_uses_path %></li>
+      <li><%= link_to "water type", water_types_path %></li>
+      <li><%= link_to "country", countries_path %></li>
+      <li><%= link_to "geo", geos_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>Listing sampling sites</h1>
 
 <table>
@@ -8,6 +20,7 @@
     <th>Water use</th>
     <th>Land use</th>
     <th>Geo</th>
+    <th>Country</th>
   </tr>
 
 <% @sampling_sites.each do |sampling_site| %>
@@ -18,6 +31,7 @@
     <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
     <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
     <td><%=h Geo.find(sampling_site.geos_id).name %></td>
+    <td><%=h Country.find(sampling_site.country_id).name %></td>
     <td><%= link_to 'Show', sampling_site %></td>
     <td><%= link_to 'Edit', edit_sampling_site_path(sampling_site) %></td>
     <td><%= link_to 'Delete', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>

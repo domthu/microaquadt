@@ -1,10 +1,14 @@
 class CodeTypesController < AuthController
 
+  #only Requiring the right user to change own contents
+  before_filter :correct_user, :only => [:edit, :update]
+
   # GET /code_types
   # GET /code_types.xml
   def index
     @code_types = CodeType.all
     @title = "code types"
+    #<td><%=h code_type.partner.verbose %></td>
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +20,8 @@ class CodeTypesController < AuthController
   # GET /code_types/1.xml
   def show
     @code_type = CodeType.find(params[:id])
-    @title = "code types"
+    @title = "code type"
+    @pt = Partner.find(@code_type.partner_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -29,6 +34,13 @@ class CodeTypesController < AuthController
   def new
     @code_type = CodeType.new
     @title = "code type"
+
+    @partners = Partner.find(:all)
+    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    unless @pt.nil?
+      #set the selected item
+      @code_type.partner_id = @pt.id
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,6 +59,7 @@ class CodeTypesController < AuthController
   def create
     @code_type = CodeType.new(params[:code_type])
     @title = "code type"
+    @partners = Partner.find(:all)
 
     respond_to do |format|
       if @code_type.save
@@ -88,5 +101,22 @@ class CodeTypesController < AuthController
       format.xml  { head :ok }
     end
   end
+
+
+  private
+
+    def correct_user
+      @codetype = CodeType.find(params[:id])
+      @partner = Partner.find(@codetype.partner_id)
+      @user = User.find(@partner.user_id)
+      #uses the current_user? method,
+      #which (as with deny_access) we will define in the Sessions helper
+      reroute() unless current_user?(@user)
+    end
+
+    def reroute()
+      flash[:notice] = "Only the partner who create the code type can modify it."
+      redirect_to(code_types_path)
+    end
 end
 

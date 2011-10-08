@@ -15,4 +15,5 @@ doc/
 .bundle
 *.lock
 *.out
+*.rvmrc
 

@@ -1,78 +1,82 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "code type", code_types_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>New sampling</h1>
 
 <% form_for(@sampling) do |f| %>
   <%= f.error_messages %>
 
 <fieldset><legend class="leg">General data</legend>
-  <div class="field">
+  <div class="field select">
     <%= f.label :sampling_site_id %><br />
     <%= select :sampling,:sampling_site_id, SamplingSite.find(:all).collect{|p| [p.code + " " + p.name, p.id]}%>
   </div>
-  <div class="field">
+  <div class="field cod">
     <%= f.label :code %><br />
-    <%= f.text_field :code %>
+    <h2><%= @codegen %></h2>
   </div>
-  <div class="field">
+    <div class="field cod">
+    <%= f.label :samplingDate, "Sampling date" %><br />
+    <%= date_select :sampling, :samplingDate %>
+  </div>
+
+  <div class="field select">
     <%= f.label :partner_id %><br />
-    <div style="display:none;"> fixnum to string select :sampling, :partner,Partner.find(:all).collect{|p| [p.fp7_Number + " " + p.name, p.id]} </div>
-    <%= collection_select(:sampling, :partner_id, @partners, :id, :verbose_me,
-      options ={}, :class =>"partner")
-      %>
+    <%= select :sampling,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
-  <div class="field" style="display:none;"> problem strutturale filter --> wfilter
+  <div class="field select" style="display:none;"> problem strutturale filter --> wfilter
     <= f.label :wfilter ><br />
     <= select :sampling,:filter,Wfilter.find(:all).collect{|p| [p.name, p.id]}>
-  </div>
-  <div class="field">
-    <%= f.label :samplingDate %><br />
-    <%= date_select :sampling, :samplingDate %>
   </div>
 
 </fieldset>
 
 <fieldset><legend class="leg">Technical data</legend>
-  <div class="field">
+  <div class="field num">
     <%= f.label :temperature %><br />
     <%= f.text_field :temperature %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :moisture %><br />
     <%= f.text_field :moisture %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :pressure %><br />
     <%= f.text_field :pressure %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :windSpeed %><br />
     <%= f.text_field :windSpeed %>
   </div>
-  <div class="field">
+  <div class="field txtshort">
     <%= f.label :windDirection %><br />
     <%= f.text_field :windDirection %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :waterFlow %><br />
     <%= f.text_field :waterFlow %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :lightIntensity %><br />
     <%= f.text_field :lightIntensity %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :rainfallEvents %><br />
     <%= f.text_field :rainfallEvents %>
   </div>
-  <div class="field">
+  <div class="field num">
     <%= f.label :depth %><br />
     <%= f.text_field :depth %>
   </div>
+
 </fieldset>
 
-
-  <div  style="display:none;">pfilter & Protocol</div>
-
-  <div class="field">
+  <div class="field area">
     <%= f.label :note %><br />
     <%= f.text_area :note %>
   </div

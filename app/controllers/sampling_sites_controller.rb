@@ -36,6 +36,10 @@ class SamplingSitesController < AuthController
     @lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
     @g = Geo.find(@sampling_site.geos_id)
 
+    #  <%=h @sampling_site.country.name %>
+    #@Mysql::Error: Unknown column 'countries.sampling_site_id' in 'where clause': SELECT * FROM `countries` WHERE (`countries`.sampling_site_id = 1)  LIMIT 1
+    @state = Country.find(@sampling_site.country_id)
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @sampling_site }
