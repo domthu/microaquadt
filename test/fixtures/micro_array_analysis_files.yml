@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  microarray: 
+  note: MyText
+  MIANE_Standard: MyString
+
+two:
+  microarray: 
+  note: MyText
+  MIANE_Standard: MyString

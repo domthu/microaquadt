@@ -1,0 +1,271 @@
+<h1>New micro array data</h1>
+
+<% form_for(@micro_array_data) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="field select">
+    <%= f.label :microarray %><br />
+    <%= select :micro_array_data,:microarray_id, MicroArray.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Index, "I" %><br />
+    <%= f.text_field :D_Index %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Array_Row, "AR" %><br />
+    <%= f.text_field :D_Array_Row %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Array_Column, "AC" %><br />
+    <%= f.text_field :D_Array_Column %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Spot_Row, "SR" %><br />
+    <%= f.text_field :D_Spot_Row %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Spot_Column, "SC" %><br />
+    <%= f.text_field :D_Spot_Column %>
+  </div>
+  <div class="field txt">
+    <%= f.label :D_Name, "Name" %><br />
+    <%= f.text_field :D_Name %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_ID, "ID" %><br />
+    <%= f.text_field :D_ID %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_X, "X" %><br />
+    <%= f.text_field :D_X %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Y, "Y" %><br />
+    <%= f.text_field :D_Y %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Diameter, "Diameter" %><br />
+    <%= f.text_field :D_Diameter %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_F_Pixels, "F Pixels" %><br />
+    <%= f.text_field :D_F_Pixels %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_B_Pixels, "B Pixels" %><br />
+    <%= f.text_field :D_B_Pixels %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Footprint, "Footprint" %><br />
+    <%= f.text_field :D_Footprint %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Flags, "Flags" %><br />
+    <%= f.text_field :D_Flags %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_Median, "Ch1 Median" %><br />
+    <%= f.text_field :D_Ch1_Median %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_Mean, "Ch1 Mean" %><br />
+    <%= f.text_field :D_Ch1_Mean %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_SD, "Ch1_SD" %><br />
+    <%= f.text_field :D_Ch1_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_B_Median, "Ch1_B_Median" %><br />
+    <%= f.text_field :D_Ch1_B_Median %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_B_Mean, "Ch1_B_Mean" %><br />
+    <%= f.text_field :D_Ch1_B_Mean %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_B_SD, "Ch1_B_SD" %><br />
+    <%= f.text_field :D_Ch1_B_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_B_1_SD, "Ch1_B_1_SD" %><br />
+    <%= f.text_field :D_Ch1_B_1_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_B_2_SD, "Ch1_B_2_SD" %><br />
+    <%= f.text_field :D_Ch1_B_2_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_F_Sat, "Ch1_F_Sat" %><br />
+    <%= f.text_field :D_Ch1_F_Sat %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_Median_B, "Ch1_Median_B" %><br />
+    <%= f.text_field :D_Ch1_Median_B %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_Mean_B, "Ch1_Mean_B" %><br />
+    <%= f.text_field :D_Ch1_Mean_B %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_SignalNoiseRatio, "Ch1_SignalNoiseRatio" %><br />
+    <%= f.text_field :D_Ch1_SignalNoiseRatio %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Median, "Ch2_Median" %><br />
+    <%= f.text_field :D_Ch2_Median %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Mean, "Ch2_Mean" %><br />
+    <%= f.text_field :D_Ch2_Mean %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_SD, "Ch2_SD" %><br />
+    <%= f.text_field :D_Ch2_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_B_Median, "Ch2_B_Median" %><br />
+    <%= f.text_field :D_Ch2_B_Median %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_B_Mean, "Ch2_B_Mean" %><br />
+    <%= f.text_field :D_Ch2_B_Mean %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_B_SD, "Ch2_B_SD" %><br />
+    <%= f.text_field :D_Ch2_B_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_B_1_SD, "Ch2_B_1_SD" %><br />
+    <%= f.text_field :D_Ch2_B_1_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_B_2_SD, "Ch2_B_2_SD" %><br />
+    <%= f.text_field :D_Ch2_B_2_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_F_Sat, "Ch2_F_Sat" %><br />
+    <%= f.text_field :D_Ch2_F_Sat %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Median_B, "Ch2_Median_B" %><br />
+    <%= f.text_field :D_Ch2_Median_B %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Mean_B, "Ch2_Mean_B" %><br />
+    <%= f.text_field :D_Ch2_Mean_B %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_SignalNoiseRatio, "Ch2_SignalNoiseRatio" %><br />
+    <%= f.text_field :D_Ch2_SignalNoiseRatio %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Ratio_of_Medians, "Ch2_Ratio_of_Medians" %><br />
+    <%= f.text_field :D_Ch2_Ratio_of_Medians %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Ratio_of_Means, "Ch2_Ratio_of_Means" %><br />
+    <%= f.text_field :D_Ch2_Ratio_of_Means %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Median_of_Ratios, "Ch2_Median_of_Ratios" %><br />
+    <%= f.text_field :D_Ch2_Median_of_Ratios %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Mean_of_Ratios, "Ch2_Mean_of_Ratios" %><br />
+    <%= f.text_field :D_Ch2_Mean_of_Ratios %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Ratios_SD, "Ch2_Ratios_SD" %><br />
+    <%= f.text_field :D_Ch2_Ratios_SD %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Rgn_Ratio, "Ch2_Rgn_Ratio" %><br />
+    <%= f.text_field :D_Ch2_Rgn_Ratio %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Rgn_R, "Ch2_Rgn_R" %><br />
+    <%= f.text_field :D_Ch2_Rgn_R %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_Log_Ratio, "Ch2_Log_Ratio" %><br />
+    <%= f.text_field :D_Ch2_Log_Ratio %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Sum_of_Medians, "Sum_of_Medians" %><br />
+    <%= f.text_field :D_Sum_of_Medians %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Sum_of_Means, "Sum_of_Means" %><br />
+    <%= f.text_field :D_Sum_of_Means %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_N_Median, "Ch1_N_Median" %><br />
+    <%= f.text_field :D_Ch1_N_Median %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_N_Mean, "Ch1_N_Mean" %><br />
+    <%= f.text_field :D_Ch1_N_Mean %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_N_MedianB, "Ch1_N_MedianB" %><br />
+    <%= f.text_field :D_Ch1_N_MedianB %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch1_N_MeanB, "Ch1_N_MeanB" %><br />
+    <%= f.text_field :D_Ch1_N_MeanB %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_Median, "Ch2_N_Median" %><br />
+    <%= f.text_field :D_Ch2_N_Median %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_Mean, "Ch2_N_Mean" %><br />
+    <%= f.text_field :D_Ch2_N_Mean %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_MedianB, "Ch2_N_MedianB" %><br />
+    <%= f.text_field :D_Ch2_N_MedianB %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_MeanB, "Ch2_N_MeanB" %><br />
+    <%= f.text_field :D_Ch2_N_MeanB %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_Ratio_of_Medians, "" %><br />
+    <%= f.text_field :D_Ch2_N_Ratio_of_Medians %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_Ratio_of_Means, "" %><br />
+    <%= f.text_field :D_Ch2_N_Ratio_of_Means %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_Median_of_Ratios, "" %><br />
+    <%= f.text_field :D_Ch2_N_Median_of_Ratios %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_Mean_of_Ratios, "" %><br />
+    <%= f.text_field :D_Ch2_N_Mean_of_Ratios %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_Rgn_Ratio, "" %><br />
+    <%= f.text_field :D_Ch2_N_Rgn_Ratio %>
+  </div>
+  <div class="field num">
+    <%= f.label :D_Ch2_N_Log_Ratio, "" %><br />
+    <%= f.text_field :D_Ch2_N_Log_Ratio %>
+  </div>
+
+  <div class="field area">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Back', micro_array_datas_path %>
+

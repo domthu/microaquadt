@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  gpr_title: MyString
+  gpr_file_title: MyString
+  gpr_file: 
+  comment_text: MyText
+  loaded_at: 2011-10-06
+  partner: 
+
+two:
+  gpr_title: MyString
+  gpr_file_title: MyString
+  gpr_file: 
+  comment_text: MyText
+  loaded_at: 2011-10-06
+  partner: 

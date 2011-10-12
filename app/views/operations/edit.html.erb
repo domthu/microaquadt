@@ -1,0 +1,33 @@
+<h1>Editing operation</h1>
+
+<% form_for(@operation) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="field select">
+    <%= f.label :protocol_id %><br />
+    <%= select :operation,:protocol_id, Protocol.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+
+
+  <div class="field txt">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field num">
+    <%= f.label :step %><br />
+    <%= f.text_field :step %>
+  </div>
+
+  <div class="field area">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @operation %> |
+<%= link_to 'Back', operations_path %>
+

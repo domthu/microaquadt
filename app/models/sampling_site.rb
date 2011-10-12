@@ -38,7 +38,7 @@ class SamplingSite < ActiveRecord::Base
   belongs_to :geo
   has_one :land_use_mapping
   has_one :country
-  has_many :sampling, :dependent => :destroy
+  has_many :samplings, :dependent => :destroy
 
   #In order for form_for to work,
   attr_reader :verbose_me

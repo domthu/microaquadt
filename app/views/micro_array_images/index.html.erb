@@ -1,0 +1,31 @@
+<h1>Listing micro array images</h1>
+
+<table>
+  <tr>
+    <th>Microarray</th>
+    <th>Name</th>
+    <th>image id</th>
+    <th>channel</th>
+    <th>status</th>
+  </tr>
+
+<% @micro_array_images.each do |micro_array_image| %>
+  <tr>
+    <td><%=h micro_array_image.microarray %></td>
+    <td><%=h micro_array_image.name %></td>
+    <td><%=h micro_array_image.II_ImageID %></td>
+    <td><%=h micro_array_image.II_Channel %></td>
+    <td><%=h micro_array_image.II_Status %></td>
+    <td><%= link_to 'Show', micro_array_image %></td>
+    <% if auth_user(micro_array_image.microarray_id) or signed_in_and_master? %>
+      <td><%= link_to 'Edit', edit_micro_array_image_path(micro_array_image) %></td>
+      <td><%= link_to 'Destroy', micro_array_image, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New micro_array_image', new_micro_array_image_path %>
+

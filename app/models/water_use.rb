@@ -7,7 +7,7 @@ class WaterUse < ActiveRecord::Base
   validates_length_of :name,
 		:maximum => 50,
 		:too_long => "{{count}} characters is the maximum allowed"
-	has_many :sampling_site
+	has_many :sampling_sites
 
 
   #In order for form_for to work,

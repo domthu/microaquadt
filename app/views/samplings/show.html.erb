@@ -2,6 +2,8 @@
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
       <li><%= link_to "code type", code_types_path %></li>
+	    <li><%= link_to "protocol", protocols_path %></li>
+      <li><%= link_to "Water sample", water_samples_path %></li>
     </ul>
   </td></tr>
 </table>
@@ -66,13 +68,18 @@
   <%=h @sampling.depth %>
 </div>
 
+<div class="show num">
+  <b>Turbidity:</b>
+  <%=h @sampling.turbidity %>
+</div>
+
 <br />
 <p>
   <b>Note:</b>
   <%=h @sampling.note %>
 </p>
 
-<% if auth_user(@sampling.partner_id) %>
+<% if signed_in_and_master? %>
   <%= link_to 'Edit', edit_sampling_path(@sampling) %> |
 <% end %>
 <%= link_to 'Back', samplings_path %>

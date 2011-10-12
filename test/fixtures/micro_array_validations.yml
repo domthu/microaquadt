@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  microarraydata: 
+  CellCount: 9.99
+  QPCR_decimal: 9.99
+  QPCR_Culture: 9.99
+  Chemscan: 9.99
+
+two:
+  microarraydata: 
+  CellCount: 9.99
+  QPCR_decimal: 9.99
+  QPCR_Culture: 9.99
+  Chemscan: 9.99

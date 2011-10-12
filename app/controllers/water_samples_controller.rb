@@ -72,7 +72,7 @@ class WaterSamplesController < AuthController
     #@water_sample = WaterSample.find(params[:id])  --> Yet done in def correct_user
     @title = "Water sample"
     @code = @water_sample.code
-    @sampling = Partner.find(@water_sample.sampling_id)
+    @sampling = Sampling.find(@water_sample.sampling_id)
     #Cannot change the sample set during creation
     #<%= select :water_sample,:sampling_id,Sampling.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   end

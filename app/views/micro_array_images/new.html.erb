@@ -1,0 +1,76 @@
+<h1>New micro array image</h1>
+
+<% form_for(@micro_array_image) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="field select">
+    <%= f.label :microarray %><br />
+    <%= select :micro_array_image,:microarray_id, MicroArray.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+
+  <div class="field txt">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field bin">
+    <%= f.label :image %><br />
+    <%= f.text_field :image %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_ImageID, "ImageID" %><br />
+    <%= f.text_field :II_ImageID %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_Channel, "Channel" %><br />
+    <%= f.text_field :II_Channel %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_Image, "Image" %><br />
+    <%= f.text_field :II_Image %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_Fluorophore, "Fluorophore" %><br />
+    <%= f.text_field :II_Fluorophore %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_Barcode, "Barcode" %><br />
+    <%= f.text_field :II_Barcode %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_Units, "Units" %><br />
+    <%= f.text_field :II_Units %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_X_Units_Per_Pixel, "X Units Per Pixel" %><br />
+    <%= f.text_field :II_X_Units_Per_Pixel %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_Y_Units_Per_Pixel, "Y Units Per Pixel" %><br />
+    <%= f.text_field :II_Y_Units_Per_Pixel %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_X_Offset, "X Offset" %><br />
+    <%= f.text_field :II_X_Offset %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_Y_Offset, "Y Offset" %><br />
+    <%= f.text_field :II_Y_Offset %>
+  </div>
+  <div class="field num">
+    <%= f.label :II_Status, "Status" %><br />
+    <%= f.text_field :II_Status %>
+  </div>
+
+  <div class="field area">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Back', micro_array_images_path %>
+

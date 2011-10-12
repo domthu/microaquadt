@@ -7,7 +7,7 @@ class Geo < ActiveRecord::Base
   #Rails used to have a country_select helper for choosing countries,
   #but this has been extracted to the country_select plugin.
 
-  has_many :sampling_site
+  has_many :sampling_sites
 
   attr_reader :verbose_me
   def verbose_me

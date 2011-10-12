@@ -1,0 +1,27 @@
+<h1>New name</h1>
+
+<% form_for(@name) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :tax_id %><br />
+    <%= f.text_field :tax_id %>
+  </p>
+  <p>
+    <%= f.label :name_txt %><br />
+    <%= f.text_field :name_txt %>
+  </p>
+  <p>
+    <%= f.label :unique_name %><br />
+    <%= f.text_field :unique_name %>
+  </p>
+  <p>
+    <%= f.label :name_class %><br />
+    <%= f.text_field :name_class %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', names_path %>

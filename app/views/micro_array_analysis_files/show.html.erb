@@ -1,0 +1,21 @@
+<p>
+  <b>Microarray:</b>
+  <%=h @micro_array_analysis_file.microarray %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%=h @micro_array_analysis_file.note %>
+</p>
+
+<p>
+  <b>Miane standard:</b>
+  <%=h @micro_array_analysis_file.MIANE_Standard %>
+</p>
+
+
+<% if auth_user(@micro_array_analysis_file.microarray_id) %>
+  <%= link_to 'Edit', edit_micro_array_analysis_file_path(@micro_array_analysis_file) %> |
+<% end %>
+<%= link_to 'Back', micro_array_analysis_files_path %>
+

@@ -1,0 +1,24 @@
+<h1>Editing node</h1>
+
+<% form_for(@node) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :tax_id %><br />
+    <%= f.text_field :tax_id %>
+  </p>
+  <p>
+    <%= f.label :parent_tax_id %><br />
+    <%= f.text_field :parent_tax_id %>
+  </p>
+  <p>
+    <%= f.label :rank %><br />
+    <%= f.text_field :rank %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @node %> |
+<%= link_to 'Back', nodes_path %>

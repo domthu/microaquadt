@@ -2,6 +2,8 @@
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
       <li><%= link_to "code type", code_types_path %></li>
+	    <li><%= link_to "protocol", protocols_path %></li>
+      <li><%= link_to "Water sample", water_samples_path %></li>
     </ul>
   </td></tr>
 </table>
@@ -28,8 +30,8 @@
     <h2><%= @code %></h2>
   </div>
   <div class="field select" style="display:none;">
-    <= f.label :wfilter e protocols ><br />
-    <= select :sampling,:wfilter,Wfilter.find(:all).collect{|p| [p.name, p.id]} >
+    <= f.label :protocols ><br />
+    <= select :sampling,:protocol_id,Wfilter.find(:all).collect{|p| [p.name, p.id]} >
   </div>
   <div class="field date">
     <%= f.label :samplingDate %><br />
@@ -75,6 +77,11 @@
     <%= f.label :depth %><br />
     <%= f.text_field :depth %>
   </div>
+  <div class="field num">
+    <%= f.label :turbidity %><br />
+    <%= f.text_field :turbidity %>
+  </div>
+
 </fieldset>
 
   <div class="field area">

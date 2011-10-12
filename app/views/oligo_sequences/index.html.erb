@@ -1,0 +1,27 @@
+<h1>Listing oligo sequences</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Dna sequence</th>
+    <th>Partner</th>
+  </tr>
+
+<% @oligo_sequences.each do |oligo_sequence| %>
+  <tr>
+    <td><%=h oligo_sequence.name %></td>
+    <td><%=h oligo_sequence.DNA_Sequence %></td>
+    <td><%=h oligo_sequence.partner.verbose %></td>
+    <td><%= link_to 'Show', oligo_sequence %></td>
+    <% if auth_user(oligo_sequence.partner_id) or signed_in_and_master? %>
+      <td><%= link_to 'Edit', edit_oligo_sequence_path(oligo_sequence) %></td>
+      <td><%= link_to 'Delete', oligo_sequence, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New oligo_sequence', new_oligo_sequence_path %>
+

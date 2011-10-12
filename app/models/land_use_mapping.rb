@@ -7,7 +7,7 @@ class LandUseMapping < ActiveRecord::Base
   validates_length_of :name,
 		:maximum => 50,
 		:too_long => "{{count}} characters is the maximum allowed"
-  has_many :sampling_site
+  has_many :sampling_sites
 
   attr_reader :verbose_me
   def verbose_me

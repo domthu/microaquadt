@@ -1,12 +1,20 @@
 class ProtocolsController < AuthController
 
+  #only Requiring the right user to change own contents
+  before_filter :correct_user, :only => [:edit, :update]
+
+
   # GET /protocols
   # GET /protocols.xml
   def index
     @protocols = Protocol.all
-    @title = "protocols"
+    @title = "List of protocols"
 
-    respond_to do |format|
+    if @protocols.nil?
+        redirect_to :action => "index"
+    end
+
+      respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @protocols }
     end
@@ -16,7 +24,10 @@ class ProtocolsController < AuthController
   # GET /protocols/1.xml
   def show
     @protocol = Protocol.find(params[:id])
-    @title = "protocols"
+    @title = "Protocols"
+
+    @s = Sampling.find(@protocols.sampling_id)
+    @pt = Partner.find(@s.partner_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +39,21 @@ class ProtocolsController < AuthController
   # GET /protocols/new.xml
   def new
     @protocol = Protocol.new
-    @title = "protocol"
+    @title = "Protocol"
+
+    @s_c = Sampling.count()
+    if @s_c.nil? or @s_c == 0
+      flash[:error] = "No sampling found! create first some..."
+      redirect_to :action => "index"
+      return
+    end
+
+    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    if @pt.nil?
+      @s = Sampling.all()
+    else
+      @s = Sampling.all(:conditions => [ "partner_id = ?", @pt.id])
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,14 +64,15 @@ class ProtocolsController < AuthController
   # GET /protocols/1/edit
   def edit
     @protocol = Protocol.find(params[:id])
-    @title = "protocol"
+    @title = "Protocol"
+    @s = Sampling.find(@protocol.sampling_id)
   end
 
   # POST /protocols
   # POST /protocols.xml
   def create
     @protocol = Protocol.new(params[:protocol])
-    @title = "protocol"
+    @title = "Protocol"
 
     respond_to do |format|
       if @protocol.save
@@ -63,7 +89,7 @@ class ProtocolsController < AuthController
   # PUT /protocols/1.xml
   def update
     @protocol = Protocol.find(params[:id])
-    @title = "protocol"
+    @title = "Protocol"
 
     respond_to do |format|
       if @protocol.update_attributes(params[:protocol])
@@ -81,12 +107,28 @@ class ProtocolsController < AuthController
   def destroy
     @protocol = Protocol.find(params[:id])
     @protocol.destroy
-    @title = "protocol"
+    @title = "Protocol"
 
     respond_to do |format|
       format.html { redirect_to(protocols_url) }
       format.xml  { head :ok }
     end
   end
+
+  private
+
+    def correct_user
+      @prot = Protocol.find(params[:id])
+      @sampling = Sampling.find(@prot.sampling_id)
+      @partner = Partner.find(@sampling.partner_id)
+      @user = User.find(@partner.user_id)
+      reroute() unless current_user?(@user)
+    end
+
+    def reroute()
+      flash[:notice] = "Only the partner who create the protocol can modify it."
+      redirect_to(protocols_path)
+    end
+
 end
 

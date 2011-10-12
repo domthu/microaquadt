@@ -1,0 +1,37 @@
+<div class="show txt">
+  <b>Name:</b>
+  <%=h @oligo_sequence.name %>
+</div>
+
+<div class="show select">
+  <b>Partner:</b>
+  <%=h @oligo_sequence.partner.name %>
+</div>
+
+<br />
+<div class="show seq">
+  <b>DNA sequence:</b>
+  <h1><%=h @oligo_sequence.DNA_Sequence %></h1>
+</div>
+
+<br />
+
+<div class="show txt">
+  <b>Organism:</b>
+  <%=h @oligo_sequence.tax_id.verbose_me %>
+</div>
+
+<br />
+
+<div class="show area">
+  <b>Description:</b>
+  <%=h @oligo_sequence.description %>
+</div>
+
+<br />
+
+<% if auth_user(@oligo_sequence.partner_id) %>
+  <%= link_to 'Edit', edit_oligo_sequence_path(@oligo_sequence) %> |
+<% end %>
+<%= link_to 'Back', oligo_sequences_path %>
+

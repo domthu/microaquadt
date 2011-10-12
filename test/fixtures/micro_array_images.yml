@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  microarraydata: 
+  name: MyString
+  image: 
+
+two:
+  microarraydata: 
+  name: MyString
+  image: 

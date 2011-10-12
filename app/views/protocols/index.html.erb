@@ -1,30 +1,31 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+		  <li><%= link_to "operation", operations_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>Listing protocols</h1>
 
 <table>
   <tr>
+    <th>Name</th>
     <th>Growth protocol</th>
     <th>Treatment protocol</th>
-    <th>Extract protocol</th>
-    <th>Label protocol</th>
-    <th>Hybprotocol</th>
-    <th>Scan protocol</th>
-    <th>Data processing</th>
-    <th>Value definition</th>
   </tr>
 
 <% @protocols.each do |protocol| %>
   <tr>
-    <td><%=h protocol.GrowthProtocol %></td>
-    <td><%=h protocol.TreatmentProtocol %></td>
-    <td><%=h protocol.ExtractProtocol %></td>
-    <td><%=h protocol.LabelProtocol %></td>
-    <td><%=h protocol.HybProtocol %></td>
-    <td><%=h protocol.ScanProtocol %></td>
-    <td><%=h protocol.DataProcessing %></td>
-    <td><%=h protocol.ValueDefinition %></td>
+
+    <td><%=h protocol.name  %></td>
+    <td><%=h truncate(protocol.GrowthProtocol, :length => 25, :omission => '... (continued)')  %></td>
+    <td><%=h truncate(protocol.TreatmentProtocol, :length => 25, :omission => '... (continued)')  %></td>
     <td><%= link_to 'Show', protocol %></td>
-    <td><%= link_to 'Edit', edit_protocol_path(protocol) %></td>
-    <td><%= link_to 'Delete', protocol, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if auth_user(protocol.sampling_id) or signed_in_and_master? %>
+      <td><%= link_to 'Edit', edit_protocol_path(protocol) %></td>
+      <td><%= link_to 'Delete', protocol, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

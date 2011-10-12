@@ -1,16 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.resources :micro_arrays
+
   map.resources :micro_array_images
 
-  map.resources :micro_arra_analysis_files
+  map.resources :micro_array_analysis_files
 
   map.resources :micro_array_validations
 
   map.resources :micro_array_datas
 
   map.resources :names
-
   map.resources :oligo_sequences
-
   map.resources :nodes
 
   map.resources :countries
@@ -29,6 +30,7 @@ ActionController::Routing::Routes.draw do |map|
   map.signin  '/signin',  :controller => 'sessions', :action => 'new'
   map.signout '/signout', :controller => 'sessions', :action => 'destroy'
 
+  map.resources :operations
   map.resources :protocols
 
   map.resources :land_use_mappings

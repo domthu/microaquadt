@@ -1,0 +1,267 @@
+<h1>Editing micro array data</h1>
+
+<% form_for(@micro_array_data) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="field select">
+    <%= f.label :microarray_id, "Microarray" %><br />
+    <h3><%= @ma.verbose_me %></h3>
+  </div>
+
+
+  <p>
+    <%= f.label :D_Index %><br />
+    <%= f.text_field :D_Index %>
+  </p>
+  <p>
+    <%= f.label :D_Array_Row %><br />
+    <%= f.text_field :D_Array_Row %>
+  </p>
+  <p>
+    <%= f.label :D_Array_Column %><br />
+    <%= f.text_field :D_Array_Column %>
+  </p>
+  <p>
+    <%= f.label :D_Spot_Row %><br />
+    <%= f.text_field :D_Spot_Row %>
+  </p>
+  <p>
+    <%= f.label :D_Spot_Column %><br />
+    <%= f.text_field :D_Spot_Column %>
+  </p>
+  <p>
+    <%= f.label :D_Name %><br />
+    <%= f.text_field :D_Name %>
+  </p>
+  <p>
+    <%= f.label :D_ID %><br />
+    <%= f.text_field :D_ID %>
+  </p>
+  <p>
+    <%= f.label :D_X %><br />
+    <%= f.text_field :D_X %>
+  </p>
+  <p>
+    <%= f.label :D_Y %><br />
+    <%= f.text_field :D_Y %>
+  </p>
+  <p>
+    <%= f.label :D_Diameter %><br />
+    <%= f.text_field :D_Diameter %>
+  </p>
+  <p>
+    <%= f.label :D_F_Pixels %><br />
+    <%= f.text_field :D_F_Pixels %>
+  </p>
+  <p>
+    <%= f.label :D_B_Pixels %><br />
+    <%= f.text_field :D_B_Pixels %>
+  </p>
+  <p>
+    <%= f.label :D_Footprint %><br />
+    <%= f.text_field :D_Footprint %>
+  </p>
+  <p>
+    <%= f.label :D_Flags %><br />
+    <%= f.text_field :D_Flags %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_Median %><br />
+    <%= f.text_field :D_Ch1_Median %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_Mean %><br />
+    <%= f.text_field :D_Ch1_Mean %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_SD %><br />
+    <%= f.text_field :D_Ch1_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_B_Median %><br />
+    <%= f.text_field :D_Ch1_B_Median %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_B_Mean %><br />
+    <%= f.text_field :D_Ch1_B_Mean %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_B_SD %><br />
+    <%= f.text_field :D_Ch1_B_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_B_1_SD %><br />
+    <%= f.text_field :D_Ch1_B_1_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_B_2_SD %><br />
+    <%= f.text_field :D_Ch1_B_2_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_F_Sat %><br />
+    <%= f.text_field :D_Ch1_F_Sat %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_Median_B %><br />
+    <%= f.text_field :D_Ch1_Median_B %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_Mean_B %><br />
+    <%= f.text_field :D_Ch1_Mean_B %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_SignalNoiseRatio %><br />
+    <%= f.text_field :D_Ch1_SignalNoiseRatio %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Median %><br />
+    <%= f.text_field :D_Ch2_Median %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Mean %><br />
+    <%= f.text_field :D_Ch2_Mean %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_SD %><br />
+    <%= f.text_field :D_Ch2_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_B_Median %><br />
+    <%= f.text_field :D_Ch2_B_Median %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_B_Mean %><br />
+    <%= f.text_field :D_Ch2_B_Mean %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_B_SD %><br />
+    <%= f.text_field :D_Ch2_B_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_B_1_SD %><br />
+    <%= f.text_field :D_Ch2_B_1_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_B_2_SD %><br />
+    <%= f.text_field :D_Ch2_B_2_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_F_Sat %><br />
+    <%= f.text_field :D_Ch2_F_Sat %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Median_B %><br />
+    <%= f.text_field :D_Ch2_Median_B %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Mean_B %><br />
+    <%= f.text_field :D_Ch2_Mean_B %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_SignalNoiseRatio %><br />
+    <%= f.text_field :D_Ch2_SignalNoiseRatio %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Ratio_of_Medians %><br />
+    <%= f.text_field :D_Ch2_Ratio_of_Medians %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Ratio_of_Means %><br />
+    <%= f.text_field :D_Ch2_Ratio_of_Means %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Median_of_Ratios %><br />
+    <%= f.text_field :D_Ch2_Median_of_Ratios %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Mean_of_Ratios %><br />
+    <%= f.text_field :D_Ch2_Mean_of_Ratios %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Ratios_SD %><br />
+    <%= f.text_field :D_Ch2_Ratios_SD %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Rgn_Ratio %><br />
+    <%= f.text_field :D_Ch2_Rgn_Ratio %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Rgn_R %><br />
+    <%= f.text_field :D_Ch2_Rgn_R %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_Log_Ratio %><br />
+    <%= f.text_field :D_Ch2_Log_Ratio %>
+  </p>
+  <p>
+    <%= f.label :D_Sum_of_Medians %><br />
+    <%= f.text_field :D_Sum_of_Medians %>
+  </p>
+  <p>
+    <%= f.label :D_Sum_of_Means %><br />
+    <%= f.text_field :D_Sum_of_Means %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_N_Median %><br />
+    <%= f.text_field :D_Ch1_N_Median %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_N_Mean %><br />
+    <%= f.text_field :D_Ch1_N_Mean %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_N_MedianB %><br />
+    <%= f.text_field :D_Ch1_N_MedianB %>
+  </p>
+  <p>
+    <%= f.label :D_Ch1_N_MeanB %><br />
+    <%= f.text_field :D_Ch1_N_MeanB %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_Median %><br />
+    <%= f.text_field :D_Ch2_N_Median %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_Mean %><br />
+    <%= f.text_field :D_Ch2_N_Mean %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_MedianB %><br />
+    <%= f.text_field :D_Ch2_N_MedianB %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_MeanB %><br />
+    <%= f.text_field :D_Ch2_N_MeanB %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_Ratio_of_Medians %><br />
+    <%= f.text_field :D_Ch2_N_Ratio_of_Medians %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_Ratio_of_Means %><br />
+    <%= f.text_field :D_Ch2_N_Ratio_of_Means %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_Median_of_Ratios %><br />
+    <%= f.text_field :D_Ch2_N_Median_of_Ratios %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_Mean_of_Ratios %><br />
+    <%= f.text_field :D_Ch2_N_Mean_of_Ratios %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_Rgn_Ratio %><br />
+    <%= f.text_field :D_Ch2_N_Rgn_Ratio %>
+  </p>
+  <p>
+    <%= f.label :D_Ch2_N_Log_Ratio %><br />
+    <%= f.text_field :D_Ch2_N_Log_Ratio %>
+  </p>
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @micro_array_data %> |
+<%= link_to 'Back', micro_array_datas_path %>
+

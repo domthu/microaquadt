@@ -1,0 +1,27 @@
+<h1>Listing operations</h1>
+
+<table>
+  <tr>
+    <th>Protocol</th>
+    <th>Name</th>
+    <th>Step</th>
+  </tr>
+
+<% @operations.each do |operation| %>
+  <tr>
+    <td><%=h operation.protocol %></td>
+    <td><%=h operation.name %></td>
+    <td><%=h operation.step %></td>
+    <td><%= link_to 'Show', operation %></td>
+    <% if auth_user(operation.protocol_id) or signed_in_and_master? %>
+      <td><%= link_to 'Edit', edit_operation_path(operation) %></td>
+      <td><%= link_to 'Destroy', operation, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New operation', new_operation_path %>
+

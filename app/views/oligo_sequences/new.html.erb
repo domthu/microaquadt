@@ -1,0 +1,51 @@
+<h1>New oligo_sequence</h1>
+
+<% form_for(@oligo_sequence) do |f| %>
+  <%= f.error_messages %>
+
+<fieldset><legend class="leg">General data</legend>
+  <div class="field txt">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field select">
+    <%= f.label :partner_id %><br />
+    <%= select :oligo_sequence,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+
+</fieldset>
+
+<fieldset><legend class="leg">Sequence - Organism</legend>
+  <div class="field seq"><h3>
+    <%= f.label :DNA_Sequence, "DNA sequence" %><br />
+    <%= f.text_field :DNA_Sequence %>
+  </h3></div>
+  <div class="field txt">
+    <%= f.label :tax_id, "Organism: from taxonomy" %><br />
+    <br />Can be a Drop down box
+    <br /><%= select :oligo_sequence,:tax_id_id, Name.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <br />Can be a Text
+    <br /><input id="t2" name="t2" type="text" />
+    <br />Can be a Taxonomy browser
+    <br /><h2><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root" target="_blank">Taxonomy database maintained by NCBI/GenBank</a></h2>
+    <br />Can be a Autocompleter
+    <br /><h3><a href="http://docs.jquery.com/UI/Autocomplete" target="_blank">jQuery</a></h3>
+  </div>
+
+</fieldset>
+
+
+  <div  style="display:none;">pfilter & Protocol</div>
+
+  <div class="field area">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', oligo_sequences_path %>
+

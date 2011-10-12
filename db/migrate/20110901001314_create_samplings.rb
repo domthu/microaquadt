@@ -11,6 +11,7 @@ class CreateSamplings < ActiveRecord::Migration
       t.decimal :lightIntensity
       t.decimal :rainfallEvents
       t.decimal :depth
+      t.decimal :turbidity
       t.references :sampling_site, :null => false
       t.references :partner, :null => false
       t.datetime :samplingDate, :null => false

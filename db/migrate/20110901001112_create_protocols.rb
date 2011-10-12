@@ -12,16 +12,18 @@ class CreateProtocols < ActiveRecord::Migration
       t.text :ValueDefinition
 
       #t.references posso creare un protocol
-      t.integer :water_sample_id, :null => false
+      t.references :sampling, :null => false
+      #t.integer :sampling_id, :null => false
 
       t.timestamps
     end
 
-    add_index :protocols, :water_sample_id
+    add_index :protocols, :sampling_id
 
   end
 
   def self.down
+    remove_index :protocols, :sampling_id
     drop_table :protocols
   end
 end

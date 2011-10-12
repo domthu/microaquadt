@@ -32,6 +32,7 @@ class Sampling < ActiveRecord::Base
   validates_numericality_of :lightIntensity, :allow_nil => true, :less_than => 100
   validates_numericality_of :rainfallEvents, :allow_nil => true, :less_than => 100
   validates_numericality_of :depth, :allow_nil => true, :less_than => 100
+  validates_numericality_of :turbidity, :allow_nil => true, :less_than => 100
 
   #name of the model in lowercase
   belongs_to :sampling_site  #, :null => false
@@ -40,9 +41,16 @@ class Sampling < ActiveRecord::Base
   validates_presence_of :sampling_site
   validates_presence_of :partner
 
+  #COLLECTION:
+  #     Firm#clients (similar to Clients.find :all, :conditions =&gt; [&quot;firm_id = ?&quot;, id])
   #:dependent => :delete_all vs :destroy (call destroy children event)
-  has_many :water_sample, :dependent => :destroy
-
+  has_many :water_samples, :dependent => :destroy
+  has_many :protocols, :dependent => :delete_all
+  #has_many :relationships, :class_name => 'Relationship', :finder_sql => %q(
+  #  SELECT DISTINCT relationships.*
+  #  FROM relationships
+  #  WHERE contact_id = #{id}
+  #)
 
   #In order for form_for to work,
   attr_reader :verbose_me

@@ -1,0 +1,45 @@
+<h1>Editing oligo_sequence</h1>
+
+<% form_for(@oligo_sequence) do |f| %>
+  <%= f.error_messages %>
+
+<fieldset><legend class="leg">General data</legend>
+  <div class="field txt">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field select">
+    <%= f.label :partner_id, :value => "Partner" %><br />
+    <h3><%= @partner.verbose_me %></h3>
+  </div>
+
+
+</fieldset>
+
+<fieldset><legend class="leg">Sequence - Organism</legend>
+
+  <div class="field ">
+    <%= f.label :DNA_Sequence %><br />
+    <%= f.text_field :DNA_Sequence %>
+  </div>
+  <div class="field ">
+    <%= f.label :tax_id_id %><br />
+    <%= f.text_field :tax_id_id %>
+  </div>
+</fieldset>
+
+
+  <div class="field area">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @oligo_sequence %> |
+<%= link_to 'Back', oligo_sequences_path %>
+

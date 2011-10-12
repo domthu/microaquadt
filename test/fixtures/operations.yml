@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  protocol: 
+  name: MyString
+  step: 1
+  note: MyText
+
+two:
+  protocol: 
+  name: MyString
+  step: 1
+  note: MyText

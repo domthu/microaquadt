@@ -1,0 +1,41 @@
+<h1>Editing micro_array_validation</h1>
+
+<% form_for(@micro_array_validation) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="field select">
+    <%= f.label :microarray_id, "Microarray" %><br />
+    <h3><%= @ma.verbose_me %></h3>
+  </div>
+
+
+  <div class="field num">
+    <%= f.label :CellCount %><br />
+    <%= f.text_field :CellCount %>
+  </div>
+  <div class="field num">
+    <%= f.label :QPCR_decimal %><br />
+    <%= f.text_field :QPCR_decimal %>
+  </div>
+  <div class="field num">
+    <%= f.label :QPCR_Culture %><br />
+    <%= f.text_field :QPCR_Culture %>
+  </div>
+  <div class="field num">
+    <%= f.label :Chemscan %><br />
+    <%= f.text_field :Chemscan %>
+  </div>
+
+  <div class="field area">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @micro_array_validation %> |
+<%= link_to 'Back', micro_array_validations_path %>
+

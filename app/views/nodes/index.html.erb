@@ -1,0 +1,25 @@
+<h1>Listing nodes</h1>
+
+<table>
+  <tr>
+    <th>Tax</th>
+    <th>Parent tax</th>
+    <th>Rank</th>
+  </tr>
+
+<% @nodes.each do |node| %>
+  <tr>
+    <td><%=h node.tax_id %></td>
+    <td><%=h node.parent_tax_id %></td>
+    <td><%=h node.rank %></td>
+    <td><%= link_to 'Show', node %></td>
+    <td><%= link_to 'Edit', edit_node_path(node) %></td>
+    <td><%= link_to 'Delete', node, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New node', new_node_path %>
+

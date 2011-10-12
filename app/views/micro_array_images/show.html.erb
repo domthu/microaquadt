@@ -1,0 +1,80 @@
+<p>
+  <b>Microarray:</b>
+  <%=h @micro_array_image.microarray %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%=h @micro_array_image.note %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @micro_array_image.name %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%=h @micro_array_image.image %>
+</p>
+
+<p>
+  <b>Ii imageid:</b>
+  <%=h @micro_array_image.II_ImageID %>
+</p>
+
+<p>
+  <b>Ii channel:</b>
+  <%=h @micro_array_image.II_Channel %>
+</p>
+
+<p>
+  <b>Ii image:</b>
+  <%=h @micro_array_image.II_Image %>
+</p>
+
+<p>
+  <b>Ii fluorophore:</b>
+  <%=h @micro_array_image.II_Fluorophore %>
+</p>
+
+<p>
+  <b>Ii barcode:</b>
+  <%=h @micro_array_image.II_Barcode %>
+</p>
+
+<p>
+  <b>Ii units:</b>
+  <%=h @micro_array_image.II_Units %>
+</p>
+
+<p>
+  <b>Ii x units per pixel:</b>
+  <%=h @micro_array_image.II_X_Units_Per_Pixel %>
+</p>
+
+<p>
+  <b>Ii y units per pixel:</b>
+  <%=h @micro_array_image.II_Y_Units_Per_Pixel %>
+</p>
+
+<p>
+  <b>Ii x offset:</b>
+  <%=h @micro_array_image.II_X_Offset %>
+</p>
+
+<p>
+  <b>Ii y offset:</b>
+  <%=h @micro_array_image.II_Y_Offset %>
+</p>
+
+<p>
+  <b>Ii status:</b>
+  <%=h @micro_array_image.II_Status %>
+</p>
+
+<% if auth_user(@micro_array_image.microarray_id) %>
+  <%= link_to 'Edit', edit_micro_array_image_path(@micro_array_image) %> |
+<% end %>
+<%= link_to 'Back', micro_array_images_path %>
+

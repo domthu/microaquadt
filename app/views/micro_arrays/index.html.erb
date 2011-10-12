@@ -1,0 +1,42 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<h1>Listing micro arrays</h1>
+
+<table>
+  <tr>
+    <th>Gpr title</th>
+    <th>Gpr file title</th>
+    <th>Partner</th>
+    <th>H name</th>
+    <th>Upload date</th>
+  </tr>
+
+<% @micro_arrays.each do |micro_array| %>
+  <tr>
+    <td><%=h micro_array.gpr_title %></td>
+    <td><%=h micro_array.gpr_file_title %></td>
+    <td><%=h micro_array.partner %></td>
+    <td><%=h micro_array.H_name %></td>
+    <td><%=h micro_array.loaded_at %></td>
+    <td><%= link_to 'Show', micro_array %></td>
+    <% if auth_user(micro_array.partner_id) or signed_in_and_master? %>
+      <td><%= link_to 'Edit', edit_micro_array_path(micro_array) %></td>
+      <td><%= link_to 'Destroy', micro_array, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New micro_array', new_micro_array_path %>
+

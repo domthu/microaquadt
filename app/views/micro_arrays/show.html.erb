@@ -1,0 +1,221 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<p>
+  <b>Gpr title:</b>
+  <%=h @micro_array.gpr_title %>
+</p>
+
+<p>
+  <b>Gpr file title:</b>
+  <%=h @micro_array.gpr_file_title %>
+</p>
+
+<p>
+  <b>Gpr file:</b>
+  <%=h @micro_array.gpr_file %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%=h @micro_array.note %>
+</p>
+
+<p>
+  <b>Loaded at:</b>
+  <%=h @micro_array.loaded_at %>
+</p>
+
+<p>
+  <b>Partner:</b>
+  <%=h @micro_array.partner %>
+</p>
+
+<p>
+  <b>H name:</b>
+  <%=h @micro_array.H_name %>
+</p>
+
+<p>
+  <b>H scanarraycsvfileformat:</b>
+  <%=h @micro_array.H_ScanArrayCSVFileFormat %>
+</p>
+
+<p>
+  <b>H scanarray express:</b>
+  <%=h @micro_array.H_ScanArray_Express %>
+</p>
+
+<p>
+  <b>H number of columns:</b>
+  <%=h @micro_array.H_Number_of_Columns %>
+</p>
+
+<p>
+  <b>I datetime:</b>
+  <%=h @micro_array.I_DateTime %>
+</p>
+
+<p>
+  <b>I galfile:</b>
+  <%=h @micro_array.I_GalFile %>
+</p>
+
+<p>
+  <b>I scanner:</b>
+  <%=h @micro_array.I_Scanner %>
+</p>
+
+<p>
+  <b>I user name:</b>
+  <%=h @micro_array.I_User_Name %>
+</p>
+
+<p>
+  <b>I computer name:</b>
+  <%=h @micro_array.I_Computer_Name %>
+</p>
+
+<p>
+  <b>I protocol:</b>
+  <%=h @micro_array.I_Protocol %>
+</p>
+
+<p>
+  <b>I quantitation method:</b>
+  <%=h @micro_array.I_Quantitation_Method %>
+</p>
+
+<p>
+  <b>I quality confidence calculation:</b>
+  <%=h @micro_array.I_Quality_Confidence_Calculation %>
+</p>
+
+<p>
+  <b>I user comments:</b>
+  <%=h @micro_array.I_User_comments %>
+</p>
+
+<p>
+  <b>I image origin:</b>
+  <%=h @micro_array.I_Image_Origin %>
+</p>
+
+<p>
+  <b>I temperature:</b>
+  <%=h @micro_array.I_Temperature %>
+</p>
+
+<p>
+  <b>I laser powers:</b>
+  <%=h @micro_array.I_Laser_Powers %>
+</p>
+
+<p>
+  <b>I laser on time:</b>
+  <%=h @micro_array.I_Laser_On_Time %>
+</p>
+
+<p>
+  <b>I pmt voltages:</b>
+  <%=h @micro_array.I_PMT_Voltages %>
+</p>
+
+<p>
+  <b>Qp min percentile:</b>
+  <%=h @micro_array.QP_Min_Percentile %>
+</p>
+
+<p>
+  <b>Qp max percentile:</b>
+  <%=h @micro_array.QP_Max_Percentile %>
+</p>
+
+<p>
+  <b>Qm max footprint:</b>
+  <%=h @micro_array.QM_Max_Footprint %>
+</p>
+
+<p>
+  <b>Api units:</b>
+  <%=h @micro_array.API_Units %>
+</p>
+
+<p>
+  <b>Api array rows:</b>
+  <%=h @micro_array.API_Array_Rows %>
+</p>
+
+<p>
+  <b>Api array columns:</b>
+  <%=h @micro_array.API_Array_Columns %>
+</p>
+
+<p>
+  <b>Api spot rows:</b>
+  <%=h @micro_array.API_Spot_Rows %>
+</p>
+
+<p>
+  <b>Api spot columns:</b>
+  <%=h @micro_array.API_Spot_Columns %>
+</p>
+
+<p>
+  <b>Api array row spacing:</b>
+  <%=h @micro_array.API_Array_Row_Spacing %>
+</p>
+
+<p>
+  <b>Api array column spacing:</b>
+  <%=h @micro_array.API_Array_Column_Spacing %>
+</p>
+
+<p>
+  <b>Api spot row spacing:</b>
+  <%=h @micro_array.API_Spot_Row_Spacing %>
+</p>
+
+<p>
+  <b>Api spot column spacing:</b>
+  <%=h @micro_array.API_Spot_Column_Spacing %>
+</p>
+
+<p>
+  <b>Api spot diameter:</b>
+  <%=h @micro_array.API_Spot_Diameter %>
+</p>
+
+<p>
+  <b>Api interstitial:</b>
+  <%=h @micro_array.API_Interstitial %>
+</p>
+
+<p>
+  <b>Api spots per array:</b>
+  <%=h @micro_array.API_Spots_Per_Array %>
+</p>
+
+<p>
+  <b>Api total spots:</b>
+  <%=h @micro_array.API_Total_Spots %>
+</p>
+
+<p>
+  <b>Ni normalization method:</b>
+  <%=h @micro_array.NI_Normalization_Method %>
+</p>
+
+<% if auth_user(@micro_array.partner_id) %>
+  <%= link_to 'Edit', edit_micro_array_path(@micro_array) %> |
+<% end %>
+<%= link_to 'Back', micro_arrays_path %>
+

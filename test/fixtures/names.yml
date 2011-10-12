@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tax_id: 1
+  name_txt: MyString
+  unique_name: MyString
+  name_class: MyString
+
+two:
+  tax_id: 1
+  name_txt: MyString
+  unique_name: MyString
+  name_class: MyString

@@ -1,0 +1,18 @@
+<p>
+  <b>Tax:</b>
+  <%=h @node.tax_id %>
+</p>
+
+<p>
+  <b>Parent tax:</b>
+  <%=h @node.parent_tax_id %>
+</p>
+
+<p>
+  <b>Rank:</b>
+  <%=h @node.rank %>
+</p>
+
+
+<%= link_to 'Edit', edit_node_path(@node) %> |
+<%= link_to 'Back', nodes_path %>

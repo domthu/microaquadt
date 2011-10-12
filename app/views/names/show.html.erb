@@ -1,0 +1,23 @@
+<p>
+  <b>Tax:</b>
+  <%=h @name.tax_id %>
+</p>
+
+<p>
+  <b>Name txt:</b>
+  <%=h @name.name_txt %>
+</p>
+
+<p>
+  <b>Unique name:</b>
+  <%=h @name.unique_name %>
+</p>
+
+<p>
+  <b>Name class:</b>
+  <%=h @name.name_class %>
+</p>
+
+
+<%= link_to 'Edit', edit_name_path(@name) %> |
+<%= link_to 'Back', names_path %>

@@ -22,7 +22,7 @@ class WaterSample < ActiveRecord::Base
   #, :scope => :water_sample_id --> kappao undefined method `water_samples_id'
 
   validates_numericality_of :temperature, :allow_nil => true, :less_than => 100
-  validates_numericality_of :turbidity, :allow_nil => true, :less_than => 100
+#  validates_numericality_of :turbidity, :allow_nil => true, :less_than => 100
   validates_numericality_of :conductivity, :allow_nil => true, :less_than => 100
   validates_numericality_of :phosphates, :allow_nil => true, :less_than => 100
   validates_numericality_of :nitrates, :allow_nil => true, :less_than => 100
@@ -34,8 +34,7 @@ class WaterSample < ActiveRecord::Base
   validates_presence_of :sampling
 
   #We don't need to call destroy method of child so use delete_all directly
-  has_many :wfilter, :dependent => :delete_all
-  has_many :protocol, :dependent => :delete_all
+  has_many :wfilters, :dependent => :delete_all
 
   #In order for form_for to work,
   attr_reader :verbose_me

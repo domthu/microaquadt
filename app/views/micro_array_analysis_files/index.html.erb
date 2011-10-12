@@ -1,0 +1,27 @@
+<h1>Listing micro array analysis files</h1>
+
+<table>
+  <tr>
+    <th>Microarray</th>
+    <th>Miane standard</th>
+    <th>Note</th>
+  </tr>
+
+<% @micro_array_analysis_files.each do |micro_array_analysis_file| %>
+  <tr>
+    <td><%=h micro_array_analysis_file.microarray %></td>
+    <td><%=h micro_array_analysis_file.MIANE_Standard %></td>
+    <td><%=h truncate(micro_array_analysis_file.note, :length => 25, :omission => '... (continued)') %></td>
+    <td><%= link_to 'Show', micro_array_analysis_file %></td>
+    <% if auth_user(micro_array_analysis_file.microarray_id) or signed_in_and_master? %>
+      <td><%= link_to 'Edit', edit_micro_array_analysis_file_path(micro_array_analysis_file) %></td>
+      <td><%= link_to 'Destroy', micro_array_analysis_file, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New micro_array_analysis_file', new_micro_array_analysis_file_path %>
+

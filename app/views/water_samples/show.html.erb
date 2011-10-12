@@ -3,7 +3,6 @@
     <ul class="navigation round taleft">
       <li><%= link_to "code type", code_types_path %></li>
       <li><%= link_to "filter", wfilters_path %></li>
-	    <li><%= link_to "protocol", protocols_path %></li>
     </ul>
   </td></tr>
 </table>
@@ -21,11 +20,6 @@
 <div class="show num">
   <b>Temperature:</b>
   <%=h @water_sample.temperature %>
-</div>
-
-<div class="show num">
-  <b>Turbidity:</b>
-  <%=h @water_sample.turbidity %>
 </div>
 
 <div class="show num">

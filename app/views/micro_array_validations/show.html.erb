@@ -1,0 +1,35 @@
+<p>
+  <b>Microarray:</b>
+  <%=h @micro_array_validation.microarray %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%=h @micro_array_validation.note %>
+</p>
+
+<p>
+  <b>Cellcount:</b>
+  <%=h @micro_array_validation.CellCount %>
+</p>
+
+<p>
+  <b>Qpcr decimal:</b>
+  <%=h @micro_array_validation.QPCR_decimal %>
+</p>
+
+<p>
+  <b>Qpcr culture:</b>
+  <%=h @micro_array_validation.QPCR_Culture %>
+</p>
+
+<p>
+  <b>Chemscan:</b>
+  <%=h @micro_array_validation.Chemscan %>
+</p>
+
+<% if auth_user(@micro_array_validation.microarray_id) %>
+  <%= link_to 'Edit', edit_micro_array_validation_path(@micro_array_validation) %> |
+<% end %>
+<%= link_to 'Back', micro_array_validations_path %>
+

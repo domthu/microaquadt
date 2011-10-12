@@ -1,43 +1,60 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+		  <li><%= link_to "operation", operations_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>New protocol</h1>
 
 <% form_for(@protocol) do |f| %>
   <%= f.error_messages %>
-
-  <p>
-    <%= f.label :GrowthProtocol %><br />
-    <%= f.text_area :GrowthProtocol, :size => "60x12"  %>
-  </p>
-  <p>
-    <%= f.label :TreatmentProtocol %><br />
+  <div class="field select">
+    <%= f.label :sampling_id %><br />
+    <%= select :protocol,:sampling_id, @s.collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+   <div class="field txt">
+    <%= f.label :name %><br />
+    <%= f.text_area :name  %>
+  </div>
+   <div class="field area">
+    <%= f.label :GrowthProtocol, "Growth Protocol" %><br />
+    <%= f.text_area :GrowthProtocol %>
+  </div>
+   <div class="field area">
+    <%= f.label :TreatmentProtocol, "Treatment Protocol" %><br />
     <%= f.text_area :TreatmentProtocol %>
-  </p>
-  <p>
-    <%= f.label :ExtractProtocol %><br />
+  </div>
+   <div class="field area">
+    <%= f.label :ExtractProtocol, "Extract Protocol" %><br />
     <%= f.text_area :ExtractProtocol %>
-  </p>
-  <p>
-    <%= f.label :LabelProtocol %><br />
+  </div>
+   <div class="field area">
+    <%= f.label :LabelProtocol, "Label Protocol" %><br />
     <%= f.text_area :LabelProtocol %>
-  </p>
-  <p>
-    <%= f.label :HybProtocol %><br />
+  </div>
+   <div class="field area">
+    <%= f.label :HybProtocol, "Hyb Protocol" %><br />
     <%= f.text_area :HybProtocol %>
-  </p>
-  <p>
-    <%= f.label :ScanProtocol %><br />
+  </div>
+   <div class="field area">
+    <%= f.label :ScanProtocol, "Scan Protocol" %><br />
     <%= f.text_area :ScanProtocol %>
-  </p>
-  <p>
-    <%= f.label :DataProcessing %><br />
+  </div>
+   <div class="field area">
+    <%= f.label :DataProcessing, "Data Processing" %><br />
     <%= f.text_area :DataProcessing %>
-  </p>
-  <p>
-    <%= f.label :ValueDefinition %><br />
+  </div>
+   <div class="field area">
+    <%= f.label :ValueDefinition, "Value Definition" %><br />
     <%= f.text_area :ValueDefinition %>
-  </p>
-  <p>
+  </div>
+
+
+  <div class="actions">
     <%= f.submit 'Create' %>
-  </p>
+  </div>
 <% end %>
 
 <%= link_to 'Back', protocols_path %>

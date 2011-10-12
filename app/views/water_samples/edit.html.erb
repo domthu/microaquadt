@@ -3,7 +3,6 @@
     <ul class="navigation round taleft">
       <li><%= link_to "code type", code_types_path %></li>
       <li><%= link_to "filter", wfilters_path %></li>
-	    <li><%= link_to "protocol", protocols_path %></li>
     </ul>
   </td></tr>
 </table>
@@ -15,7 +14,7 @@
 
 <fieldset><legend class="leg">General data</legend>
   <div class="field select">
-    <%= f.label :sampling_id, "select sampling" %><br />
+    <%= f.label :sampling_id, "selected sampling" %><br />
     <h3><%= @sampling.verbose_me%></h3>
   </div>
   <div class="field cod">
@@ -34,10 +33,6 @@
   <div class="field num">
     <%= f.label :temperature %><br />
     <%= f.text_field :temperature %>
-  </div>
-  <div class="field num">
-    <%= f.label :turbidity %><br />
-    <%= f.text_field :turbidity %>
   </div>
   <div class="field num">
     <%= f.label :conductivity %><br />
