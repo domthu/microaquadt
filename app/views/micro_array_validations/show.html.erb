@@ -28,7 +28,7 @@
   <%=h @micro_array_validation.Chemscan %>
 </p>
 
-<% if auth_user(@micro_array_validation.microarray_id) %>
+<% if auth_ma_user(@micro_array_validation.microarray_id) or signed_in_and_master? %>
   <%= link_to 'Edit', edit_micro_array_validation_path(@micro_array_validation) %> |
 <% end %>
 <%= link_to 'Back', micro_array_validations_path %>

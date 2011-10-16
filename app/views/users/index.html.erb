@@ -33,7 +33,11 @@
     <td><%=h user.name %></td>
     <td><%=h user.email %></td>
     <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td>
+        <% if current_user?(user) or signed_in_and_master? %>
+            <%= link_to 'Edit', edit_user_path(user) %>
+        <% end %>
+    </td>
     <td style="display:none;"><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
@@ -42,6 +46,7 @@
 <div style="display:none;"> will_paginate </div>
 
 <br />
-
-<%= link_to 'New user', new_user_path %>
+<div style="display:none;"> 
+ link_to 'New user', new_user_path 
+ </div>
 

@@ -59,7 +59,7 @@ class WaterSamplesController < AuthController
       @s = Sampling.all(:conditions => [ "partner_id = ?", @pt.id])
     end
     @sx = @s.first
-    @codegen = get_code(@sx)
+    @codegen = get_code(@sx.id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -83,8 +83,14 @@ class WaterSamplesController < AuthController
     @water_sample = WaterSample.new(params[:water_sample])
     @title = "Water sample"
 
-    @sx = Sampling.find(@water_sample.sampling_id)
-    @water_sample.code = get_code(@sx)
+#    @sx = Sampling.find(@water_sample.sampling_id)
+#    if @sx.nil?
+#        puts "===========?????????????????????????????????????????????????=========="
+#    else
+#        puts "===================================" + @sx.verbose_me
+#    end
+#    @water_sample.code = get_code(@sx)
+    @water_sample.code = get_code(@water_sample.sampling_id)
 
     respond_to do |format|
       if @water_sample.save
@@ -138,6 +144,7 @@ class WaterSamplesController < AuthController
       #uses the current_user? method,
       #which (as with deny_access) we will define in the Sessions helper
       reroute() unless current_user?(@user)
+#      reroute() unless current_user?(@water_sample.sampling.partner.user)
     end
 
     def reroute()
@@ -145,17 +152,20 @@ class WaterSamplesController < AuthController
       redirect_to(water_samples_path)
     end
 
-    def get_code(psampling)
+    def get_code(psampling_id)
       @codegen = "???"
-      if psampling.nil?
+      if psampling_id.nil?
         return @codegen
       end
 
-      #@pt = Sampling.find(psampling)
-      @pid = psampling.id
-      @codegen += psampling.code
-
-      @cnt = WaterSample.calculate(:count, :all, :conditions => ['sampling_id = ' + @pid.to_s ])
+      @pt = Sampling.find(psampling_id)
+      if not @pt.nil?
+          @codegen = @pt.code
+      end      
+      @codegen += "-"
+    
+      #@cnt = WaterSample.calculate(:count, :all, :conditions => ['sampling_id = ' + @pid.to_s ])
+      @cnt = WaterSample.count(:conditions => ['sampling_id = ' + psampling_id.to_s ])
       if @cnt.nil? or @cnt == 0
         @cnt = 1
       else

@@ -3,7 +3,8 @@ class PartnersController < AuthController
   #only Requiring the right user to change own contents
   #before_filter :correct_user, :only => [:edit, :update]
   #20110922 NC solo superuser can do somthing on user and partner
-  before_filter :correct_user, :only => [:edit, :update, :new, :create, :destroy]
+  before_filter :correct_user, :only => [:new, :create, :destroy]
+  before_filter :modify_partner, :only => [:edit, :update]
 
   # GET /partners
   # GET /partners.xml
@@ -22,6 +23,7 @@ class PartnersController < AuthController
   def show
     @partner = Partner.find(params[:id])
     @title = "partners"
+    @state = Country.find(@partner.country_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -108,6 +110,12 @@ class PartnersController < AuthController
       #reroute() unless current_user?(@user)
       #20110922 NC solo superuser can do somthing on user and partner
       reroute() unless signed_in_and_master?
+    end
+
+    def modify_partner
+      @partner = Partner.find(params[:id])
+      @user = User.find(@partner.user_id)
+      reroute() unless current_user?(@user)
     end
 
     def reroute()

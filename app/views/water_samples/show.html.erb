@@ -53,7 +53,7 @@
   <%=h @water_sample.note %>
 </p>
 
-<% if auth_sample(@water_sample.sampling_id) %>
+<% if  auth_sample_user(@water_sample.sampling_id) or signed_in_and_master? %>
   <%= link_to 'Edit', edit_water_sample_path(@water_sample) %> |
 <% end %>
 <%= link_to 'Back', water_samples_path %>

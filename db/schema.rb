@@ -1,4 +1,4 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file,
+# This file is auto-generated from the current state of the database. Instead of editing this file, 
 # please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
     t.string   "I_Quantitation_Method"
     t.string   "I_Quality_Confidence_Calculation"
     t.text     "I_User_comments"
-    t.string  "I_Image_Origin",
+    t.string   "I_Image_Origin"
     t.integer  "I_Temperature",                    :limit => 10, :precision => 10, :scale => 0
     t.string   "I_Laser_Powers"
     t.integer  "I_Laser_On_Time",                  :limit => 10, :precision => 10, :scale => 0
@@ -454,4 +454,3 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   add_index "wfilters", ["water_sample_id"], :name => "index_wfilters_on_water_sample_id"
 
 end
-

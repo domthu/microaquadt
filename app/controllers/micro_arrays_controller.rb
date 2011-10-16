@@ -45,6 +45,28 @@ class MicroArraysController < ApplicationController
       @micro_array.partner_id = @pt.id
     end
 
+    #READ FILE
+    begin
+        upload = params[:gpr_file]
+        content = upload.is_a?(StringIO) ? upload.read : File.read(upload.local_path)
+
+        # Open a file in read-only mode and print each line to the console
+        file = File.open(upload.local_path, 'r') do |f|   #'afile.txt'
+          f.each do |line|
+            puts line
+          end
+        end
+
+
+    #rescue Exception => err  
+    rescue => err
+      flash[:error] = "Exception: #{err}" + err.message
+      #print to the console
+      puts "Exception: #{err}"
+      puts err.message  
+      puts err.backtrace.inspect
+      end
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @micro_array }

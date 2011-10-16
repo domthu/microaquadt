@@ -48,11 +48,14 @@ class OperationsController < ApplicationController
     end
 
     @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
-    if @pt.nil?
-      @prot = Protocol.all()
-    else
-      @prot = Protocol.all(:conditions => [ "partner_id = ?", @pt.id])
-    end
+    @prot = Protocol.all()
+#    if @pt.nil?
+#      @prot = Protocol.all()
+#    else
+#      @sampling = Sampling.all(:conditions => [ "partner_id = ?", @pt.id])
+#      # TODO fare condition di tipo protocol_id in (lista ids)  
+#      @prot = Protocol.all(:conditions => [ "protocol_id = ?",  @sampling.protocol_id])
+#    end
 
     respond_to do |format|
       format.html # new.html.erb

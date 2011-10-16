@@ -14,7 +14,7 @@
 
 <fieldset><legend class="leg">General data</legend>
   <div class="field select">
-    <%= f.label :sampling_id %><br />
+    <%= f.label :sampling_id, "Sampling" %><br />
     <%= select :water_sample,:sampling_id, @s.collect{|p| [p.verbose_me, p.id]}%>
   </div>
   <div class="field cod">
@@ -22,7 +22,7 @@
     <h2><%= @codegen %></h2>
   </div>
   <div class="field date">
-    <%= f.label :samplingDate %><br />
+    <%= f.label :samplingDate, "Sampling date" %><br />
     <%= date_select :water_sample, :samplingDate %>
   </div>
 </fieldset>

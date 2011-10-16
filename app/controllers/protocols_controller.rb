@@ -26,7 +26,7 @@ class ProtocolsController < AuthController
     @protocol = Protocol.find(params[:id])
     @title = "Protocols"
 
-    @s = Sampling.find(@protocols.sampling_id)
+    @s = Sampling.find(@protocol.sampling_id)
     @pt = Partner.find(@s.partner_id)
 
     respond_to do |format|

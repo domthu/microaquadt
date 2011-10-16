@@ -14,7 +14,7 @@
 </p>
 
 
-<% if auth_user(@micro_array_analysis_file.microarray_id) %>
+<% if auth_ma_user(@micro_array_analysis_file.microarray_id) or signed_in_and_master? %>
   <%= link_to 'Edit', edit_micro_array_analysis_file_path(@micro_array_analysis_file) %> |
 <% end %>
 <%= link_to 'Back', micro_array_analysis_files_path %>

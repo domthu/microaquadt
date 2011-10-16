@@ -17,7 +17,7 @@
     <td><%=h micro_array_validation.QPCR_Culture %></td>
     <td><%=h micro_array_validation.Chemscan %></td>
     <td><%= link_to 'Show', micro_array_validation %></td>
-    <% if auth_user(micro_array_validation.microarray_id) or signed_in_and_master? %>
+    <% if auth_ma_user(micro_array_validation.microarray_id) or signed_in_and_master? %>
       <td><%= link_to 'Edit', edit_micro_array_validation_path(micro_array_validation) %></td>
       <td><%= link_to 'Destroy', micro_array_validation, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>

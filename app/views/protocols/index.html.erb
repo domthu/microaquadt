@@ -22,7 +22,7 @@
     <td><%=h truncate(protocol.GrowthProtocol, :length => 25, :omission => '... (continued)')  %></td>
     <td><%=h truncate(protocol.TreatmentProtocol, :length => 25, :omission => '... (continued)')  %></td>
     <td><%= link_to 'Show', protocol %></td>
-    <% if auth_user(protocol.sampling_id) or signed_in_and_master? %>
+    <% if auth_sample_user(protocol.sampling_id) or signed_in_and_master? %>
       <td><%= link_to 'Edit', edit_protocol_path(protocol) %></td>
       <td><%= link_to 'Delete', protocol, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>

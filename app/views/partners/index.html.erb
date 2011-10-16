@@ -13,12 +13,14 @@
   <tr>
     <td><%=h partner.fp7_Number %></td>
     <td><%=h partner.name %></td>
-    <td><%=h Country.find(sampling_site.country_id).name %></td>
+    <td><%=h Country.find(partner.country_id).name %></td>
     <td><%=h partner.phone %></td>
     <td><%=h partner.email %></td>
     <td><%= link_to 'Show', partner %></td>
-    <td><%= link_to 'Edit', edit_partner_path(partner) %></td>
-    <td style="display:none;"><%= link_to 'Delete', partner, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if auth_user(partner.id) or signed_in_and_master? %>
+        <td><%= link_to 'Edit', edit_partner_path(partner) %></td>
+        <td style="display:none;"><%= link_to 'Delete', partner, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

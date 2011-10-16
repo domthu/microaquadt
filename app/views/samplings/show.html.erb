@@ -1,9 +1,8 @@
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
-      <li><%= link_to "code type", code_types_path %></li>
-	    <li><%= link_to "protocol", protocols_path %></li>
-      <li><%= link_to "Water sample", water_samples_path %></li>
+        <li><%= link_to "code type", code_types_path %></li>
+        <li><%= link_to "protocol", protocols_path %></li>
     </ul>
   </td></tr>
 </table>
@@ -79,7 +78,7 @@
   <%=h @sampling.note %>
 </p>
 
-<% if signed_in_and_master? %>
+<% if auth_user(@sampling.partner_id) or signed_in_and_master? %>
   <%= link_to 'Edit', edit_sampling_path(@sampling) %> |
 <% end %>
 <%= link_to 'Back', samplings_path %>

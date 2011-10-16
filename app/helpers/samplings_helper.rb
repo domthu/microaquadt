@@ -1,10 +1,11 @@
 module SamplingsHelper
 
-  #retrieve user from partner
-  def auth_user(pid)
-    @partner = Partner.find(pid)
-    @user = User.find(@partner.user_id)
-    @auth_user = (@user.id == current_user.id)
+#retrieve user from partner see function auth_user(pid) in code_types_helper.rb
+
+  #retrieve user from partner from sampling
+  def auth_sample_user(sid)
+    @sampling = Sampling.find(sid)
+    return auth_user(@sampling.partner_id)
   end
 
 end

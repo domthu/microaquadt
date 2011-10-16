@@ -14,7 +14,7 @@
   </div>
   <div class="field">
     <%= f.label :country_id, "Select country" %><br />
-    <%= select :sampling_site,:country_id,Country.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :partner,:country_id,Country.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
   <div class="field area">
     <%= f.label :address %><br />

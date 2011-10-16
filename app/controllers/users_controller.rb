@@ -6,7 +6,9 @@ class UsersController < AuthController
   #only Requiring the right user to change own contents
   #before_filter :correct_user, :only => [:edit, :update, :new, :create, :destroy]
   #20110922 NC solo superuser can do somthing on user and partner
-  before_filter :correct_user, :only => [:edit, :update, :new, :create, :destroy]
+  before_filter :correct_user, :only => [:new, :create, :destroy]
+  #20111017 NC user can change his own password
+  before_filter :modify_user, :only => [:edit, :update]
 
   #do not write to log password
   filter_parameter_logging :password
@@ -151,6 +153,11 @@ class UsersController < AuthController
       #reroute() unless current_user?(@user)
       #20110922 NC solo superuser can do somthing on user and partner
       reroute() unless signed_in_and_master?
+    end
+
+    def modify_user
+      @user = User.find(params[:id])
+      reroute() unless (current_user?(@user) or signed_in_and_master?)
     end
 
     def reroute()

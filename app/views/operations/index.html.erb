@@ -13,7 +13,7 @@
     <td><%=h operation.name %></td>
     <td><%=h operation.step %></td>
     <td><%= link_to 'Show', operation %></td>
-    <% if auth_user(operation.protocol_id) or signed_in_and_master? %>
+    <% if auth_prot_sample_user(operation.protocol_id) or signed_in_and_master? %>
       <td><%= link_to 'Edit', edit_operation_path(operation) %></td>
       <td><%= link_to 'Destroy', operation, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>

@@ -18,12 +18,12 @@
 
 <% @water_samples.each do |water_sample| %>
   <tr>
-    <td><%=h Sampling.find(water_sample.sampling_id).verbose_me %></td>
+    <td><%=h water_sample.sampling.verbose_me %></td>
     <td><%=h water_sample.code %></td>
-    <td><%=h related_partner(water_sample.sampling_id) %></td>
-    <% if auth_sample(water_sample.sampling_id) %>
+    <td><%=h water_sample.sampling.partner.verbose_me %></td>
+    <% if  auth_sample_user(water_sample.sampling_id) %>
       <td><%= link_to 'Show', water_sample %></td>
-      <td><%= link_to 'Edit', edit_water_sample_path(water_sample) %></td>
+      <td><%= link_to 'Edit', edit_water_sample_path(water_sample) or signed_in_and_master? %></td>
       <td><%= link_to 'Delete', water_sample, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
   </tr>
