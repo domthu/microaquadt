@@ -10,4 +10,3 @@ function pun(){
 function pup(){
     if (this.value == '') {this.value = 'Password';}
     }
-

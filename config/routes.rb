@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-
-  map.resources :micro_arrays
+ map.resources :micro_arrays
 
   map.resources :micro_array_images
 
@@ -54,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sampling_sites, :has_one => :water_uses
 
   map.resources :water_samples
+
 
   # Routes for static pages.
   map.contact '/contact', :controller => 'pages', :action => 'contact'

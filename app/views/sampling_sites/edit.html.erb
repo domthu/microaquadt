@@ -89,6 +89,7 @@
    </div>
 <% end %>
 
-<%= link_to 'Show', @sampling_site %> |
-<%= link_to 'Back', sampling_sites_path %>
+<%= link_to 'Show', @sampling_site %>  |  
+<%= link_to 'Back', sampling_sites_path %>  |  
+<%= link_to 'Delete', @sampling_site, :confirm => 'Are you sure?', :method => :delete %>
 

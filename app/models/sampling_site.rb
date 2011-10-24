@@ -20,6 +20,12 @@
 #    t.datetime "updated_at"
 #  end
 class SamplingSite < ActiveRecord::Base
+
+include ActionController::UrlWriter
+
+
+
+
   #validates_presence_of :code, :water_type, :water_use, :geo
   validates_presence_of :code
   validates_uniqueness_of :code, :case_sensitive => false
@@ -46,5 +52,48 @@ class SamplingSite < ActiveRecord::Base
     return self.code + ' ' + self.name
   end
 
+    def formatted_created_at
+        created_at.strftime("%Y-%m-%d")
+    end
+
+    def capitalized_name
+        name.capitalize
+    end
+
+    def country_name
+        Country.find(country_id).name
+    end
+
+    def geo_name
+        Geo.find(geos_id).name
+    end
+
+    def land_name
+        LandUseMapping.find(land_use_mappings_id).name
+    end
+
+    def w_type_name
+        WaterType.find(water_types_id).name
+    end
+
+    def w_use_name
+        WaterUse.find(water_uses_id).name
+    end
+#    <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>
+#    <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
+#    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
+#    <td><%=h Geo.find(sampling_site.geos_id).name %></td>
+#    <td><%=h Country.find(sampling_site.country_id).name %></td>
+
+    def edit
+        #edit_sampling_site_path(self)  --> Kappao _path() is an undefined method inside Model code
+        #include ActionController::UrlWriter
+        #link_to "edit", edit_sampling_site_path(self)
+        "<a href='" + edit_sampling_site_path(self) + "' title='Edit selected row'><div class='ui-pg-div' title='Edit selected row'><span class='ui-icon ui-icon-pencil' title='Edit selected row'></span></div></a>"
+    end
+
+    def act
+        "<a href='" + sampling_site_path(self) + "' title='Show selected row'><div class='ui-pg-div' title='Edit selected row'><span class='ui-icon ui-icon-info' title='Show selected row'></span></div></a>"
+    end
 end
 

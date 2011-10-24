@@ -1,3 +1,5 @@
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %> 
 <table>
 <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
@@ -10,34 +12,36 @@
   </td></tr>
 </table>
 
-<h1>Listing sampling sites</h1>
+<h1></h1>
 
-<table>
-  <tr>
-    <th>Code</th>
-    <th>Name</th>
-    <th>Water type</th>
-    <th>Water use</th>
-    <th>Land use</th>
-    <th>Geo</th>
-    <th>Country</th>
-  </tr>
+<script type="text/javascript" >
+     function handleSelection(id) {
+        <%= remote_function (:url => {:controller=> 'sampling_sites',
+                     :action => 'show'},
+                     :with => "id= " + String(id))
+        %>
+     }
+//use, :selection_handler => "handleSelection", :direct_selection => true
+//use, :grid_complete => "grid_complete" 
+</script>
 
-<% @sampling_sites.each do |sampling_site| %>
-  <tr>
-    <td><%=h sampling_site.code %></td>
-    <td><%=h sampling_site.name %></td>
-    <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>
-    <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
-    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
-    <td><%=h Geo.find(sampling_site.geos_id).name %></td>
-    <td><%=h Country.find(sampling_site.country_id).name %></td>
-    <td><%= link_to 'Show', sampling_site %></td>
-    <td><%= link_to 'Edit', edit_sampling_site_path(sampling_site) %></td>
-    <td><%= link_to 'Delete', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+
+<%= jqgrid("Listing sampling sites", "sites", "/sampling_sites",
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+    { :field => "act", :label => "", :width => 35 },
+		{ :field => "code", :label => "Code" },
+		{ :field => "name", :label => "Name" },
+		{ :field => "w_use_name", :label => "Water use", :sortable => true, :editable => false   },
+		{ :field => "w_type_name", :label => "Water type", :sortable => true, :editable => false },
+		{ :field => "land_name", :label => "Land", :sortable => true, :editable => false },
+		{ :field => "geo_name", :label => "Geo pos.", :sortable => true, :editable => false },
+		{ :field => "country_name", :label => "select text", :sortable => true, :editable => false },
+		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35},
+	], 
+    { :add => false, :edit => false, :inline_edit => false, :delete => false }
+    
+) %>
 
 <br />
 
