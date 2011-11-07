@@ -17,29 +17,17 @@
 <fieldset><legend class="leg">General data</legend>
   <div class="field select">
     <%= f.label :partner_id, "Partner" %><br />
-    <div style="display:none;">  select :sampling, :partner,Partner.find(:all).collect{|p| [p.fp7_Number + " " + p.name, p.id]} </div>
+    <div style="display:none;">  select :micro_array,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]} </div>
     <h3><%= @partner.verbose_me %></h3>
   </div>
 
-  <div class="field select">
-    <%= f.label :partner_id %><br />
-    <%= select :sampling,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
-  </div>
   <div class="field txt">
-    <%= f.label :gpr_title, "Title" %><br />
-    <%= f.text_field :gpr_title %>
-  </div>
-  <div class="field txt">
-    <%= f.label :gpr_file_title, "File name" %><br />
-    <%= f.text_field :gpr_file_title %>
-  </div>
-  <div class="field txt">
-    <%= f.label :gpr_file, "Load the grp file" %><br />
-    <%= file_field(:micro_array, :gpr_file) %>
+    <%= f.label :gpr_title, "File" %><br />
+    <h3><%= @micro_array.gpr_title %></h3>
   </div>
   <div class="field date">
     <%= f.label :loaded_at, "Uploaded at" %><br />
-    <%= f.date_select :loaded_at %>
+    <h3><%= @micro_array.loaded_at.to_s %></h3>
   </div>
 </fieldset>
 

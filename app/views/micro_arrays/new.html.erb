@@ -11,25 +11,17 @@
 
 <h1>New micro array</h1>
 
-<% form_for(@micro_array) do |f| %>
+<% form_for(@micro_array, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
 <fieldset><legend class="leg">General data</legend>
   <div class="field select">
     <%= f.label :partner_id %><br />
-    <%= select :sampling,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
-  </div>
-  <div class="field txt">
-    <%= f.label :gpr_title, "Title" %><br />
-    <%= f.text_field :gpr_title %>
-  </div>
-  <div class="field txt">
-    <%= f.label :gpr_file_title, "File name" %><br />
-    <%= f.text_field :gpr_file_title %>
+    <%= select :micro_array,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
   <div class="field txt">
     <%= f.label :gpr_file, "Load the grp file" %><br />
-    <%= file_field(:micro_array, :gpr_file) %>
+    <%= file_field(:micro_array, :gpr_file, :accept => 'text/csv') %>
   </div>
   <div class="field date">
     <%= f.label :loaded_at, "Uploaded at" %><br />
@@ -38,173 +30,6 @@
 </fieldset>
 
 
-<fieldset><legend class="leg">HEADER</legend>
-  <div class="field txt">
-    <%= f.label :H_name, "name" %><br />
-    <%= f.text_field :H_name %>
-  </div>
-  <div class="field num">
-    <%= f.label :H_ScanArrayCSVFileFormat, "ScanArrayCSVFileFormat" %><br />
-    <%= f.text_field :H_ScanArrayCSVFileFormat %>
-  </div>
-  <div class="field num">
-    <%= f.label :H_ScanArray_Express, "ScanArray Express" %><br />
-    <%= f.text_field :H_ScanArray_Express %>
-  </div>
-  <div class="field num">
-    <%= f.label :H_Number_of_Columns, "Columns" %><br />
-    <%= f.text_field :H_Number_of_Columns %>
-  </div>
-</fieldset>
-
-
-<fieldset><legend class="leg">GENERAL INFO</legend>
-  <div class="field date">
-    <%= f.label :I_DateTime, "Date Time" %><br />
-    <%= f.datetime_select :I_DateTime %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_GalFile, "GalFile" %><br />
-    <%= f.text_field :I_GalFile %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_Scanner, "Scanner" %><br />
-    <%= f.text_field :I_Scanner %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_User_Name, "User name" %><br />
-    <%= f.text_field :I_User_Name %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_Computer_Name, "Computer name" %><br />
-    <%= f.text_field :I_Computer_Name %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_Protocol, "Protocol" %><br />
-    <%= f.text_field :I_Protocol %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_Quantitation_Method, "Quantitation Method" %><br />
-    <%= f.text_field :I_Quantitation_Method %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_Quality_Confidence_Calculation, "Quality Confidence Calculation" %><br />
-    <%= f.text_field :I_Quality_Confidence_Calculation %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_User_comments, "comments" %><br />
-    <%= f.text_area :I_User_comments %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_Image_Origin, "Image Origin" %><br />
-    <%= f.text_field :I_Image_Origin %>
-  </div>
-  <div class="field num">
-    <%= f.label :I_Temperature, "Temperature" %><br />
-    <%= f.text_field :I_Temperature %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_Laser_Powers, "Laser Powers" %><br />
-    <%= f.text_field :I_Laser_Powers %>
-  </div>
-  <div class="field num">
-    <%= f.label :I_Laser_On_Time, "" %><br />
-    <%= f.text_field :I_Laser_On_Time %>
-  </div>
-  <div class="field txt">
-    <%= f.label :I_PMT_Voltages, "PMT Voltages" %><br />
-    <%= f.text_field :I_PMT_Voltages %>
-  </div>
-</fieldset>
-
-
-
-<fieldset><legend class="leg">QUANTITATION PARAMETERS</legend>
-  <div class="field num">
-    <%= f.label :QP_Min_Percentile, "Min Percentile" %><br />
-    <%= f.text_field :QP_Min_Percentile %>
-  </div>
-  <div class="field num">
-    <%= f.label :QP_Max_Percentile, "Max Percentile" %><br />
-    <%= f.text_field :QP_Max_Percentile %>
-  </div>
-</fieldset>
-
-
-
-<fieldset><legend class="leg">QUALITY MEASUREMENTS</legend>
-  <div class="field num">
-    <%= f.label :QM_Max_Footprint, "Max Footprint" %><br />
-    <%= f.text_field :QM_Max_Footprint %>
-  </div>
-</fieldset>
-
-
-<fieldset><legend class="leg">ARRAY PATTERN INFO</legend>
-  <div class="field num">
-    <%= f.label :API_Units, "Units" %><br />
-    <%= f.text_field :API_Units %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Array_Rows, "Array rows" %><br />
-    <%= f.text_field :API_Array_Rows %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Array_Columns, "Array columns" %><br />
-    <%= f.text_field :API_Array_Columns %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Spot_Rows, "Spot rows" %><br />
-    <%= f.text_field :API_Spot_Rows %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Spot_Columns, "Spot columns" %><br />
-    <%= f.text_field :API_Spot_Columns %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Array_Row_Spacing, "Array Row Spacing" %><br />
-    <%= f.text_field :API_Array_Row_Spacing %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Array_Column_Spacing, "Array Column Spacing" %><br />
-    <%= f.text_field :API_Array_Column_Spacing %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Spot_Row_Spacing, "Spot Row Spacing" %><br />
-    <%= f.text_field :API_Spot_Row_Spacing %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Spot_Column_Spacing, "Spot Column Spacing" %><br />
-    <%= f.text_field :API_Spot_Column_Spacing %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Spot_Diameter, "Spot Diameter" %><br />
-    <%= f.text_field :API_Spot_Diameter %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Interstitial, "Interstitial" %><br />
-    <%= f.text_field :API_Interstitial %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Spots_Per_Array, "Spots Per Array" %><br />
-    <%= f.text_field :API_Spots_Per_Array %>
-  </div>
-  <div class="field num">
-    <%= f.label :API_Total_Spots, "Total Spots" %><br />
-    <%= f.text_field :API_Total_Spots %>
-  </div>
-</fieldset>
-
-IMAGE INFO see datatable associated...
-
-<fieldset><legend class="leg">NORMALIZATION INFO</legend>
-  <div class="field num">
-    <%= f.label :NI_Normalization_Method, "Normalization Method" %><br />
-    <%= f.text_field :NI_Normalization_Method %>
-  </div>
-</fieldset>
-
-DATA see datatable associated...
 
 
   <div class="field area">

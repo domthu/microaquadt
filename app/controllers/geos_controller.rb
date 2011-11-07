@@ -18,6 +18,11 @@ class GeosController < AuthController
     @geo = Geo.find(params[:id])
     @title = "Geographical positions"
 
+#    #  <%=h @geo.country.name %>
+#    #@Mysql::Error: Unknown column 'countries.geo_id' in 'where clause': SELECT * FROM `countries` WHERE (`countries`.sampling_site_id = 1)  LIMIT 1
+    @state = Country.find(@geo.country_id)
+
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @geo }
@@ -79,13 +84,19 @@ class GeosController < AuthController
   # DELETE /geos/1
   # DELETE /geos/1.xml
   def destroy
-    @geo = Geo.find(params[:id])
-    @geo.destroy
-    @title = "Geographical position"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to geos_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(geos_url) }
-      format.xml  { head :ok }
+        @geo = Geo.find(params[:id])
+        @geo.destroy
+        @title = "Geographical position"
+
+        respond_to do |format|
+          format.html { redirect_to(geos_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 end

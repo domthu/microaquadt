@@ -1,7 +1,7 @@
 class SamplingsController < AuthController
 
   #only Requiring the right user to change own contents
-  before_filter :correct_user, :only => [:edit, :update]
+  before_filter :correct_user, :only => [:edit, :update, :delete]
 
   # GET /samplings
   # GET /samplings.xml
@@ -165,10 +165,10 @@ class SamplingsController < AuthController
   # DELETE /samplings/1
   # DELETE /samplings/1.xml
   def destroy
-    #if !signed_in_and_master?
-    #  flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
-    #  redirect_to samplings_path
-    #else
+#    if !signed_in_and_master?
+#      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+#      redirect_to samplings_path
+#    else
 
     #Load data and ensure that no children data are connected
     # --> Todo Foreign Key
@@ -193,7 +193,7 @@ class SamplingsController < AuthController
       @user = User.find(@partner.user_id)
       #uses the current_user? method,
       #which (as with deny_access) we will define in the Sessions helper
-      reroute() unless current_user?(@user)
+      reroute() unless current_user?(@user) or signed_in_and_master?
     end
 
     def reroute()

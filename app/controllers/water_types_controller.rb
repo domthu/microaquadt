@@ -79,13 +79,19 @@ class WaterTypesController < AuthController
   # DELETE /water_types/1
   # DELETE /water_types/1.xml
   def destroy
-    @water_type = WaterType.find(params[:id])
-    @water_type.destroy
-    @title = "water type"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to water_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(water_types_url) }
-      format.xml  { head :ok }
+        @water_type = WaterType.find(params[:id])
+        @water_type.destroy
+        @title = "water type"
+
+        respond_to do |format|
+          format.html { redirect_to(water_types_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 end

@@ -7,76 +7,105 @@
   </td></tr>
 </table>
 
-<div class="show select">
-  <b>Sampling site:</b>
-  <%=h @ss.code + " " + @ss.name %>
-</div>
+<fieldset><legend class="leg">GENERAL DATA</legend>
 
-<div class="show cod">
-  <b>Code:</b>
-  <%=h @sampling.code %>
-</div>
+    <div class="show select">
+      <b>Sampling site:</b>
+      <%=h @ss.code + " " + @ss.name %>
+    </div>
 
-<div class="show txt">
-  <b>Partner:</b>
-  <%=h @pt.name %>
-</div>
+    <div class="show cod">
+      <b>Code:</b>
+      <%=h @sampling.code %>
+    </div>
+
+    <div class="show txt">
+      <b>Partner:</b>
+      <%=h @pt.name %>
+    </div>
+
+    <div class="show num">
+      <b>Volume:</b>
+      <h3><%=h @sampling.volume %> lt</h3>
+    </div>
+
+    <div class="show area">
+      <b>Note:</b>
+      <%=h @sampling.note %>
+    </div>
+
+</fieldset>
+
+<fieldset><legend class="leg">ENVIRONMENT DATA</legend>
+
 
 <div class="show num">
-  <b>Temperature:</b>
+  <b title = "In meteorology we usually record temperatures in degrees centigrade or Celsius (°C), but for computations we convert degrees Celsius to degrees Kelvin (K).">Temperature (°C):</b>
   <%=h @sampling.temperature %>
 </div>
 
 <div class="show num">
-  <b>Moisture:</b>
+  <b title = "The term most frequently used to express the amount of moisture in the air is relative humidity (RH). The relative humidity is the ratio of the actual amount of water vapor in a sample of air compared to the total amount of water vapor the same sample can hold before condensation begins (i.e., it becomes saturated with water vapor) at a given temperature and pressure.
+The mixing ratio is often recorded in grams of water vapor per kilogram of dry air (g/kg).">Moisture (g/kg):</b>
   <%=h @sampling.moisture %>
 </div>
 
 <div class="show num">
-  <b>Pressure:</b>
+  <b title = "Pressure (the symbol: P) is the force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure is the pressure relative to the local atmospheric or ambient pressure.">Pressure (P):</b>
   <%=h @sampling.pressure %>
 </div>
 
 <div class="show num">
-  <b>Windspeed:</b>
+  <b title = "Two important measurements of the wind are the direction and speed of the wind. Wind speed is generally recorded in knots (kn) or nautical miles per hour where one knot is equal to 1.15 mi/hr. For making computations, however, knots must be converted to meters per second (m/s). One knot is equal to 0.51 m/s.">Wind speed (m/s):</b>
   <%=h @sampling.windSpeed %>
 </div>
 
 <div class="show txt">
-  <b>Winddirection:</b>
+  <b title = "Two important measurements of the wind are the direction and speed of the wind. Wind directions are not given in reference to the direction in which they are blowing, but rather the direction from which they are blowing. A westerly wind blows from west to east." >Wind direction (ex: from west to east):</b>
   <%=h @sampling.windDirection %>
 </div>
 
 <div class="show num">
-  <b>Waterflow:</b>
+  <b title = "Flow measurement is the quantification of bulk fluid movement. litres per second (lt/s)">Water flow (lt/s):</b>
   <%=h @sampling.waterFlow %>
 </div>
 
 <div class="show num">
-  <b>Lightintensity:</b>
+  <b title = "Several measures of light are commonly known as intensity. These are obtained by dividing either a power or a luminous flux by a solid angle, a planar area, or a combination of the two. Areal --> Several quantities measured in lumens per square meter (lm/m2), or lux (lx): 
+-  Illuminance is for light incident on a surface
+-  Luminous emittance or luminous exitance is for light emitted from a source">Light intensity (lx):</b>
   <%=h @sampling.lightIntensity %>
 </div>
 
 <div class="show num">
-  <b>Rainfallevents:</b>
+  <b title="The rainfall measurement (mm) should be taken into account for 3 days before sampling (sum of day 1, 2 and sampling day).">Rainfall events (mm):</b>
   <%=h @sampling.rainfallEvents %>
 </div>
 
 <div class="show num">
-  <b>Depth:</b>
+  <b>Depth (meter):</b>
   <%=h @sampling.depth %>
 </div>
 
 <div class="show num">
-  <b>Turbidity:</b>
+  <b title="is the cloudiness or haziness of a fluid caused by individual particles (suspended solids) that are generally invisible to the naked eye. HELMI: The Secchi is a good fieldable tool; however, a turbidimeter may bring a supplementary precise information regarding turbidity (roughly ranging from 20 to 100 NTU for river water). LauraStefania: secchi disks ()ranges from 1 to … units (meters)">Turbidity (meters):</b>
   <%=h @sampling.turbidity %>
 </div>
 
+<div class="show num">
+  <b title ="Salinity is the saltiness or dissolved salt content of a body of water. It is a general term used to describe the levels of different salts such as sodium chloride, magnesium and calcium sulfates, and bicarbonates. Salinity in the ocean refers to the water's \"saltiness\". In oceanography, it has been traditional to express salinity not as percent, but as parts per thousand (‰), which is approximately grams of salt per kilogram of solution." >Salinity:</b>
+  <%=h @sampling.salinity %>
+</div>
+
+<div class="show num">
+  <b title="The tidal range is the vertical difference between the high tide and the succeeding low tide. Tides are the rise and fall of sea levels caused by the combined effects of the gravitational forces exerted by the Moon and the Sun and the rotation of the Earth. The tidal range is not constant, but changes depending on where the sun and the moon are.">Tidal Range (m):</b>
+  <%=h @sampling.tidalRange %>
+</div>
+
+</fieldset>
+
+
 <br />
-<p>
-  <b>Note:</b>
-  <%=h @sampling.note %>
-</p>
 
 <% if auth_user(@sampling.partner_id) or signed_in_and_master? %>
   <%= link_to 'Edit', edit_sampling_path(@sampling) %> |

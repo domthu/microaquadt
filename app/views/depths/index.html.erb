@@ -1,0 +1,20 @@
+<h1>Listing depths</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @depths.each do |depth| %>
+  <tr>
+    <td><%=h depth.name %></td>
+    <td><%= link_to 'Show', depth %></td>
+    <td><%= link_to 'Edit', edit_depth_path(depth) %></td>
+    <td><%= link_to 'Destroy', depth, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New depth', new_depth_path %>

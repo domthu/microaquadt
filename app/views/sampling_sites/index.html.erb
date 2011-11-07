@@ -6,8 +6,12 @@
       <li><%= link_to "land use mapping", land_use_mappings_path %></li>
       <li><%= link_to "water use", water_uses_path %></li>
       <li><%= link_to "water type", water_types_path %></li>
-      <li><%= link_to "country", countries_path %></li>
       <li><%= link_to "geo", geos_path %></li>
+      <li><%= link_to "alt. type", altitude_types_path %></li>
+      <li><%= link_to "catchment area", catchment_areas_path %></li>
+      <li><%= link_to "depth", depths_path %></li>
+      <li><%= link_to "size type", size_typologies_path %></li>
+      <li><%= link_to "geology", geologies_path %></li>
     </ul>
   </td></tr>
 </table>
@@ -36,7 +40,6 @@
 		{ :field => "w_type_name", :label => "Water type", :sortable => true, :editable => false },
 		{ :field => "land_name", :label => "Land", :sortable => true, :editable => false },
 		{ :field => "geo_name", :label => "Geo pos.", :sortable => true, :editable => false },
-		{ :field => "country_name", :label => "select text", :sortable => true, :editable => false },
 		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35},
 	], 
     { :add => false, :edit => false, :inline_edit => false, :delete => false }

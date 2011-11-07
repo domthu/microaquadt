@@ -23,7 +23,7 @@ class SamplingSitesController < AuthController
             code =~ "%#{params[:code]}%" if params[:code].present?
             name =~ "%#{params[:name]}%" if params[:name].present?
 
-            #undefined local variable or method `country_name' for #<Squirrel::Query::ConditionGroup:0xb6ad5050>
+#<Squirrel::Query::ConditionGroup:0xb6ad5050>
 #            country =~ "%#{params[:country]}%" if params[:country].present?
 #            water_uses =~ "%#{params[:water_uses]}%" if params[:water_uses].present?        
 #            w_use_name =~ "%#{params[:w_use_name]}%" if params[:w_use_name].present?
@@ -40,14 +40,12 @@ class SamplingSitesController < AuthController
 #    <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
 #    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
 #    <td><%=h Geo.find(sampling_site.geos_id).name %></td>
-#    <td><%=h Country.find(sampling_site.country_id).name %></td>
 
     respond_to do |format|
         format.html # index.html.erb
         #format.xml  { render :xml => @sampling_sites }     
-        # Select Kappao ,"country.name"
         format.json { render :json => sampling_sites.to_jqgrid_json(
-            [:id, "act",:code,:name,:w_use_name,:w_type_name,"land_name","geo_name","country_name", "edit"],
+            [:id, "act",:code,:name,:w_use_name,:w_type_name,"land_name","geo_name","edit"],
             params[:page], params[:rows], sampling_sites.total_entries) }			
     end
   end
@@ -82,9 +80,12 @@ class SamplingSitesController < AuthController
     @lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
     @g = Geo.find(@sampling_site.geos_id)
 
-    #  <%=h @sampling_site.country.name %>
-    #@Mysql::Error: Unknown column 'countries.sampling_site_id' in 'where clause': SELECT * FROM `countries` WHERE (`countries`.sampling_site_id = 1)  LIMIT 1
-    @state = Country.find(@sampling_site.country_id)
+    @at = AltitudeType.find(@sampling_site.altitude_types_id)
+    @ca = CatchmentArea.find(@sampling_site.catchment_areas_id)
+    @geol = Geology.find(@sampling_site.geologies_id)
+    @depth = Depth.find(@sampling_site.depth_id)
+    @st = SizeTypology.find(@sampling_site.size_typologies_id)
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -147,13 +148,19 @@ class SamplingSitesController < AuthController
   # DELETE /sampling_sites/1
   # DELETE /sampling_sites/1.xml
   def destroy
-    @sampling_site = SamplingSite.find(params[:id])
-    @sampling_site.destroy
-    @title = "Sampling site"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to sampling_sites_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(sampling_sites_url) }
-      format.xml  { head :ok }
+        @sampling_site = SamplingSite.find(params[:id])
+        @sampling_site.destroy
+        @title = "Sampling site"
+
+        respond_to do |format|
+          format.html { redirect_to(sampling_sites_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 end
@@ -167,7 +174,6 @@ end
 #    <th>Water use</th>
 #    <th>Land use</th>
 #    <th>Geo</th>
-#    <th>Country</th>
 #  </tr>
 
 #<% @sampling_sites.each do |sampling_site| %>
@@ -178,7 +184,6 @@ end
 #    <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
 #    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
 #    <td><%=h Geo.find(sampling_site.geos_id).name %></td>
-#    <td><%=h Country.find(sampling_site.country_id).name %></td>
 #    <td><%= link_to 'Show', sampling_site %></td>
 #    <td><%= link_to 'Edit', edit_sampling_site_path(sampling_site) %></td>
 #    <td><%= link_to 'Delete', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -193,4 +198,7 @@ end
 #}
 #</script>
 #{ :selection_handler => "handleSelection", :direct_selection => true, :edit => true }
+
+
+
 

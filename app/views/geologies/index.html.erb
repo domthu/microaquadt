@@ -1,0 +1,20 @@
+<h1>Listing geologies</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @geologies.each do |geology| %>
+  <tr>
+    <td><%=h geology.name %></td>
+    <td><%= link_to 'Show', geology %></td>
+    <td><%= link_to 'Edit', edit_geology_path(geology) %></td>
+    <td><%= link_to 'Destroy', geology, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New geology', new_geology_path %>

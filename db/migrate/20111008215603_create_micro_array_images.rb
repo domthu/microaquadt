@@ -11,10 +11,10 @@ class CreateMicroArrayImages < ActiveRecord::Migration
       t.string :II_Fluorophore
       t.string :II_Barcode
       t.string :II_Units
-      t.decimal :II_X_Units_Per_Pixel
-      t.decimal :II_Y_Units_Per_Pixel
-      t.decimal :II_X_Offset
-      t.decimal :II_Y_Offset
+      t.decimal :II_X_Units_Per_Pixel, :precision => 8, :scale => 2
+      t.decimal :II_Y_Units_Per_Pixel, :precision => 8, :scale => 2
+      t.decimal :II_X_Offset, :precision => 8, :scale => 2
+      t.decimal :II_Y_Offset, :precision => 8, :scale => 2
       t.string :II_Status
 
       t.timestamps

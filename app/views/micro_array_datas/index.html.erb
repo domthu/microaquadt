@@ -135,7 +135,7 @@
     <td><%=h micro_array_data.D_Ch2_N_Rgn_Ratio %></td>
     <td><%=h micro_array_data.D_Ch2_N_Log_Ratio %></td>
     <% if auth_ma_user(micro_array_data.microarray_id) or signed_in_and_master? %>
-      <td><%= link_to 'Destroy', micro_array_data, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', micro_array_data, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
   </tr>
 <% end %>

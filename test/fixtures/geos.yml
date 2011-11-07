@@ -4,8 +4,10 @@ one:
   name: MyString
   lon: 9.99
   lat: 9.99
+  country: 
 
 two:
   name: MyString
   lon: 9.99
   lat: 9.99
+  country: 

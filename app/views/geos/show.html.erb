@@ -1,18 +1,31 @@
+
+<table>
+<tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "country", countries_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <p>
   <b>Name:</b>
   <%=h @geo.name %>
 </p>
 
 <p>
-  <b>Lon:</b>
+  <b>Longitude:</b>
   <%=h @geo.lon %>
 </p>
 
 <p>
-  <b>Lat:</b>
+  <b>Latitude:</b>
   <%=h @geo.lat %>
 </p>
 
+<p>
+  <b>State:</b>
+  <%=h @state.name %>
+</p>
 
 <%= link_to 'Edit', edit_geo_path(@geo) %> |
 <%= link_to 'Back', geos_path %>

@@ -10,5 +10,11 @@ class MicroArray < ActiveRecord::Base
   def verbose_me
     return self.gpr_file_title
   end
+
+  attr_reader :path
+  def path
+    return File.join(self.gpr_file_title, self.gpr_title) 
+  end
+
 end
 

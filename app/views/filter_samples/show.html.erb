@@ -1,0 +1,76 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "filter", wfilters_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<fieldset><legend class="leg">GENERAL DATA</legend>
+
+    <div class="show select">
+      <b>Sampling:</b>
+      <%=h @s.code + " " + @s.samplingDate.to_s %>
+    </div>
+
+    <div class="show cod">
+      <b>Code:</b>
+      <%=h @filter_sample.code %>
+    </div>
+
+    <div class="show num">
+      <b>Pore size - Number of filters - Volume:</b>
+      <h1><%=h @filter_sample.filter_datas %></h1> 
+    </div>
+
+    <div class="show num">
+      <b>Volume:</b>
+      <%=h @filter_sample.volume %>
+    </div>
+
+    <div class="show cod">
+      <b>Partner barcode:</b>
+      <%=h @filter_sample.barcode %>
+    </div>
+
+</fieldset>
+
+<fieldset><legend class="leg">ENVIRONMENT DATA</legend>
+
+<div class="show num">
+  <b>Temperature:</b>
+  <%=h @filter_sample.temperature %>
+</div>
+
+<div class="show num">
+  <b title="a measure of a material's ability to conduct an electric current. LauraStefania: conductivity µS/cm value depend on “water type”">Conductivity (µS/cm):</b>
+  <%=h @filter_sample.conductivity %>
+</div>
+
+<div class="show num">
+  <b>Phosphates:</b>
+  <%=h @filter_sample.phosphates %>
+</div>
+
+<div class="show num">
+  <b>Nitrates:</b>
+  <%=h @filter_sample.nitrates %>
+</div>
+
+<div class="show num">
+  <b title="In chemistry, pH is a measure of the acidity or basicity of an aqueous solution.[1] Pure water is said to be neutral, with a pH close to 7.0 at 25 °C (77 °F). Solutions with a pH less than 7 are said to be acidic and solutions with a pH greater than 7 are basic or alkaline.">pH:</b>
+  <%=h @filter_sample.ph %>
+</div>
+
+<br />
+<p>
+  <b>Note:</b>
+  <%=h @filter_sample.note %>
+</p>
+
+<% if  auth_sample_user(@filter_sample.sampling_id) or signed_in_and_master? %>
+  <%= link_to 'Edit', edit_filter_sample_path(@filter_sample) %> |
+<% end %>
+<%= link_to 'Back', filter_samples_path %>
+

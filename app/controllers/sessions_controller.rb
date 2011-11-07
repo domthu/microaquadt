@@ -31,12 +31,16 @@ class SessionsController < ApplicationController
       #else
       #  redirect_back_or user
       #end
+      logger.info "---------User loggin: " + current_user.name
+      #ngblog.info "---------User loggin: " + current_user.name
       redirect_back_or samplings_url
     end
   end
 
   def destroy
     @title = "Sign out"
+    logger.info "---------User log OUT: " + current_user.name
+    #ngblog.info "---------User log OUT: " + current_user.name
     #As with the other authentication elements, we’ll put sign_out in the Sessions helper module
     sign_out
     redirect_to root_path

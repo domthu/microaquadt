@@ -2,14 +2,14 @@ class CreateMeteorologicalDatas < ActiveRecord::Migration
   def self.up
     create_table :meteorological_datas do |t|
 	  t.name :string, :null => false
-      t.decimal :Temperature
-      t.decimal :Moisture
-      t.decimal :Pressure
-      t.decimal :WindSpeed
+      t.decimal :Temperature, :precision => 4, :scale => 2
+      t.decimal :Moisture, :precision => 8, :scale => 2
+      t.decimal :Pressure, :precision => 8, :scale => 2
+      t.decimal :WindSpeed, :precision => 8, :scale => 2
       t.string :WindDirection
-      t.decimal :WaterFlow
-      t.decimal :LightIntensity
-      t.decimal :RainfallEvents
+      t.decimal :WaterFlow, :precision => 8, :scale => 2
+      t.decimal :LightIntensity, :precision => 8, :scale => 2
+      t.decimal :RainfallEvents, :precision => 8, :scale => 2
 
       t.timestamps
     end

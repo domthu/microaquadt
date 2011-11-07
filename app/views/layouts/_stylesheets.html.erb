@@ -4,6 +4,11 @@
     <%= stylesheet_link_tag 'microaqua', :media => 'screen' %>
     <div style="display:none"> stylesheet_link_tag 'scaffold', :media => 'screen' </div>
 
-    <%= javascript_include_tag 'microaqua.js' %>
-    <%= javascript_include_tag :defaults %>
 
+    <%= javascript_include_tag 'microaqua.js' %>
+    <%= javascript_include_tag 'application.js' %>
+
+    <div style="display:none">  javascript_include_tag :defaults %>
+    //javascript_include_tag :defaults remove prototype and scriptaculous </div>
+
+<%= csrf_meta_tag %>

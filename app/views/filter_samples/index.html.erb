@@ -1,0 +1,44 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "filter", wfilters_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<h1>Listing filter samples</h1>
+
+<table>
+  <tr>
+    <th>Sampling</th>
+    <th>Code</th>
+    <th>Partner</th>
+    <th>Filter</th>
+    <th>Tube</th>
+    <th>Volume</th>
+    <th>Barcode</th>
+  </tr>
+
+<% @filter_samples.each do |filter_sample| %>
+  <tr>
+    <td><%=h filter_sample.sampling.verbose_me %></td>
+    <td><%=h filter_sample.code %></td>
+    <td><%=h filter_sample.sampling.partner.verbose_me %></td>
+    <td><%=h filter_sample.wfilter.verbose_me %></td>
+    <td><%=h filter_sample.num_filters %></td>
+    <td><%=h filter_sample.volume %></td>
+    <td><%=h filter_sample.barcode %></td>
+    <% if  auth_sample_user(filter_sample.sampling_id) %>
+      <td><%= link_to 'Show', filter_sample %></td>
+      <td><%= link_to 'Edit', edit_filter_sample_path(filter_sample) or signed_in_and_master? %></td>
+      <td><%= link_to 'Delete', filter_sample, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New filter sample', new_filter_sample_path %>
+

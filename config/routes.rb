@@ -1,4 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :geos
+
+  map.resources :size_typologies
+
+  map.resources :depths
+
+  map.resources :geologies
+
+  map.resources :catchment_areas
+
+  map.resources :altitude_types
+
  map.resources :micro_arrays
 
   map.resources :micro_array_images
@@ -52,7 +64,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :sampling_sites, :has_one => :water_uses
 
-  map.resources :water_samples
+  map.resources :filter_samples
 
 
   # Routes for static pages.

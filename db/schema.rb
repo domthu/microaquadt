@@ -11,6 +11,18 @@
 
 ActiveRecord::Schema.define(:version => 20111008221923) do
 
+  create_table "altitude_types", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catchment_areas", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "code_types", :force => true do |t|
     t.string   "code",       :null => false
     t.string   "name",       :null => false
@@ -36,13 +48,52 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
     t.datetime "updated_at"
   end
 
-  create_table "geos", :force => true do |t|
-    t.string   "name",                                                    :null => false
-    t.integer  "lon",        :limit => 10, :precision => 10, :scale => 0, :null => false
-    t.integer  "lat",        :limit => 10, :precision => 10, :scale => 0, :null => false
+  create_table "depths", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "filter_samples", :force => true do |t|
+    t.integer  "sampling_id",                                                              :null => false
+    t.datetime "samplingDate",                                                             :null => false
+    t.integer  "wfilter_id",                                                               :null => false
+    t.decimal  "pore_size",                 :precision => 5, :scale => 3, :default => 0.0
+    t.integer  "num_filters",  :limit => 2, :precision => 2, :scale => 0, :default => 0
+    t.decimal  "avg_qta",                   :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "volume",                    :precision => 4, :scale => 2,                  :null => false
+    t.string   "barcode",                                                                  :null => false
+    t.string   "code"
+    t.decimal  "temperature",               :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "turbidity",                 :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "conductivity",              :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "phosphates",                :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "nitrates",                  :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "ph",                        :precision => 4, :scale => 2, :default => 0.0
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "filter_samples", ["sampling_id"], :name => "index_filter_samples_on_sampling_id"
+  add_index "filter_samples", ["wfilter_id"], :name => "index_filter_samples_on_wfilter_id"
+
+  create_table "geologies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "geos", :force => true do |t|
+    t.string   "name",                                      :null => false
+    t.decimal  "lon",        :precision => 10, :scale => 8, :null => false
+    t.decimal  "lat",        :precision => 10, :scale => 8, :null => false
+    t.integer  "country_id",                                :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "geos", ["country_id"], :name => "index_geos_on_country_id"
 
   create_table "land_use_mappings", :force => true do |t|
     t.string   "name",       :null => false
@@ -52,14 +103,14 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   end
 
   create_table "meteorological_datas", :force => true do |t|
-    t.integer  "Temperature",    :limit => 10, :precision => 10, :scale => 0
-    t.integer  "Moisture",       :limit => 10, :precision => 10, :scale => 0
-    t.integer  "Pressure",       :limit => 10, :precision => 10, :scale => 0
-    t.integer  "WindSpeed",      :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "Temperature",    :precision => 4, :scale => 2
+    t.decimal  "Moisture",       :precision => 8, :scale => 2
+    t.decimal  "Pressure",       :precision => 8, :scale => 2
+    t.decimal  "WindSpeed",      :precision => 8, :scale => 2
     t.string   "WindDirection"
-    t.integer  "WaterFlow",      :limit => 10, :precision => 10, :scale => 0
-    t.integer  "LightIntensity", :limit => 10, :precision => 10, :scale => 0
-    t.integer  "RainfallEvents", :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "WaterFlow",      :precision => 8, :scale => 2
+    t.decimal  "LightIntensity", :precision => 8, :scale => 2
+    t.decimal  "RainfallEvents", :precision => 8, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,68 +128,68 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   create_table "micro_array_datas", :force => true do |t|
     t.integer  "microarray_id"
     t.text     "note"
-    t.integer  "D_Index",                  :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Array_Row",              :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Array_Column",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Spot_Row",               :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Spot_Column",            :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Name",                   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_ID",                     :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_X",                      :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Y",                      :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Diameter",               :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_F_Pixels",               :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_B_Pixels",               :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Footprint",              :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Flags",                  :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_Median",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_Mean",               :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_SD",                 :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_B_Median",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_B_Mean",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_B_SD",               :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_B_1_SD",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_B_2_SD",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_F_Sat",              :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_Median_B",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_Mean_B",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_SignalNoiseRatio",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Median",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Mean",               :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_SD",                 :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_B_Median",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_B_Mean",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_B_SD",               :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_B_1_SD",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_B_2_SD",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_F_Sat",              :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Median_B",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Mean_B",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_SignalNoiseRatio",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Ratio_of_Medians",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Ratio_of_Means",     :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Median_of_Ratios",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Mean_of_Ratios",     :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Ratios_SD",          :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Rgn_Ratio",          :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Rgn_R",              :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_Log_Ratio",          :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Sum_of_Medians",         :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Sum_of_Means",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_N_Median",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_N_Mean",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_N_MedianB",          :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch1_N_MeanB",            :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_Median",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_Mean",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_MedianB",          :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_MeanB",            :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_Ratio_of_Medians", :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_Ratio_of_Means",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_Median_of_Ratios", :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_Mean_of_Ratios",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_Rgn_Ratio",        :limit => 10, :precision => 10, :scale => 0
-    t.integer  "D_Ch2_N_Log_Ratio",        :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "D_Index",                  :precision => 8, :scale => 2
+    t.decimal  "D_Array_Row",              :precision => 8, :scale => 2
+    t.decimal  "D_Array_Column",           :precision => 8, :scale => 2
+    t.decimal  "D_Spot_Row",               :precision => 8, :scale => 2
+    t.decimal  "D_Spot_Column",            :precision => 8, :scale => 2
+    t.decimal  "D_Name",                   :precision => 8, :scale => 2
+    t.decimal  "D_ID",                     :precision => 8, :scale => 2
+    t.decimal  "D_X",                      :precision => 8, :scale => 2
+    t.decimal  "D_Y",                      :precision => 8, :scale => 2
+    t.decimal  "D_Diameter",               :precision => 8, :scale => 2
+    t.decimal  "D_F_Pixels",               :precision => 8, :scale => 2
+    t.decimal  "D_B_Pixels",               :precision => 8, :scale => 2
+    t.decimal  "D_Footprint",              :precision => 8, :scale => 2
+    t.decimal  "D_Flags",                  :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_Median",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_Mean",               :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_SD",                 :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_B_Median",           :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_B_Mean",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_B_SD",               :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_B_1_SD",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_B_2_SD",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_F_Sat",              :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_Median_B",           :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_Mean_B",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_SignalNoiseRatio",   :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Median",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Mean",               :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_SD",                 :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_B_Median",           :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_B_Mean",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_B_SD",               :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_B_1_SD",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_B_2_SD",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_F_Sat",              :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Median_B",           :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Mean_B",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_SignalNoiseRatio",   :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Ratio_of_Medians",   :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Ratio_of_Means",     :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Median_of_Ratios",   :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Mean_of_Ratios",     :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Ratios_SD",          :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Rgn_Ratio",          :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Rgn_R",              :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_Log_Ratio",          :precision => 8, :scale => 2
+    t.decimal  "D_Sum_of_Medians",         :precision => 8, :scale => 2
+    t.decimal  "D_Sum_of_Means",           :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_N_Median",           :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_N_Mean",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_N_MedianB",          :precision => 8, :scale => 2
+    t.decimal  "D_Ch1_N_MeanB",            :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_Median",           :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_Mean",             :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_MedianB",          :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_MeanB",            :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_Ratio_of_Medians", :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_Ratio_of_Means",   :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_Median_of_Ratios", :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_Mean_of_Ratios",   :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_Rgn_Ratio",        :precision => 8, :scale => 2
+    t.decimal  "D_Ch2_N_Log_Ratio",        :precision => 8, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -156,10 +207,10 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
     t.string   "II_Fluorophore"
     t.string   "II_Barcode"
     t.string   "II_Units"
-    t.integer  "II_X_Units_Per_Pixel", :limit => 10, :precision => 10, :scale => 0
-    t.integer  "II_Y_Units_Per_Pixel", :limit => 10, :precision => 10, :scale => 0
-    t.integer  "II_X_Offset",          :limit => 10, :precision => 10, :scale => 0
-    t.integer  "II_Y_Offset",          :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "II_X_Units_Per_Pixel", :precision => 8, :scale => 2
+    t.decimal  "II_Y_Units_Per_Pixel", :precision => 8, :scale => 2
+    t.decimal  "II_X_Offset",          :precision => 8, :scale => 2
+    t.decimal  "II_Y_Offset",          :precision => 8, :scale => 2
     t.string   "II_Status"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -170,10 +221,10 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   create_table "micro_array_validations", :force => true do |t|
     t.integer  "microarray_id"
     t.text     "note"
-    t.integer  "CellCount",     :limit => 10, :precision => 10, :scale => 0
-    t.integer  "QPCR_decimal",  :limit => 10, :precision => 10, :scale => 0
-    t.integer  "QPCR_Culture",  :limit => 10, :precision => 10, :scale => 0
-    t.integer  "Chemscan",      :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "CellCount",     :precision => 8, :scale => 2
+    t.decimal  "QPCR_decimal",  :precision => 8, :scale => 2
+    t.decimal  "QPCR_Culture",  :precision => 8, :scale => 2
+    t.decimal  "Chemscan",      :precision => 8, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -188,8 +239,8 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
     t.date     "loaded_at"
     t.integer  "partner_id"
     t.string   "H_name"
-    t.integer  "H_ScanArrayCSVFileFormat",         :limit => 10, :precision => 10, :scale => 0
-    t.integer  "H_ScanArray_Express",              :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "H_ScanArrayCSVFileFormat",         :precision => 8, :scale => 2
+    t.decimal  "H_ScanArray_Express",              :precision => 8, :scale => 2
     t.integer  "H_Number_of_Columns"
     t.datetime "I_DateTime"
     t.string   "I_GalFile"
@@ -201,9 +252,9 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
     t.string   "I_Quality_Confidence_Calculation"
     t.text     "I_User_comments"
     t.string   "I_Image_Origin"
-    t.integer  "I_Temperature",                    :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "I_Temperature",                    :precision => 4, :scale => 2
     t.string   "I_Laser_Powers"
-    t.integer  "I_Laser_On_Time",                  :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "I_Laser_On_Time",                  :precision => 8, :scale => 2
     t.string   "I_PMT_Voltages"
     t.integer  "QP_Min_Percentile"
     t.integer  "QP_Max_Percentile"
@@ -213,10 +264,10 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
     t.integer  "API_Array_Columns"
     t.integer  "API_Spot_Rows"
     t.integer  "API_Spot_Columns"
-    t.integer  "API_Array_Row_Spacing",            :limit => 10, :precision => 10, :scale => 0
-    t.integer  "API_Array_Column_Spacing",         :limit => 10, :precision => 10, :scale => 0
-    t.integer  "API_Spot_Row_Spacing",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "API_Spot_Column_Spacing",          :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "API_Array_Row_Spacing",            :precision => 8, :scale => 2
+    t.decimal  "API_Array_Column_Spacing",         :precision => 8, :scale => 2
+    t.decimal  "API_Spot_Row_Spacing",             :precision => 8, :scale => 2
+    t.decimal  "API_Spot_Column_Spacing",          :precision => 8, :scale => 2
     t.integer  "API_Spot_Diameter"
     t.integer  "API_Interstitial"
     t.integer  "API_Spots_Per_Array"
@@ -250,7 +301,7 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   add_index "names", ["tax_id"], :name => "index_names_on_tax_id"
 
   create_table "nodes", :force => true do |t|
-    t.integer  "rank",       :limit => 10, :precision => 10, :scale => 0
+    t.decimal  "rank",       :precision => 8, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -348,54 +399,60 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   add_index "protocols", ["sampling_id"], :name => "index_protocols_on_sampling_id"
 
   create_table "sampling_sites", :force => true do |t|
-    t.string   "code",                                                                                  :null => false
+    t.string   "code",                                     :null => false
     t.string   "name"
-    t.string   "aptitudeTypology"
-    t.string   "catchmentArea"
-    t.string   "geology"
-    t.string   "depth"
-    t.string   "sizeTypology"
-    t.integer  "salinity",             :limit => 10, :precision => 10, :scale => 0
-    t.integer  "tidalRange",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "water_types_id",                                                                        :null => false
-    t.integer  "water_uses_id",                                                                         :null => false
-    t.integer  "land_use_mappings_id",                                                                  :null => false
-    t.integer  "country_id",                                                                            :null => false
+    t.integer  "altitude_types_id",    :default => 1
+    t.integer  "catchment_areas_id",   :default => 1
+    t.integer  "size_typologies_id",   :default => 1
+    t.integer  "geologies_id",         :default => 1
+    t.integer  "depth_id",             :default => 1
+    t.string   "link"
+    t.integer  "water_types_id",                           :null => false
+    t.integer  "water_uses_id",                            :null => false
+    t.integer  "land_use_mappings_id",                     :null => false
     t.integer  "geos_id"
-    t.string   "geos_type",                                                         :default => "Site"
+    t.string   "geos_type",            :default => "Site"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sampling_sites", ["country_id"], :name => "index_sampling_sites_on_country_id"
-  add_index "sampling_sites", ["geos_id"], :name => "index_sampling_sites_on_geos_id"
-  add_index "sampling_sites", ["land_use_mappings_id"], :name => "index_sampling_sites_on_land_use_mappings_id"
-  add_index "sampling_sites", ["water_types_id"], :name => "index_sampling_sites_on_water_types_id"
-  add_index "sampling_sites", ["water_uses_id"], :name => "index_sampling_sites_on_water_uses_id"
+  add_index "sampling_sites", ["geos_id"], :name => "iss_gi"
+  add_index "sampling_sites", ["land_use_mappings_id"], :name => "iss_lumi"
+  add_index "sampling_sites", ["water_types_id"], :name => "iss_wti"
+  add_index "sampling_sites", ["water_uses_id"], :name => "iss_wui"
 
   create_table "samplings", :force => true do |t|
-    t.string   "code",                                                          :null => false
-    t.integer  "temperature",      :limit => 10, :precision => 10, :scale => 0
-    t.integer  "moisture",         :limit => 10, :precision => 10, :scale => 0
-    t.integer  "pressure",         :limit => 10, :precision => 10, :scale => 0
-    t.integer  "windSpeed",        :limit => 10, :precision => 10, :scale => 0
-    t.string   "windDirection"
-    t.integer  "waterFlow",        :limit => 10, :precision => 10, :scale => 0
-    t.integer  "lightIntensity",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "rainfallEvents",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "depth",            :limit => 10, :precision => 10, :scale => 0
-    t.integer  "turbidity",        :limit => 10, :precision => 10, :scale => 0
-    t.integer  "sampling_site_id",                                              :null => false
-    t.integer  "partner_id",                                                    :null => false
-    t.datetime "samplingDate",                                                  :null => false
+    t.string   "code"
+    t.decimal  "volume",           :precision => 4, :scale => 2,                  :null => false
+    t.integer  "sampling_site_id",                                                :null => false
+    t.integer  "partner_id",                                                      :null => false
+    t.datetime "samplingDate",                                                    :null => false
     t.text     "note"
+    t.decimal  "temperature",      :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "moisture",         :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "pressure",         :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "windSpeed",        :precision => 8, :scale => 2, :default => 0.0
+    t.string   "windDirection",                                  :default => ""
+    t.decimal  "waterFlow",        :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "lightIntensity",   :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "rainfallEvents",   :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "depth",            :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "turbidity",        :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "salinity",         :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "tidalRange",       :precision => 4, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "samplings", ["partner_id"], :name => "index_samplings_on_partner_id"
   add_index "samplings", ["sampling_site_id"], :name => "index_samplings_on_sampling_site_id"
+
+  create_table "size_typologies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name",               :null => false
@@ -410,24 +467,6 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
-
-  create_table "water_samples", :force => true do |t|
-    t.string   "code",                                                      :null => false
-    t.integer  "temperature",  :limit => 10, :precision => 10, :scale => 0
-    t.integer  "turbidity",    :limit => 10, :precision => 10, :scale => 0
-    t.integer  "conductivity", :limit => 10, :precision => 10, :scale => 0
-    t.integer  "phosphates",   :limit => 10, :precision => 10, :scale => 0
-    t.integer  "nitrates",     :limit => 10, :precision => 10, :scale => 0
-    t.integer  "volume",       :limit => 10, :precision => 10, :scale => 0
-    t.integer  "ph",           :limit => 10, :precision => 10, :scale => 0
-    t.integer  "sampling_id",                                               :null => false
-    t.datetime "samplingDate",                                              :null => false
-    t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "water_samples", ["sampling_id"], :name => "index_water_samples_on_sampling_id"
 
   create_table "water_types", :force => true do |t|
     t.string   "code",       :null => false
@@ -444,13 +483,14 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   end
 
   create_table "wfilters", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                                                   :default => ""
+    t.decimal  "pore_size",                :precision => 5, :scale => 3, :default => 0.0
+    t.integer  "num_filters", :limit => 2, :precision => 2, :scale => 0, :default => 0
     t.text     "note"
-    t.integer  "water_sample_id", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "wfilters", ["water_sample_id"], :name => "index_wfilters_on_water_sample_id"
+  add_index "wfilters", ["pore_size", "num_filters"], :name => "wf_u", :unique => true
 
 end

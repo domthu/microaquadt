@@ -1,6 +1,7 @@
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
+      <li><%= link_to 'New micro_array', new_micro_array_path %></li>
       <li><%= link_to "micro array datas", micro_array_datas_path %></li>
       <li><%= link_to "micro array images", micro_array_images_path %></li>
       <li><%= link_to "micro array validations", micro_array_validations_path %></li>
@@ -15,28 +16,18 @@
 </p>
 
 <p>
-  <b>Gpr file title:</b>
-  <%=h @micro_array.gpr_file_title %>
+  <b>Partner:</b>
+  <%=h @micro_array.partner.verbose_me %>
 </p>
-
 <p>
-  <b>Gpr file:</b>
-  <%=h @micro_array.gpr_file %>
+  <b>Loaded at:</b>
+  <%=h @micro_array.loaded_at.to_s %>
 </p>
+<%= link_to "CSV Download File", :controller => 'micro_arrays', :action=> 'download_csv', :id => @micro_array.id  %>
 
 <p>
   <b>Note:</b>
   <%=h @micro_array.note %>
-</p>
-
-<p>
-  <b>Loaded at:</b>
-  <%=h @micro_array.loaded_at %>
-</p>
-
-<p>
-  <b>Partner:</b>
-  <%=h @micro_array.partner %>
 </p>
 
 <p>

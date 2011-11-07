@@ -3,6 +3,10 @@
 
   <%= link_to appHelperLogo, root_path %>
 
+  </td><td rowspan="2">
+
+  <%= appBetaLogo %>
+
   </td><td>
 
   <ul class="navigation round">
@@ -24,13 +28,13 @@
     </td></tr><tr><td class="transparent">
 
     <ul class="navigation round">
-      <li><%= link_to "Oligo sequence", oligo_sequences_path %></li>
-    </ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ul class="navigation round">
       <li><%= link_to "Micro array", micro_arrays_path %></li>
+    </ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ul class="navigation round">
+      <li><%= link_to "Oligo sequence", oligo_sequences_path %></li>
     </ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ul class="navigation round">
       <li><%= link_to "Sampling site", sampling_sites_path %></li>
       <li><%= link_to "Sampling", samplings_path %></li>
-      <li><%= link_to "Water sample", water_samples_path %></li>
+      <li><%= link_to "Water sample", filter_samples_path %></li>
 
     </ul>
     <br />

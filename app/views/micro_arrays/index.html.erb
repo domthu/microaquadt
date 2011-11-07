@@ -14,7 +14,6 @@
 <table>
   <tr>
     <th>Gpr title</th>
-    <th>Gpr file title</th>
     <th>Partner</th>
     <th>H name</th>
     <th>Upload date</th>
@@ -23,14 +22,13 @@
 <% @micro_arrays.each do |micro_array| %>
   <tr>
     <td><%=h micro_array.gpr_title %></td>
-    <td><%=h micro_array.gpr_file_title %></td>
-    <td><%=h micro_array.partner %></td>
+    <td><%=h micro_array.partner.verbose_me %></td>
     <td><%=h micro_array.H_name %></td>
-    <td><%=h micro_array.loaded_at %></td>
+    <td><%=h micro_array.loaded_at.to_s %></td>
     <td><%= link_to 'Show', micro_array %></td>
     <% if auth_user(micro_array.partner_id) or signed_in_and_master? %>
       <td><%= link_to 'Edit', edit_micro_array_path(micro_array) %></td>
-      <td><%= link_to 'Destroy', micro_array, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', micro_array, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
   </tr>
 <% end %>

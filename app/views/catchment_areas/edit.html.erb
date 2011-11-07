@@ -1,0 +1,16 @@
+<h1>Editing catchment area</h1>
+
+<% form_for(@catchment_area) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @catchment_area %> |
+<%= link_to 'Back', catchment_areas_path %>

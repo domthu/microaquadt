@@ -8,8 +8,8 @@ class CreateMicroArrays < ActiveRecord::Migration
       t.date :loaded_at
       t.references :partner
       t.string :H_name
-      t.decimal :H_ScanArrayCSVFileFormat
-      t.decimal :H_ScanArray_Express
+      t.decimal :H_ScanArrayCSVFileFormat, :precision => 8, :scale => 2
+      t.decimal :H_ScanArray_Express, :precision => 8, :scale => 2
       t.integer :H_Number_of_Columns
       t.datetime :I_DateTime
       t.string :I_GalFile
@@ -21,9 +21,9 @@ class CreateMicroArrays < ActiveRecord::Migration
       t.string :I_Quality_Confidence_Calculation
       t.text :I_User_comments
       t.string :I_Image_Origin
-      t.decimal :I_Temperature
+      t.decimal :I_Temperature, :precision => 4, :scale => 2
       t.string :I_Laser_Powers
-      t.decimal :I_Laser_On_Time
+      t.decimal :I_Laser_On_Time, :precision => 8, :scale => 2
       t.string :I_PMT_Voltages
       t.integer :QP_Min_Percentile
       t.integer :QP_Max_Percentile
@@ -33,10 +33,10 @@ class CreateMicroArrays < ActiveRecord::Migration
       t.integer :API_Array_Columns
       t.integer :API_Spot_Rows
       t.integer :API_Spot_Columns
-      t.decimal :API_Array_Row_Spacing
-      t.decimal :API_Array_Column_Spacing
-      t.decimal :API_Spot_Row_Spacing
-      t.decimal :API_Spot_Column_Spacing
+      t.decimal :API_Array_Row_Spacing, :precision => 8, :scale => 2
+      t.decimal :API_Array_Column_Spacing, :precision => 8, :scale => 2
+      t.decimal :API_Spot_Row_Spacing, :precision => 8, :scale => 2
+      t.decimal :API_Spot_Column_Spacing, :precision => 8, :scale => 2
       t.integer :API_Spot_Diameter
       t.integer :API_Interstitial
       t.integer :API_Spots_Per_Array

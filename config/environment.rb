@@ -12,6 +12,23 @@ require 'digest'
 #Use for pagination
 #require 'will_paginate'
 
+#Use for log to file
+##!/usr/bin/env ruby
+#require 'logger'
+##use log rotation .To enable log rotation, pass 'monthly', 'weekly', or 'daily' to the Logger constructor. Optionally, you can pass a maximum file size and number of files to to keep in rotation to the constructor.
+##log = Logger.new( 'log.txt', 'daily' )
+##see config.logger = Logger.new("#{RAILS_ROOT}/log/#{ENV['RAILS_ENV']}ngb.log", 10, 5*1048576)
+#log = Logger.new("#{RAILS_ROOT}/log/#{ENV['RAILS_ENV']}ngb.log", 10, 5*1048576)
+
+##Priority message debug, info, warn, error and fatal.
+##log.debug "Once the log becomes at least one"
+##log.debug "day old, it will be renamed and a"
+##log.debug "new log.txt file will be created."
+##log.level = Logger::WARN
+##log.debug "This will be ignored"
+##log.error "This will not be ignored"
+
+
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -49,3 +66,8 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
+#ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
+#  :date_time_file  => "%y%m%d%H%M",
+#)
+
+#Mime::Type.register "text/csv", :csv

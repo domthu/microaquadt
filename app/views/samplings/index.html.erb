@@ -12,6 +12,7 @@
 <table>
   <tr>
     <th>Sampling site</th>
+    <th>Volume (lt)</th>
     <th>Code</th>
     <th>Partner</th>
   </tr>
@@ -19,6 +20,7 @@
 <% @samplings.each do |sampling| %>
   <tr>
     <td><%=h SamplingSite.find(sampling.sampling_site_id).verbose_me %></td>
+    <td><%=h sampling.volume %></td>
     <td><%=h sampling.code %></td>
     <td><%=h Partner.find(sampling.partner_id).verbose_me %></td>
     <td><%= link_to 'Show', sampling %></td>

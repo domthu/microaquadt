@@ -19,6 +19,11 @@ module ApplicationHelper
     image_tag("uaqua1_logo2.png", :alt => "Microaqua bioinfo", :class => "round", :size => "100x69")
   end
 
+  #BETA
+  def appBetaLogo
+    image_tag("icon_beta3.jpg", :title => "Database only for Test Purpose", :alt => "Database only for Test Purpose", :class => "round", :size => "69x69")
+  end
+
   #LOGIN
   def appHelperLogin
     #image_tag("login-set.png", :alt => "Microaqua sign in", :class => "usericon navigation")

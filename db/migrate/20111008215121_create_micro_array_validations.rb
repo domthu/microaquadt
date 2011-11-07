@@ -3,10 +3,10 @@ class CreateMicroArrayValidations < ActiveRecord::Migration
     create_table :micro_array_validations do |t|
       t.references :microarray
       t.text :note
-      t.decimal :CellCount
-      t.decimal :QPCR_decimal
-      t.decimal :QPCR_Culture
-      t.decimal :Chemscan
+      t.decimal :CellCount, :precision => 8, :scale => 2
+      t.decimal :QPCR_decimal, :precision => 8, :scale => 2
+      t.decimal :QPCR_Culture, :precision => 8, :scale => 2
+      t.decimal :Chemscan, :precision => 8, :scale => 2
 
       t.timestamps
     end

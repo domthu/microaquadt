@@ -1,0 +1,20 @@
+<h1>Listing catchment areas</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @catchment_areas.each do |catchment_area| %>
+  <tr>
+    <td><%=h catchment_area.name %></td>
+    <td><%= link_to 'Show', catchment_area %></td>
+    <td><%= link_to 'Edit', edit_catchment_area_path(catchment_area) %></td>
+    <td><%= link_to 'Destroy', catchment_area, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New catchment_area', new_catchment_area_path %>

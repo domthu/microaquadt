@@ -12,7 +12,8 @@
 <% form_for(@sampling) do |f| %>
   <%= f.error_messages %>
 
-<fieldset><legend class="leg">General data</legend>
+<fieldset><legend class="leg">GENERAL DATA</legend>
+
   <div class="field select">
     <%= f.label :sampling_site_id %><br />
     <%= select :sampling,:sampling_site_id, SamplingSite.find(:all).collect{|p| [p.code + " " + p.name, p.id]}%>
@@ -35,49 +36,67 @@
     <= select :sampling,:filter,Wfilter.find(:all).collect{|p| [p.name, p.id]}>
   </div>
 
+  <div class="field num">
+    <%= f.label :volume, "Volume (liter)" %><br />
+    <%= f.text_field :volume %>
+  </div>
+
 </fieldset>
 
-<fieldset><legend class="leg">Technical data</legend>
+<fieldset><legend class="leg">ENVIRONMENT DATA</legend>
+
   <div class="field num">
-    <%= f.label :temperature %><br />
+    <%= f.label :temperature, "Temperature (°C)", :title => "In meteorology we usually record temperatures in degrees centigrade or Celsius (°C), but for computations we convert degrees Celsius to degrees Kelvin (K)." %><br />
     <%= f.text_field :temperature %>
   </div>
   <div class="field num">
-    <%= f.label :moisture %><br />
+    <%= f.label :moisture, "Moisture (g/kg)", :title => "The term most frequently used to express the amount of moisture in the air is relative humidity (RH). The relative humidity is the ratio of the actual amount of water vapor in a sample of air compared to the total amount of water vapor the same sample can hold before condensation begins (i.e., it becomes saturated with water vapor) at a given temperature and pressure.
+The mixing ratio is often recorded in grams of water vapor per kilogram of dry air (g/kg)." %><br />
     <%= f.text_field :moisture %>
   </div>
   <div class="field num">
-    <%= f.label :pressure %><br />
+    <%= f.label :pressure, "Pressure (P)", :title => "Pressure (the symbol: P) is the force per unit area applied in a direction perpendicular to the surface of an object. Gauge pressure is the pressure relative to the local atmospheric or ambient pressure." %><br />
     <%= f.text_field :pressure %>
   </div>
   <div class="field num">
-    <%= f.label :windSpeed %><br />
+    <%= f.label :windSpeed, "Wind speed (m/s)", :title => "Two important measurements of the wind are the direction and speed of the wind. Wind speed is generally recorded in knots (kn) or nautical miles per hour where one knot is equal to 1.15 mi/hr. For making computations, however, knots must be converted to meters per second (m/s). One knot is equal to 0.51 m/s." %><br />
     <%= f.text_field :windSpeed %>
   </div>
-  <div class="field txtshort">
-    <%= f.label :windDirection %><br />
+  <div class="field txtshort (ex: from west to east)">
+    <%= f.label :windDirection, "Wind direction", :title => "Two important measurements of the wind are the direction and speed of the wind. Wind directions are not given in reference to the direction in which they are blowing, but rather the direction from which they are blowing. A westerly wind blows from west to east." %><br />
     <%= f.text_field :windDirection %>
   </div>
   <div class="field num">
-    <%= f.label :waterFlow %><br />
+    <%= f.label :waterFlow, "Water flow (lt/s)", :title => "Flow measurement is the quantification of bulk fluid movement. litres per second (lt/s)" %><br />
     <%= f.text_field :waterFlow %>
   </div>
   <div class="field num">
-    <%= f.label :lightIntensity %><br />
+    <%= f.label :lightIntensity, "Light intensity (lx)", :title => "Several measures of light are commonly known as intensity. These are obtained by dividing either a power or a luminous flux by a solid angle, a planar area, or a combination of the two. Areal --> Several quantities measured in lumens per square meter (lm/m2), or lux (lx): 
+-  Illuminance is for light incident on a surface
+-  Luminous emittance or luminous exitance is for light emitted from a source" %><br />
     <%= f.text_field :lightIntensity %>
   </div>
   <div class="field num">
-    <%= f.label :rainfallEvents %><br />
+    <%= f.label :rainfallEvents, "Rainfall events (mm)", :title => "The rainfall measurement (mm) should be taken into account for 3 days before sampling (sum of day 1, 2 and sampling day)." %><br />
     <%= f.text_field :rainfallEvents %>
   </div>
   <div class="field num">
-    <%= f.label :depth %><br />
+    <%= f.label :depth, "Depth (meters)", :title => "" %><br />
     <%= f.text_field :depth %>
   </div>
   <div class="field num">
-    <%= f.label :turbidity %><br />
+    <%= f.label :turbidity, "Turbidity (meters)", :title => "is the cloudiness or haziness of a fluid caused by individual particles (suspended solids) that are generally invisible to the naked eye. HELMI: The Secchi is a good fieldable tool; however, a turbidimeter may bring a supplementary precise information regarding turbidity (roughly ranging from 20 to 100 NTU for river water). LauraStefania: secchi disks ()ranges from 1 to … units (meters)" %><br />
     <%= f.text_field :turbidity %>
   </div>
+  <div class="field num">
+    <%= f.label :salinity, "Salinity (ppt ‰)", :title => "Salinity is the saltiness or dissolved salt content of a body of water. It is a general term used to describe the levels of different salts such as sodium chloride, magnesium and calcium sulfates, and bicarbonates. Salinity in the ocean refers to the water's \"saltiness\". In oceanography, it has been traditional to express salinity not as percent, but as parts per thousand (‰), which is approximately grams of salt per kilogram of solution."  %><br />
+    <%= f.text_field :salinity %>
+  </div>
+  <div class="field num">
+    <%= f.label :tidalRange, "Tidal range (m)", :title => "The tidal range is the vertical difference between the high tide and the succeeding low tide. Tides are the rise and fall of sea levels caused by the combined effects of the gravitational forces exerted by the Moon and the Sun and the rotation of the Earth. The tidal range is not constant, but changes depending on where the sun and the moon are."  %><br />
+    <%= f.text_field :tidalRange %>
+  </div>
+
 
 </fieldset>
 

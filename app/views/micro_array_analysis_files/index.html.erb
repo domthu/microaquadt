@@ -15,7 +15,7 @@
     <td><%= link_to 'Show', micro_array_analysis_file %></td>
     <% if auth_ma_user(micro_array_analysis_file.microarray_id) or signed_in_and_master? %>
       <td><%= link_to 'Edit', edit_micro_array_analysis_file_path(micro_array_analysis_file) %></td>
-      <td><%= link_to 'Destroy', micro_array_analysis_file, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to 'Delete', micro_array_analysis_file, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
   </tr>
 <% end %>

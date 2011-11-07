@@ -15,4 +15,3 @@ class CreateCodeTypes < ActiveRecord::Migration
     drop_table :code_types
   end
 end
-

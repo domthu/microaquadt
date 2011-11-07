@@ -1,0 +1,2 @@
+module GeologiesHelper
+end

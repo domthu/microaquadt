@@ -144,9 +144,10 @@ td.sidebar {
 }
 
 /* form_for */
-div.field, div.actions {margin-bottom: 10px;}
-div.field{border: solid 0px red;float:left; margin:5px;}
-div.select{margin:5px;}
+div.field{border: solid 0px red;float:left;}
+div.field, div.actions {margin: 5px 15px 5px 5px;}
+div.select{margin:5px;margin-right:15px;}
+div.date {margin-right:15px;/*color: darkblue;*/}
 div.actions, div.seq {clear: both;}
 div.actions, div.login {font-weight: bold; margin-left:200px;}
 div.login input{width: 200px;}
@@ -158,7 +159,6 @@ div.txtshort input {width: 150px;}
 div.cod input {width: 30px;font-weight: bold;
   font-family: monospace;font-size: 1.6em;}
 div.select select{/*color: #000000;font-family: monospace;font-size: 1.1em;*/}
-div.date {/*color: darkblue;*/}
 .leg{border-color:blue;}
 .fieldWithErrors {padding: 2px;background-color: #E9967A;display: table;}
 .fieldWithErrors label {color: #fff;}
