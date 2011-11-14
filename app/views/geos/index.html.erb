@@ -1,3 +1,4 @@
+<%= GMap.header %>
 
 <table>
     <tr class="taleft" width="70%">
@@ -22,8 +23,8 @@
 <% @geos.each do |geo| %>
   <tr>
     <td><%=h geo.name %></td>
-    <td><%=h geo.lon %></td>
-    <td><%=h geo.lat %></td>
+    <td><%=h geo.lng_name %></td>
+    <td><%=h geo.lat_name %></td>
     <td><%=h Country.find(geo.country_id).verbose_me %></td>
     <td><%= link_to 'Show', geo %></td>
     <td><%= link_to 'Edit', edit_geo_path(geo) %></td>
@@ -35,4 +36,8 @@
 <br />
 
 <%= link_to 'New geo', new_geo_path %>
+<br />
+<%= @map.to_html %>
+<%= @map.div(:width => 600, :height => 400) %>
+
 

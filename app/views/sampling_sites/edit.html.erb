@@ -55,18 +55,16 @@
 
 </fieldset>
 
-<fieldset><legend class="leg">ENVIRONMENT DATA</legend>
+<fieldset><legend class="leg">ENVIRONMENTAL DATA</legend>
 
   <div class="field select">
     <%= f.label :altitude_types_id, "Select altitude type (m)"  %><br />
     <%= select :sampling_site,:altitude_types_id,AltitudeType.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
   <div class="field select">
-    <%= f.label :catchment_areas_id, "Select the catchment area (km2)"  %><br />
+    <%= f.label :catchment_areas_id, "Select the catchment area (km²)"  %><br />
     <%= select :sampling_site,:catchment_areas_id,CatchmentArea.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
-
-
   <div class="field select">
     <%= f.label :geologies_id, "Select the geology"  %><br />
     <%= select :sampling_site,:geologies_id,Geology.find(:all).collect{|p| [p.name, p.id]}%>
@@ -76,8 +74,12 @@
     <%= select :sampling_site,:depth_id,Depth.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
   <div class="field select">
-    <%= f.label :size_typologies_id, "Select the size tipology (km2)"  %><br />
+    <%= f.label :size_typologies_id, "Select the size tipology (km²)"  %><br />
     <%= select :sampling_site,:size_typologies_id,SizeTypology.find(:all).collect{|p| [p.name, p.id]}%>
+  </div>
+  <div class="field num">
+    <%= f.label :distance_to_source, "Distance to source (km)" %><br />
+    <%= f.text_field :distance_to_source %>
   </div>
 
 </fieldset>

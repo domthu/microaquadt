@@ -6,13 +6,11 @@ class CreateGeos < ActiveRecord::Migration
         t.decimal :lat, :null => false, :precision => 10, :scale => 8
         t.references :country, :null => false
 
+        t.decimal :width, :default => 0, :precision => 8, :scale => 2
+
         t.timestamps
 
     end
-
-
-
-
 
     add_index :geos, :country_id
   end

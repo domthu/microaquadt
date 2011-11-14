@@ -14,12 +14,6 @@ class CreateFilterSamples < ActiveRecord::Migration
       t.string :barcode, :null => false
 
       t.string :code, :null => true
-      t.decimal :temperature, :default => 0, :precision => 4, :scale => 2
-      t.decimal :turbidity, :default => 0, :precision => 8, :scale => 2
-      t.decimal :conductivity, :default => 0, :precision => 8, :scale => 2
-      t.decimal :phosphates, :default => 0, :precision => 8, :scale => 2
-      t.decimal :nitrates, :default => 0, :precision => 8, :scale => 2
-      t.decimal :ph, :default => 0, :precision => 4, :scale => 2
 
       t.text :note
 

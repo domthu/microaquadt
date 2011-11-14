@@ -1,5 +1,6 @@
 module SamplingsHelper
 
+include CodeTypesHelper
 #retrieve user from partner see function auth_user(pid) in code_types_helper.rb
 
   #retrieve user from partner from sampling

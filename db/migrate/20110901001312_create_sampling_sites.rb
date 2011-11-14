@@ -17,6 +17,8 @@ class CreateSamplingSites < ActiveRecord::Migration
       t.references :geos, :polymorphic => {:default => 'Site'}
       t.text :note
 
+      t.decimal :distance_to_source, :default => 0, :precision => 8, :scale => 2
+
       t.timestamps
     end
 

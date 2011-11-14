@@ -43,13 +43,21 @@
     <%= f.text_field :volume %>
   </div>
 
+  <div class="field txt">
+    <%= f.label :operators, "Operators" %><br />
+    <%= f.text_field :operators %>
+  </div>
 </fieldset>
 
-<fieldset><legend class="leg">ENVIRONMENT DATA</legend>
+<fieldset><legend class="leg">ENVIRONMENTAL DATA</legend>
 
   <div class="field num">
-    <%= f.label :temperature, "Temperature (°C)", :title => "In meteorology we usually record temperatures in degrees centigrade or Celsius (°C), but for computations we convert degrees Celsius to degrees Kelvin (K)." %><br />
-    <%= f.text_field :temperature %>
+    <%= f.label :air_temperature, "Air temperature (°C)", :title => "In meteorology we usually record temperatures in degrees centigrade or Celsius (°C), but for computations we convert degrees Celsius to degrees Kelvin (K)." %><br />
+    <%= f.text_field :air_temperature %>
+  </div>
+  <div class="field num">
+    <%= f.label :water_temperature, "Water temperature (°C)", :title => "In meteorology we usually record temperatures in degrees centigrade or Celsius (°C), but for computations we convert degrees Celsius to degrees Kelvin (K)." %><br />
+    <%= f.text_field :water_temperature %>
   </div>
   <div class="field num">
     <%= f.label :moisture, "Moisture (g/kg)", :title => "The term most frequently used to express the amount of moisture in the air is relative humidity (RH). The relative humidity is the ratio of the actual amount of water vapor in a sample of air compared to the total amount of water vapor the same sample can hold before condensation begins (i.e., it becomes saturated with water vapor) at a given temperature and pressure.
@@ -99,6 +107,40 @@ The mixing ratio is often recorded in grams of water vapor per kilogram of dry a
     <%= f.text_field :tidalRange %>
   </div>
 
+
+  <div class="field num">
+    <%= f.label :conductivity, "Conductivity (µS/cm)", :title => "a measure of a material's ability to conduct an electric current. LauraStefania: conductivity µS/cm value depend on “water type”" %><br />
+    <%= f.text_field :conductivity %>
+  </div>
+  <div class="field num">
+    <%= f.label :phosphates %><br />
+    <%= f.text_field :phosphates %>
+  </div>
+  <div class="field num">
+    <%= f.label :nitrates %><br />
+    <%= f.text_field :nitrates %>
+  </div>
+  <div class="field num">
+    <%= f.label :ph, "pH " %><br />
+    <%= f.text_field :ph %>
+  </div>
+
+  <div class="field num">
+    <%= f.label :nitrogen, "Nitrogen (%)", :title => "is a chemical element that has the symbol N, atomic number of 7 and atomic mass 14.00674 u. Elemental nitrogen is a colorless, odorless, tasteless, and mostly inert diatomic gas at standard conditions, constituting 78.08% by volume of Earth's atmosphere. The element nitrogen was discovered as a separable component of air, by Scottish physician Daniel Rutherford, in 1772. Nitrogen is an important nutrient for plant and animal growth. Atmospheric nitrogen is less biologically available than dissolved nitrogen in the form of ammonia and nitrates. Availability of dissolved nitrogen may contribute to algal blooms. Ammonia and organic forms of nitrogen are often measured as Total Kjeldahl Nitrogen, and analysis for inorganic forms of nitrogen may be performed for more accurate estimates of total nitrogen content" %><br />
+    <%= f.text_field :nitrogen %>
+  </div>
+  <div class="field num">
+    <%= f.label :bod5, "Biochemical oxygen demand or B.O.D (mg/L)" , :title => "Biochemical oxygen demand or B.O.D. is the amount of dissolved oxygen needed by aerobic biological organisms in a body of water to break down organic material present in a given water sample at certain temperature over a specific time period. The term also refers to a chemical procedure for determining this amount. This is not a precise quantitative test, although it is widely used as an indication of the organic quality of water. The BOD value is most commonly expressed in milligrams of oxygen consumed per litre of sample during 5 days of incubation at 20 °C and is often used as a robust surrogate of the degree of organic pollution of water. Since all natural waterways contain bacteria and nutrient, almost any waste compounds introduced into such waterways will initiate biochemical reactions. Those biochemical reactions create what is measured in the laboratory as the biochemical oxygen demand (BOD)." %><br />
+    <%= f.text_field :bod5 %>
+  </div>
+  <div class="field num">
+    <%= f.label :cod, "COD chemical oxygen demand (mg/L)", :title => "In environmental chemistry, the chemical oxygen demand (COD) test is commonly used to indirectly measure the amount of organic compounds in water. Most applications of COD determine the amount of organic pollutants found in surface water (e.g. lakes and rivers) or wastewater, making COD a useful measure of water quality. It is expressed in milligrams per liter (mg/L), which indicates the mass of oxygen consumed per liter of solution. Older references may express the units as parts per million (ppm). Oxidizable chemicals (such as reducing chemicals) introduced into a natural water will similarly initiate chemical reactions. Those chemical reactions create what is measured in the laboratory as the chemical oxygen demand (COD)." %><br />
+    <%= f.text_field :cod %>
+  </div>
+  <div class="field num">
+    <%= f.label :h2osat, "O₂ oxygen saturation", :title => "Oxygen saturation or dissolved oxygen (DO) is a relative measure of the amount of oxygen that is dissolved or carried in a given medium. It can be measured with a dissolved oxygen probe such as an oxygen sensor or an optode in liquid media, usually water. Oxygen saturation in the environment generally refers to the amount of oxygen dissolved in the soil or bodies of water. Environmental oxygenation can be important to the sustainability of a particular ecosystem. Insufficient oxygen (environmental hypoxia) may occur in bodies of water such as ponds and rivers, tending to suppress the presence of aerobic organisms such as fish. Deoxygenation increases the relative population of anaerobic organisms such as plants and some bacteria, resulting in fish kills and other adverse events. The net effect is to alter the balance of nature by increasing the concentration of anaerobic over aerobic species." %><br />
+    <%= f.text_field :h2osat %>
+  </div>
 </fieldset>
 
   <div class="field area">

@@ -19,5 +19,24 @@ class Geo < ActiveRecord::Base
     def country_name
         Country.find(country_id).name
     end
+
+    def lat_name
+        deg_to_dms(lat)
+    end
+
+    def lng_name
+        deg_to_dms(lon)
+    end
+
+    private 
+      
+        #Degrees to Degree Minutes.m second
+        def deg_to_dms(deg)
+            d = int(deg)
+            md = abs(deg - d) * 60
+            m = int(md)
+            sd = (md - m) * 60
+            return [d, m, sd]
+        end   
 end
 

@@ -1,5 +1,7 @@
 <%= jqgrid_stylesheets %>
 <%= jqgrid_javascripts %> 
+<%= GMap.header %>
+
 <table>
 <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
@@ -16,7 +18,7 @@
   </td></tr>
 </table>
 
-<h1></h1>
+<h1>Listing sampling sites</h1>
 
 <script type="text/javascript" >
      function handleSelection(id) {
@@ -30,23 +32,30 @@
 </script>
 
 
-<%= jqgrid("Listing sampling sites", "sites", "/sampling_sites",
+<%= jqgrid("List of sampling sites: paginate, ordered and search", "ngbgrid", sampling_sites_path,
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
-    { :field => "act", :label => "", :width => 35 },
+        { :field => "act", :label => "", :width => 35 , :resizable => false },
 		{ :field => "code", :label => "Code" },
 		{ :field => "name", :label => "Name" },
 		{ :field => "w_use_name", :label => "Water use", :sortable => true, :editable => false   },
 		{ :field => "w_type_name", :label => "Water type", :sortable => true, :editable => false },
 		{ :field => "land_name", :label => "Land", :sortable => true, :editable => false },
 		{ :field => "geo_name", :label => "Geo pos.", :sortable => true, :editable => false },
-		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35},
+		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35 , :resizable => false},
 	], 
-    { :add => false, :edit => false, :inline_edit => false, :delete => false }
+    {   :add => false, 
+        :edit => false, 
+        :inline_edit => false, 
+        :height => 400,
+        :delete => false }
     
 ) %>
 
 <br />
 
 <%= link_to 'New sampling_site', new_sampling_site_path %>
+<br />
+<%= @map.to_html %>
+<%= @map.div(:width => 600, :height => 400) %>
 

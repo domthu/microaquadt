@@ -69,7 +69,7 @@ include ActionController::UrlWriter
     end
 
     def act
-        "<a href='" + sampling_site_path(self) + "' title='Show selected row'><div class='ui-pg-div' title='Edit selected row'><span class='ui-icon ui-icon-info' title='Show selected row'></span></div></a>"
+        "<a href='" + sampling_site_path(self) + "' title='Show selected row'><div class='ui-pg-div' title='Show selected row'><span class='ui-icon ui-icon-info' title='Show selected row'></span></div></a>"
     end
 end
 

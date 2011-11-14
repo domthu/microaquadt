@@ -1,3 +1,6 @@
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %> 
+
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
@@ -9,28 +12,54 @@
 
 <h1>Listing samplings</h1>
 
-<table>
-  <tr>
-    <th>Sampling site</th>
-    <th>Volume (lt)</th>
-    <th>Code</th>
-    <th>Partner</th>
-  </tr>
+<script type="text/javascript" >
+     function handleSelection(id) {
+        <%= remote_function (:url => {:controller=> 'sampling_sites',
+                     :action => 'show'},
+                     :with => "id= " + String(id))
+        %>
+     }
+//use, :selection_handler => "handleSelection", :direct_selection => true
+//use, :grid_complete => "grid_complete" 
+</script>
 
-<% @samplings.each do |sampling| %>
-  <tr>
-    <td><%=h SamplingSite.find(sampling.sampling_site_id).verbose_me %></td>
-    <td><%=h sampling.volume %></td>
-    <td><%=h sampling.code %></td>
-    <td><%=h Partner.find(sampling.partner_id).verbose_me %></td>
-    <td><%= link_to 'Show', sampling %></td>
-    <% if auth_user(sampling.partner_id) or signed_in_and_master? %>
-      <td><%= link_to 'Edit', edit_sampling_path(sampling) %></td>
-      <td><%= link_to 'Delete', sampling, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
+<%= jqgrid("List of samplings: paginate, ordered and search", "ngbgrid", samplings_path,
+	[
+		{ :field => "id", :label => "ID", :width => 50, :resizable => false },
+        { :field => "act", :label => "", :width => 50 , :resizable => false },
+		{ :field => "site_name", :label => "Sampling site", :sortable => true, :editable => false, :width => 250  },
+		{ :field => "volume", :label => "Volume (lt)", :width => 90, :class => "taright"  },
+		{ :field => "code", :label => "Code", :width => 250 },
+		{ :field => "partner_name", :label => "Partner", :sortable => true, :editable => false, :width => 100 },
+		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 50 , :resizable => false},
+	], 
+    {   :add => false, 
+        :edit => false, 
+        :inline_edit => false, 
+        :delete => false, 
+        :height => 400, 
+        :subgrid=> { 
+                :url => filter_samples_path,
+                :rows_per_page => 10,
+                :sort_column => 'code',
+                :sort_order => 'asc',
+                :rownumbers => 'true',
+                :columns => [
+		            { :field => "id", :label => "ID", :width => 35, :resizable => false },
+                    { :field => "act", :label => "", :width => 35 , :resizable => false },
+		            { :field => "sample_name", :label => "Sampling", :sortable => true, :editable => false, :width => "200"  },
+		            { :field => "code_name", :label => "Code", :width => "200" },
+		            { :field => "partner_name", :label => "Partner", :sortable => true, :editable => false, :width => "80" },
+		            { :field => "filter_name", :label => "pore size (µm)", :sortable => true, :editable => false, :width => 60, :class => "taright" },
+		            { :field => "num_filters", :label => "n° Tube", :width => 50, :class => "taright" },
+		            { :field => "volume", :label => "Volume (lt)", :width => 70, :class => "taright" },
+		            { :field => "edit_link", :label => "edit", :sortable => false, :width => 35 , :resizable => false},
+					  ]
+					}
+
+ }
+
+) %>
 
 <br />
 

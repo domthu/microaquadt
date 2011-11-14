@@ -17,17 +17,21 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :lon %><br />
+    <%= f.label :lon, "longitude (Degree formats °)" %><br />
     <%= f.text_field :lon %>
   </div>
   <div class="field">
-    <%= f.label :lat %><br />
+    <%= f.label :lat, "latitude (Degree formats °)"  %><br />
     <%= f.text_field :lat %>
   </div>
 
   <div class="field select">
     <%= f.label :country_id, "Select country" %><br />
     <%= select :geo,:country_id,Country.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+  <div class="field num">
+    <%= f.label :width, "width (km)", :title => "Distance in km" %><br />
+    <%= f.text_field :width %>
   </div>
 <br />
   <div class="actions">

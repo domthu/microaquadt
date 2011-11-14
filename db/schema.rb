@@ -64,12 +64,6 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
     t.decimal  "volume",                    :precision => 4, :scale => 2,                  :null => false
     t.string   "barcode",                                                                  :null => false
     t.string   "code"
-    t.decimal  "temperature",               :precision => 4, :scale => 2, :default => 0.0
-    t.decimal  "turbidity",                 :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "conductivity",              :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "phosphates",                :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "nitrates",                  :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "ph",                        :precision => 4, :scale => 2, :default => 0.0
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,10 +79,11 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   end
 
   create_table "geos", :force => true do |t|
-    t.string   "name",                                      :null => false
-    t.decimal  "lon",        :precision => 10, :scale => 8, :null => false
-    t.decimal  "lat",        :precision => 10, :scale => 8, :null => false
-    t.integer  "country_id",                                :null => false
+    t.string   "name",                                                       :null => false
+    t.decimal  "lon",        :precision => 10, :scale => 8,                  :null => false
+    t.decimal  "lat",        :precision => 10, :scale => 8,                  :null => false
+    t.integer  "country_id",                                                 :null => false
+    t.decimal  "width",      :precision => 8,  :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -399,20 +394,21 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   add_index "protocols", ["sampling_id"], :name => "index_protocols_on_sampling_id"
 
   create_table "sampling_sites", :force => true do |t|
-    t.string   "code",                                     :null => false
+    t.string   "code",                                                                   :null => false
     t.string   "name"
-    t.integer  "altitude_types_id",    :default => 1
-    t.integer  "catchment_areas_id",   :default => 1
-    t.integer  "size_typologies_id",   :default => 1
-    t.integer  "geologies_id",         :default => 1
-    t.integer  "depth_id",             :default => 1
+    t.integer  "altitude_types_id",                                  :default => 1
+    t.integer  "catchment_areas_id",                                 :default => 1
+    t.integer  "size_typologies_id",                                 :default => 1
+    t.integer  "geologies_id",                                       :default => 1
+    t.integer  "depth_id",                                           :default => 1
     t.string   "link"
-    t.integer  "water_types_id",                           :null => false
-    t.integer  "water_uses_id",                            :null => false
-    t.integer  "land_use_mappings_id",                     :null => false
+    t.integer  "water_types_id",                                                         :null => false
+    t.integer  "water_uses_id",                                                          :null => false
+    t.integer  "land_use_mappings_id",                                                   :null => false
     t.integer  "geos_id"
-    t.string   "geos_type",            :default => "Site"
+    t.string   "geos_type",                                          :default => "Site"
     t.text     "note"
+    t.decimal  "distance_to_source",   :precision => 8, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -424,23 +420,33 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
 
   create_table "samplings", :force => true do |t|
     t.string   "code"
-    t.decimal  "volume",           :precision => 4, :scale => 2,                  :null => false
-    t.integer  "sampling_site_id",                                                :null => false
-    t.integer  "partner_id",                                                      :null => false
-    t.datetime "samplingDate",                                                    :null => false
+    t.decimal  "volume",            :precision => 4, :scale => 2,                  :null => false
+    t.integer  "sampling_site_id",                                                 :null => false
+    t.integer  "partner_id",                                                       :null => false
+    t.datetime "samplingDate",                                                     :null => false
     t.text     "note"
-    t.decimal  "temperature",      :precision => 4, :scale => 2, :default => 0.0
-    t.decimal  "moisture",         :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "pressure",         :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "windSpeed",        :precision => 8, :scale => 2, :default => 0.0
-    t.string   "windDirection",                                  :default => ""
-    t.decimal  "waterFlow",        :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "lightIntensity",   :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "rainfallEvents",   :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "depth",            :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "turbidity",        :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "salinity",         :precision => 8, :scale => 2, :default => 0.0
-    t.decimal  "tidalRange",       :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "air_temperature",   :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "moisture",          :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "pressure",          :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "windSpeed",         :precision => 8, :scale => 2, :default => 0.0
+    t.string   "windDirection",                                   :default => ""
+    t.decimal  "waterFlow",         :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "lightIntensity",    :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "rainfallEvents",    :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "depth",             :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "turbidity",         :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "salinity",          :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "tidalRange",        :precision => 4, :scale => 2, :default => 0.0
+    t.string   "operators"
+    t.decimal  "water_temperature", :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "conductivity",      :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "phosphates",        :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "nitrates",          :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "ph",                :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "nitrogen",          :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "bod5",              :precision => 4, :scale => 2, :default => 0.0
+    t.decimal  "cod",               :precision => 5, :scale => 3, :default => 0.0
+    t.decimal  "h2osat",            :precision => 5, :scale => 3, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

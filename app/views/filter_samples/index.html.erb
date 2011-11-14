@@ -1,3 +1,6 @@
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %> 
+
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
@@ -9,34 +12,40 @@
 
 <h1>Listing filter samples</h1>
 
-<table>
-  <tr>
-    <th>Sampling</th>
-    <th>Code</th>
-    <th>Partner</th>
-    <th>Filter</th>
-    <th>Tube</th>
-    <th>Volume</th>
-    <th>Barcode</th>
-  </tr>
+<script type="text/javascript" >
+     function handleSelection(id) {
+        <%= remote_function (:url => {:controller=> 'sampling_sites',
+                     :action => 'show'},
+                     :with => "id= " + String(id))
+        %>
+     }
+//use, :selection_handler => "handleSelection", :direct_selection => true
+//use, :grid_complete => "grid_complete" 
+</script>
 
-<% @filter_samples.each do |filter_sample| %>
-  <tr>
-    <td><%=h filter_sample.sampling.verbose_me %></td>
-    <td><%=h filter_sample.code %></td>
-    <td><%=h filter_sample.sampling.partner.verbose_me %></td>
-    <td><%=h filter_sample.wfilter.verbose_me %></td>
-    <td><%=h filter_sample.num_filters %></td>
-    <td><%=h filter_sample.volume %></td>
-    <td><%=h filter_sample.barcode %></td>
-    <% if  auth_sample_user(filter_sample.sampling_id) %>
-      <td><%= link_to 'Show', filter_sample %></td>
-      <td><%= link_to 'Edit', edit_filter_sample_path(filter_sample) or signed_in_and_master? %></td>
-      <td><%= link_to 'Delete', filter_sample, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
+<%= jqgrid("List of sample's filters: paginate, ordered and search", "ngbgrid", filter_samples_path,
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+        { :field => "act", :label => "", :width => 35 , :resizable => false },
+		{ :field => "sample_name", :label => "Sampling", :sortable => true, :editable => false, :width => "250"  },
+		{ :field => "code_name", :label => "Code", :width => "250" },
+		{ :field => "partner_name", :label => "Partner", :sortable => true, :editable => false, :width => "100" },
+		{ :field => "filter_name", :label => "pore size (µm)", :sortable => true, :editable => false, :width => 60, :class => "taright" },
+		{ :field => "num_filters", :label => "n° Tube", :width => 50, :class => "taright" },
+		{ :field => "volume", :label => "Volume (lt)", :width => 70, :class => "taright" },
+		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35 , :resizable => false},
+	], 
+    {   :add => false, 
+        :edit => false, 
+        :inline_edit => false, 
+        :delete => false, 
+        :rows_per_page => "50", 
+        :autowidth => 'false', 
+        :height => 400, 
+        :rownumbers => 'true'
+ }
+
+) %>
 
 <br />
 

@@ -41,6 +41,18 @@ class SamplingSitesController < AuthController
 #    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
 #    <td><%=h Geo.find(sampling_site.geos_id).name %></td>
 
+    @map = GMap.new("map_div_id")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([46.95, 7.416667], 4) #Berne Suisse
+     
+    for ss in @sampling_sites
+        g = ss.geo
+        g = Geo.find(ss.geos_id) #undefined method `lat' for nil:NilClass
+        marker = GMarker.new([g.lat,  g.lon],
+          :title => g.name, :info_window => g.verbose_me)
+        @map.overlay_init(marker)
+    end
+
     respond_to do |format|
         format.html # index.html.erb
         #format.xml  { render :xml => @sampling_sites }     
@@ -78,7 +90,7 @@ class SamplingSitesController < AuthController
     @wu = WaterUse.find(@sampling_site.water_uses_id)
     @wt = WaterType.find(@sampling_site.water_types_id)
     @lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
-    @g = Geo.find(@sampling_site.geos_id)
+    @geo = Geo.find(@sampling_site.geos_id)
 
     @at = AltitudeType.find(@sampling_site.altitude_types_id)
     @ca = CatchmentArea.find(@sampling_site.catchment_areas_id)
@@ -86,6 +98,13 @@ class SamplingSitesController < AuthController
     @depth = Depth.find(@sampling_site.depth_id)
     @st = SizeTypology.find(@sampling_site.size_typologies_id)
 
+    @map = GMap.new("map_div_id")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([@geo.lat,  @geo.lon], 4)
+     
+    marker = GMarker.new([@geo.lat,  @geo.lon],
+      :title => @geo.name, :info_window => @geo.verbose_me)
+    @map.overlay_init(marker)
 
     respond_to do |format|
       format.html # show.html.erb

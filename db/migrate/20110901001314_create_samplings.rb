@@ -8,7 +8,7 @@ class CreateSamplings < ActiveRecord::Migration
       t.datetime :samplingDate, :null => false
       t.text :note
 
-      t.decimal :temperature, :default => 0, :precision => 4, :scale => 2
+      t.decimal :air_temperature, :default => 0, :precision => 4, :scale => 2
       t.decimal :moisture, :default => 0, :precision => 8, :scale => 2
       t.decimal :pressure, :default => 0, :precision => 8, :scale => 2
       t.decimal :windSpeed, :default => 0, :precision => 8, :scale => 2
@@ -20,6 +20,19 @@ class CreateSamplings < ActiveRecord::Migration
       t.decimal :turbidity, :default => 0, :precision => 8, :scale => 2
       t.decimal :salinity, :default => 0, :precision => 8, :scale => 2
       t.decimal :tidalRange, :default => 0, :precision => 4, :scale => 2
+
+      t.string :operators, :null => true
+      t.decimal :water_temperature, :default => 0, :precision => 4, :scale => 2
+      t.decimal :turbidity, :default => 0, :precision => 8, :scale => 2
+      t.decimal :conductivity, :default => 0, :precision => 8, :scale => 2
+      t.decimal :phosphates, :default => 0, :precision => 8, :scale => 2
+      t.decimal :nitrates, :default => 0, :precision => 8, :scale => 2
+      t.decimal :ph, :default => 0, :precision => 4, :scale => 2
+
+      t.decimal :nitrogen, :default => 0, :precision => 4, :scale => 2
+      t.decimal :bod5, :default => 0, :precision => 4, :scale => 2
+      t.decimal :cod, :default => 0, :precision => 5, :scale => 3
+      t.decimal :h2osat, :default => 0, :precision => 5, :scale => 3
 
       t.timestamps
     end

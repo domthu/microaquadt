@@ -41,33 +41,9 @@
     <%= f.text_field :barcode %>
   </div>
 
-</fieldset>
-
-<fieldset><legend class="leg">ENVIRONMENT DATA</legend>
-
   <div class="field date">
     <%= f.label :samplingDate %><br />
     <%= date_select :filter_sample, :samplingDate %>
-  </div>
-  <div class="field num">
-    <%= f.label :temperature %><br />
-    <%= f.text_field :temperature %>
-  </div>
-  <div class="field num">
-    <%= f.label :conductivity, "Conductivity (µS/cm)" %><br />
-    <%= f.text_field :conductivity %>
-  </div>
-  <div class="field num">
-    <%= f.label :phosphates %><br />
-    <%= f.text_field :phosphates %>
-  </div>
-  <div class="field num">
-    <%= f.label :nitrates %><br />
-    <%= f.text_field :nitrates %>
-  </div>
-  <div class="field num">
-    <%= f.label :ph, "pH " %><br />
-    <%= f.text_field :ph %>
   </div>
 
 </fieldset>

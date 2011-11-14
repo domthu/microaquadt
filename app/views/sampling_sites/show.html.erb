@@ -1,3 +1,5 @@
+<%= GMap.header %>
+
 <table>
 <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
@@ -43,7 +45,7 @@
 
 <p>
   <b>Geo:</b>
-  <%=h @g.verbose_me %>
+  <%=h @geo.verbose_me %>
 </p>
 
 <p>
@@ -54,7 +56,7 @@
 
 </fieldset>
 
-<fieldset><legend class="leg">ENVIRONMENT DATA</legend>
+<fieldset><legend class="leg">ENVIRONMENTAL DATA</legend>
 
 <p>
   <b>Altitude type (m):</b>
@@ -62,7 +64,7 @@
 </p>
 
 <p>
-  <b>Catchment area (km2):</b>
+  <b>Catchment area (km²):</b>
   <%=h @ca.name %>
 </p>
 <p>
@@ -74,12 +76,19 @@
   <%=h @depth.name %>
 </p>
 <p>
-  <b>Size tipology (km2):</b>
+  <b>Size tipology (km²):</b>
   <%=h @st.name %>
+</p>
+<p>
+  <b>Distance to source (km):</b>
+  <%=h @sampling_site.distance_to_source %>
 </p>
 
 </fieldset>
 
 <%= link_to 'Edit', edit_sampling_site_path(@sampling_site) %> |
 <%= link_to 'Back', sampling_sites_path %>
+<br />
+<%= @map.to_html %>
+<%= @map.div(:width => 600, :height => 400) %>
 

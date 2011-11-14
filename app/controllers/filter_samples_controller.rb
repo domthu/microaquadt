@@ -17,9 +17,32 @@ class FilterSamplesController < AuthController
     @filter_samples = FilterSample.all
     @title = "List Water samples"
 
+    filter_samples = FilterSample.find(:all) do
+        if params[:_search] == "true"
+            code =~ "%#{params[:code_name]}%" if params[:code_name].present?
+            barcode =~ "%#{params[:code_name]}%" if params[:code_name].present?
+            pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+            volume >= "%#{params[:volume]}%" if params[:volume].present?
+            num_filters >= "%#{params[:num_filters]}%" if params[:num_filters].present?
+        end
+        paginate :page => params[:page], :per_page => params[:rows]      
+        order_by "#{params[:sidx]} #{params[:sord]}"
+    end
+
+#<th>Sampling</th>
+#<th>Code</th>
+#<th>Partner</th>
+#<th>Filter</th>
+#<th>Tube</th>
+#<th>Volume</th>
+#<th>Barcode</th>
+
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @filter_samples }
+        format.html # index.html.erb
+        #format.xml  { render :xml => @filter_samples }
+        format.json { render :json => filter_samples.to_jqgrid_json(
+            [:id, "act",:sample_name,"code_name","partner_name","filter_name",:num_filters,:volume,"edit"],
+            params[:page], params[:rows], filter_samples.total_entries) }			
     end
   end
 
@@ -166,15 +189,15 @@ class FilterSamplesController < AuthController
       redirect_to(filter_samples_path)
     end
 
-    def get_code(psampling)
+    def get_code(psampling_id)
       @codegen = "???"
-      if psampling.nil?
-        return @codegen
-      end
-      psampling_id = psampling.id
       if psampling_id.nil?
         return @codegen
       end
+#      psampling_id = psampling.id
+#      if psampling_id.nil?
+#        return @codegen
+#      end
 
       @pt = Sampling.find(psampling_id)
       if not @pt.nil?
@@ -196,4 +219,34 @@ class FilterSamplesController < AuthController
 
 
 end
+
+
+#INDEX
+#<table>
+#  <tr>
+#    <th>Sampling</th>
+#    <th>Code</th>
+#    <th>Partner</th>
+#    <th>Filter</th>
+#    <th>Tube</th>
+#    <th>Volume</th>
+#    <th>Barcode</th>
+#  </tr>
+#<% @filter_samples.each do |filter_sample| %>
+#  <tr>
+#    <td><%=h filter_sample.sampling.verbose_me %></td>
+#    <td><%=h filter_sample.code %></td>
+#    <td><%=h filter_sample.sampling.partner.verbose_me %></td>
+#    <td><%=h filter_sample.wfilter.verbose_me %></td>
+#    <td><%=h filter_sample.num_filters %></td>
+#    <td><%=h filter_sample.volume %></td>
+#    <td><%=h filter_sample.barcode %></td>
+#    <% if  auth_sample_user(filter_sample.sampling_id) %>
+#      <td><%= link_to 'Show', filter_sample %></td>
+#      <td><%= link_to 'Edit', edit_filter_sample_path(filter_sample) or signed_in_and_master? %></td>
+#      <td><%= link_to 'Delete', filter_sample, :confirm => 'Are you sure?', :method => :delete %></td>
+#    <% end %>
+#  </tr>
+#<% end %>
+#</table>
 

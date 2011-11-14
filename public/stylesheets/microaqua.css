@@ -233,5 +233,7 @@ div.passicon div.form-item, div.usericon div.form-item {
 
 /* show edit new */
 .show{margin:5px; padding:5px; float:left; width:30%;}
-.taleft{text-align: left; margin: 5px;}
+.taleft{text-align: left; margin-left: 5px;}
+.taright{text-align: right; margin-right: 5px;}
+#gbox_ngbgrid{width:97%}
 

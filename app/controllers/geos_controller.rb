@@ -6,6 +6,16 @@ class GeosController < AuthController
     @geos = Geo.all
     @title = "Geographical positions"
 
+    @map = GMap.new("map_div_id")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([46.95, 7.416667], 4) #Berne Suisse
+     
+    for g in @geo
+        marker = GMarker.new([g.lat,  g.lon],
+          :title => g.name, :info_window => g.verbose_me)
+        @map.overlay_init(marker)
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @geos }
@@ -17,6 +27,14 @@ class GeosController < AuthController
   def show
     @geo = Geo.find(params[:id])
     @title = "Geographical positions"
+
+    @map = GMap.new("map_div_id")
+    @map.control_init(:large_map => true, :map_type => true)
+    @map.center_zoom_init([@geo.lat,  @geo.lon], 4)
+     
+    marker = GMarker.new([@geo.lat,  @geo.lon],
+      :title => @geo.name, :info_window => @geo.verbose_me)
+    @map.overlay_init(marker)
 
 #    #  <%=h @geo.country.name %>
 #    #@Mysql::Error: Unknown column 'countries.geo_id' in 'where clause': SELECT * FROM `countries` WHERE (`countries`.sampling_site_id = 1)  LIMIT 1

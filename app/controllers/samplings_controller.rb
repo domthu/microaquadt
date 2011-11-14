@@ -9,9 +9,26 @@ class SamplingsController < AuthController
     @samplings = Sampling.all
     @title = "List of samplings"
 
+    samplings = Sampling.find(:all) do
+        if params[:_search] == "true"
+            volume >= "%#{params[:volume]}%" if params[:volume].present?
+            code =~ "%#{params[:code]}%" if params[:code].present?
+        end
+        paginate :page => params[:page], :per_page => params[:rows]      
+        order_by "#{params[:sidx]} #{params[:sord]}"
+    end
+
+#    <th>Sampling site</th>
+#    <th>Volume (lt)</th>
+#    <th>Code</th>
+#    <th>Partner</th>
+
     respond_to do |format|
-      format.html # index.html.erbs directly,
-      format.xml  { render :xml => @samplings }
+        format.html # index.html.erbs directly,
+        #format.xml  { render :xml => @samplings }
+        format.json { render :json => samplings.to_jqgrid_json(
+            [:id, "act",:site_name,:volume,:code,"partner_name","edit"],
+            params[:page], params[:rows], samplings.total_entries) }			
     end
   end
 
@@ -259,3 +276,26 @@ class SamplingsController < AuthController
 
 end
 
+
+#INDEX
+#<table>
+#  <tr>
+#    <th>Sampling site</th>
+#    <th>Volume (lt)</th>
+#    <th>Code</th>
+#    <th>Partner</th>
+#  </tr>
+#<% @samplings.each do |sampling| %>
+#  <tr>
+#    <td><%=h SamplingSite.find(sampling.sampling_site_id).verbose_me %></td>
+#    <td><%=h sampling.volume %></td>
+#    <td><%=h sampling.code %></td>
+#    <td><%=h Partner.find(sampling.partner_id).verbose_me %></td>
+#    <td><%= link_to 'Show', sampling %></td>
+#    <% if auth_user(sampling.partner_id) or signed_in_and_master? %>
+#      <td><%= link_to 'Edit', edit_sampling_path(sampling) %></td>
+#      <td><%= link_to 'Delete', sampling, :confirm => 'Are you sure?', :method => :delete %></td>
+#    <% end %>
+#  </tr>
+#<% end %>
+#</table>

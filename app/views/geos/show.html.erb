@@ -1,3 +1,4 @@
+<%= GMap.header %>
 
 <table>
 <tr class="taleft" width="70%"><td class="taleft">
@@ -13,15 +14,19 @@
 </p>
 
 <p>
-  <b>Longitude:</b>
-  <%=h @geo.lon %>
+  <b>Longitude (Degrees Minutes Seconds):</b>
+  <%=h @geo.lng_name %>
 </p>
 
 <p>
-  <b>Latitude:</b>
-  <%=h @geo.lat %>
+  <b>Latitude (Degrees Minutes Seconds):</b>
+  <%=h @geo.lat_name %>
 </p>
 
+<p>
+  <b>Width (km):</b>
+  <%=h @geo.width %>
+</p>
 <p>
   <b>State:</b>
   <%=h @state.name %>
@@ -29,3 +34,7 @@
 
 <%= link_to 'Edit', edit_geo_path(@geo) %> |
 <%= link_to 'Back', geos_path %>
+<br />
+<%= @map.to_html %>
+<%= @map.div(:width => 600, :height => 400) %>
+

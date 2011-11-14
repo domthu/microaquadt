@@ -19,6 +19,10 @@
 #  end
 
 class Sampling < ActiveRecord::Base
+
+include ActionController::UrlWriter
+include SamplingsHelper
+
   validates_presence_of :code
   validates_uniqueness_of :code, :case_sensitive => false
   validates_length_of :code, :maximum=>15
@@ -27,7 +31,8 @@ class Sampling < ActiveRecord::Base
   validates_presence_of :volume
   validates_numericality_of :volume, :less_than => 100
 
-  validates_numericality_of :temperature, :allow_nil => true, :less_than => 100
+  validates_numericality_of :air_temperature, :allow_nil => true, :less_than => 100
+  validates_numericality_of :water_temperature, :allow_nil => true, :less_than => 100
   validates_numericality_of :moisture, :allow_nil => true, :less_than => 100
   validates_numericality_of :pressure, :allow_nil => true, :less_than => 100
   validates_numericality_of :windSpeed, :allow_nil => true, :less_than => 100
@@ -38,7 +43,15 @@ class Sampling < ActiveRecord::Base
   validates_numericality_of :turbidity, :allow_nil => true, :less_than => 100
   validates_numericality_of :salinity, :less_than => 100
   validates_numericality_of :tidalRange, :less_than => 100
+  validates_numericality_of :conductivity, :allow_nil => true, :less_than => 100
+  validates_numericality_of :phosphates, :allow_nil => true, :less_than => 100
+  validates_numericality_of :nitrates, :allow_nil => true, :less_than => 100
+  validates_numericality_of :ph, :allow_nil => true, :less_than => 14
 
+  validates_numericality_of :nitrogen, :allow_nil => true, :less_than => 100
+  validates_numericality_of :bod5, :allow_nil => true, :less_than => 100
+  validates_numericality_of :cod, :allow_nil => true, :less_than => 100
+  validates_numericality_of :h2osat, :allow_nil => true, :less_than => 100
 
   #name of the model in lowercase
   belongs_to :sampling_site  #, :null => false
@@ -93,6 +106,28 @@ class Sampling < ActiveRecord::Base
 #def self.flush_custom_finder_cache!
 #  @@product_names = nil
 #end
+
+
+    def edit
+        #include ActionController::UrlWriter 
+        #if auth_sample_user(self.id) or signed_in_and_master?
+        "<a href='" + edit_sampling_path(self) + "' title='Edit selected row'><div class='ui-pg-div' title='Edit selected row'><span class='ui-icon ui-icon-pencil' title='Edit selected row'></span></div></a>"
+        #else
+        #    ""
+        #end
+    end
+
+    def act
+        "<a href='" + sampling_path(self) + "' title='Show selected row'><div class='ui-pg-div' title='Show selected row'><span class='ui-icon ui-icon-info' title='Show selected row'></span></div></a>"
+    end
+
+    def site_name
+        SamplingSite.find(sampling_site_id).verbose_me
+    end
+
+    def partner_name
+        Partner.find(partner_id).verbose_me
+    end
 
 end
 
