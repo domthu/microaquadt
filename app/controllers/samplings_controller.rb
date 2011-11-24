@@ -167,7 +167,7 @@ class SamplingsController < AuthController
 
         #Change the child code attribute here because the parent code is yet created
         @fs = FilterSample.count(:all, :conditions => ['sampling_id = ' +@sampling.id.to_s ])
-        print ('----Change childs attributes here -------- parent (id-'+@sampling.id.to_s+') code is: '+@sampling.code+'. Childs are -['+@fs.to_sa+']-' )
+        print ('----Change childs attributes here -------- parent (id-'+@sampling.id.to_s+') code is: '+@sampling.code+'. Childs are -['+@fs.to_s+']-' )
         unless @fs.nil? and @fs > 0
             #generate the Microaqua code for all child yet created to this parent
             @fs = FilterSample.all(:conditions => ['sampling_id = ' +@sampling.id.to_s ])
