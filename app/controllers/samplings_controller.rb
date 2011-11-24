@@ -166,12 +166,16 @@ class SamplingsController < AuthController
       if @sampling.save
 
         #Change the child code attribute here because the parent code is yet created
-        @fs = FilterSample.count(:all, :conditions => ['sampling_id = ' +@sampling.id.to_s ])
-        print ('----Change childs attributes here -------- parent (id-'+@sampling.id.to_s+') code is: '+@sampling.code+'. Childs are -['+@fs.to_sa+']-' )
+        @fs = FilterSample.count(:all, :conditions => ['sampling_id = ' + @sampling.id.to_s ])
+        print ('----Change childs attributes here -------- parent (id-%s) code is:%s. Childs are -[%s]-', @sampling.id, @sampling.code, @fs )
         unless @fs.nil? and @fs > 0
             #generate the Microaqua code for all child yet created to this parent
             @fs = FilterSample.all(:conditions => ['sampling_id = ' +@sampling.id.to_s ])
-            @fs.each do |child|
+            @fs.each_with_index do |child, index|
+                print ('----Change childs Old code: (-%s)' , child.code)
+                child.code = child.code[0..10] + ("-F%02d" % (index + 1))
+                print ('----Change childs New code: (-%s)' , child.code)
+                child.save()
             end 
         end 
 
