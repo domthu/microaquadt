@@ -7,7 +7,6 @@ log/*.log
 tmp/
 tmp/*
 tmp/**/*
-doc/
 doc/api
 doc/app
 db/*.sqlite3
