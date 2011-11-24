@@ -82,9 +82,18 @@ class LandUseMappingsController < AuthController
   # DELETE /land_use_mappings/1
   # DELETE /land_use_mappings/1.xml
   def destroy
+
+    @title = "land use mapping"
+
+    @ss = SamplingSite.find(:first, :conditions => [ "land_use_mappings_id = ?", params[:id]])
+    if !@ss.nil?
+      flash[:error] = "This entry cannot be deleted until used by another entries in the system..."
+      redirect_to :action => "index"
+      return
+    end
+
     @land_use_mapping = LandUseMapping.find(params[:id])
     @land_use_mapping.destroy
-    @title = "land use mapping"
 
     respond_to do |format|
       format.html { redirect_to(land_use_mappings_url) }

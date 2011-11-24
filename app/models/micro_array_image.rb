@@ -1,5 +1,5 @@
 class MicroArrayImage < ActiveRecord::Base
-	validates_presence_of :name
+	validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
 	validates_length_of   :name, :maximum => 50
 
   belongs_to :microarraydata

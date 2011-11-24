@@ -1,7 +1,25 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
 <h1>Editing micro_array_validation</h1>
+
+<%= link_to 'Show', @micro_array_validation %> |
+<%= link_to 'Back', micro_array_validations_path %>
 
 <% form_for(@micro_array_validation) do |f| %>
   <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
 
   <div class="field select">
     <%= f.label :microarray_id, "Microarray" %><br />

@@ -10,7 +10,7 @@ class GeosController < AuthController
     @map.control_init(:large_map => true, :map_type => true)
     @map.center_zoom_init([46.95, 7.416667], 4) #Berne Suisse
      
-    for g in @geo
+    for g in @geos
         marker = GMarker.new([g.lat,  g.lon],
           :title => g.name, :info_window => g.verbose_me)
         @map.overlay_init(marker)
@@ -107,9 +107,17 @@ class GeosController < AuthController
       redirect_to geos_path
     else
 
+        @title = "Geographical position"
+
+        @ss = SamplingSite.find(:first, :conditions => [ "geos_id = ?", params[:id]])
+        if !@ss.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
         @geo = Geo.find(params[:id])
         @geo.destroy
-        @title = "Geographical position"
 
         respond_to do |format|
           format.html { redirect_to(geos_url) }

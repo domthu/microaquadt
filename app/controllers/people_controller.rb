@@ -78,13 +78,19 @@ class PeopleController < AuthController
   # DELETE /people/1
   # DELETE /people/1.xml
   def destroy
-    @person = Person.find(params[:id])
-    @person.destroy
-    @title = "people"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to altitude_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(people_url) }
-      format.xml  { head :ok }
+        @person = Person.find(params[:id])
+        @person.destroy
+        @title = "people"
+
+        respond_to do |format|
+          format.html { redirect_to(people_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 end

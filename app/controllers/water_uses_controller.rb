@@ -84,9 +84,17 @@ class WaterUsesController < AuthController
       redirect_to water_uses_path
     else
 
+        @title = "water use"
+
+        @ss = SamplingSite.find(:first, :conditions => [ "water_uses_id = ?", params[:id]])
+        if !@ss.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
         @water_use = WaterUse.find(params[:id])
         @water_use.destroy
-        @title = "water use"
 
         respond_to do |format|
           format.html { redirect_to(water_uses_url) }

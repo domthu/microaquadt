@@ -144,8 +144,9 @@ td.sidebar {
 }
 
 /* form_for */
-div.field{border: solid 0px red;float:left;}
-div.field, div.actions {margin: 5px 15px 5px 5px;}
+div.field{border: solid 0px red;float:none;clear: both;}
+div.datas{border: solid 0px red;float:left;}
+div.field, div.actions, div.datas {margin: 5px 15px 5px 5px;}
 div.select{margin:5px;margin-right:15px;}
 div.date {margin-right:15px;/*color: darkblue;*/}
 div.actions, div.seq {clear: both;}
@@ -194,16 +195,11 @@ div.select select{/*color: #000000;font-family: monospace;font-size: 1.1em;*/}
 }
 
 /* Users list index page */
-ul.users {
-  margin-top: 1em;
-}
-
-.users li {
-  list-style: none;
-}
+ul.users {margin-top: 1em;}
+.users li {list-style: none;}
 
 .transparent {background-color: transparent;}
-
+.hide{display: none;}
 /*    LOGIN     */
 .passicon {
     margin-left: 5px; height: 24px;
@@ -232,7 +228,7 @@ div.passicon div.form-item, div.usericon div.form-item {
 }
 
 /* show edit new */
-.show{margin:5px; padding:5px; float:left; width:30%;}
+.show{margin:5px; padding:5px; float:none; width:30%;}
 .taleft{text-align: left; margin-left: 5px;}
 .taright{text-align: right; margin-right: 5px;}
 #gbox_ngbgrid{width:97%}

@@ -1,7 +1,13 @@
 <h1>New partner</h1>
 
+<%= link_to 'Back', partners_path %>
+
 <% form_for(@partner) do |f| %>
   <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
 
   <div class="field txt">
     <%= f.label :fp7_Number %><br />

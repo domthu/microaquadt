@@ -1,5 +1,10 @@
 
 <h1>Comments for <%= @post.title %></h1>
+<%= link_to 'New comment', new_post_comment_path(@post) %> |
+<%= link_to 'Back to Post', @post %>
+<br />
+<br />
+
 <table>
   <tr>
     <th>Commenter</th>
@@ -18,7 +23,8 @@
 </table>
 
 <br />
-
+<br />
 <%= link_to 'New comment', new_post_comment_path(@post) %> |
 <%= link_to 'Back to Post', @post %>
+<br />
 

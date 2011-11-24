@@ -78,13 +78,34 @@ class CountriesController < ApplicationController
   # DELETE /countries/1
   # DELETE /countries/1.xml
   def destroy
-    @country = Country.find(params[:id])
-    @country.destroy
-    @title = "Country"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to altitude_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(countries_url) }
-      format.xml  { head :ok }
+        @title = "Country"
+
+        @geo = Geo.find(:first, :conditions => [ "country_id = ?", params[:id]])
+        if !@geo.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries (Geo) in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
+        @ss = Partner.find(:first, :conditions => [ "country_id = ?", params[:id]])
+        if !@ss.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries (Partner) in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
+        @country = Country.find(params[:id])
+        @country.destroy
+
+        respond_to do |format|
+          format.html { redirect_to(countries_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 end

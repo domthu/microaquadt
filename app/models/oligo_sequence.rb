@@ -1,7 +1,7 @@
 class OligoSequence < ActiveRecord::Base
-  validates_presence_of :name
+  validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
   validates_uniqueness_of :name, :case_sensitive => false
-  validates_presence_of :DNA_Sequence
+  validates_presence_of :DNA_Sequence, :message => "Can't be empty, field is mandatory. "
   validates_uniqueness_of :DNA_Sequence, :case_sensitive => false
 
   belongs_to :partner

@@ -11,10 +11,17 @@
 
 <h1>Editing micro array </h1>
 
+<%= link_to 'Show', @micro_array %> |
+<%= link_to 'Back', micro_arrays_path %>
+
 <% form_for(@micro_array) do |f| %>
   <%= f.error_messages %>
 
-<fieldset><legend class="leg">General data</legend>
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+
+<fieldset><legend class="leg">GENERAL DATA</legend>
   <div class="field select">
     <%= f.label :partner_id, "Partner" %><br />
     <div style="display:none;">  select :micro_array,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]} </div>

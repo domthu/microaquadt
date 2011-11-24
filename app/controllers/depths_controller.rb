@@ -77,6 +77,13 @@ class DepthsController < ApplicationController
       redirect_to depths_path
     else
 
+        @ss = SamplingSite.find(:first, :conditions => [ "depth_id = ?", params[:id]])
+        if !@ss.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
         @depth = Depth.find(params[:id])
         @depth.destroy
 

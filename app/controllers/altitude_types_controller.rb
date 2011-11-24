@@ -77,6 +77,13 @@ class AltitudeTypesController < ApplicationController
       redirect_to altitude_types_path
     else
 
+        @ss = SamplingSite.find(:first, :conditions => [ "altitude_types_id = ?", params[:id]])
+        if !@ss.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
         @altitude_type = AltitudeType.find(params[:id])
         @altitude_type.destroy
 

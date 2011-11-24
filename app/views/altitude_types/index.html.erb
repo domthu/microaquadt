@@ -1,4 +1,24 @@
-<h1>Listing altitude types</h1>
+<table>
+<tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "land use mapping", land_use_mappings_path %></li>
+      <li><%= link_to "water use", water_uses_path %></li>
+      <li><%= link_to "water type", water_types_path %></li>
+      <li><%= link_to "geo", geos_path %></li>
+      <li><%= link_to "alt. type", altitude_types_path %></li>
+      <li><%= link_to "catchment area", catchment_areas_path %></li>
+      <li><%= link_to "depth", depths_path %></li>
+      <li><%= link_to "size type", size_typologies_path %></li>
+      <li><%= link_to "geology", geologies_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+
+<h1>Altitude types</h1>
+<%= link_to 'New altitude_type', new_altitude_type_path %>
+<br />
+<br />
 
 <table>
   <tr>
@@ -16,5 +36,7 @@
 </table>
 
 <br />
-
+<br />
 <%= link_to 'New altitude_type', new_altitude_type_path %>
+<br />
+

@@ -11,7 +11,7 @@ include ActionController::UrlWriter
 
 
   #validates_presence_of :code, :water_type, :water_use, :geo
-  validates_presence_of :code
+  validates_presence_of :code, :message => "Can't be empty, field is mandatory. "
   validates_uniqueness_of :code, :case_sensitive => false
   #, :scope => :sampling_sites_id  --> Kappao undefined method `sampling_sites_id'
 
@@ -21,14 +21,14 @@ include ActionController::UrlWriter
   belongs_to :water_use  #In this case SamplingSite have field water_uses_id
   belongs_to :geo
   has_one :land_use_mapping
-  has_many :samplings, :dependent => :destroy
+  has_many :samplings, :dependent => :destroy, :class_name => 'Sampling'
 
   belongs_to :altitude_type
   belongs_to :catchment_area
   belongs_to :depth
   belongs_to :geology
   belongs_to :size_typology
-  belongs_to :wfilter
+  #belongs_to :wfilter
 
 
   #In order for form_for to work,

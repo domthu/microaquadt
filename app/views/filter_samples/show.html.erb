@@ -1,11 +1,18 @@
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
-      <li><%= link_to "code type", code_types_path %></li>
-      <li><%= link_to "filter", wfilters_path %></li>
+      <li class="hide" style="display: none;"><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "protocol filter", wfilters_path %></li>
     </ul>
   </td></tr>
 </table>
+
+<% if  auth_sample_user(@filter_sample.sampling_id) or signed_in_and_master? %>
+  <%= link_to 'Edit', edit_filter_sample_path(@filter_sample) %> |
+<% end %>
+<%= link_to 'Back', filter_samples_path %>
+<br />
+<br />
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
@@ -15,23 +22,33 @@
     </div>
 
     <div class="show cod">
-      <b>Code:</b>
-      <h1><%=h @filter_sample.code %></h1> 
+      <b>Filter Microaqua code:</b>
+      <h3><%=h @filter_sample.code %></h3> 
     </div>
 
     <div class="show num">
-      <b>Pore size - Number of filters - Volume:</b>
-      <h1><%=h @filter_sample.verbose_me %></h1> 
+      <b>Pore size:</b>
+      <h3><%=h @filter_sample.pore_size %> µm</h3> 
+    </div>
+
+    <div class="show num">
+      <b>Number of filters:</b>
+      <h3><%=h @filter_sample.num_filters %></h3> 
     </div>
 
     <div class="show num">
       <b>Volume:</b>
-      <h1><%=h @filter_sample.volume %></h1> 
+      <h3><%=h @filter_sample.volume %> lt</h3> 
     </div>
 
     <div class="show cod">
       <b>Partner barcode:</b>
-      <h1><%=h @filter_sample.barcode %></h1>
+      <h3><%=h @filter_sample.barcode %></h3>
+    </div>
+
+    <div class="show date">
+      <b>Filtering date:</b>
+      <h3><%=h @filter_sample.samplingDate %></h3>
     </div>
 
 <p>

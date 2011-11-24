@@ -78,13 +78,27 @@ class WfiltersController < AuthController
   # DELETE /wfilters/1
   # DELETE /wfilters/1.xml
   def destroy
-    @wfilter = Wfilter.find(params[:id])
-    @wfilter.destroy
-    @title = "filter"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to altitude_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(wfilters_url) }
-      format.xml  { head :ok }
+        @title = "filter"
+
+        @filter_sample = FilterSample.find(:first, :conditions => [ "wfilter_id = ?", params[:id]])
+        if !@filter_sample.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries (Filter sample) in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
+        @wfilter = Wfilter.find(params[:id])
+        @wfilter.destroy
+
+        respond_to do |format|
+          format.html { redirect_to(wfilters_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 end

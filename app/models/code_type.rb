@@ -1,8 +1,8 @@
 class CodeType < ActiveRecord::Base
-	validates_presence_of :code
+	validates_presence_of :code, :message => "Can't be empty, field is mandatory. "
 	validates_length_of   :code, :maximum => 1
-  validates_uniqueness_of :code, :case_sensitive => false
-	validates_presence_of :name
+    validates_uniqueness_of :code, :case_sensitive => false
+	validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
 	validates_length_of   :name, :maximum => 50
 
   belongs_to :partner  #, :null => false  --> Unknown key(s): null

@@ -4,13 +4,16 @@
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
-      <li><%= link_to "code type", code_types_path %></li>
-      <li><%= link_to "filter", wfilters_path %></li>
+      <li class="hide" style="display: none;"><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "protocol filter", wfilters_path %></li>
     </ul>
   </td></tr>
 </table>
 
-<h1>Listing filter samples</h1>
+<h1>Filter samples</h1>
+<%= link_to 'New filter sample', new_filter_sample_path %>
+<br />
+<br />
 
 <script type="text/javascript" >
      function handleSelection(id) {
@@ -21,16 +24,18 @@
      }
 //use, :selection_handler => "handleSelection", :direct_selection => true
 //use, :grid_complete => "grid_complete" 
+//, :hidden => true
 </script>
 
-<%= jqgrid("List of sample's filters: paginate, ordered and search", "ngbgrid", filter_samples_path,
+
+<%= jqgrid("List of sample's filters: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", filter_samples_path,
 	[
-		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false, :sortable => false, :editable => false, :hidden => true}, 
         { :field => "act", :label => "", :width => 35 , :resizable => false },
-		{ :field => "sample_name", :label => "Sampling", :sortable => true, :editable => false, :width => "250"  },
-		{ :field => "code_name", :label => "Code", :width => "250" },
-		{ :field => "partner_name", :label => "Partner", :sortable => true, :editable => false, :width => "100" },
-		{ :field => "filter_name", :label => "pore size (µm)", :sortable => true, :editable => false, :width => 60, :class => "taright" },
+		{ :field => "sample_name", :label => "Sampling", :sortable => true, :editable => false, :width => 120 },
+		{ :field => "code", :label => "Filter Microaqua code", :width => "250" },
+		{ :field => "barcode", :label => "Partner barcode", :sortable => true, :editable => false, :width => 250 },
+		{ :field => "filter_name", :label => "pore size (µm)", :sortable => true, :editable => false, :width => 100, :class => "taright" },
 		{ :field => "num_filters", :label => "n° Tube", :width => 50, :class => "taright" },
 		{ :field => "volume", :label => "Volume (lt)", :width => 70, :class => "taright" },
 		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35 , :resizable => false},
@@ -42,12 +47,13 @@
         :rows_per_page => "50", 
         :autowidth => 'false', 
         :height => 400, 
-        :rownumbers => 'true'
+        :rownumbers => 'false'
  }
 
 ) %>
 
 <br />
-
+<br />
 <%= link_to 'New filter sample', new_filter_sample_path %>
+<br />
 

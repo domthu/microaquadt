@@ -329,16 +329,28 @@ class MicroArraysController < ApplicationController
   # DELETE /micro_arrays/1
   # DELETE /micro_arrays/1.xml
   def destroy
-    @micro_array = MicroArray.find(params[:id])
-    @micro_array.destroy
-    @title = "Micro array"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to water_types_path
+    else
 
-    @filename = File.join(@micro_array.gpr_file_title, @micro_array.gpr_title)
-    File.delete(@filename) if File.exist?(@filename)
+        @micro_array = MicroArray.find(params[:id])
+        @micro_array.destroy
+        @title = "Micro array"
 
-    respond_to do |format|
-      format.html { redirect_to(micro_arrays_url) }
-      format.xml  { head :ok }
+        #Cascading delete all children
+        # --> delete all micro_array_validations
+        # --> delete all micro_array_analysis_files
+        # --> delete all micro_array_datas
+        # --> delete all micro_array_images
+
+        @filename = File.join(@micro_array.gpr_file_title, @micro_array.gpr_title)
+        File.delete(@filename) if File.exist?(@filename)
+
+        respond_to do |format|
+          format.html { redirect_to(micro_arrays_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 

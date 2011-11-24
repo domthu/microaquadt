@@ -1,9 +1,14 @@
 class MicroArray < ActiveRecord::Base
-  validates_presence_of :gpr_title
-  validates_presence_of :gpr_file_title
-  validates_presence_of :gpr_file
+  validates_presence_of :gpr_title, :message => "Can't be empty, field is mandatory. "
+  validates_presence_of :gpr_file_title, :message => "Can't be empty, field is mandatory. "
+  validates_presence_of :gpr_file, :message => "Can't be empty, field is mandatory. "
 
   belongs_to :partner
+  has_many :micro_array_validations, :dependent => :destroy, :class_name => 'MicroArrayValidation'
+  has_many :micro_array_images, :dependent => :destroy, :class_name => 'MicroArrayImage'
+  has_many :micro_array_datas, :dependent => :destroy, :class_name => 'MicroArrayData'
+  has_many :micro_array_analysis_files, :dependent => :destroy, :class_name => 'MicroArrayAnalysisFile'
+
 
   #In order for form_for to work,
   attr_reader :verbose_me

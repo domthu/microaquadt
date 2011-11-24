@@ -79,13 +79,20 @@ class MicropostsController < AuthController
   # DELETE /microposts/1
   # DELETE /microposts/1.xml
   def destroy
-    @micropost = Micropost.find(params[:id])
-    @micropost.destroy
-    @title = "micropost"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to altitude_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(microposts_url) }
-      format.xml  { head :ok }
+        @title = "micropost"
+
+        @micropost = Micropost.find(params[:id])
+        @micropost.destroy
+
+        respond_to do |format|
+          format.html { redirect_to(microposts_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 end

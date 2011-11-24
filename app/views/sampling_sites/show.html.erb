@@ -16,79 +16,83 @@
   </td></tr>
 </table>
 
+<%= link_to 'Edit', edit_sampling_site_path(@sampling_site) %> |
+<%= link_to 'Back', sampling_sites_path %>
+<br />
+<br />
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
-<p>
-  <b>Code:</b>
-  <%=h @sampling_site.code %>
-</p>
-<p>
-  <b>Name:</b>
-  <%=h @sampling_site.name %>
-</p>
-<p>
-  <b>Water type:</b>
-  <%=h @sampling_site.water_type %>
-  <%=h @wt.code + " " + @wt.name %>
-</p>
+  <div class="show cod">
+      <b>Code:</b>
+      <h3><%=h @sampling_site.code %></h3>
+  </div>
+  <div class="show cod">
+      <b>Name:</b>
+      <h3><%=h @sampling_site.name %></h3>
+  </div>
 
-<p>
-  <b>Water use:</b>
-  <%=h @wu.code + " " + @wu.name %>
-</p>
+  <div class="show link">
+      <b>Site:</b>
+      <h3><%= link_to @sampling_site.name, @sampling_site.link, :target => "_blank" %></h3>
+  </div>
 
-<p>
-  <b>Land use mapping:</b>
-  <%=h @lum.name %>
-</p>
+  <div class="show select">
+      <b>Water type:</b>
+      <%=h @sampling_site.water_type %>
+      <%=h @wt.code + " " + @wt.name %>
+  </div>
 
-<p>
-  <b>Geo:</b>
-  <%=h @geo.verbose_me %>
-</p>
+  <div class="show select">
+      <b>Water use:</b>
+      <%=h @wu.code + " " + @wu.name %>
+  </div>
 
-<p>
-  <b>Site:</b>
-  <%= link_to @sampling_site.name, @sampling_site.link, :target => "_blank" %>
-</p>
+  <div class="show select">
+      <b>Land use mapping:</b>
+      <%=h @lum.name %>
+  </div>
 
+  <div class="show select">
+      <b>Geo:</b>
+      <%=h @geo.verbose_me %>
+  </div>
 
 </fieldset>
 
 <fieldset><legend class="leg">ENVIRONMENTAL DATA</legend>
 
-<p>
+<div class="datas select">
   <b>Altitude type (m):</b>
   <%=h @at.name %>
-</p>
+</div>
 
-<p>
+<div class="datas select">
   <b>Catchment area (km²):</b>
   <%=h @ca.name %>
-</p>
-<p>
+</div>
+<div class="datas select">
   <b>Geology:</b>
   <%=h @geol.name %>
-</p>
-<p>
+</div>
+<div class="datas select">
   <b>Depth (m):</b>
   <%=h @depth.name %>
-</p>
-<p>
+</div>
+<div class="datas select">
   <b>Size tipology (km²):</b>
   <%=h @st.name %>
-</p>
-<p>
+</div>
+<div class="datas select">
   <b>Distance to source (km):</b>
   <%=h @sampling_site.distance_to_source %>
-</p>
+</div>
 
 </fieldset>
 
-<%= link_to 'Edit', edit_sampling_site_path(@sampling_site) %> |
-<%= link_to 'Back', sampling_sites_path %>
-<br />
 <%= @map.to_html %>
 <%= @map.div(:width => 600, :height => 400) %>
+<br />
+<%= link_to 'Edit', edit_sampling_site_path(@sampling_site) %> |
+<%= link_to 'Back', sampling_sites_path %>
 

@@ -73,12 +73,20 @@ class MeteorologicalDatasController < AuthController
   # DELETE /meteorological_datas/1
   # DELETE /meteorological_datas/1.xml
   def destroy
-    @meteorological_data = MeteorologicalData.find(params[:id])
-    @meteorological_data.destroy
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to altitude_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(meteorological_datas_url) }
-      format.xml  { head :ok }
+        @title = "Meteorological data"
+
+        @meteorological_data = MeteorologicalData.find(params[:id])
+        @meteorological_data.destroy
+
+        respond_to do |format|
+          format.html { redirect_to(meteorological_datas_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 end

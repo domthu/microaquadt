@@ -1,9 +1,15 @@
 <h1>New oligo_sequence</h1>
 
+<%= link_to 'Back', oligo_sequences_path %>
+
 <% form_for(@oligo_sequence) do |f| %>
   <%= f.error_messages %>
 
-<fieldset><legend class="leg">General data</legend>
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+
+<fieldset><legend class="leg">GENERAL DATA</legend>
   <div class="field txt">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -15,7 +21,8 @@
 
 </fieldset>
 
-<fieldset><legend class="leg">Sequence - Organism</legend>
+<fieldset><legend class="leg">SEQUENCE - ORGANISM DATA</legend>
+
   <div class="field seq"><h3>
     <%= f.label :DNA_Sequence, "DNA sequence" %><br />
     <%= f.text_field :DNA_Sequence %>

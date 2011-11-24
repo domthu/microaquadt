@@ -77,6 +77,13 @@ class SizeTypologiesController < ApplicationController
       redirect_to size_typologies_path
     else
 
+        @ss = SamplingSite.find(:first, :conditions => [ "size_typologies_id = ?", params[:id]])
+        if !@ss.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
         @size_typology = SizeTypology.find(params[:id])
         @size_typology.destroy
 

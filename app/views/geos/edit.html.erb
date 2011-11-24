@@ -9,8 +9,15 @@
 
 <h1>Editing Geographical position</h1>
 
+<%= link_to 'Show', @geo %> |
+<%= link_to 'Back', geos_path %>
+
 <% form_for(@geo) do |f| %>
   <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
 
   <div class="field">
     <%= f.label :name %><br />

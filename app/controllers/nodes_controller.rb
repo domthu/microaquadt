@@ -82,13 +82,20 @@ class NodesController < ApplicationController
   # DELETE /nodes/1
   # DELETE /nodes/1.xml
   def destroy
-    @node = Node.find(params[:id])
-    @node.destroy
-    @title = "Taxonomy node - organism relationships"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to altitude_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(nodes_url) }
-      format.xml  { head :ok }
+        @title = "Taxonomy node - organism relationships"
+
+        @node = Node.find(params[:id])
+        @node.destroy
+
+        respond_to do |format|
+          format.html { redirect_to(nodes_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 

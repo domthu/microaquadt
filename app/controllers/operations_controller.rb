@@ -107,13 +107,20 @@ class OperationsController < ApplicationController
   # DELETE /operations/1
   # DELETE /operations/1.xml
   def destroy
-    @operation = Operation.find(params[:id])
-    @operation.destroy
-    @title = "Operation"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to altitude_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(operations_url) }
-      format.xml  { head :ok }
+        @title = "Operation"
+
+        @operation = Operation.find(params[:id])
+        @operation.destroy
+
+        respond_to do |format|
+          format.html { redirect_to(operations_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 

@@ -1,5 +1,6 @@
 class Partner < ActiveRecord::Base
-	validates_presence_of :fp7_Number, :name, :email, :country_id
+	validates_presence_of :fp7_Number, :name, :email, :country_id, :message => "Can't be empty, field is mandatory. "
+
   #validates_length_of :state, :maximum=>2
 
   EmailRegex = /\A[\w+\-._]+@[a-z\d\-.]+\.[a-z]+\z/i

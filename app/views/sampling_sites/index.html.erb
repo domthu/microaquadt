@@ -18,7 +18,10 @@
   </td></tr>
 </table>
 
-<h1>Listing sampling sites</h1>
+<h1>Sampling sites</h1>
+<%= link_to 'New sampling_site', new_sampling_site_path %>
+<br />
+<br />
 
 <script type="text/javascript" >
      function handleSelection(id) {
@@ -32,9 +35,9 @@
 </script>
 
 
-<%= jqgrid("List of sampling sites: paginate, ordered and search", "ngbgrid", sampling_sites_path,
+<%= jqgrid("List of sampling sites:  you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", sampling_sites_path,
 	[
-		{ :field => "id", :label => "ID", :width => 35, :resizable => false },
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false, :sortable => false, :editable => false, :hidden => true},
         { :field => "act", :label => "", :width => 35 , :resizable => false },
 		{ :field => "code", :label => "Code" },
 		{ :field => "name", :label => "Name" },
@@ -47,8 +50,10 @@
     {   :add => false, 
         :edit => false, 
         :inline_edit => false, 
+        :rows_per_page => "30", 
         :height => 400,
-        :delete => false }
+        :delete => false, 
+        :rownumbers => 'false' }
     
 ) %>
 

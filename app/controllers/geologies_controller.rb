@@ -77,6 +77,13 @@ class GeologiesController < ApplicationController
       redirect_to geologies_path
     else
 
+        @ss = SamplingSite.find(:first, :conditions => [ "geologies_id = ?", params[:id]])
+        if !@ss.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
         @geology = Geology.find(params[:id])
         @geology.destroy
 

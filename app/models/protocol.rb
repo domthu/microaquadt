@@ -1,5 +1,5 @@
 class Protocol < ActiveRecord::Base
-  validates_presence_of :name
+  validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
 
   belongs_to :sampling
   has_many :operations, :dependent => :destroy

@@ -2,6 +2,10 @@ class FilterSamplesController < AuthController
 
   #only Requiring the right user to change own contents
   before_filter :correct_user, :only => [:edit, :update, :delete]
+#  before_create :set_foo_to_now  --> Rails 3
+#  def set_foo_to_now
+#    self.samplingDate = DateTime.now
+#  end
 
 #http://apidock.com/rails/ActionView/Helpers/FormHelper/form_for
 #Routers:
@@ -14,20 +18,50 @@ class FilterSamplesController < AuthController
   # GET /filter_samples
   # GET /filter_samples.xml
   def index
-    @filter_samples = FilterSample.all
-    @title = "List Water samples"
+    @title = "List filter samples"
 
-    filter_samples = FilterSample.find(:all) do
-        if params[:_search] == "true"
-            code =~ "%#{params[:code_name]}%" if params[:code_name].present?
-            barcode =~ "%#{params[:code_name]}%" if params[:code_name].present?
-            pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
-            volume >= "%#{params[:volume]}%" if params[:volume].present?
-            num_filters >= "%#{params[:num_filters]}%" if params[:num_filters].present?
+    if params[:id].present?
+        logger.warn("#{Time.now} - filter_sampling filtered by: #{params[:id]}")
+        #@filter_samples = FilterSample.all(:conditions => [ "sampling_id = ?", params[:id]])
+        #@cond = params[:id]
+        filter_samples = FilterSample.find(:all, :conditions => [ "sampling_id = ?", params[:id]]) do
+            if params[:_search] == "true"
+                code =~ "%#{params[:code_name]}%" if params[:code_name].present?
+                barcode =~ "%#{params[:code_name]}%" if params[:code_name].present?
+                pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+                volume >= "%#{params[:volume]}%" if params[:volume].present?
+                num_filters >= "%#{params[:num_filters]}%" if params[:num_filters].present?
+            end
+            paginate :page => params[:page], :per_page => params[:rows]      
+            order_by "#{params[:sidx]} #{params[:sord]}"
         end
-        paginate :page => params[:page], :per_page => params[:rows]      
-        order_by "#{params[:sidx]} #{params[:sord]}"
+    else
+        #@filter_samples = FilterSample.all
+        #@cond = "sampling_id"
+        filter_samples = FilterSample.find(:all) do
+            if params[:_search] == "true"
+                code =~ "%#{params[:code_name]}%" if params[:code_name].present?
+                barcode =~ "%#{params[:code_name]}%" if params[:code_name].present?
+                pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+                volume >= "%#{params[:volume]}%" if params[:volume].present?
+                num_filters >= "%#{params[:num_filters]}%" if params[:num_filters].present?
+            end
+            paginate :page => params[:page], :per_page => params[:rows]      
+            order_by "#{params[:sidx]} #{params[:sord]}"
+        end
     end
+#    filter_samples = FilterSample.find(:all, :conditions => [ "sampling_id = ?", @cond]) do
+#    #@filter_samples.each do |filter_samples|  Kappao
+#        if params[:_search] == "true"
+#            code =~ "%#{params[:code_name]}%" if params[:code_name].present?
+#            barcode =~ "%#{params[:code_name]}%" if params[:code_name].present?
+#            pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+#            volume >= "%#{params[:volume]}%" if params[:volume].present?
+#            num_filters >= "%#{params[:num_filters]}%" if params[:num_filters].present?
+#        end
+#        paginate :page => params[:page], :per_page => params[:rows]      
+#        order_by "#{params[:sidx]} #{params[:sord]}"
+#    end
 
 #<th>Sampling</th>
 #<th>Code</th>
@@ -41,7 +75,7 @@ class FilterSamplesController < AuthController
         format.html # index.html.erb
         #format.xml  { render :xml => @filter_samples }
         format.json { render :json => filter_samples.to_jqgrid_json(
-            [:id, "act",:sample_name,"code_name","partner_name","filter_name",:num_filters,:volume,"edit"],
+            [:id, "act",:sample_name,"code","barcode","filter_name",:num_filters,:volume,"edit"],
             params[:page], params[:rows], filter_samples.total_entries) }			
     end
   end
@@ -53,7 +87,7 @@ class FilterSamplesController < AuthController
     if @filter_sample.nil?
         redirect_to :action => "index"
     end
-    @title = "Water samples"
+    @title = "Filter samples"
     @s = Sampling.find(@filter_sample.sampling_id)
 
     respond_to do |format|
@@ -66,7 +100,7 @@ class FilterSamplesController < AuthController
   # GET /filter_samples/new.xml
   def new
     @filter_sample = FilterSample.new
-    @title = "Water sample"
+    @title = "Filter sample"
 
     @s_c = Sampling.count()
     if @s_c.nil? or @s_c == 0
@@ -100,7 +134,7 @@ class FilterSamplesController < AuthController
   # GET /filter_samples/1/edit
   def edit
     #@filter_sample = FilterSample.find(params[:id])  --> Yet done in def correct_user
-    @title = "Water sample"
+    @title = "Filter sample"
     @code = @filter_sample.code
     @sampling = Sampling.find(@filter_sample.sampling_id)
     #Cannot change the sample set during creation
@@ -112,7 +146,7 @@ class FilterSamplesController < AuthController
   # POST /filter_samples.xml
   def create
     @filter_sample = FilterSample.new(params[:filter_sample])
-    @title = "Water sample"
+    @title = "Filter sample"
 
 #    @sx = Sampling.find(@filter_sample.sampling_id)
 #    if @sx.nil?
@@ -129,11 +163,24 @@ class FilterSamplesController < AuthController
         @filter_sample.pore_size = 0  
     end 
 
+#    if @filter_sample.samplingDate.nil?
+#        @sampling = Sampling.find(@filter_sample.sampling_id)
+#        @filter_sample.samplingDate = @sampling.samplingDate  
+#    @filter_sample.samplingDate = DateTime.now
+
     respond_to do |format|
       if @filter_sample.save
         format.html { redirect_to(@filter_sample, :notice => 'FilterSample was successfully created.') }
         format.xml  { render :xml => @filter_sample, :status => :created, :location => @filter_sample }
       else
+        @s_c = Sampling.count()
+        @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+        if @pt.nil?
+          @s = Sampling.all()
+        else
+          @s = Sampling.all(:conditions => [ "partner_id = ?", @pt.id])
+        end
+        @wf = Wfilter.all()
         format.html { render :action => "new" }
         format.xml  { render :xml => @filter_sample.errors, :status => :unprocessable_entity }
       end
@@ -144,7 +191,7 @@ class FilterSamplesController < AuthController
   # PUT /filter_samples/1.xml
   def update
     #@filter_sample = FilterSample.find(params[:id])  --> Yet done in def correct_user
-    @title = "Water sample"
+    @title = "Filter sample"
 
     respond_to do |format|
       if @filter_sample.update_attributes(params[:filter_sample])
@@ -160,9 +207,12 @@ class FilterSamplesController < AuthController
   # DELETE /filter_samples/1
   # DELETE /filter_samples/1.xml
   def destroy
+
+    @title = "Filter sample"
+
     @filter_sample = FilterSample.find(params[:id])
+    flash[:notice] = "Deleted filter sample: " + @filter_sample.verbose_me
     @filter_sample.destroy
-    @title = "Water sample"
 
     respond_to do |format|
       format.html { redirect_to(filter_samples_url) }
@@ -185,7 +235,7 @@ class FilterSamplesController < AuthController
     end
 
     def reroute()
-      flash[:notice] = "Only the partner who create the water sample can modify it."
+      flash[:notice] = "Only the partner who create the Filter sample can modify it."
       redirect_to(filter_samples_path)
     end
 
@@ -204,15 +254,29 @@ class FilterSamplesController < AuthController
           @codegen = @pt.code
       end      
       @codegen += "-"
+      @codegen += "F"
     
       #@cnt = FilterSample.calculate(:count, :all, :conditions => ['sampling_id = ' + @pid.to_s ])
       @cnt = FilterSample.count(:conditions => ['sampling_id = ' + psampling_id.to_s ])
       if @cnt.nil? or @cnt == 0
         @cnt = 1
       else
-         @cnt += 1
+         @cnt += 1 
       end
-      @codegen += "%03d" % @cnt
+
+      #2011 create increment number by registered date
+      #@cnt = FilterSample.created_at(Time.now)
+      #undefined method `where' for #<Class:0xb6d5ec18>
+      #@cnt = FilterSample.where("samplingDate >= :start AND samplingDate < :end",
+      #         :start => Date.today,
+      #         :end   => 1.day.from_now.to_date)
+#      @cnt = FilterSample.count(:conditions => ['samplingDate >= ? AND samplingDate < ? ', Date.today, 2.day.from_now.to_date ]
+#      if @cnt.nil? or @cnt == 0
+#        @cnt = 1
+#      else
+#         @cnt += 1 
+#      end
+      @codegen += "%02d" % @cnt
 
       return @codegen
     end

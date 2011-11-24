@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  validates_presence_of :firstname, :LastName, :email
+  validates_presence_of :firstname, :LastName, :email, :message => "Can't be empty, field is mandatory. "
 
   EmailRegex = /\A[\w+\-._]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates_format_of   :email, :with => EmailRegex

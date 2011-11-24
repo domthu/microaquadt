@@ -9,8 +9,14 @@
 
 <h1>New Geographical position</h1>
 
+<%= link_to 'Back', geos_path %>
+
 <% form_for(@geo) do |f| %>
   <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
 
   <div class="field cod">
     <%= f.label :name %><br />

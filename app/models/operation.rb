@@ -1,6 +1,6 @@
 class Operation < ActiveRecord::Base
-  validates_presence_of :name
-  validates_presence_of :step
+  validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
+  validates_presence_of :step, :message => "Can't be empty, field is mandatory. "
   validates_numericality_of :step, :allow_nil => false, :less_than => 100
 
   belongs_to :protocol

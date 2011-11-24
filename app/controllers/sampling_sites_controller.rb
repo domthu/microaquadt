@@ -172,9 +172,18 @@ class SamplingSitesController < AuthController
       redirect_to sampling_sites_path
     else
 
-        @sampling_site = SamplingSite.find(params[:id])
-        @sampling_site.destroy
         @title = "Sampling site"
+
+        @ws = Sampling.find(:first, :conditions => [ "sampling_site_id = ?", params[:id]])
+        if !@ws.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries (Water sample) in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
+        @sampling_site = SamplingSite.find(params[:id])
+        flash[:notice] = "Deleted sampling site: " + @sampling_site.verbose_me
+        @sampling_site.destroy
 
         respond_to do |format|
           format.html { redirect_to(sampling_sites_url) }

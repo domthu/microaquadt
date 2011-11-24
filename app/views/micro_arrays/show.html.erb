@@ -10,6 +10,11 @@
   </td></tr>
 </table>
 
+<% if auth_user(@micro_array.partner_id) %>
+  <%= link_to 'Edit', edit_micro_array_path(@micro_array) %> |
+<% end %>
+<%= link_to 'Back', micro_arrays_path %>
+
 <p>
   <b>Gpr title:</b>
   <%=h @micro_array.gpr_title %>

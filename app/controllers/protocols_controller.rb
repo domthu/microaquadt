@@ -105,13 +105,20 @@ class ProtocolsController < AuthController
   # DELETE /protocols/1
   # DELETE /protocols/1.xml
   def destroy
-    @protocol = Protocol.find(params[:id])
-    @protocol.destroy
-    @title = "Protocol"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to water_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(protocols_url) }
-      format.xml  { head :ok }
+        @title = "Protocol"
+
+        @protocol = Protocol.find(params[:id])
+        @protocol.destroy
+
+        respond_to do |format|
+          format.html { redirect_to(protocols_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 

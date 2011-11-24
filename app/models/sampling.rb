@@ -23,12 +23,12 @@ class Sampling < ActiveRecord::Base
 include ActionController::UrlWriter
 include SamplingsHelper
 
-  validates_presence_of :code
+  validates_presence_of :code, :message => "Can't be empty, field is mandatory. "
   validates_uniqueness_of :code, :case_sensitive => false
   validates_length_of :code, :maximum=>15
   #, :scope => :sampling_id --> kappao undefined method `samplingS_id'
 
-  validates_presence_of :volume
+  validates_presence_of :volume, :message => "Can't be empty, field is mandatory. "
   validates_numericality_of :volume, :less_than => 100
 
   validates_numericality_of :air_temperature, :allow_nil => true, :less_than => 100
@@ -63,7 +63,18 @@ include SamplingsHelper
   #COLLECTION:
   #     Firm#clients (similar to Clients.find :all, :conditions =&gt; [&quot;firm_id = ?&quot;, id])
   #:dependent => :delete_all vs :destroy (call destroy children event)
-  has_many :filter_samples, :dependent => :destroy
+  has_many :filter_samples, :dependent => :destroy, :class_name => 'FilterSample'
+  accepts_nested_attributes_for :filter_samples, :allow_destroy => true,
+    :reject_if => proc { |attrs| attrs['num_filters'] == '0' or attrs['volume'].blank? }
+    # can also be used on has_one etc.. associations
+
+#  # This will prevent children_attributes with all empty values to be ignored
+#  accepts_nested_attributes_for :children,
+#    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+#  # This does the same thing using :all_blank
+#  accepts_nested_attributes_for :children, :reject_if => :all_blank
+
+
   has_many :protocols, :dependent => :delete_all
   #has_many :relationships, :class_name => 'Relationship', :finder_sql => %q(
   #  SELECT DISTINCT relationships.*
@@ -76,7 +87,8 @@ include SamplingsHelper
   def verbose_me
     #return self.code + ' ' + self.samplingDate.to_s # + partner.verbose_me
     #return self.name + ' ' + self.samplingDate.strftime("%y%m%d")
-    return self.code  + ' ' + self.sampling_site.code  + ' ' + self.volume.to_s + 'L'
+    #return self.code  + ' ' + self.sampling_site.code  + ' ' + self.volume.to_s + 'L'
+    return self.sampling_site.code  + ' ' + self.volume.to_s + ' lt'
   end
   #def Sampling.verbose_me
   #  @@verbose_me ||=  "Kappaooo "
@@ -128,6 +140,46 @@ include SamplingsHelper
     def partner_name
         Partner.find(partner_id).verbose_me
     end
+
+
+    #used for NESTED Model
+# -----ATTENTION----- this don't call the filter_sample attribute
+    def fs_attributes=(fs_attributes)
+        fs_attributes.each do |attributes|
+#            logger.warn("----------#{Time.now} - logger attributes submit: #{attributes.inspect}")
+#            print("----------#{Time.now} - print attributes submit: #{attributes.inspect}")
+#            print("----------#{Time.now} - print attribute code: %s", attributes['code'])
+            #@person.children_attributes = [ { :name => 'Son' }, { :name => 'Daughter' } ]
+            #Do not change the child code attribute here because the parent code is not yet created
+            if attributes['num_filters'] != '0' && !attributes['volume'].blank?
+                filter_samples.build(attributes)
+            end
+        end
+    end
+#"fs_attributes"=>[{"volume"=>"23",
+# "num_filters"=>"1"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"},
+# {"volume"=>"",
+# "num_filters"=>"0"}],
 
 end
 

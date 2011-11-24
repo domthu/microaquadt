@@ -1,7 +1,7 @@
 class SamplingsController < AuthController
 
   #only Requiring the right user to change own contents
-  before_filter :correct_user, :only => [:edit, :update, :delete]
+  before_filter :correct_user, :only => [:edit, :update, :delete, :destroy]
 
   # GET /samplings
   # GET /samplings.xml
@@ -48,6 +48,8 @@ class SamplingsController < AuthController
       redirect_to :action => "index"
     end
 
+    @fs = FilterSample.all(:conditions => ['sampling_id = ?', @sampling.id ])
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @sampling }
@@ -76,12 +78,19 @@ class SamplingsController < AuthController
       #set the selected item
       @sampling.partner_id = @pt.id
     end
-    #@sampling.partner_id = 3
-    #@sampling.sampling_site_id = 4
 
-    @codtypes = CodeType.all()
+    #@codtypes = CodeType.all()
     @codegen = get_code(@pt, nil, nil)
 
+    #used for NESTED Model
+    #pre-build another attribute while loading the form
+    @wf = Wfilter.all()
+    @wf.count().times { @sampling.filter_samples.build }    
+#    @wf.each do 
+#         3.times { @project.tasks.build }
+#    end 
+    @attr_index = 1
+    
     @ss_c = SamplingSite.count()
     if @ss_c.nil? or @ss_c == 0
       flash[:error] = "No sampling sites found! create first someone..."
@@ -105,12 +114,21 @@ class SamplingsController < AuthController
     #@ss = SamplingSite.find(params[:id])  --> Yet done in def correct_user
     #Cannot change the partner
     #<%= select :sampling, :partner_id,Partner.find(:all).collect{|p| [p.name, p.id]}%>
+
+    #used for NESTED Model
+    @wf = Wfilter.all()
+    @fs = FilterSample.all(:conditions => ['sampling_id = ' +@sampling.id.to_s ])
+
  end
 
   # POST /samplings
   # POST /samplings.xml
   def create
     @sampling = Sampling.new(params[:sampling])
+
+    #used for NESTED Model
+    @wf = Wfilter.all()
+
     @valid = false
     if @sampling.sampling_site.nil?
       flash.now[:error] = "No sampling site set for this sampling"
@@ -129,13 +147,7 @@ class SamplingsController < AuthController
     end
 
     @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
-    #@new_type = params[:selected_type][:code]
-    #    <%= select ("selected_type", "code", @codtypes.map {|u| [u.verbose_me,u.code]}) %>
-    #@new_type = CodeType.first
-    #@sampling.code = get_code(@pt, @sampling.samplingDate,  @new_type.code)
     @sampling.code = get_code(@pt, @sampling.samplingDate, nil)
-    #@sampling.code += @sampling.samplingDate.strftime("%y%m%d")
-    #@sampling.code += @new_type.to_s
 
     @title = "Sampling"
     @new_filter = params[:pfilter]
@@ -152,6 +164,17 @@ class SamplingsController < AuthController
 
     respond_to do |format|
       if @sampling.save
+
+        #Change the child code attribute here because the parent code is yet created
+        @fs = FilterSample.count(:all, :conditions => ['sampling_id = ' +@sampling.id.to_s ])
+        print ('----Change childs attributes here -------- parent (id-'+@sampling.id.to_s+') code is: '+@sampling.code+'. Childs are -['+@fs.to_sa+']-' )
+        unless @fs.nil? and @fs > 0
+            #generate the Microaqua code for all child yet created to this parent
+            @fs = FilterSample.all(:conditions => ['sampling_id = ' +@sampling.id.to_s ])
+            @fs.each do |child|
+            end 
+        end 
+
         format.html { redirect_to(@sampling, :notice => 'Sampling was successfully created.') }
         format.xml  { render :xml => @sampling, :status => :created, :location => @sampling }
       else
@@ -159,7 +182,7 @@ class SamplingsController < AuthController
         format.xml  { render :xml => @sampling.errors, :status => :unprocessable_entity }
       end
     end
-  end
+  end 
 
   # PUT /samplings/1
   # PUT /samplings/1.xml
@@ -167,6 +190,9 @@ class SamplingsController < AuthController
     #@sampling = Sampling.find(params[:id])  --> Yet done in def correct_user
     @title = "Sampling"
     #@is_Auth = is_current_user(@sampling.partner_id)  --> Yet done in def correct_user
+
+    #used for NESTED Model
+    @wf = Wfilter.all()
 
     respond_to do |format|
       if @sampling.update_attributes(params[:sampling])
@@ -187,10 +213,20 @@ class SamplingsController < AuthController
 #      redirect_to samplings_path
 #    else
 
-    #Load data and ensure that no children data are connected
-    # --> Todo Foreign Key
-    @sampling = Sampling.find(params[:id])
     @title = "Sampling"
+
+    #Load data and ensure that no children data are connected
+    #@ws = Sampling.find(:first, :conditions => [ "sampling_site_id = ?", params[:id]])
+    #if !@ws.nil?
+    #  flash[:error] = "This entry cannot be deleted until used by another entries (Water sample) in the system..."
+    #  redirect_to :action => "index"
+    #  return
+    #end
+    # --> Cascading delete all chidren FilterSample 
+    # --> has_many :filter_samples, :dependent => :destroy, :class_name => 'FilterSample'
+
+    @sampling = Sampling.find(params[:id])
+    flash[:notice] = "Deleted water sample: " + @sampling.verbose_me
     @sampling.destroy
 
     respond_to do |format|
@@ -241,6 +277,12 @@ class SamplingsController < AuthController
       end
 
       #4 or 3 = date month and years 1211 OR 121
+      #2011 create increment number by registered date
+      if pdate.nil?
+        #only for generate sample code in the new view (but it is hide)
+        pdate = Date.today
+      end
+
       unless pdate.nil?
         #time = Time.new
         #@codegen += time.month.to_s + time.year.to_s
@@ -248,20 +290,34 @@ class SamplingsController < AuthController
         @codegen += "-"
       end
 
-      #3 digit = Sample,  001
-      #@codtypes = CodeType.all()
-      #@cnt = Sampling.count()
-      @cnt = Sampling.calculate(:count, :all, :conditions => ['partner_id = ' + @pid.to_s ])
-      #@codegen += "(" + @pid.to_s + "/" + @cnt.to_s + ")"
-      #, :joins => ['last_name != ?', 'Drake']
-      if @cnt.nil? or @cnt == 0
-        @cnt = 1
-      else
-        #@lst = Sampling.last
-        #@codegen += "%03d" % (@lst.id + 1)
-        @cnt += 1
+#      #3 digit = Sample,  001
+#      #@cnt = Sampling.count()
+#      @cnt = Sampling.calculate(:count, :all, :conditions => ['partner_id = ' + @pid.to_s ])
+#      #@lst = Sampling.last
+      #2011 create increment number by registered date and partner
+#      @cnt = Sampling.calculate(:count, :all, :conditions => ['partner_id =  ? AND samplingDate >= ? AND samplingDate < ? ',  @pid.to_s, Date.today, 1.day.from_now.to_date ])
+#      @cnt = Sampling.calculate(:count, :all, :conditions => ['code LIKE ? ', '%'+@codegen+'%'])
+      @cnt_objs = Sampling.all(:select => "DISTINCT code", :conditions => ['code LIKE ? ', '%'+@codegen+'%'], :order => 'code DESC')
+      @cnt = 1 
+      if not @cnt_objs.nil? 
+          @cnt_obj = @cnt_objs[0] 
+          if not @cnt_obj.nil? 
+             #P03-110129-xx
+             if not @cnt_obj.code.nil? 
+                @end_str = @cnt_obj.code[11..12]
+                if not @end_str.nil? 
+                    @end = @end_str.to_i
+                    @cnt = @end + 1
+                 else 
+                    @cnt = '0'
+                 end
+             else 
+                @cnt = '0'
+             end
+          end
       end
-      @codegen += "%03d" % @cnt
+
+      @codegen += "%02d" % @cnt
 
       # 1 digit organisms b (bacteria) (PTR5)
       # or 1 digit (PTR4) water tyrpe R (river) Lake etc..

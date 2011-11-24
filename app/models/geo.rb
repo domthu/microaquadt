@@ -1,5 +1,5 @@
 class Geo < ActiveRecord::Base
-    validates_presence_of :name, :lon, :lat
+    validates_presence_of :name, :lon, :lat, :message => "Can't be empty, field is mandatory. "
     validates_length_of :name,
 		:maximum => 50,
 		:too_long => "{{count}} characters is the maximum allowed"
@@ -21,20 +21,22 @@ class Geo < ActiveRecord::Base
     end
 
     def lat_name
-        deg_to_dms(lat)
+        lat
+        #deg_to_dms(lat)
     end
 
     def lng_name
-        deg_to_dms(lon)
+        lon
+        #deg_to_dms(lon)
     end
 
     private 
       
         #Degrees to Degree Minutes.m second
         def deg_to_dms(deg)
-            d = int(deg)
+            d = 1 #int(deg)
             md = abs(deg - d) * 60
-            m = int(md)
+            m = 2 #int(md)
             sd = (md - m) * 60
             return [d, m, sd]
         end   

@@ -92,13 +92,19 @@ class CodeTypesController < AuthController
   # DELETE /code_types/1
   # DELETE /code_types/1.xml
   def destroy
-    @code_type = CodeType.find(params[:id])
-    @code_type.destroy
-    @title = "code type"
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to water_types_path
+    else
 
-    respond_to do |format|
-      format.html { redirect_to(code_types_url) }
-      format.xml  { head :ok }
+        @code_type = CodeType.find(params[:id])
+        @code_type.destroy
+        @title = "code type"
+
+        respond_to do |format|
+          format.html { redirect_to(code_types_url) }
+          format.xml  { head :ok }
+        end
     end
   end
 

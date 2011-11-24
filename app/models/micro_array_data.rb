@@ -1,8 +1,8 @@
 class MicroArrayData < ActiveRecord::Base
-	validates_presence_of :gpr_title
+	validates_presence_of :gpr_title, :message => "Can't be empty, field is mandatory. "
 	validates_length_of   :gpr_title, :maximum => 300
   #insert it during loading file
-	validates_presence_of :gpr_file_title
+	validates_presence_of :gpr_file_title, :message => "Can't be empty, field is mandatory. "
 
   belongs_to :partner
 

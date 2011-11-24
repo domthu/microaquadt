@@ -1,16 +1,23 @@
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
-      <li><%= link_to "code type", code_types_path %></li>
-      <li><%= link_to "filter", wfilters_path %></li>
+      <li class="hide" style="display: none;"><%= link_to "code type", code_types_path %></li>
+      <li><%= link_to "protocol filter", wfilters_path %></li>
     </ul>
   </td></tr>
 </table>
 
 <h1>New filter sample</h1>
+<%= link_to 'Back', filter_samples_path %>
+<br />
+<br />
 
 <% form_for(@filter_sample) do |f| %>
   <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
@@ -19,7 +26,7 @@
     <%= select :filter_sample,:sampling_id, @s.collect{|p| [p.verbose_me, p.id]}%>
   </div>
   <div class="field cod">
-    <%= f.label :code %><br />
+    <%= f.label :code, "Filter Microaqua code" %><br />
     <h2><%= @codegen %></h2>
   </div>
 
@@ -42,7 +49,7 @@
   </div>
 
   <div class="field date">
-    <%= f.label :samplingDate, "Sampling date" %><br />
+    <%= f.label :samplingDate, "Filtering date" %><br />
     <%= date_select :filter_sample, :samplingDate %>
   </div>
 

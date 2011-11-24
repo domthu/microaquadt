@@ -1,77 +1,108 @@
-<p>
-  <b>Microarray:</b>
-  <%=h @micro_array_image.microarray %>
-</p>
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
 
-<p>
-  <b>Note:</b>
-  <%=h @micro_array_image.note %>
-</p>
+<% if auth_ma_user(@micro_array_image.microarray_id) or signed_in_and_master? %>
+  <%= link_to 'Edit', edit_micro_array_image_path(@micro_array_image) %> |
+<% end %>
+<%= link_to 'Back', micro_array_images_path %>
 
-<p>
-  <b>Name:</b>
-  <%=h @micro_array_image.name %>
-</p>
+<br />
 
-<p>
+<fieldset><legend class="leg">GENERAL DATA</legend>
+
+  <div class="field select">
+    <b>Microarray:</b>
+      <%=h @micro_array_image.microarray %>
+  </div>
+
+  <div class="field num">
+      <b>Name:</b>
+      <%=h @micro_array_image.name %>
+  </div>
+
+
+</fieldset>
+
+<fieldset><legend class="leg">ENVIRONMENTAL DATA</legend>
+
+
+
+  <div class="datas num">
   <b>Image:</b>
   <%=h @micro_array_image.image %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii imageid:</b>
   <%=h @micro_array_image.II_ImageID %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii channel:</b>
   <%=h @micro_array_image.II_Channel %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii image:</b>
   <%=h @micro_array_image.II_Image %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii fluorophore:</b>
   <%=h @micro_array_image.II_Fluorophore %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii barcode:</b>
   <%=h @micro_array_image.II_Barcode %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii units:</b>
   <%=h @micro_array_image.II_Units %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii x units per pixel:</b>
   <%=h @micro_array_image.II_X_Units_Per_Pixel %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii y units per pixel:</b>
   <%=h @micro_array_image.II_Y_Units_Per_Pixel %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii x offset:</b>
   <%=h @micro_array_image.II_X_Offset %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii y offset:</b>
   <%=h @micro_array_image.II_Y_Offset %>
-</p>
+  </div>
 
-<p>
+  <div class="datas num">
   <b>Ii status:</b>
   <%=h @micro_array_image.II_Status %>
-</p>
+  </div>
+
+</fieldset>
+
+  <div class="field num">
+      <b>Note:</b>
+      <%=h @micro_array_image.note %>
+  </div>
+
+<br />
 
 <% if auth_ma_user(@micro_array_image.microarray_id) or signed_in_and_master? %>
   <%= link_to 'Edit', edit_micro_array_image_path(@micro_array_image) %> |

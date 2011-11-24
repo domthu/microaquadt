@@ -77,6 +77,13 @@ class CatchmentAreasController < ApplicationController
       redirect_to catchment_areas_path
     else
 
+        @ss = SamplingSite.find(:first, :conditions => [ "catchment_areas_id = ?", params[:id]])
+        if !@ss.nil?
+          flash[:error] = "This entry cannot be deleted until used by another entries in the system..."
+          redirect_to :action => "index"
+          return
+        end
+
         @catchment_area = CatchmentArea.find(params[:id])
         @catchment_area.destroy
 

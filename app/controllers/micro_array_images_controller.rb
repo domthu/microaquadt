@@ -105,14 +105,21 @@ class MicroArrayImagesController < ApplicationController
   # DELETE /micro_array_images/1
   # DELETE /micro_array_images/1.xml
   def destroy
+#    if !signed_in_and_master?
+#      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+#      redirect_to water_types_path
+#    else
+
+    @title = "Micro array image"
+
     @micro_array_image = MicroArrayImage.find(params[:id])
     @micro_array_image.destroy
-    @title = "Micro array image"
 
     respond_to do |format|
       format.html { redirect_to(micro_array_images_url) }
       format.xml  { head :ok }
     end
+#    end
   end
 
   private

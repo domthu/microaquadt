@@ -104,6 +104,11 @@ class MicroArrayValidationsController < ApplicationController
   # DELETE /micro_array_validations/1
   # DELETE /micro_array_validations/1.xml
   def destroy
+#    if !signed_in_and_master?
+#      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+#      redirect_to water_types_path
+#    else
+
     @micro_array_validation = MicroArrayValidation.find(params[:id])
     @micro_array_validation.destroy
     @title = "Micro array validation"
@@ -112,6 +117,7 @@ class MicroArrayValidationsController < ApplicationController
       format.html { redirect_to(micro_array_validations_url) }
       format.xml  { head :ok }
     end
+#    end
   end
 
   private
