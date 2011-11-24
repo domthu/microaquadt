@@ -1,6 +1,7 @@
 lib/tasks/import.rake
 config/*.yml
 config/database.yml
+config/gmaps_api_key.yml
 *.sqlite3
 log/*.log
 tmp/
