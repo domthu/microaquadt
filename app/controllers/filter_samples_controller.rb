@@ -148,25 +148,15 @@ class FilterSamplesController < AuthController
     @filter_sample = FilterSample.new(params[:filter_sample])
     @title = "Filter sample"
 
-#    @sx = Sampling.find(@filter_sample.sampling_id)
-#    if @sx.nil?
-#        puts "===========?????????????????????????????????????????????????=========="
-#    else
-#        puts "===================================" + @sx.verbose_me
-#    end
-#    @filter_sample.code = get_code(@sx)
     @filter_sample.code = get_code(@filter_sample.sampling_id)
-    @wf = Wfilter.find(@filter_sample.wfilter_id) 
-    if !@wf.nil?
-        @filter_sample.pore_size = @wf.pore_size  
-    else
-        @filter_sample.pore_size = 0  
-    end 
 
-#    if @filter_sample.samplingDate.nil?
-#        @sampling = Sampling.find(@filter_sample.sampling_id)
-#        @filter_sample.samplingDate = @sampling.samplingDate  
-#    @filter_sample.samplingDate = DateTime.now
+    #deprecated field self.pore_size   
+#    @wf = Wfilter.find(@filter_sample.wfilter_id) 
+#    if !@wf.nil?
+#        @filter_sample.pore_size = @wf.pore_size  
+#    else
+#        @filter_sample.pore_size = 0  
+#    end 
 
     respond_to do |format|
       if @filter_sample.save

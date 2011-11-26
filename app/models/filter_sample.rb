@@ -38,7 +38,11 @@ class FilterSample < ActiveRecord::Base
   #In order for form_for to work,
   attr_reader :verbose_me
   def verbose_me
-    return self.pore_size.to_s + ' - ' + self.num_filters.to_s + ' - ' + self.volume.to_s
+    #deprecated field self.pore_size   
+    #return self.pore_size.to_s + ' - ' + self.num_filters.to_s + ' - ' + self.volume.to_s
+    #return self.filter_pore_size + ' - ' + self.num_filters.to_s + ' - ' + self.volume.to_s
+    return self.filter_name + ' - ' + self.num_filters.to_s + ' - ' + self.volume.to_s
+
   end
 
     def edit
@@ -75,6 +79,10 @@ class FilterSample < ActiveRecord::Base
 
     def filter_name
         Wfilter.find(wfilter_id).verbose_me
+    end
+
+    def filter_pore_size
+        Wfilter.find(wfilter_id).pore_size.to_s
     end
 
 end

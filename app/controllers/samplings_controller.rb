@@ -150,30 +150,32 @@ class SamplingsController < AuthController
     @sampling.code = get_code(@pt, @sampling.samplingDate, nil)
 
     @title = "Sampling"
-    @new_filter = params[:pfilter]
-    unless @new_filter.nil? || @new_filter == 0
-        #create new filter object
-        #@obj_new_filter = Wfilter.new(:name => @new_filter)
-        #@obj_new_filter = Wfilter.create(:name => @new_filter)
-        @obj_new_filter = Wfilter.create(:name => @sampling.code)
-        if @obj_new_filter.save
-          #retrieve filter_id and associate to @sampling
-          sampling.wfilter_id = @obj_new_filter.id
-        end
-    end
+    
+#    @new_filter = params[:pfilter]
+#    unless @new_filter.nil? || @new_filter == 0
+#        #create new filter object
+#        #@obj_new_filter = Wfilter.new(:name => @new_filter)
+#        #@obj_new_filter = Wfilter.create(:name => @new_filter)
+#        @obj_new_filter = Wfilter.create(:name => @sampling.code)
+#        if @obj_new_filter.save
+#          #retrieve filter_id and associate to @sampling
+#          sampling.wfilter_id = @obj_new_filter.id
+#        end
+#    end
 
     respond_to do |format|
       if @sampling.save
 
         #Change the child code attribute here because the parent code is yet created
         @fs = FilterSample.count(:all, :conditions => ['sampling_id = ' + @sampling.id.to_s ])
-        print ('----Change childs attributes here -------- parent (id-%s) code is:%s. Childs are -[%s]-', @sampling.id, @sampling.code, @fs )
+        print ('----Change childs attributes here -------- parent (id-'+@sampling.id.to_s+') code is: '+@sampling.code+'. Childs are -['+@fs.to_s+']-' )
+
         unless @fs.nil? and @fs > 0
             #generate the Microaqua code for all child yet created to this parent
             @fs = FilterSample.all(:conditions => ['sampling_id = ' +@sampling.id.to_s ])
             @fs.each_with_index do |child, index|
                 print ('----Change childs Old code: (-%s)' , child.code)
-                child.code = child.code[0..10] + ("-F%02d" % (index + 1))
+                child.code = child.code[0..12] + ("-F%02d" % (index + 1))
                 print ('----Change childs New code: (-%s)' , child.code)
                 child.save()
             end 

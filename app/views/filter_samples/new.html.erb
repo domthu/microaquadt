@@ -31,7 +31,7 @@
   </div>
 
   <div class="field select">
-    <%= f.label :wfilter_id, "Filter-pore size (μ)" %><br />
+    <%= f.label :wfilter_id, "Protocol pore size  (μm)" %><br />
     <%= select :filter_sample,:wfilter_id, @wf.collect{|p| [p.verbose_me, p.id]}%>
   </div>
 
