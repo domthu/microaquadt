@@ -52,7 +52,7 @@
 
  <% @fs.each_with_index do |fs, i| %>
     <div class="datas">
-        <b><%= (i +1).to_s %> --> </b> <%= link_to fs.code_name + '&nbsp;&nbsp;&nbsp;' + fs.verbose_me, fs %>
+        <b><%= (i +1).to_s %> --> </b> <%= link_to fs.code + '&nbsp;&nbsp;&nbsp;' + fs.verbose_me, fs %>
     </div>
   <% end %>
 
