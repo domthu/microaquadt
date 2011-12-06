@@ -28,17 +28,17 @@
 </script>
 
 
-<%= jqgrid("List of sample's filters: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", filter_samples_path,
+<%= jqgrid("List of filter samples: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", filter_samples_path,
 	[
 		{ :field => "id", :label => "ID", :width => 35, :resizable => false, :sortable => false, :editable => false, :hidden => true}, 
-        { :field => "act", :label => "", :width => 35 , :resizable => false },
-		{ :field => "sample_name", :label => "Sampling", :sortable => true, :editable => false, :width => 120 },
+        { :field => "act", :label => "", :width => 35 , :resizable => false, :search => false, :sortable => false },
+		{ :field => "sample_name", :label => "Sampling", :editable => false, :width => 120, :search => false, :sortable => false  },
 		{ :field => "code", :label => "Filter Microaqua code", :width => "250" },
 		{ :field => "barcode", :label => "Partner barcode", :sortable => true, :editable => false, :width => 250 },
-		{ :field => "filter_name", :label => "pore size (µm)", :sortable => true, :editable => false, :width => 100, :class => "taright" },
+		{ :field => "filter_name", :label => "pore size (µm)", :editable => false, :width => 100, :class => "taright", :search => false, :sortable => false },
 		{ :field => "num_filters", :label => "n° Tube", :width => 50, :class => "taright" },
 		{ :field => "volume", :label => "Volume (lt)", :width => 70, :class => "taright" },
-		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35 , :resizable => false},
+		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35 , :resizable => false, :search => false},
 	], 
     {   :add => false, 
         :edit => false, 

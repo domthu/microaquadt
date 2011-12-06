@@ -61,6 +61,7 @@ class FilterSample < ActiveRecord::Base
     end
 
 
+    attr_reader :sample_name
     def sample_name
         Sampling.find(sampling_id).verbose_me
     end

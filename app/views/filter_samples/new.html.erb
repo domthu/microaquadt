@@ -23,9 +23,9 @@
 
   <div class="field select">
     <%= f.label :sampling_id, "Sampling" %><br />
-    <%= select :filter_sample,:sampling_id, @s.collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :filter_sample,:sampling_id, @s.collect{|p| [p.full_name, p.id]}%>
   </div>
-  <div class="field cod">
+  <div class="field cod hide">
     <%= f.label :code, "Filter Microaqua code" %><br />
     <h2><%= @codegen %></h2>
   </div>

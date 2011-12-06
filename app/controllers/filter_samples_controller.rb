@@ -15,23 +15,53 @@ class FilterSamplesController < AuthController
 #...
 #end
 
+    def xsample_name
+        if params[:id].present?
+            xfs = FilterSample.find(params[:id])
+            Sampling.find(:conditions => [ "sampling_id = ?", xfs.sample_id]).verbose_me
+        end
+    end
+#    def xfilter_name
+#        if params[:id].present?
+#            xfs = FilterSample.find(params[:id])
+#            Wfilter.find(:conditions => [ "wfilter_id = ?", xfs.wfilter_id]).verbose_me
+#        end
+#    end
+
+#    def xfilter_pore_size
+#        if params[:id].present?
+#            xfs = FilterSample.find(params[:id])
+#            Wfilter.find(:conditions => [ "wfilter_id = ?", xfs.wfilter_id]).pore_size.to_s
+#        end
+#    end
+
   # GET /filter_samples
   # GET /filter_samples.xml
   def index
     @title = "List filter samples"
+
+#		{ :field => "id", :label => "ID", :width => 35, 
+#		{ :field => "sample_name", :label => "Sampling", :sortable => true, :editable => false, :width => 120 },
+#		{ :field => "code", :label => "Filter Microaqua code", :width => "250" },
+#		{ :field => "barcode", :label => "Partner barcode"
+#		{ :field => "filter_name", :label => "pore size (µm)", 
+#		{ :field => "num_filters", :label => "n° Tube", :width => 50, :class => "taright" },
+#		{ :field => "volume", :label => "Volume (lt)", :width => 70, :class => "taright" },
+
 
     if params[:id].present?
         logger.warn("#{Time.now} - filter_sampling filtered by: #{params[:id]}")
         #@filter_samples = FilterSample.all(:conditions => [ "sampling_id = ?", params[:id]])
         #@cond = params[:id]
         filter_samples = FilterSample.find(:all, :conditions => [ "sampling_id = ?", params[:id]]) do
-            if params[:_search] == "true"
-                code =~ "%#{params[:code_name]}%" if params[:code_name].present?
-                barcode =~ "%#{params[:code_name]}%" if params[:code_name].present?
-                pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
-                volume >= "%#{params[:volume]}%" if params[:volume].present?
-                num_filters >= "%#{params[:num_filters]}%" if params[:num_filters].present?
-            end
+#            if params[:_search] == "true"
+#                xsample_name =~ "%#{params[:sample_name]}%" if params[:sample_name].present?
+#                code =~ "%#{params[:code]}%" if params[:code].present?
+#                #xfilter_name >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+#                pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+#                volume =~ "%#{params[:volume]}%" if params[:volume].present?
+#                num_filters =~ "%#{params[:num_filters]}%" if params[:num_filters].present?
+#            end
             paginate :page => params[:page], :per_page => params[:rows]      
             order_by "#{params[:sidx]} #{params[:sord]}"
         end
@@ -40,11 +70,13 @@ class FilterSamplesController < AuthController
         #@cond = "sampling_id"
         filter_samples = FilterSample.find(:all) do
             if params[:_search] == "true"
-                code =~ "%#{params[:code_name]}%" if params[:code_name].present?
-                barcode =~ "%#{params[:code_name]}%" if params[:code_name].present?
+                xsample_name =~ "%#{params[:sample_name]}%" if params[:sample_name].present?
+                code =~ "%#{params[:code]}%" if params[:code].present?
+                barcode =~ "%#{params[:barcode]}%" if params[:barcode].present?
+                #xfilter_name >= "%#{params[:filter_name]}%" if params[:filter_name].present?
                 pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
-                volume >= "%#{params[:volume]}%" if params[:volume].present?
-                num_filters >= "%#{params[:num_filters]}%" if params[:num_filters].present?
+                volume =~ "%#{params[:volume]}%" if params[:volume].present?
+                num_filters =~ "%#{params[:num_filters]}%" if params[:num_filters].present?
             end
             paginate :page => params[:page], :per_page => params[:rows]      
             order_by "#{params[:sidx]} #{params[:sord]}"

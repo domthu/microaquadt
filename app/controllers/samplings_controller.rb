@@ -11,7 +11,7 @@ class SamplingsController < AuthController
 
     samplings = Sampling.find(:all) do
         if params[:_search] == "true"
-            volume >= "%#{params[:volume]}%" if params[:volume].present?
+            volume =~ "%#{params[:volume]}%" if params[:volume].present?
             code =~ "%#{params[:code]}%" if params[:code].present?
         end
         paginate :page => params[:page], :per_page => params[:rows]      

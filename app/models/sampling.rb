@@ -90,6 +90,11 @@ include SamplingsHelper
     #return self.code  + ' ' + self.sampling_site.code  + ' ' + self.volume.to_s + 'L'
     return self.sampling_site.code  + ' ' + self.volume.to_s + ' lt'
   end
+  attr_reader :full_name
+  def full_name
+    return self.code  + ' ' + self.sampling_site.code  + ' ' + self.volume.to_s + 'L'
+  end
+
   #def Sampling.verbose_me
   #  @@verbose_me ||=  "Kappaooo "
   #end
