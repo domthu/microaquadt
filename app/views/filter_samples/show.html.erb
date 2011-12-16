@@ -48,7 +48,7 @@
 
     <div class="show date">
       <b>Filtering date:</b>
-      <h3><%=h @filter_sample.samplingDate %></h3>
+      <h3><%=h @filter_sample.samplingDate.strftime("%A %d %B %Y") %></h3>
     </div>
 
 <p>

@@ -168,15 +168,16 @@ class SamplingsController < AuthController
 
         #Change the child code attribute here because the parent code is yet created
         @fs = FilterSample.count(:all, :conditions => ['sampling_id = ' + @sampling.id.to_s ])
-        print ('----Change childs attributes here -------- parent (id-'+@sampling.id.to_s+') code is: '+@sampling.code+'. Childs are -['+@fs.to_s+']-' )
+        print ('----Change childs attributes here -------- parent (id-'+@sampling.id.to_s+') code is: '+@sampling.code+'. Childs are -['+@fs.to_s+']-\n' )
 
         unless @fs.nil? and @fs > 0
             #generate the Microaqua code for all child yet created to this parent
             @fs = FilterSample.all(:conditions => ['sampling_id = ' +@sampling.id.to_s ])
             @fs.each_with_index do |child, index|
-                print ('----Change childs Old code: (-%s)' , child.code)
-                child.code = child.code[0..12] + ("-F%02d" % (index + 1))
-                print ('----Change childs New code: (-%s)' , child.code)
+                print ('----Change childs Old code: (-%s)\n' , child.code)
+                #child.code = child.code[0..11] + ("-F%02d" % (index + 1))
+                child.code = @sampling.code + ("-F%02d" % (index + 1))
+                print ('----Change childs New code: (-%s)\n' , child.code)
                 child.save()
             end 
         end 
@@ -184,6 +185,11 @@ class SamplingsController < AuthController
         format.html { redirect_to(@sampling, :notice => 'Sampling was successfully created.') }
         format.xml  { render :xml => @sampling, :status => :created, :location => @sampling }
       else
+
+        #@partners = Partner.find(:all)
+        @codegen = @sampling.code
+        @attr_index = 1
+
         format.html { render :action => "new" }
         format.xml  { render :xml => @sampling.errors, :status => :unprocessable_entity }
       end
