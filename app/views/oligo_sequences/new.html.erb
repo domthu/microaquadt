@@ -1,4 +1,16 @@
-<h1>New oligo_sequence</h1>
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %> 
+
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+        <li><%= link_to "Person", people_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+
+<h1>New oligo sequence</h1>
 
 <%= link_to 'Back', oligo_sequences_path %>
 
@@ -10,34 +22,184 @@
   </div>
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
+
+<table width="95%"><tr><td>
+
   <div class="field txt">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+
+  <div class="field txtshort">
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </div>
+
+    <div class="field chk">
+      <b>Available:</b>
+      <%= f.check_box :available %>
+    </div>
+
+</td><td>
+
   <div class="field select">
-    <%= f.label :partner_id %><br />
+    <%= f.label :partner_id, "Partner" %><br />
     <%= select :oligo_sequence,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
+  <div class="field select">
+    <%= f.label :people_id, "Person" %><br />
+    <%= select :oligo_sequence,:people_id,Person.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+
+  <div class="field date">
+    <%= f.label :oligoDate, "Date" %><br />
+    <%= date_select :oligo_sequence, :oligoDate %>
+  </div>
+
+</td><tr></table>
 
 </fieldset>
 
 <fieldset><legend class="leg">SEQUENCE - ORGANISM DATA</legend>
 
-  <div class="field seq"><h3>
-    <%= f.label :DNA_Sequence, "DNA sequence" %><br />
-    <%= f.text_field :DNA_Sequence %>
-  </h3></div>
-  <div class="field txt">
-    <%= f.label :tax_id, "Organism: from taxonomy" %><br />
-    <br />Can be a Drop down box
-    <br /><%= select :oligo_sequence,:tax_id_id, Name.find(:all).collect{|p| [p.verbose_me, p.id]}%>
-    <br />Can be a Text
-    <br /><input id="t2" name="t2" type="text" />
-    <br />Can be a Taxonomy browser
-    <br /><h2><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root" target="_blank">Taxonomy database maintained by NCBI/GenBank</a></h2>
-    <br />Can be a Autocompleter
-    <br /><h3><a href="http://docs.jquery.com/UI/Autocomplete" target="_blank">jQuery</a></h3>
-  </div>
+<table width="95%"><tr><td>
+
+    <div class="field seq"><h3>
+        <%= f.label :dna_sequence, "DNA sequence" %><br />
+        <%= f.text_field :dna_sequence %>
+    </h3></div>
+
+    <div class="field ">
+        <%= f.label :taxonomy_id, "Taxonomy identifier" %><br />
+        <%= f.text_field :taxonomy_id %>
+    </div>
+    <div class="field ">
+        <%= f.label :taxonomy_name, "Taxonomy name" %><br />
+        <%= f.text_field :taxonomy_name %>
+    </div>
+
+</td><td>
+
+<%= javascript_tag "//something" %>
+<script type="text/javascript" >
+    function lookupBio() {
+        //alert('lookupBio');
+        //< % = link_to "Name", url_path, :remote => true
+        var id_value_string = $('search_tax').value;
+        //alert('lookupBio v1: ' + id_value_string);
+        //id_value_string = $('search_tax').val();
+        //alert('lookupBio v2: ' + id_value_string);
+        id_value_string == "265554"
+        if (id_value_string == "") {
+            // if the id is empty remove all data and do not do any ajax
+            //$("resbio value").remove();
+        }
+        else {
+
+            // Send the request and update text area or JTree
+            //    dataType: "json",
+            //    url: '/oligo_sequences/lookup/' + id_value_string,
+            //    url: '/oligo_sequences/lookup/' + id_value_string,
+            //    url: '/lookforbio/' + id_value_string,
+            $.ajax({
+                dataType: "xml",
+                cache: false,
+                url: '/lookforbio',
+                timeout: 2000,
+                error: function(XMLHttpRequest, errorTextStatus, error){
+                    alert("Failed to submit : "+ errorTextStatus+" ;"+error);
+                },
+                success: function(data){               
+                    alert('OK!')
+                    //$("resbio").val(data)
+                    // Clear all options from sub category select
+                    //$("resbio value").remove();
+                    //put in a empty default line
+                    var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+                    $(row).appendTo("resbio");                        
+                    // Fill sub category select
+                    $.each(data, function(i, j){
+                        row = "<option value=\"" + j.sub_section.id + "\">" + j.sub_section.name + "</option>";  
+                        $(row).appendTo("resbio");                    
+                    });            
+                 }
+            });
+        }
+
+    }
+//Ko remote_function use Prototype as Ajax.Request
+//use $.ajax with jQuery
+
+    jQuery('#btnbiocall').bind('click', function() {
+
+        //jQuery.ajax({
+        //  async:true, 
+        //  url:'/oligo_sequences/lookup',
+        //  type:'POST',
+        //  data: {_method:'PUT', oligo_sequences: {accept: jQuery(this).is(':checked')}}, 
+        //  success: function(){alert('ok')},
+        //  error:function(request){ alert('Sorry, there was an error!!!')}
+        //})
+
+        var id_value_string = $(this).val();
+        id_value_string = $('search_tax').value;
+        id_value_string = $('search_tax').val();
+
+        if (id_value_string == "") {
+            // if the id is empty remove all data and do not do any ajax
+            $("resbio value").remove();
+        }
+        else {
+
+            // Send the request and update text area or JTree
+            //    dataType: "json",
+            $.ajax({
+                dataType: "xml",
+                cache: false,
+                url: '/oligo_sequences/lookup/' + id_value_string,
+                timeout: 2000,
+                error: function(XMLHttpRequest, errorTextStatus, error){
+                    alert("Failed to submit : "+ errorTextStatus+" ;"+error);
+                },
+                success: function(data){               
+                    alert('OK!')
+                    $("resbio").val(data)
+                    // Clear all options from sub category select
+                    $("resbio value").remove();
+                    //put in a empty default line
+                    var row = "<option value=\"" + "" + "\">" + "" + "</option>";
+                    $(row).appendTo("resbio");                        
+                    // Fill sub category select
+                    $.each(data, function(i, j){
+                        row = "<option value=\"" + j.sub_section.id + "\">" + j.sub_section.name + "</option>";  
+                        $(row).appendTo("resbio");                    
+                    });            
+                 }
+            });
+        }
+    return false
+    })
+
+</script>
+
+    <b>Research using taxonomy id:</b>
+    <input type="text" id="search_tax" name=""></input>&nbsp;<button type="button" id="btnbiocall" 
+        ondbclick="lookupBio(); return false;"
+        onclick="<%= remote_function(
+                                   :update => "resbio" ,
+                                   :url => { :action => :lookup } , 
+                                   :with => "'st='+$('search_tax').value"
+                                ); 
+                %>"
+        text="Browse">Click me!</button><br />
+    <textarea id="resbio" rows="10" cols="20">
+    <%= @tree2 %>
+    </textarea> <br />
+    <%= @tree2 %>
+
+    <br /><h5><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root" target="_blank">Taxonomy database maintained by NCBI/GenBank</a></h5>
+
+</td><tr></table>
 
 </fieldset>
 

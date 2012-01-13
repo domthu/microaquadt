@@ -6,9 +6,9 @@ class Partner < ActiveRecord::Base
   EmailRegex = /\A[\w+\-._]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates_format_of   :email, :with => EmailRegex
   validates_uniqueness_of :email, :case_sensitive => false
-   #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
-	has_many :person
+  has_many :person
   has_many :samplings
   has_one :country #, :null => false
 

@@ -1,3 +1,12 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+        <li><%= link_to "Person", people_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+
 
 <% if auth_user(@oligo_sequence.partner_id) %>
   <%= link_to 'Edit', edit_oligo_sequence_path(@oligo_sequence) %> |
@@ -5,30 +14,63 @@
 <%= link_to 'Back', oligo_sequences_path %>
 <br />
 
-<div class="show txt">
-  <b>Name:</b>
-  <%=h @oligo_sequence.name %>
-</div>
+<fieldset><legend class="leg">GENERAL DATA</legend>
 
-<div class="show select">
-  <b>Partner:</b>
-  <%=h @oligo_sequence.partner.name %>
-</div>
+<table width="95%"><tr><td>
 
-<br />
-<div class="show seq">
-  <b>DNA sequence:</b>
-  <h1><%=h @oligo_sequence.DNA_Sequence %></h1>
-</div>
+    <div class="show txt">
+      <b>Name:</b>
+      <%=h @oligo_sequence.name %>
+    </div>
 
-<br />
+    <div class="show cod">
+      <b>Code:</b>
+      <%=h @oligo_sequence.code %>
+    </div>
 
-<div class="show txt">
-  <b>Organism:</b>
-  <%=h @oligo_sequence.tax_id.verbose_me %>
-</div>
+    <div class="show chk">
+      <b>Available:</b>
+      <%=h @oligo_sequence.available %>
+    </div>
 
-<br />
+</td><td>
+
+    <div class="show select">
+      <b>Partner:</b>
+      <%=h @oligo_sequence.partner.verbose_me %>
+    </div>
+
+    <div class="show select">
+      <b>Person:</b>
+      <%=h @oligo_sequence.people_name %>
+    </div>
+
+    <div class="show date">
+      <b>Date:</b>
+      <%=h @oligo_sequence.oligoDate.strftime("%A %d %B %Y") %>
+    </div>
+
+</td><tr></table>
+
+</fieldset>
+
+
+<fieldset><legend class="leg">SEQUENCE - ORGANISM DATA</legend>
+
+    <div class="show seq">
+      <b>DNA sequence:</b>
+      <h1><%=h @oligo_sequence.dna_sequence %></h1>
+    </div>
+    <div class="show txt">
+      <b>Taxonomy identifier:</b>
+      <h3><%=h @oligo_sequence.taxonomy_id %></h3>
+    </div>
+    <div class="show txt">
+      <b>Taxonomy name:</b>
+      <h3><%=h @oligo_sequence.taxonomy_name %></h3>
+    </div>
+
+</fieldset>
 
 <div class="show area">
   <b>Description:</b>

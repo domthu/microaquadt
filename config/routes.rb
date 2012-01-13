@@ -22,7 +22,10 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :micro_array_datas
 
   map.resources :names
+  
   map.resources :oligo_sequences
+  map.lookforbio '/lookforbio', :controller => 'oligo_sequences', :action => 'lookup'
+
   map.resources :nodes
 
   map.resources :countries

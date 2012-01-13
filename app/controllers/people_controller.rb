@@ -1,5 +1,8 @@
 class PeopleController < AuthController
 
+  #only Requiring the right user to change own contents
+  before_filter :correct_user, :only => [:edit, :update, :delete, :destroy]
+
   # GET /people
   # GET /people.xml
   def index
@@ -46,6 +49,9 @@ class PeopleController < AuthController
   # POST /people.xml
   def create
     @person = Person.new(params[:person])
+    @title = "people"
+    @person.firstname = @person.firstname.upcase
+    @person.lastname = @person.lastname.capitalize
 
     respond_to do |format|
       if @person.save
@@ -63,6 +69,12 @@ class PeopleController < AuthController
   def update
     @person = Person.find(params[:id])
     @title = "people"
+
+#    @person.firstname = @person.firstname.upcase
+#    @person.lastname = @person.lastname.capitalize
+    params[:person][:firstname] = params[:person][:firstname].upcase
+    params[:person][:lastname] = params[:person][:lastname].upcase
+
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
@@ -93,5 +105,22 @@ class PeopleController < AuthController
         end
     end
   end
+
+  private
+
+    def correct_user
+      reroute() unless signed_in_and_master?
+#      @oligo = OligoSequence.find(params[:id])
+#      @partner = Partner.find(@oligo.partner_id)
+#      @user = User.find(@partner.user_id)
+#      #uses the current_user? method,
+#      #which (as with deny_access) we will define in the Sessions helper
+#      reroute() unless current_user?(@user)
+    end
+
+    def reroute()
+      flash[:notice] = "Only the partner who create the oligo sequence can modify it."
+      redirect_to(people_path)
+    end
 end
 

@@ -154,7 +154,7 @@ div.actions, div.login {font-weight: bold; margin-left:200px;}
 div.login input{width: 200px;}
 div.num input {width: 50px;}
 div.area text_area{width: 80%;}
-div.seq input {/*font-family: monospace; font-size:1.4em;*/ width:700px;}
+div.seq input {/*font-family: monospace; font-size:1.4em;*/ width:400px;}
 div.txt input {width: 400px;}
 div.txtshort input {width: 150px;}
 div.cod input {width: 30px;font-weight: bold;

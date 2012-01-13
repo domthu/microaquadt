@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
     t.datetime "samplingDate",                                                             :null => false
     t.integer  "wfilter_id",                                                               :null => false
     t.decimal  "pore_size",                 :precision => 5, :scale => 3, :default => 0.0
-    t.integer  "num_filters",  :limit => 2, :precision => 2, :scale => 0, :default => 0
+    t.integer  "num_filters",  :limit => 2,                               :default => 0
     t.decimal  "avg_qta",                   :precision => 4, :scale => 2, :default => 0.0
     t.decimal  "volume",                    :precision => 4, :scale => 2,                  :null => false
     t.string   "barcode",                                                                  :null => false
@@ -302,16 +302,23 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   end
 
   create_table "oligo_sequences", :force => true do |t|
-    t.string   "name"
+    t.string   "dna_sequence",                        :null => false
+    t.string   "name",                                :null => false
+    t.string   "code"
     t.text     "description"
-    t.integer  "partner_id",   :null => false
-    t.string   "DNA_Sequence"
-    t.integer  "tax_id_id"
+    t.integer  "partner_id",                          :null => false
+    t.integer  "people_id",                           :null => false
+    t.integer  "partner_people_id"
+    t.integer  "taxonomy_id"
+    t.string   "taxonomy_name"
+    t.datetime "oligoDate"
+    t.boolean  "available",         :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "oligo_sequences", ["partner_id"], :name => "index_oligo_sequences_on_partner_id"
+  add_index "oligo_sequences", ["people_id"], :name => "index_oligo_sequences_on_people_id"
 
   create_table "operations", :force => true do |t|
     t.integer  "protocol_id"
@@ -357,16 +364,14 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
 
   create_table "people", :force => true do |t|
     t.string   "firstname",  :null => false
-    t.string   "LastName",   :null => false
-    t.string   "Phone"
+    t.string   "lastname",   :null => false
+    t.string   "phone"
     t.string   "email",      :null => false
-    t.string   "Town"
+    t.string   "town"
     t.binary   "avatar"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "people", ["email"], :name => "index_people_on_email", :unique => true
 
   create_table "posts", :force => true do |t|
     t.string   "name",       :null => false
@@ -491,7 +496,7 @@ ActiveRecord::Schema.define(:version => 20111008221923) do
   create_table "wfilters", :force => true do |t|
     t.string   "name",                                                   :default => ""
     t.decimal  "pore_size",                :precision => 5, :scale => 3, :default => 0.0
-    t.integer  "num_filters", :limit => 2, :precision => 2, :scale => 0, :default => 0
+    t.integer  "num_filters", :limit => 2,                               :default => 0
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"

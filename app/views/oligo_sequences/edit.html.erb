@@ -1,7 +1,33 @@
-<h1>Editing oligo_sequence</h1>
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag 'dxhmltree/dhtmlxcommon.js' %>
+<%= javascript_include_tag 'dxhmltree/dhtmlxtree.js' %>
+<%= javascript_include_tag 'dxhmltree/ext/dhtmlxtree_start.js' %>
+<%= stylesheet_link_tag 'dxhmltree/dhtmlxtree' %>
+
+<%= javascript_include_tag 'viewxml/XMLDisplay.js' %>
+<%= stylesheet_link_tag 'viewxml/XMLDisplay' %>
+
+
+dhtmlxtree.css"
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+        <li><%= link_to "Person", people_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+
+<h1>Editing oligo sequence</h1>
 
 <%= link_to 'Show', @oligo_sequence %> |
 <%= link_to 'Back', oligo_sequences_path %>
+<% if auth_user( @oligo_sequence.partner_id) or signed_in_and_master? %>
+ | <%= link_to 'Delete', @oligo_sequence, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
+<br />
+<br />
+
 
 <% form_for(@oligo_sequence) do |f| %>
   <%= f.error_messages %>
@@ -11,29 +37,176 @@
   </div>
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
+
+<table width="95%"><tr><td>
+
   <div class="field txt">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <h3><%= f.text_field :name %></h3>
+  </div>
+
+  <div class="field txtshort">
+    <%= f.label :code %><br />
+    <h3><%= f.text_field :code %></h3>
+  </div>
+
+    <div class="field chk">
+      <b>Available:</b>
+      <%= f.check_box :available %>
+    </div>
+
+</td><td>
+
+  <div class="field select">
+    <%= f.label "Partner" %><br />
+    <h3><%= @pt.verbose_me %></h3>
   </div>
 
   <div class="field select">
-    <%= f.label :partner_id, :value => "Partner" %><br />
-    <h3><%= @partner.verbose_me %></h3>
+    <%= f.label "Person" %><br />
+    <h3><%= @peo.verbose_me %></h3>
   </div>
 
+  <div class="field date">
+    <%= f.label :oligoDate, "Date" %><br />
+    <%= date_select :oligo_sequence, :oligoDate %>
+  </div>
+
+</td><tr></table>
 
 </fieldset>
 
 <fieldset><legend class="leg">SEQUENCE - ORGANISM DATA</legend>
 
-  <div class="field ">
-    <%= f.label :DNA_Sequence %><br />
-    <%= f.text_field :DNA_Sequence %>
-  </div>
-  <div class="field ">
-    <%= f.label :tax_id_id %><br />
-    <%= f.text_field :tax_id_id %>
-  </div>
+<table width="95%"><tr><td>
+
+    <div class="field ">
+        <%= f.label :dna_sequence, "DNA sequence" %><br />
+        <h2><%= f.object.dna_sequence %></h2>
+    </div>
+    <div class="field ">
+        <%= f.label :taxonomy_id, "Taxonomy identifier" %><br />
+        <%= f.text_field :taxonomy_id %>
+    </div>
+    <div class="field ">
+        <%= f.label :taxonomy_name, "Taxonomy name" %><br />
+        <%= f.text_field :taxonomy_name %>
+    </div>
+
+</td><td>
+
+
+
+<script type="text/javascript" >
+
+//new Ajax.Updater
+//new Ajax.Request
+
+    function SetTaxo2(req) { //alert('SetTaxo: ' + req);
+        //viewxml/XMLDisplay
+        //DOM
+        try {
+            var xmlDoc = req.responseXML
+            //loadXMLString($('resbio2').id, xmlDoc.xml)
+            //loadXML($('resbio2'), xmlDoc.xml)
+            LoadXMLDom($('treeBox').id, xmlDoc)
+        }
+        catch (e){alert('error loading XMLDisplay: ' + e.message);}
+    }
+
+    function SetTaxo(req) { //alert('SetTaxo: ' + req);
+        //object XMLDocument
+        $('resbio').value = 'aaaa'
+        $('resbio2').value ='bbbb'
+        var xmlDoc = req.responseXML
+alert("XML Root Tag Name: " + xmlDoc.documentElement.tagName);
+        $('resbio').value = '<%= resolve_dxhtml %>'
+        $('resbio').value = xmlDoc.xml
+        $('resbio2').value = xmlDoc.xml
+        try {
+            var tree = new dhtmlXTreeObject("treeBox","100%","100%",0);
+            tree.setImagePath('<%= resolve_dxhtml %>');
+            //tree.loadXML(xmlDoc.xml); // loading from a file
+            //tree.loadXMLString(xmlDoc.xml); // loading from an XML string
+        }
+        catch (e){alert('error loading dhtmlXTreeObject: ' + e.message);}
+
+        //outputXml( xmlDoc);
+        //outputXml2( xmlDoc);
+    }
+
+    function outputXml2(xmlDoc){
+      try {
+        var tbl = "";
+        nodes = xmlDoc.documentElement.childNodes
+        alert('nodes' + nodes)
+//to.innerText = nodes.item(0).text
+//from.innerText = nodes.item(1).text
+        for (i=0;i<nodes.length;i++)
+        {
+          tbl += nodes.item(i).text + "<br />";
+        }
+        $('resbio').value = tbl
+        $('resbio2').value = tbl
+        } catch (e){alert('error loading xml2 file: ' + e.message);}
+    }
+
+    function outputXml(xmlDoc){
+      try {
+        var tbl = "<table border='1'>";
+        var x1=xmlDoc.getElementsByTagName("TaxaSet");
+        var x2=x1.getElementsByTagName("taxon");
+        var x3=xmlDoc2.getElementsByTagName("lineagex");
+        for (i=0;i<x3.length;i++)
+        {
+          xto = x3[i].getElementsByTagName("taxon")
+          tbl += "<tr><td>";
+          tbl += xto[i].getElementsByTagName("taxid")[0].childNodes[0].nodeValue;
+          tbl += "</td><td>";
+          tbl += xto[i].getElementsByTagName("scientificname")[0].childNodes[0].nodeValue;
+          tbl += "</td></tr>";
+        }
+        tbl += "</table>";
+        $('resbio').value = tbl
+        $('resbio2').value = tbl
+        } catch (e){alert('error loading xml file: ' + e.message);}
+    }
+</script>
+    <b>Research using taxonomy id:</b>
+    <input type="text" id="search_tax" name=""></input>&nbsp;<button type="button" id="btnbiocall" 
+        ondbclick="lookupBio(); return false;"
+        onclick="<%= remote_function(
+                                   
+                                   :url => { :action => :lookup } , 
+                                   :with => "'st='+$('search_tax').value",
+                                   :success => "SetTaxo2(request);",
+                                   :failure => "alert('HTTP Error ' + request.status + '!')"
+                                ); 
+                %>"
+        text="Browse">Click me!</button><br />
+__________________________________________________________________
+<div id="treeBox" style="width:200;height:200"
+
+   setImagePath="<%= resolve_dxhtml %>"
+   class="dhtmlxTree"
+
+></div>
+__________________________________________________________________
+<br />
+    <textarea id="resbio" rows="10" cols="20">
+        <%= @tree2 %>
+    </textarea> <br />
+    <pre id="resbio2">
+    <%= @tree2 %>
+    </pre> <br />
+    <%= @tree2 %>
+
+
+    <br /><h5><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root" target="_blank">Taxonomy database maintained by NCBI/GenBank</a></h5>
+
+
+</td><tr></table>
+
 </fieldset>
 
 
@@ -49,4 +222,8 @@
 
 <%= link_to 'Show', @oligo_sequence %> |
 <%= link_to 'Back', oligo_sequences_path %>
+<% if auth_user( @oligo_sequence.partner_id) or signed_in_and_master? %>
+ | <%= link_to 'Delete', @oligo_sequence, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
+
 

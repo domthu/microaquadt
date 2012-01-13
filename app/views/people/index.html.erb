@@ -8,17 +8,17 @@
     <th>Firstname</th>
     <th>Lastname</th>
     <th>Phone</th>
-    <th>email</th>
+    <th>Email</th>
     <th>Town</th>
   </tr>
 
 <% @people.each do |person| %>
   <tr>
     <td><%=h person.firstname %></td>
-    <td><%=h person.LastName %></td>
-    <td><%=h person.Phone %></td>
+    <td><%=h person.lastname %></td>
+    <td><%=h person.phone %></td>
     <td><%=h person.email %></td>
-    <td><%=h person.Town %></td>
+    <td><%=h person.town %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Delete', person, :confirm => 'Are you sure?', :method => :delete %></td>

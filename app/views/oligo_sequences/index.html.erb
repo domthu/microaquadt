@@ -1,31 +1,72 @@
-<h1>Oligo sequences</h1>
-<%= link_to 'New oligo_sequence', new_oligo_sequence_path %>
-<br />
-<br />
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %> 
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Dna sequence</th>
-    <th>Partner</th>
-  </tr>
-
-<% @oligo_sequences.each do |oligo_sequence| %>
-  <tr>
-    <td><%=h oligo_sequence.name %></td>
-    <td><%=h oligo_sequence.DNA_Sequence %></td>
-    <td><%=h oligo_sequence.partner.verbose %></td>
-    <td><%= link_to 'Show', oligo_sequence %></td>
-    <% if auth_user(oligo_sequence.partner_id) or signed_in_and_master? %>
-      <td><%= link_to 'Edit', edit_oligo_sequence_path(oligo_sequence) %></td>
-      <td><%= link_to 'Delete', oligo_sequence, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-  </tr>
-<% end %>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+        <li><%= link_to "Person", people_path %></li>
+    </ul>
+  </td></tr>
 </table>
+
+
+<h1>Oligo sequences</h1>
+<%= link_to 'New oligo sequence', new_oligo_sequence_path %>
+<br />
+<br />
+
+<script type="text/javascript" >
+
+//jQuery("#ngbgrid").jqGrid('navGrid','hideCol',"ID"); }); 
+//jQuery('#ngbgrid').editRow(id, true, formatEditors);
+
+    function handleSelection(id) {
+        <%= remote_function (:url => {:controller=> 'sampling_sites',
+                 :action => 'show'},
+                 :with => "id= " + String(id))
+        %>
+    }
+    function grdloaded(){
+        //alert('Loaded')
+    }
+    function formatEditors(id) {
+        // Your drop down code here...
+        // EG: jQuery("#"+id+"_myDropDownRow","#mygrid").
+    }
+
+//use, :selection_handler => "handleSelection", :direct_selection => true
+//use, :grid_complete => "grid_complete" 
+</script>
+
+    
+<%= jqgrid("List of oligo sequences: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", oligo_sequences_path,
+	[
+		{ :field => "id", :label => "ID", :width => 25, :resizable => false, :sortable => false, :editable => false, :hidden => true},
+        { :field => "act", :label => "", :width => 25, :align => 'center', :resizable => false, :sortable => false, :search => false },
+		{ :field => "verbose_me", :label => "Name", :search => true, :width => 200, :sortable => false  },
+		{ :field => "taxonomy_name", :label => "Taxonomy name", :search => true, :width => 200, :sortable => false  },
+		{ :field => "dna_ellipsis", :label => "DNA sequence", :width => 200, :search => true  },
+		{ :field => "code", :label => "Gen Code", :width => 100, :search => true  },
+		{ :field => "partner_name", :label => "Partner", :sortable => false, :width => 90, :search => false, :searchtype => "select", :searchoptions => { :data => [Partner.all, :id, :code] }, :edittype => 'select', :editable => true, :editoptions => { :data => [Partner.all, :id, :code] } },
+		{ :field => "people_name", :label => "Person", :search => false, :sortable => false, :editable => false, :width => 110 },
+        { :field => "available", :label => "", :width => 25 , :resizable => false, :sortable => true, :search => true, :formatter => 'checkbox', :searchoptions => { :value => "Yes:No" } , :editable => true, :edittype => 'checkbox', :editoptions => { :value => "Yes:No" }, :align => 'center'  },
+		{ :field => "edit_link", :label => "edit", :search => false, :sortable => false, :width => 25, :align => 'center', :resizable => false},
+	], 
+    {   :add => false, 
+        :edit => false, 
+        :inline_edit => false, 
+        :delete => false, 
+        :rows_per_page => "50", 
+        :height => 800, 
+        :rownumbers => 'false',
+        :grid_loaded => 'grdloaded'
+     }
+
+) %>
 
 <br />
 <br />
 <%= link_to 'New oligo_sequence', new_oligo_sequence_path %>
 <br />
+
 

@@ -328,6 +328,8 @@ restful:  true
           options << "editoptions:#{get_sub_options(couple[1])},"
         elsif couple[0] == :formoptions
           options << "formoptions:#{get_sub_options(couple[1])},"
+        elsif couple[0] == :searchoptions
+          options << "searchoptions:#{get_sub_options(couple[1])},"
 #New code
         elsif couple[0] == :formatoptions
           options << "formatoptions:#{get_sub_options(couple[1])},"
@@ -335,8 +337,6 @@ restful:  true
           #options << "hidden:#{get_sub_options(couple[1])},"
           options << "hidden:#{couple[1]},"
 #End of new code
-        elsif couple[0] == :searchoptions
-          options << "searchoptions:#{get_sub_options(couple[1])},"
         elsif couple[0] == :editrules
           options << "editrules:#{get_sub_options(couple[1])},"
         else

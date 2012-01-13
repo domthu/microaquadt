@@ -1,7 +1,54 @@
-class OligoSequencesController < ApplicationController
+class OligoSequencesController < AuthController   #ApplicationController
 
   #only Requiring the right user to change own contents
-  before_filter :correct_user, :only => [:edit, :update]
+  before_filter :correct_user, :only => [:edit, :update, :delete, :destroy]
+
+  # remote_function AJAX CALL 
+  #Ko http://apidock.com/rails/v2.3.8/ActionView/Helpers/PrototypeHelper/remote_function prototype function
+  #add to route map.connect 'lookup', :controller => 'oligo_sequences', :action => 'lookup'
+
+  def lookup()
+    logger.debug('here')
+    xsearch = params[:st]
+    if !xsearch.nil?
+#onclick="<%= remote_function(
+#                           :update => "resbio" ,
+#                           :url => { :action => :lookup } , 
+#                           :with => "'st='+$('search_tax').value"
+#                        ); 
+#        %>"
+        @tree =  Bio::NCBI::REST::EFetch.taxonomy(xsearch)
+        @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(xsearch, 'xml')
+        respond_to do |format|
+            #format.json  { render :json => @tree }      
+            format.xml  { render :xml => @tree2 }      
+#        render :update do |page|
+          #page.replace_html 'resbio', 'Done2! --> ' + xsearch 
+#          page.replace_html 'resbio', @tree 
+#          page.replace_html 'resbio2', @tree2 
+        end
+    else
+        ysearch = params[:id]
+        if !xsearch.nil?
+            respond_to do |format|
+                #format.json  { render :json => @tree }      
+                format.xml  { render :xml => @tree }      
+            end
+        end
+    end
+  end
+
+#Cascading Drop Down Also called Related Drop Down fields or Dependant Drop Down lists or Dynamic Drop Downs or Dependent Drop Downs.
+#    def for_sectionid
+#        #you need to sanitize the variables being passed as a parameter
+#        @subsections = SubSection.find( :all, :conditions => [" section_id = ?", params[:id]]  ).sort_by{ |k| k['name'] }    
+#        @subsection = SubSection.find_all_by_section_id( params[:id]).sort_by{ |k| k['name'] }
+
+
+#        respond_to do |format|
+#            format.json  { render :json => @subsections }      
+#        end
+#    end
 
   # GET /oligo_sequences
   # GET /oligo_sequences.xml
@@ -9,11 +56,46 @@ class OligoSequencesController < ApplicationController
     @oligo_sequences = OligoSequence.all
     @title = "List of oligo sequences"
 
+    oligo_sequences = OligoSequence.find(:all) do
+        if params[:_search] == "true"
+            name =~ "%#{params[:verbose_me]}%" if params[:verbose_me].present?
+#            verbose_me =~ "%#{params[:verbose_me]}%" if params[:verbose_me].present?
+            dna_sequence =~ "%#{params[:dna_ellipsis]}%" if params[:dna_ellipsis].present?
+#            dna_ellipsis =~ "%#{params[:dna_ellipsis]}%" if params[:dna_ellipsis].present?
+            code =~ "%#{params[:code]}%" if params[:code].present?
+            taxonomy_name =~ "%#{params[:taxonomy_name]}%" if params[:taxonomy_name].present?
+            available = "%#{params[:available]}%" if params[:available].present?
+        end
+        paginate :page => params[:page], :per_page => params[:rows]      
+        order_by "#{params[:sidx]} #{params[:sord]}"
+    end
+
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @oligo_sequences }
+      #format.xml  { render :xml => @oligo_sequences }
+      format.json { render :json => oligo_sequences.to_jqgrid_json(
+            [:id, "act","verbose_me", :taxonomy_name, "dna_ellipsis", :code, "partner_name", "people_name", :available, "edit"],
+            params[:page], params[:rows], oligo_sequences.total_entries) }			
+#The order of the fields in the first parameter matters, it should be the same than the display order in your datagrid. 
+#            "verbose_me","dna_ellipsis",:name,:dna_sequence
     end
   end
+
+#, :searchtype => "select", :searchoptions => { :data => [Partner.all, :id, :verbose_me] } },
+#, :searchtype => "select", :searchoptions => { :value => [["admin","admin"], ["player", "player"], ["defender","defender"]] }
+
+#<table><tr><th>Name</th><th>Dna sequence</th><th>Partner</th><th>Person</th></tr>
+#<% @oligo_sequences.each do |oligo_sequence| %><tr>
+#    <td><%=h oligo_sequence.verbose_me %></td>
+#    <td><%=h oligo_sequence.dna_ellipsis %></td>
+#    <td><%=h oligo_sequence.partner_name %></td>
+#    <td><%=h oligo_sequence.people_name %></td>
+#    <td><%= link_to 'Show', oligo_sequence %></td>
+#    <% if auth_user(oligo_sequence.partner_id) or signed_in_and_master? %>
+#      <td><%= link_to 'Edit', edit_oligo_sequence_path(oligo_sequence) %></td>
+#      <td><%= link_to 'Delete', oligo_sequence, :confirm => 'Are you sure?', :method => :delete %></td>
+#    <% end %>
+#</tr><% end %></table>
 
   # GET /oligo_sequences/1
   # GET /oligo_sequences/1.xml
@@ -56,6 +138,21 @@ class OligoSequencesController < ApplicationController
   def edit
     @oligo_sequence = OligoSequence.find(params[:id])
     @title = "oligo sequence"
+
+    @pt = Partner.find(@oligo_sequence.partner_id)
+    @peo = Person.find(@oligo_sequence.people_id)
+@tree = ""
+@tree2 = ""
+    @tree3 =  Bio::NCBI::REST::ESearch.taxonomy('tardig%')
+
+    if @oligo_sequence.taxonomy_id.nil?
+        @tree =  Bio::NCBI::REST::EFetch.taxonomy(12475)
+        @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(265554, 'xml')
+        #@tree3 =  Bio::NCBI::REST::ESearch.taxonomy('12475')
+    else
+        @tree =  Bio::NCBI::REST::EFetch.taxonomy(@oligo_sequence.taxonomy_id)
+        @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(@oligo_sequence.taxonomy_id, 'xml')
+    end
   end
 
   # POST /oligo_sequences
@@ -63,6 +160,8 @@ class OligoSequencesController < ApplicationController
   def create
     @oligo_sequence = OligoSequence.new(params[:oligo_sequence])
     @title = "oligo sequence"
+
+    @oligo_sequence.dna_sequence = @oligo_sequence.dna_sequence.upcase
 
     respond_to do |format|
       if @oligo_sequence.save
@@ -81,11 +180,25 @@ class OligoSequencesController < ApplicationController
     @oligo_sequence = OligoSequence.find(params[:id])
     @title = "oligo sequence"
 
+    if !params[:oligo_sequence][:dna_sequence].nil?
+        params[:oligo_sequence][:dna_sequence] = params[:oligo_sequence][:dna_sequence].upcase
+    end
     respond_to do |format|
       if @oligo_sequence.update_attributes(params[:oligo_sequence])
         format.html { redirect_to(@oligo_sequence, :notice => 'OligoSequence was successfully updated.') }
         format.xml  { head :ok }
       else
+
+        @pt = Partner.find(@oligo_sequence.partner_id)
+        @peo = Person.find(@oligo_sequence.people_id)
+        if @oligo_sequence.taxonomy_id.nil?
+            @tree =  Bio::NCBI::REST::EFetch.taxonomy(42241)
+            @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(42241, 'xml') #265554, 'xml')
+        else
+            @tree =  Bio::NCBI::REST::EFetch.taxonomy(@oligo_sequence.taxonomy_id)
+            @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(@oligo_sequence.taxonomy_id, 'xml')
+        end
+
         format.html { render :action => "edit" }
         format.xml  { render :xml => @oligo_sequence.errors, :status => :unprocessable_entity }
       end
