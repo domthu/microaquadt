@@ -19,12 +19,12 @@
 <table width="95%"><tr><td>
 
     <div class="show txt">
-      <b>Name:</b>
+      <b>Description:</b>
       <%=h @oligo_sequence.name %>
     </div>
 
     <div class="show cod">
-      <b>Code:</b>
+      <b>Partner code:</b>
       <%=h @oligo_sequence.code %>
     </div>
 
@@ -54,26 +54,47 @@
 
 </fieldset>
 
-
-<fieldset><legend class="leg">SEQUENCE - ORGANISM DATA</legend>
+<fieldset><legend class="leg">DNA SEQUENCE</legend>
 
     <div class="show seq">
-      <b>DNA sequence:</b>
+      <b title="validation dna seq --> IUPAC code table Nucleotid:  
+A (Adenine) 
+C (Cytosine)    
+G (Guanine) 
+T (Thymine) 
+U (Uracil)  
+R (Purine A or G)   
+Y (Pyrimidine C, T, or U)   
+M (C or A)  
+K (T, U, or G)  
+W (T, U, or A)  
+S (C or G)  
+B (C, T, U, or G not A) 
+D (A, T, U, or G not C)    
+H (A, T, U, or C not G)    
+V (A, C, or G not T, not U) 
+N (Any base A, C, G, T, or U)   ">DNA sequence:</b>
       <h1><%=h @oligo_sequence.dna_sequence %></h1>
-    </div>
-    <div class="show txt">
-      <b>Taxonomy identifier:</b>
-      <h3><%=h @oligo_sequence.taxonomy_id %></h3>
-    </div>
-    <div class="show txt">
-      <b>Taxonomy name:</b>
-      <h3><%=h @oligo_sequence.taxonomy_name %></h3>
     </div>
 
 </fieldset>
 
+<fieldset><legend class="leg">ORGANISM</legend>
+
+    <div class="show txt">
+      <b>Taxonomy identifier:</b>
+      <h3><a href='http://www.ncbi.nlm.nih.gov/taxonomy/?term=<%=h @oligo_sequence.taxonomy_id %>' title='Show taxonomy identifier into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_id %></a></h3>
+    </div>
+    <div class="show txt">
+      <b>Taxonomy name:</b>
+      <h3><a href='http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=<%=h @oligo_sequence.taxonomy_name %>' title='Show taxonomy definition and lineage into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_name %></a></h3>
+    </div>
+    
+
+</fieldset>
+
 <div class="show area">
-  <b>Description:</b>
+  <b>Additional data:</b>
   <%=h @oligo_sequence.description %>
 </div>
 

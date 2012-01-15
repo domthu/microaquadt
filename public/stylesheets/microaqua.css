@@ -1,148 +1,43 @@
-.container {
-  width: 90%; /*800px*/
-}
-
-body {
-  background: #E6F3F7; /*#cff;*/
-}
-
-#header {
-  padding-top: 5px; /*20px*/
-}
-
-#header img {
-  padding: 0.5em; /*1em*/
-  background: #fff;
-}
-
+.container {  width: 90%; /*800px*/}
+body {  background: #E6F3F7; /*#cff;*/}
+#header {  padding-top: 5px; /*20px*/}
+#header img {  padding: 0.5em; /*1em*/  background: #fff;}
 #header table {margin-bottom: 0em; background-color: transparent;}
-
-#content {
-  margin-top: 0em; /*1em*/
-  font-size: 120%;
-  padding: 20px;
-  background: #fff;
-}
-
+#content {  margin-top: 0em; /*1em*/  font-size: 120%;
+  padding: 20px;  background: #fff;}
 /* Links */
-
-a {
-  color: #09c;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #069;
-  text-decoration: underline;
-}
-
-a:visited {
-  color: #069;
-}
-
+a {  color: #09c;  text-decoration: none;}
+a:hover {  color: #069;  text-decoration: underline;}
+a:visited {  color: #069;}
 /* Navigation */
-
-.navigation {
-  float: right;
-}
-
-.navigation {
-  background-color: white;
-  padding: 0 0.7em;
-  white-space: nowrap;
-}
-
-ul.navigation {
-  margin: 0;
-}
-
-.navigation li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 0.2em 0;
-}
-
-.navigation li a {
-  padding: 0 5px;
-  font-weight: bold;
-}
-
-.navigation li a:visited {
-  color: #09c;
-}
-
-.navigation li a:hover {
-  text-decoration: underline;
-}
-
+.navigation {  float: right;}
+.navigation {  background-color: white;  padding: 0 0.7em;  white-space: nowrap;}
+ul.navigation {  margin: 0;}
+.navigation li {  list-style-type: none;  display: inline-block;  padding: 0.2em 0;}
+.navigation li a {  padding: 0 5px;  font-weight: bold;}
+.navigation li a:visited {  color: #09c;}
+.navigation li a:hover {  text-decoration: underline;}
 /* Sign up button */
-
-a.signup_button {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  text-align: center;
-  width: 190px;
-  color: #fff;
-  background: #006400;
-  font-size: 150%;
-  font-weight: bold;
-  padding: 20px;
-}
-
+a.signup_button {  margin-left: auto;  margin-right: auto;  display: block;
+  text-align: center;  width: 190px;  color: #fff;  background: #006400;
+  font-size: 150%;  font-weight: bold;  padding: 20px;}
 /* Round corners */
-
-.round {
-  -moz-border-radius:    10px;
-  -webkit-border-radius: 10px;
-  border-radius:         10px;
-}
-
+.round {  -moz-border-radius:    10px;  -webkit-border-radius: 10px;
+  border-radius:         10px;}
 /* footer */
-
-#footer {
-  text-align: center;
-  margin-top: 10px;
-  width: 710px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#footer .navigation {
-  float: none;
-}
-
+#footer {  text-align: center;  margin-top: 10px;  width: 710px;
+  margin-left: auto;  margin-right: auto;}
+#footer .navigation {  float: none;}
 /* row title and row box*/
 .rowlbl{color: darkgreen;font-weight: bold;font-family: Courier,monospace;font-size: 100%;}
 .rowboxout{margin-top: 0.5em;width: 100%;margin-bottom: 2em;color: #070707;}
 .rowboxin{width: 670px;background: none repeat scroll 0 0 #EEEEEE;
-    border: 1px solid #999999;
-    padding-right: 1.5em;}
-
+    border: 1px solid #999999;    padding-right: 1.5em;}
 /* User show page */
-
-table.profile {
-  width: 100%;
-  margin-bottom: 0;
-}
-
-td.main {
-  width: 70%;
-  padding: 1em;
-}
-
-td.sidebar {
-  width: 30%;
-  padding: 1em;
-  vertical-align: top;
-  background: #ffc;
-}
-
-.profile img.gravatar {
-  border: 1px solid #999;
-  margin-bottom: -15px;
-}
-
+table.profile {  width: 100%;  margin-bottom: 0;}
+td.main {  width: 70%;  padding: 1em;}
+td.sidebar {  width: 30%;  padding: 1em;  vertical-align: top;  background: #ffc;}
+.profile img.gravatar {  border: 1px solid #999;  margin-bottom: -15px;}
 /* form_for */
 div.field{border: solid 0px red;float:none;clear: both;}
 div.datas{border: solid 0px red;float:left;}
@@ -157,8 +52,7 @@ div.area text_area{width: 80%;}
 div.seq input {/*font-family: monospace; font-size:1.4em;*/ width:400px;}
 div.txt input {width: 400px;}
 div.txtshort input {width: 150px;}
-div.cod input {width: 30px;font-weight: bold;
-  font-family: monospace;font-size: 1.6em;}
+div.cod input {width: 30px;font-weight: bold;  font-family: monospace;font-size: 1.6em;}
 div.select select{/*color: #000000;font-family: monospace;font-size: 1.1em;*/}
 .leg{border-color:blue;}
 .fieldWithErrors {padding: 2px;background-color: #E9967A;display: table;}
@@ -172,63 +66,32 @@ div.select select{/*color: #000000;font-family: monospace;font-size: 1.1em;*/}
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-
-#errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
-}
-
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 5px;
-}
-
-#errorExplanation ul li {
-  font-size: 12px;
-  list-style: square;
-}
-
+#errorExplanation h2 {  text-align: left;
+  font-weight: bold;  padding: 5px 5px 5px 15px;
+  font-size: 12px;  margin: -7px;
+  background-color: #c00;  color: #fff;}
+#errorExplanation p {  color: #333;  margin-bottom: 0;  padding: 5px;}
+#errorExplanation ul li {  font-size: 12px;  list-style: square;}
 /* Users list index page */
 ul.users {margin-top: 1em;}
 .users li {list-style: none;}
-
 .transparent {background-color: transparent;}
 .hide{display: none;}
 /*    LOGIN     */
-.passicon {
-    margin-left: 5px; height: 24px;
-    background: url("../images/login-set.png") no-repeat scroll left 0 transparent;
-}
+.passicon {    margin-left: 5px; height: 24px;
+    background: url("../images/login-set.png") no-repeat scroll left 0 transparent;}
 .passicon:hover {
-    background: url("../images/login-set.png") no-repeat scroll left -24px transparent;
-}
-.usericon {
-    margin-left: 5px; height: 24px;
-    background: url("../images/login-set.png") no-repeat scroll left -48px transparent;
-}
+    background: url("../images/login-set.png") no-repeat scroll left -24px transparent;}
+.usericon {    margin-left: 5px; height: 24px;
+    background: url("../images/login-set.png") no-repeat scroll left -48px transparent;}
 .usericon:hover {
-    background: url("../images/login-set.png") no-repeat scroll left -72px transparent;
-}
+    background: url("../images/login-set.png") no-repeat scroll left -72px transparent;}
 div.passicon div input, div.usericon div input {
-    border: 0 none;
-    font-size: 0.829em;
-    margin: 0;
-    padding: 0;
-}
+    border: 0 none;    font-size: 0.829em;    margin: 0;    padding: 0;}
 div.passicon div.form-item, div.usericon div.form-item {
-    margin: 0;
-    padding: 0;
-    margin-left: 30px;
-}
-
+    margin: 0;    padding: 0;    margin-left: 30px;}
 /* show edit new */
-.show{margin:5px; padding:5px; float:none; width:30%;}
+.show{margin:5px; padding:5px; float:none; width:90%;}
 .taleft{text-align: left; margin-left: 5px;}
 .taright{text-align: right; margin-right: 5px;}
 #gbox_ngbgrid{width:97%}

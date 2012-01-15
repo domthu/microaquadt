@@ -41,12 +41,12 @@ dhtmlxtree.css"
 <table width="95%"><tr><td>
 
   <div class="field txt">
-    <%= f.label :name %><br />
+    <%= f.label :name, "Description" %><br />
     <h3><%= f.text_field :name %></h3>
   </div>
 
   <div class="field txtshort">
-    <%= f.label :code %><br />
+    <%= f.label :code, "Partner code" %><br />
     <h3><%= f.text_field :code %></h3>
   </div>
 
@@ -76,21 +76,46 @@ dhtmlxtree.css"
 
 </fieldset>
 
-<fieldset><legend class="leg">SEQUENCE - ORGANISM DATA</legend>
+<fieldset><legend class="leg">DNA SEQUENCE</legend>
+
+    <div class="field ">
+        <%= f.label :dna_sequence, "DNA sequence", :title => "validation dna seq --> IUPAC code table Nucleotid:  
+A (Adenine) 
+C (Cytosine)    
+G (Guanine) 
+T (Thymine) 
+U (Uracil)  
+R (Purine A or G)   
+Y (Pyrimidine C, T, or U)   
+M (C or A)  
+K (T, U, or G)  
+W (T, U, or A)  
+S (C or G)  
+B (C, T, U, or G not A) 
+D (A, T, U, or G not C)    
+H (A, T, U, or C not G)    
+V (A, C, or G not T, not U) 
+N (Any base A, C, G, T, or U)   " %><br />
+        <h2><%= f.object.dna_sequence %></h2>
+    </div>
+
+</fieldset>
+
+<fieldset><legend class="leg">ORGANISM</legend>
 
 <table width="95%"><tr><td>
 
     <div class="field ">
-        <%= f.label :dna_sequence, "DNA sequence" %><br />
-        <h2><%= f.object.dna_sequence %></h2>
-    </div>
-    <div class="field ">
         <%= f.label :taxonomy_id, "Taxonomy identifier" %><br />
-        <%= f.text_field :taxonomy_id %>
+        <%= f.hidden_field :taxonomy_id %><br />
+        <label id="ed_tax_id" name="ed_tax_id"><%=h @oligo_sequence.taxonomy_id %></label>
+        <h3><a href='http://www.ncbi.nlm.nih.gov/taxonomy/?term=<%=h @oligo_sequence.taxonomy_id %>' title='Show taxonomy identifier into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_id %></a></h3>
     </div>
     <div class="field ">
         <%= f.label :taxonomy_name, "Taxonomy name" %><br />
-        <%= f.text_field :taxonomy_name %>
+        <%= f.hidden_field :taxonomy_name %><br />
+        <label id="ed_tax_name" name="ed_tax_name"><%=h @oligo_sequence.taxonomy_id %></label><br />
+        <h3><a href='http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=<%=h @oligo_sequence.taxonomy_name %>' title='Show taxonomy definition and lineage into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_name %></a></h3>
     </div>
 
 </td><td>
@@ -211,7 +236,7 @@ __________________________________________________________________
 
 
   <div class="field area">
-    <%= f.label :description %><br />
+    <%= f.label :description, "Additional data" %><br />
     <%= f.text_area :description %>
   </div>
 
