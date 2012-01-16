@@ -22,6 +22,13 @@ class OligoSequencesController < AuthController   #ApplicationController
         respond_to do |format|
             #format.json  { render :json => @tree }      
             format.xml  { render :xml => @tree2 }      
+
+            #In libxml2-ruby, I think LibXML::XML::Reader is the best choice,
+            #because it is memory efficient than DOM and its API is simpler
+            #than that of SAX. LibXML::XML::SAXParser is not bad, but I wonder
+            #if the SAX's callback based API makes our codes too complex and
+            #difficult to maintain.
+
 #        render :update do |page|
           #page.replace_html 'resbio', 'Done2! --> ' + xsearch 
 #          page.replace_html 'resbio', @tree 

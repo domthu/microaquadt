@@ -4,7 +4,7 @@
 <%= javascript_include_tag 'dxhmltree/ext/dhtmlxtree_start.js' %>
 <%= stylesheet_link_tag 'dxhmltree/dhtmlxtree' %>
 
-<%= javascript_include_tag 'viewxml/XMLDisplay.js' %>
+<%= javascript_include_tag 'viewxml/XMLDisplayBio.js' %>
 <%= stylesheet_link_tag 'viewxml/XMLDisplay' %>
 
 
@@ -109,13 +109,13 @@ N (Any base A, C, G, T, or U)   " %><br />
         <%= f.label :taxonomy_id, "Taxonomy identifier" %><br />
         <%= f.hidden_field :taxonomy_id %><br />
         <label id="ed_tax_id" name="ed_tax_id"><%=h @oligo_sequence.taxonomy_id %></label>
-        <h3><a href='http://www.ncbi.nlm.nih.gov/taxonomy/?term=<%=h @oligo_sequence.taxonomy_id %>' title='Show taxonomy identifier into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_id %></a></h3>
+        <h3><a href='http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=<%=h @oligo_sequence.taxonomy_id %>' title='Show taxonomy identifier into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_id %></a></h3>
     </div>
     <div class="field ">
         <%= f.label :taxonomy_name, "Taxonomy name" %><br />
         <%= f.hidden_field :taxonomy_name %><br />
         <label id="ed_tax_name" name="ed_tax_name"><%=h @oligo_sequence.taxonomy_id %></label><br />
-        <h3><a href='http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=<%=h @oligo_sequence.taxonomy_name %>' title='Show taxonomy definition and lineage into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_name %></a></h3>
+        <h3><a href='http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=<%=h @oligo_sequence.taxonomy_name %>' title='Show taxonomy definition and lineage into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_name %></a></h3>
     </div>
 
 </td><td>
@@ -126,75 +126,44 @@ N (Any base A, C, G, T, or U)   " %><br />
 
 //new Ajax.Updater
 //new Ajax.Request
+var biourl = '<%= resolve_dxhtml %>'
 
     function SetTaxo2(req) { //alert('SetTaxo: ' + req);
         //viewxml/XMLDisplay
         //DOM
         try {
             var xmlDoc = req.responseXML
-            //loadXMLString($('resbio2').id, xmlDoc.xml)
-            //loadXML($('resbio2'), xmlDoc.xml)
             LoadXMLDom($('treeBox').id, xmlDoc)
+
+            try {
+                var Xml2String = ""
+                if (xmlDoc.xml) {
+                    Xml2String=xmlDoc.xml  // Converts the xml object to string  (  For IE)
+                }else{
+                    Xml2String= new XMLSerializer().serializeToString(xmlDoc); // Converts the xml object to string (For rest browsers, mozilla, etc)
+                }
+                var Message= "--------- RESPONSE HEADERS  (NOTE THE CONTENT-TYPE) --------\n\n"
+                Message+=req.getAllResponseHeaders()
+                Message+="\n\n----------------------------------- XML -----------------------------------\n\n"
+                Message+= Xml2String
+                Message+="\n\n--------------------- DATE (PARSED FROM XML) ----------------------\n\n"
+                //alert( Message ) 
+                $('resbio').value = Xml2String
+            }
+            catch (e){alert('error loading xmlDoc: ' + e.message);}
+
         }
         catch (e){alert('error loading XMLDisplay: ' + e.message);}
     }
 
-    function SetTaxo(req) { //alert('SetTaxo: ' + req);
-        //object XMLDocument
-        $('resbio').value = 'aaaa'
-        $('resbio2').value ='bbbb'
-        var xmlDoc = req.responseXML
-alert("XML Root Tag Name: " + xmlDoc.documentElement.tagName);
-        $('resbio').value = '<%= resolve_dxhtml %>'
-        $('resbio').value = xmlDoc.xml
-        $('resbio2').value = xmlDoc.xml
+    function RecalTaxo(tax_id) { 
         try {
-            var tree = new dhtmlXTreeObject("treeBox","100%","100%",0);
-            tree.setImagePath('<%= resolve_dxhtml %>');
-            //tree.loadXML(xmlDoc.xml); // loading from a file
-            //tree.loadXMLString(xmlDoc.xml); // loading from an XML string
+            $('search_tax').value = tax_id;
+            //do javascript click
+            $('btnbiocall').click();
         }
-        catch (e){alert('error loading dhtmlXTreeObject: ' + e.message);}
-
-        //outputXml( xmlDoc);
-        //outputXml2( xmlDoc);
-    }
-
-    function outputXml2(xmlDoc){
-      try {
-        var tbl = "";
-        nodes = xmlDoc.documentElement.childNodes
-        alert('nodes' + nodes)
-//to.innerText = nodes.item(0).text
-//from.innerText = nodes.item(1).text
-        for (i=0;i<nodes.length;i++)
-        {
-          tbl += nodes.item(i).text + "<br />";
-        }
-        $('resbio').value = tbl
-        $('resbio2').value = tbl
-        } catch (e){alert('error loading xml2 file: ' + e.message);}
-    }
-
-    function outputXml(xmlDoc){
-      try {
-        var tbl = "<table border='1'>";
-        var x1=xmlDoc.getElementsByTagName("TaxaSet");
-        var x2=x1.getElementsByTagName("taxon");
-        var x3=xmlDoc2.getElementsByTagName("lineagex");
-        for (i=0;i<x3.length;i++)
-        {
-          xto = x3[i].getElementsByTagName("taxon")
-          tbl += "<tr><td>";
-          tbl += xto[i].getElementsByTagName("taxid")[0].childNodes[0].nodeValue;
-          tbl += "</td><td>";
-          tbl += xto[i].getElementsByTagName("scientificname")[0].childNodes[0].nodeValue;
-          tbl += "</td></tr>";
-        }
-        tbl += "</table>";
-        $('resbio').value = tbl
-        $('resbio2').value = tbl
-        } catch (e){alert('error loading xml file: ' + e.message);}
+        catch (e){alert('error RecalTaxo: ' + e.message);}
+        return false;
     }
 </script>
     <b>Research using taxonomy id:</b>
