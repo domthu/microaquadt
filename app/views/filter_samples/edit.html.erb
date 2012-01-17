@@ -22,6 +22,8 @@
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
+<table width="95%"><tr><td>
+
   <div class="field select">
     <%= f.label :sampling_id, "selected sampling" %><br />
     <h3><%= @sampling.full_name %></h3>
@@ -35,11 +37,13 @@
     <%= f.label :wfilter_id, "Protocol pore size (μm)" %><br />
     <h3><%= @wfilter.verbose_me%></h3>
   </div>
-
   <div class="field num">
     <%= f.label :num_filters, "Number of filters" %><br />
     <%= f.text_field :num_filters %>
   </div>
+
+</td><td>
+
   <div class="field num">
     <%= f.label :volume, "Average Liters of water per filter" %><br />
     <%= f.text_field :volume %>
@@ -48,11 +52,20 @@
     <%= f.label :barcode, "Partner barcode" %><br />
     <%= f.text_field :barcode %>
   </div>
-
   <div class="field date">
     <%= f.label :samplingDate, "Filtering date" %><br />
     <%= date_select :filter_sample, :samplingDate %>
   </div>
+  <div class="field select">
+    <%= f.label :filter_sample_preparations_id, "Filter sample preparation" %><br />
+    <%= select :filter_sample,:filter_sample_preparations_id,FilterSamplePreparation.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+  <div class="field txt">
+    <%= f.label :storage, "Storage" %><br />
+    <%= f.text_field :storage %>
+  </div>
+
+</td><tr></table>
 
 </fieldset>
 

@@ -1,10 +1,9 @@
 class LandUseMappingsController < AuthController
 
-  # GET /land_use_mappings
-  # GET /land_use_mappings.xml
-
   layout 'application'
 
+  # GET /land_use_mappings
+  # GET /land_use_mappings.xml
   def index
     @land_use_mappings = LandUseMapping.all
     @title = "land use mappings"

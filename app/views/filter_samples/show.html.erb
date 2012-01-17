@@ -16,6 +16,8 @@
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
+<table width="95%"><tr><td>
+
     <div class="show select">
       <b>Sampling:</b>
       <h3><%=h link_to @s.full_name, sampling_path(@s) %></h3>
@@ -41,6 +43,8 @@
       <h3><%=h @filter_sample.volume %> lt</h3> 
     </div>
 
+</td><td>
+
     <div class="show cod">
       <b>Partner barcode:</b>
       <h3><%=h @filter_sample.barcode %></h3>
@@ -50,6 +54,17 @@
       <b>Filtering date:</b>
       <h3><%=h @filter_sample.samplingDate.strftime("%A %d %B %Y") %></h3>
     </div>
+
+    <div class="show select">
+      <b>Filter sample preparation:</b>
+      <h3><%=h link_to @fsp.verbose_me, filter_sample_preparation_path(@fsp) %></h3>
+    </div>
+    <div class="show txt">
+      <b>Storage:</b>
+      <h3><%=h @filter_sample.storage %></h3>
+    </div>
+
+</td><tr></table>
 
 <p>
   <b>Note:</b>

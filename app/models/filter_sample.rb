@@ -35,6 +35,8 @@ class FilterSample < ActiveRecord::Base
   belongs_to :wfilter #, :null => false
   validates_presence_of :wfilter
 
+  has_one :filter_sample_preparations#, :null => true
+
   #In order for form_for to work,
   attr_reader :verbose_me
   def verbose_me

@@ -2,7 +2,10 @@
   <b>Name:</b>
   <%=h @altitude_type.name %>
 </p>
-
+<p>
+  <b>Description:</b>
+  <%=h @altitude_type.description %>
+</p>
 
 <%= link_to 'Edit', edit_altitude_type_path(@altitude_type) %> |
 <%= link_to 'Back', altitude_types_path %>

@@ -23,11 +23,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Description</th>
   </tr>
 
 <% @geologies.each do |geology| %>
   <tr>
     <td><%=h geology.name %></td>
+    <td><%=h geology.desc_ellipsis %></td>
     <td><%= link_to 'Show', geology %></td>
     <td><%= link_to 'Edit', edit_geology_path(geology) %></td>
     <td><%= link_to 'Destroy', geology, :confirm => 'Are you sure?', :method => :delete %></td>

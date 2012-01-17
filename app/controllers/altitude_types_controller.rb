@@ -1,4 +1,4 @@
-class AltitudeTypesController < ApplicationController
+class AltitudeTypesController < AuthController   # < ApplicationController
   # GET /altitude_types
   # GET /altitude_types.xml
   def index

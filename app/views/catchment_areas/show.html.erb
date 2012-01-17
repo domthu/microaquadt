@@ -2,7 +2,10 @@
   <b>Name:</b>
   <%=h @catchment_area.name %>
 </p>
-
+<p>
+  <b>Description:</b>
+  <%=h @catchment_area.description %>
+</p>
 
 <%= link_to 'Edit', edit_catchment_area_path(@catchment_area) %> |
 <%= link_to 'Back', catchment_areas_path %>

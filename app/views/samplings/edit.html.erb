@@ -1,6 +1,7 @@
-<table class="hide">
+<table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
+        <li><%= link_to "equipement", sampling_equipments_path %></li>
         <li class="hide" style="display: none;"><%= link_to "code type", code_types_path %></li>
         <li class="hide" style="display: none;"><%= link_to "protocol", protocols_path %></li>
     </ul>
@@ -25,11 +26,13 @@
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
+<table width="95%"><tr><td>
+
 <h3><%= @is_Auth %></h3>
   <div class="field select">
     <%= f.label :sampling_site_id, "Sampling" %><br />
     <h3><%= @ss.verbose_me %></h3>
-  </div>&nbsp;&nbsp;
+  </div>
   <div class="field select">
     <%= f.label :partner_id, "Partner" %><br />
     <div style="display:none;">  select :sampling, :partner,Partner.find(:all).collect{|p| [p.fp7_Number + " " + p.name, p.id]} </div>
@@ -40,6 +43,13 @@
     <%= f.label :code, "Microaqua code" %><br />
     <h3><%= @code %></h3>
   </div>
+  <div class="field num">
+    <%= f.label :volume, "Volume (liter)" %><br />
+    <%= f.text_field :volume %>
+  </div>
+
+</td><td>
+
   <div class="field date">
     <%= f.label :samplingDate, "Sampling date" %><br />
     <%= date_select :sampling, :samplingDate %>
@@ -48,16 +58,21 @@
     <= f.label :protocols ><br />
     <= select :sampling,:protocol_id,Wfilter.find(:all).collect{|p| [p.name, p.id]} >
   </div>
-
-  <div class="field num">
-    <%= f.label :volume, "Volume (liter)" %><br />
-    <%= f.text_field :volume %>
+  <div class="field select">
+    <%= f.label :sampling_equipments_id, "Sampling equipment" %><br />
+    <%= select :sampling,:sampling_equipments_id,SamplingEquipment.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
-
   <div class="field txt">
     <%= f.label :operators, "Operators" %><br />
     <%= f.text_field :operators %>
   </div>
+  <div class="field txt">
+    <%= f.label :storage, "Storage" %><br />
+    <%= f.text_field :storage %>
+  </div>
+
+</td><tr></table>
+
 </fieldset>
 
 <fieldset><legend class="leg">ASSOCIATED FILTER SAMPLES</legend>

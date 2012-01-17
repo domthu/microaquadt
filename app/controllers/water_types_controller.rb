@@ -1,4 +1,4 @@
-class WaterTypesController < AuthController
+class WaterTypesController < AuthController   # < AuthController
 
   # GET /water_types
   # GET /water_types.xml

@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :filter_sample_preparations
+
+  map.resources :sampling_equipments
+
   map.resources :geos
 
   map.resources :size_typologies

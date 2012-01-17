@@ -2,7 +2,10 @@
   <b>Name:</b>
   <%=h @size_typology.name %>
 </p>
-
+<p>
+  <b>Description:</b>
+  <%=h @size_typology.description %>
+</p>
 
 <%= link_to 'Edit', edit_size_typology_path(@size_typology) %> |
 <%= link_to 'Back', size_typologies_path %>

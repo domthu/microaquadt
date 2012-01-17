@@ -23,11 +23,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Description</th>
   </tr>
 
 <% @altitude_types.each do |altitude_type| %>
   <tr>
     <td><%=h altitude_type.name %></td>
+    <td><%=h altitude_type.desc_ellipsis %></td>
     <td><%= link_to 'Show', altitude_type %></td>
     <td><%= link_to 'Edit', edit_altitude_type_path(altitude_type) %></td>
     <td><%= link_to 'Destroy', altitude_type, :confirm => 'Are you sure?', :method => :delete %></td>

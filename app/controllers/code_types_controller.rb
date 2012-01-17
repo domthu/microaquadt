@@ -1,4 +1,4 @@
-class CodeTypesController < AuthController
+class CodeTypesController < AuthController   # < AuthController
 
   #only Requiring the right user to change own contents
   before_filter :correct_user, :only => [:edit, :update]

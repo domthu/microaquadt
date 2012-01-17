@@ -23,11 +23,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Description</th>
   </tr>
 
 <% @size_typologies.each do |size_typology| %>
   <tr>
     <td><%=h size_typology.name %></td>
+    <td><%=h size_typology.desc_ellipsis %></td>
     <td><%= link_to 'Show', size_typology %></td>
     <td><%= link_to 'Edit', edit_size_typology_path(size_typology) %></td>
     <td><%= link_to 'Destroy', size_typology, :confirm => 'Are you sure?', :method => :delete %></td>

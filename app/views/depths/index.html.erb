@@ -22,11 +22,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Description</th>
   </tr>
 
 <% @depths.each do |depth| %>
   <tr>
     <td><%=h depth.name %></td>
+    <td><%=h depth.desc_ellipsis %></td>
     <td><%= link_to 'Show', depth %></td>
     <td><%= link_to 'Edit', edit_depth_path(depth) %></td>
     <td><%= link_to 'Destroy', depth, :confirm => 'Are you sure?', :method => :delete %></td>

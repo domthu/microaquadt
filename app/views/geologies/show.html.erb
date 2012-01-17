@@ -2,7 +2,10 @@
   <b>Name:</b>
   <%=h @geology.name %>
 </p>
-
+<p>
+  <b>Description:</b>
+  <%=h @geology.description %>
+</p>
 
 <%= link_to 'Edit', edit_geology_path(@geology) %> |
 <%= link_to 'Back', geologies_path %>

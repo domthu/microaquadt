@@ -14,5 +14,19 @@ class LandUseMapping < ActiveRecord::Base
     return self.name
   end
 
+  attr_reader :desc_ellipsis
+  def desc_ellipsis
+      if !self.note.nil?  
+          if self.note.length < 40
+            return self.note
+          else
+            return self.note[0..40] + '...'
+          end
+      else
+        return ""
+      end
+  end
+
+
 end
 

@@ -1,4 +1,4 @@
-class CatchmentAreasController < ApplicationController
+class CatchmentAreasController < AuthController   # < ApplicationController
   # GET /catchment_areas
   # GET /catchment_areas.xml
   def index

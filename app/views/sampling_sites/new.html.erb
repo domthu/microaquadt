@@ -80,7 +80,7 @@
     <%= select :sampling_site,:depth_id,Depth.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
   <div class="datas select">
-    <%= f.label :size_typologies_id, "Select the size tipology (km²)"  %><br />
+    <%= f.label :size_typologies_id, "Select the size typology (km²)"  %><br />
     <%= select :sampling_site,:size_typologies_id,SizeTypology.find(:all).collect{|p| [p.name, p.id]}%>
   </div>
   <div class="datas num">

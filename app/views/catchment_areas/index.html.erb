@@ -22,11 +22,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Description</th>
   </tr>
 
 <% @catchment_areas.each do |catchment_area| %>
   <tr>
     <td><%=h catchment_area.name %></td>
+    <td><%=h catchment_area.desc_ellipsis %></td>
     <td><%= link_to 'Show', catchment_area %></td>
     <td><%= link_to 'Edit', edit_catchment_area_path(catchment_area) %></td>
     <td><%= link_to 'Destroy', catchment_area, :confirm => 'Are you sure?', :method => :delete %></td>

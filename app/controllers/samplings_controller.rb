@@ -50,6 +50,16 @@ class SamplingsController < AuthController
 
     @fs = FilterSample.all(:conditions => ['sampling_id = ?', @sampling.id ])
 
+    begin
+        #if !@sampling.sampling_equipments_id?
+        @se = SamplingEquipment.find(@sampling.sampling_equipments_id)
+        if @se.nil?
+            @se = SamplingEquipment.first
+        end
+    rescue Exception => e
+        @se = SamplingEquipment.first
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @sampling }

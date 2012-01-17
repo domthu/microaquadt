@@ -1,4 +1,4 @@
-class DepthsController < ApplicationController
+class DepthsController < AuthController   # < ApplicationController
   # GET /depths
   # GET /depths.xml
   def index

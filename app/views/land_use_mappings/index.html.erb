@@ -23,11 +23,13 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Description</th>
   </tr>
 
 <% @land_use_mappings.each do |land_use_mapping| %>
   <tr>
     <td><%=h land_use_mapping.name %></td>
+    <td><%=h land_use_mapping.desc_ellipsis %></td>
     <td><%= link_to 'Show', land_use_mapping %></td>
     <td><%= link_to 'Edit', edit_land_use_mapping_path(land_use_mapping) %></td>
     <td><%= link_to 'Delete', land_use_mapping, :confirm => 'Are you sure?', :method => :delete %></td>

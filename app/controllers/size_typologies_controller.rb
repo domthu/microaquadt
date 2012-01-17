@@ -1,4 +1,4 @@
-class SizeTypologiesController < ApplicationController
+class SizeTypologiesController < AuthController   # < ApplicationController
   # GET /size_typologies
   # GET /size_typologies.xml
   def index

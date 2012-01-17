@@ -1,9 +1,10 @@
 <%= jqgrid_stylesheets %>
 <%= jqgrid_javascripts %> 
 
-<table class="hide">
+<table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
+        <li><%= link_to "equipement", sampling_equipments_path %></li>
         <li class="hide" style="display: none;"><%= link_to "code type", code_types_path %></li>
         <li class="hide" style="display: none;"><%= link_to "protocol", protocols_path %></li>
     </ul>
@@ -35,7 +36,7 @@
 		{ :field => "site_name", :label => "Sampling site", :search => false, :width => 250, :sortable => false  },
 		{ :field => "volume", :label => "Volume (lt)", :width => 90, :class => "taright"  },
 		{ :field => "code", :label => "Microaqua code", :width => 250 },
-		{ :field => "partner_name", :label => "Partner", :search => false, :sortable => false, :editable => false, :width => 100 },
+		{ :field => "partner_name", :label => "Partner", :search => false, :sortable => true, :editable => false, :width => 100 },
 		{ :field => "edit_link", :label => "edit", :search => false, :sortable => false, :width => 50 , :resizable => false},
 	], 
     {   :add => false, 

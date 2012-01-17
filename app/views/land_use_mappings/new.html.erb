@@ -3,15 +3,14 @@
 <% form_for(@land_use_mapping) do |f| %>
   <%= f.error_messages %>
 
-  <p>
+  <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :note %><br />
+  </div>
+  <div class="field">
+    <%= f.label :note, "Description" %><br />
     <%= f.text_area :note %>
-  </p>
-
+  </div>
   <div class="actions">
     <%= f.submit 'Create' %>
   </div>

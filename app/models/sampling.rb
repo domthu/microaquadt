@@ -82,6 +82,10 @@ include SamplingsHelper
   #  WHERE contact_id = #{id}
   #)
 
+  #has_one :sampling_equipments, :null => true
+  #belongs_to :sampling_equipments, :null => true
+  has_one :sampling_equipments
+
   #In order for form_for to work,
   attr_reader :verbose_me
   def verbose_me

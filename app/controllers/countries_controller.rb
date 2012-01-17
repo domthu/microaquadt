@@ -1,4 +1,4 @@
-class CountriesController < ApplicationController
+class CountriesController < AuthController   # < ApplicationController
   # GET /countries
   # GET /countries.xml
   def index

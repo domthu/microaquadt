@@ -1,4 +1,4 @@
-class GeologiesController < ApplicationController
+class GeologiesController < AuthController   # < ApplicationController
   # GET /geologies
   # GET /geologies.xml
   def index

@@ -122,6 +122,16 @@ class FilterSamplesController < AuthController
     @title = "Filter samples"
     @s = Sampling.find(@filter_sample.sampling_id)
 
+    begin
+        #if !@filter_sample.filter_sample_preparations_id.nil?
+        @fsp = FilterSamplePreparation.find(@filter_sample.filter_sample_preparations_id)
+        if @fsp.nil?
+            @fsp = FilterSamplePreparation.first
+        end
+    rescue Exception => e
+        @fsp = FilterSamplePreparation.first
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @filter_sample }

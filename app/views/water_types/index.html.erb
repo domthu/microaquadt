@@ -23,12 +23,14 @@
   <tr>
     <th>Code</th>
     <th>Name</th>
+    <th>Description</th>
   </tr>
 
 <% @water_types.each do |water_type| %>
   <tr>
     <td><%=h water_type.code %></td>
     <td><%=h water_type.name %></td>
+    <td><%=h water_type.desc_ellipsis %></td>
     <td><%= link_to 'Show', water_type %></td>
     <td><%= link_to 'Edit', edit_water_type_path(water_type) %></td>
     <td><%= link_to 'Delete', water_type, :confirm => 'Are you sure?', :method => :delete %></td>
