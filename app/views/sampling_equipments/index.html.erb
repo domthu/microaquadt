@@ -1,0 +1,29 @@
+<h1>Listing sampling equipments</h1>
+<%= link_to 'New sampling_equipment', new_sampling_equipment_path %>
+<br />
+<br />
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @sampling_equipments.each do |sampling_equipment| %>
+  <tr>
+    <td><%=h sampling_equipment.name %></td>
+    <td><%=h sampling_equipment.desc_ellipsis %></td>
+desc_ellipsis
+    <td><%= link_to 'Show', sampling_equipment %></td>
+    <td><%= link_to 'Edit', edit_sampling_equipment_path(sampling_equipment) %></td>
+    <td><%= link_to 'Delete', sampling_equipment, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<br />
+
+<%= link_to 'New sampling_equipment', new_sampling_equipment_path %>
+<br />
+

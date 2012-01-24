@@ -7,8 +7,31 @@ class OligoSequencesController < AuthController   #ApplicationController
   #Ko http://apidock.com/rails/v2.3.8/ActionView/Helpers/PrototypeHelper/remote_function prototype function
   #add to route map.connect 'lookup', :controller => 'oligo_sequences', :action => 'lookup'
 
+  def esearch()
+    logger.debug('esearch here')
+    xsearch = params[:es]
+    if !xsearch.nil?
+        if !xsearch.include?('[Subtree]')
+            xsearch = xsearch + '[Subtree]'
+        end
+        begin
+            @esearch2 = Bio::NCBI::REST::ESearch.taxonomy(xsearch, 'xml')
+            #<pre id="preName"><%= @esearch2 %></pre><br />
+            #<%= @esearch2 %>
+            respond_to do |format|
+                format.xml  { render :xml => @esearch2 }      
+            end
+        rescue Exception => e
+            @esearch2 = Bio::NCBI::REST::ESearch.taxonomy(xsearch)
+            respond_to do |format|
+                format.json  { render :json => @esearch2 }       
+            end
+        end 
+    end       
+  end
+
   def lookup()
-    logger.debug('here')
+    logger.debug('lookup here')
     xsearch = params[:st]
     if !xsearch.nil?
 #onclick="<%= remote_function(
@@ -17,10 +40,15 @@ class OligoSequencesController < AuthController   #ApplicationController
 #                           :with => "'st='+$('search_tax').value"
 #                        ); 
 #        %>"
-        @tree =  Bio::NCBI::REST::EFetch.taxonomy(xsearch)
+
+        #@filo =  Bio::PhyloXML::Parser.
+        #iSearch = Integer(xsearch)
+        #@tree =  Bio::NCBI::REST::EFetch.taxonomy(xsearch)
         @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(xsearch, 'xml')
+        
+        #ParsedAndSerialized_HTML = xmlparser.new(@tree2)
         respond_to do |format|
-            #format.json  { render :json => @tree }      
+            #format.json  { render :json => ParsedAndSerialized_HTML }      
             format.xml  { render :xml => @tree2 }      
 
             #In libxml2-ruby, I think LibXML::XML::Reader is the best choice,
@@ -150,16 +178,14 @@ class OligoSequencesController < AuthController   #ApplicationController
 
     @pt = Partner.find(@oligo_sequence.partner_id)
     @peo = Person.find(@oligo_sequence.people_id)
-@tree = ""
-@tree2 = ""
-    @tree3 =  Bio::NCBI::REST::ESearch.taxonomy('tardig%')
 
-    if @oligo_sequence.taxonomy_id.nil?
-        @tree =  Bio::NCBI::REST::EFetch.taxonomy(12475)
-        @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(265554, 'xml')
-        #@tree3 =  Bio::NCBI::REST::ESearch.taxonomy('12475')
-    else
-        @tree =  Bio::NCBI::REST::EFetch.taxonomy(@oligo_sequence.taxonomy_id)
+    @tree2 = ""
+    #<pre id="resbio2"><%= @tree2 %></pre> <br />
+    #@tree3 =  Bio::NCBI::REST::ESearch.taxonomy('tardig%')
+    #@tree =  Bio::NCBI::REST::EFetch.taxonomy(12475)
+    if not @oligo_sequence.taxonomy_id.nil?
+    #    @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(265554, 'xml')
+    #else
         @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(@oligo_sequence.taxonomy_id, 'xml')
     end
   end

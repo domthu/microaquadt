@@ -92,7 +92,19 @@ div.passicon div.form-item, div.usericon div.form-item {
     margin: 0;    padding: 0;    margin-left: 30px;}
 /* show edit new */
 .show{margin:5px; padding:5px; float:none; width:90%;}
-.taleft{text-align: left; margin-left: 5px;}
+.taleft{text-alimargin-margin-gn: left; margin-left: 5px;}
 .taright{text-align: right; margin-right: 5px;}
 #gbox_ngbgrid{width:97%}
+.bioarea{width:97%, height: 200px;}
+.bioesearch{width: 100px; margin: 5px 5px 0px 5px; padding: 5px 5px 0px 5px; float:left;font-weight: bolder;}
+/*    taxonomy browser  */
+.taxosel {float:left; margin-left: 0px; height: 24px; width: 30px;
+    background: url("../images/taxoset.png") no-repeat scroll left 0 transparent;}
+.taxolookup {float:left; margin-left: 10px; height: 18px; width: 30px;
+    background: url("../images/taxolookup.png") no-repeat scroll left 0 transparent;}
+.taxolookup:hover {
+    background: url("../images/taxolookup.png") no-repeat scroll left -19px transparent;}
+.Element {clear: both; height: 15px; 	padding-top:0px; msargin-top:10px;
+border-left: 2px solid #1E3681;margin-right: 10px; }
+.AttributeName{float:left; padding-left: 5px;}
 

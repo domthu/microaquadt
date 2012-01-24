@@ -1,0 +1,2 @@
+module SamplingEquipmentsHelper
+end

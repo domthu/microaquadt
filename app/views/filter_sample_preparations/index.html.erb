@@ -1,0 +1,28 @@
+<h1>Listing filter sample preparations</h1>
+<%= link_to 'New filter_sample_preparation', new_filter_sample_preparation_path %>
+<br />
+<br />
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @filter_sample_preparations.each do |filter_sample_preparation| %>
+  <tr>
+    <td><%=h filter_sample_preparation.name %></td>
+    <td><%=h filter_sample_preparation.desc_ellipsis %></td>
+desc_ellipsis
+    <td><%= link_to 'Show', filter_sample_preparation %></td>
+    <td><%= link_to 'Edit', edit_filter_sample_preparation_path(filter_sample_preparation) %></td>
+    <td><%= link_to 'Delete', filter_sample_preparation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<br />
+<%= link_to 'New filter_sample_preparation', new_filter_sample_preparation_path %>
+<br />
+

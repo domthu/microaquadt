@@ -1,0 +1,20 @@
+<h1>Editing filter sample preparation</h1>
+
+<% form_for(@filter_sample_preparation) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Description" %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @filter_sample_preparation %> |
+<%= link_to 'Back', filter_sample_preparations_path %>
