@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  filter_sample: 
+  nucleic_acid_type: 
+  date: 2012-01-31
+  partner: 
+  code: MyString
+  description: MyText
+
+two:
+  filter_sample: 
+  nucleic_acid_type: 
+  date: 2012-01-31
+  partner: 
+  code: MyString
+  description: MyText

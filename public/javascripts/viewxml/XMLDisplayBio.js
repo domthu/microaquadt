@@ -171,6 +171,7 @@ function ShowXML(xmlHolderElement,RootNode,indent)
 	else { // mo child nodes
 
      var onlyonetime = false     //Use for Multiple Taxonomy to not repeat the head lineage
+     var doindent = false        //Use for starting lineage indentation
      var taxons=RootNode.getElementsByTagName("Taxon")
      var lex = undefined        
      for (t=0;t<taxons.length;t++){
@@ -218,19 +219,19 @@ function ShowXML(xmlHolderElement,RootNode,indent)
                                 case 'Rank':
                                     Rank = xel.childNodes[b].nodeValue;
                                     // Add element to document--
+                                    if (doindent == true) { NestingIndent++;} 
 	                                var TagElement = GetNewNode(NestingIndent, TaxId, ScientificName, Rank, IDCounter);
                                     // Add researched taxonomy--
                                     if (x_parentId == TaxId) {
                                         //if lvl > 0 do reccursive call--
-                                        //IDCounter++; 
                                         var xTaxElement = GetNewNode(NestingIndent, x_TaxId, x_ScientificName, x_Rank, IDCounter);
-                                        TagElement.appendChild(xTaxElement);	
-                                        IDCounter++; 
+                                        TagElement.appendChild(xTaxElement);
+                                        doindent = true	
+                                        onlyonetime = true
                                         //TODO see childs there are in the xml response try taxo id 6072. 
                                     }
                                     xmlHolderElement.appendChild(TagElement);	
                                     TaxId = ScientificName = Rank = '';
-                                    onlyonetime = true
                                 break;
                                 case 'LineageEx':
                                     //if lvl > 0 do reccursive call-- 

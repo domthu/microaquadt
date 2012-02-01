@@ -1,0 +1,36 @@
+<h1>Editing nucleic_acid</h1>
+
+<% form_for(@nucleic_acid) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :filter_sample %><br />
+    <%= f.text_field :filter_sample %>
+  </p>
+  <p>
+    <%= f.label :nucleic_acid_type %><br />
+    <%= f.text_field :nucleic_acid_type %>
+  </p>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </p>
+  <p>
+    <%= f.label :partner %><br />
+    <%= f.text_field :partner %>
+  </p>
+  <p>
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @nucleic_acid %> |
+<%= link_to 'Back', nucleic_acids_path %>

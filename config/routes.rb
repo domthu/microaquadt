@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :nucleic_acids
+
+  map.resources :nucleic_acid_types
+
   map.resources :filter_sample_preparations
 
   map.resources :sampling_equipments

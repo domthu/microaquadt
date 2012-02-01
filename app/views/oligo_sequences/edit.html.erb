@@ -192,7 +192,7 @@ var biourl = '<%= resolve_dxhtml %>'
                 %>"
         text="Browse" title="the name must be an existing word in the database">Find by name</button><br />
 <div id="dvName" style="width:200;height:200"></div>
-    <pre id="preName"></pre><br />
+    <pre id="preName"></pre>
     <textarea id="taName" class="hide bioarea"rows="200" cols="1000">
     </textarea>
 
@@ -283,7 +283,7 @@ var biourl = '<%= resolve_dxhtml %>'
 </script>
 
 <div id="dialog-confirm" title="Set the taxo?"></p>
-</div>
+</div><br />
 
 
     <b>Research using taxonomy id:</b>
@@ -304,7 +304,7 @@ var biourl = '<%= resolve_dxhtml %>'
    class="dhtmlxTree"
 
 ></div>
-    <textarea id="resbio" class="hide bioarea"  rows="200" cols="1000">
+    <textarea id="resbio" class="bioarea"  rows="1000" cols="1000">
         <%= @tree2 %>
     </textarea> <br />
     <h5><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root" target="_blank">Taxonomy database maintained by NCBI/GenBank</a></h5>

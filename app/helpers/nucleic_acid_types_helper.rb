@@ -1,0 +1,2 @@
+module NucleicAcidTypesHelper
+end

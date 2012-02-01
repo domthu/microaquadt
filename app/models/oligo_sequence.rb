@@ -16,7 +16,7 @@ include OligoSequencesHelper
   #C A T and G
   #validates_format_of :dna_sequence, :with => /^([^\d\W]|[-])*$/
   #IUPAC code table  for nucleotid
-  validates_format_of :dna_sequence, :with => /^[ACGTURYMKWSBDHVNacgturymkwsbdhvn]+$/, :message => "DNA is invalid, only CAGT is possible -%{value}-" # "#{self.name}"
+  validates_format_of :dna_sequence, :with => /^[ACGTURYMKWSBDHVNacgturymkwsbdhvn]+$/, :message => "DNA is invalid, only IUPAC alfabet is possible -%{value}-" # "#{self.name}"
 #validation dna seq --> IUPAC code table Nucleotid:  
 #A (Adenine) 
 #C (Cytosine)    

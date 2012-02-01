@@ -99,8 +99,8 @@ class OligoSequencesController < AuthController   #ApplicationController
 #            dna_ellipsis =~ "%#{params[:dna_ellipsis]}%" if params[:dna_ellipsis].present?
             code =~ "%#{params[:code]}%" if params[:code].present?
             taxonomy_name =~ "%#{params[:taxonomy_name]}%" if params[:taxonomy_name].present?
-            taxonomy_name =~ "%#{params[:taxo_name_id]}%" if params[:taxo_name_id].present?
-            taxonomy_id =~ "%#{params[:taxo_name_id]}%" if params[:taxo_name_id].present?
+#            taxonomy_name =~ "%#{params[:taxo_name_id]}%" if params[:taxo_name_id].present?
+            taxonomy_id =~ "%#{params[:taxonomy_id]}%" if params[:taxonomy_id].present?
             available = "%#{params[:available]}%" if params[:available].present?
         end
         paginate :page => params[:page], :per_page => params[:rows]      
@@ -111,10 +111,11 @@ class OligoSequencesController < AuthController   #ApplicationController
       format.html # index.html.erb
       #format.xml  { render :xml => @oligo_sequences }
       format.json { render :json => oligo_sequences.to_jqgrid_json(
-            [:id, "act", :code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", "taxo_name_id", :available, "edit"],
+            [:id, "act", :code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", :taxonomy_name, :taxonomy_id, :available, "edit"],
             params[:page], params[:rows], oligo_sequences.total_entries) }			
 #The order of the fields in the first parameter matters, it should be the same than the display order in your datagrid. 
 #            "verbose_me","dna_ellipsis",:name,:dna_sequence
+#            [:id, "act", :code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", "taxo_name_id", :available, "edit"],
     end
   end
 

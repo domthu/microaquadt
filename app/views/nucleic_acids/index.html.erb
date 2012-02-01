@@ -1,0 +1,30 @@
+<h1>Listing nucleic_acids</h1>
+
+<table>
+  <tr>
+    <th>Filter sample</th>
+    <th>Nucleic acid type</th>
+    <th>Date</th>
+    <th>Partner</th>
+    <th>Code</th>
+    <th>Description</th>
+  </tr>
+
+<% @nucleic_acids.each do |nucleic_acid| %>
+  <tr>
+    <td><%=h nucleic_acid.filter_sample %></td>
+    <td><%=h nucleic_acid.nucleic_acid_type %></td>
+    <td><%=h nucleic_acid.date %></td>
+    <td><%=h nucleic_acid.partner %></td>
+    <td><%=h nucleic_acid.code %></td>
+    <td><%=h nucleic_acid.description %></td>
+    <td><%= link_to 'Show', nucleic_acid %></td>
+    <td><%= link_to 'Edit', edit_nucleic_acid_path(nucleic_acid) %></td>
+    <td><%= link_to 'Destroy', nucleic_acid, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New nucleic_acid', new_nucleic_acid_path %>

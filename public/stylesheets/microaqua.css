@@ -96,6 +96,7 @@ div.passicon div.form-item, div.usericon div.form-item {
 .taright{text-align: right; margin-right: 5px;}
 #gbox_ngbgrid{width:97%}
 .bioarea{width:97%, height: 200px;}
+textarea.bioarea{height: 800px;}
 .bioesearch{width: 100px; margin: 5px 5px 0px 5px; padding: 5px 5px 0px 5px; float:left;font-weight: bolder;}
 /*    taxonomy browser  */
 .taxosel {float:left; margin-left: 0px; height: 24px; width: 30px;

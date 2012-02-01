@@ -1,0 +1,33 @@
+<p>
+  <b>Filter sample:</b>
+  <%=h @nucleic_acid.filter_sample %>
+</p>
+
+<p>
+  <b>Nucleic acid type:</b>
+  <%=h @nucleic_acid.nucleic_acid_type %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%=h @nucleic_acid.date %>
+</p>
+
+<p>
+  <b>Partner:</b>
+  <%=h @nucleic_acid.partner %>
+</p>
+
+<p>
+  <b>Code:</b>
+  <%=h @nucleic_acid.code %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @nucleic_acid.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_nucleic_acid_path(@nucleic_acid) %> |
+<%= link_to 'Back', nucleic_acids_path %>

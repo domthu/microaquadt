@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @nucleic_acid_type.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @nucleic_acid_type.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_nucleic_acid_type_path(@nucleic_acid_type) %> |
+<%= link_to 'Back', nucleic_acid_types_path %>
