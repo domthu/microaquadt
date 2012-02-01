@@ -17,23 +17,33 @@ class SamplingSitesController < AuthController
     #@lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
     #@g = Geo.find(@sampling_site.geos_id)
 
+    #sampling_sites = SamplingSite.find(:all, :joins => [:water_use, :water_type, :geo, :land_use_mapping]) do
+    #sampling_sites = SamplingSite.find(:all, :joins => [:geo]) do
+#Mysql::Error: Unknown column 'sampling_sites.geo_id' in 'on clause': SELECT `sampling_sites`.* FROM `sampling_sites`   INNER JOIN `geos` ON `geos`.id = `sampling_sites`.geo_id   LIMIT 0, 20
+    #water_types_id 	water_uses_id 	land_use_mappings_id geos_id
     sampling_sites = SamplingSite.find(:all) do
     #@sampling_sites do --> Kappao
         if params[:_search] == "true"
             code =~ "%#{params[:code]}%" if params[:code].present?
             name =~ "%#{params[:name]}%" if params[:name].present?
-
-#<Squirrel::Query::ConditionGroup:0xb6ad5050>
-#            country =~ "%#{params[:country]}%" if params[:country].present?
-#            water_uses =~ "%#{params[:water_uses]}%" if params[:water_uses].present?        
-#            w_use_name =~ "%#{params[:w_use_name]}%" if params[:w_use_name].present?
-#            w_type_name =~ "%#{params[:w_type_name]}%" if params[:w_type_name].present?
-#            land_name =~ "%#{params[:land_name]}%" if params[:land_name].present?
-#            geo_name =~ "%#{params[:geo_name]}%" if params[:geo_name].present?
-#            country_name =~ "%#{params[:country_name]}%" if params[:country_name].present?
+            water_type.name =~ "%#{params[:w_type_name]}%" if params[:w_type_name].present?
+            water_use.name =~ "%#{params[:w_use_name]}%" if params[:w_use_name].present?
+            land_use_mapping.name =~ "%#{params[:land_name]}%" if params[:land_name].present?
+            geo.name =~ "%#{params[:geo_name]}%" if params[:geo_name].present?
         end
         paginate :page => params[:page], :per_page => params[:rows]      
-        order_by "#{params[:sidx]} #{params[:sord]}"
+        #for sort use join condition. Not requires by search because of reflection model
+        if params[:sidx] == "w_use_name"
+            order_by "water_uses.name #{params[:sord]}"
+        elsif params[:sidx] == "w_type_name"
+            order_by "water_types.code #{params[:sord]}"
+        elsif params[:sidx] == "land_name"
+            order_by "land_use_mappings.name #{params[:sord]}"
+        elsif params[:sidx] == "geo_name"
+            order_by "geos.name #{params[:sord]}"
+        else
+            order_by "#{params[:sidx]} #{params[:sord]}"
+        end
     end
 
 #    <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>

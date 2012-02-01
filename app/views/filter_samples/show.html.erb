@@ -74,6 +74,17 @@
 
 </fieldset>
 
+<fieldset><legend class="leg">ASSOCIATED NUCLEIC ACIDS</legend>
+
+ <% @filter_sample.nucleic_acids.each_with_index do |na, i| %>
+    <div class="datas">
+        <b><%= (i +1).to_s %> --> </b> <%= link_to na.code + '&nbsp;&nbsp;&nbsp;' + na.verbose_me, na %>
+    </div>
+  <% end %>
+
+</fieldset>
+
+
 <br />
 <% if  auth_sample_user(@filter_sample.sampling_id) or signed_in_and_master? %>
   <%= link_to 'Edit', edit_filter_sample_path(@filter_sample) %> |

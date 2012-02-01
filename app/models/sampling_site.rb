@@ -20,7 +20,9 @@ include ActionController::UrlWriter
   #has_one :water_use in this case WaterUse will have field sampling_site_id
   belongs_to :water_use  #In this case SamplingSite have field water_uses_id
   belongs_to :geo
-  has_one :land_use_mapping
+  #has_one :land_use_mapping
+  belongs_to :land_use_mapping
+
   has_many :samplings, :dependent => :destroy, :class_name => 'Sampling'
 
   belongs_to :altitude_type

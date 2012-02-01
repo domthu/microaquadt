@@ -1,30 +1,46 @@
-<h1>Listing nucleic_acids</h1>
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %> 
 
 <table>
-  <tr>
-    <th>Filter sample</th>
-    <th>Nucleic acid type</th>
-    <th>Date</th>
-    <th>Partner</th>
-    <th>Code</th>
-    <th>Description</th>
-  </tr>
-
-<% @nucleic_acids.each do |nucleic_acid| %>
-  <tr>
-    <td><%=h nucleic_acid.filter_sample %></td>
-    <td><%=h nucleic_acid.nucleic_acid_type %></td>
-    <td><%=h nucleic_acid.date %></td>
-    <td><%=h nucleic_acid.partner %></td>
-    <td><%=h nucleic_acid.code %></td>
-    <td><%=h nucleic_acid.description %></td>
-    <td><%= link_to 'Show', nucleic_acid %></td>
-    <td><%= link_to 'Edit', edit_nucleic_acid_path(nucleic_acid) %></td>
-    <td><%= link_to 'Destroy', nucleic_acid, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+        <li><%= link_to "nucleic acid type", nucleic_acid_types_path %></li>
+    </ul>
+  </td></tr>
 </table>
 
+<h1>Listing nucleic acids</h1>
+<%= link_to 'New nucleic acid', new_nucleic_acid_path %>
+<br />
 <br />
 
-<%= link_to 'New nucleic_acid', new_nucleic_acid_path %>
+<%= jqgrid("List of nucleic acids: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", nucleic_acids_path,
+	[
+		{ :field => "id", :label => "ID", :width => 35, :resizable => false, :sortable => false, :editable => false, :hidden => true}, 
+        { :field => "act", :label => "", :width => 35 , :resizable => false, :sortable => false, :search => false },
+        { :field => "code", :label => "Code", :width => 100 , :resizable => false, :search => true, :sortable => true },
+		{ :field => "sampling_name", :label => "Sampling", :editable => false, :width => 200, :search => false, :sortable => true  },
+		{ :field => "filter_sample_name", :label => "Filter sample", :width => 200, :search => true, :sortable => true },
+		{ :field => "nucleic_acid_type_name", :label => "Type", :search => true, :sortable => true, :width => 100 },
+		{ :field => "partner_name", :label => "partner", :width => 150, :class => "taright", :search => true, :sortable => true},
+		{ :field => "date", :label => "date", :width => 100, :class => "taright", :search => true, :sortable => true },
+		{ :field => "edit_link", :label => "edit", :sortable => false, :width => 35 , :resizable => false, :search => false},
+	], 
+    {   :add => false, 
+        :edit => false, 
+        :inline_edit => false, 
+        :delete => false, 
+        :rows_per_page => "50", 
+        :autowidth => 'false', 
+        :height => 400, 
+        :rownumbers => 'false'
+ }
+
+) %>
+
+
+<br />
+<br />
+<%= link_to 'New nucleic acid', new_nucleic_acid_path %>
+<br />
+

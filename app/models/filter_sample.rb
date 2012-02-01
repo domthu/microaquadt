@@ -27,6 +27,14 @@ class FilterSample < ActiveRecord::Base
 
   #name of the model in lowercase
   belongs_to :sampling #, :class_name => 'Sampling' #, :null => false
+#  has_one :sampling_site, :through => :sampling
+#Mysql::Error: Unknown column 'sampling_sites_filter_samples_join.sampling_id' in 'on clause': SELECT `filter_samples`.* FROM `filter_samples`   INNER JOIN `samplings` ON `samplings`.id = `filter_samples`.sampling_id  INNER JOIN `wfilters` ON `wfilters`.id = `filter_samples`.wfilter_id  INNER JOIN `samplings` sampling_sites_filter_samples_join ON (`filter_samples`.`id` = `sampling_sites_filter_samples_join`.`sampling_id`)  INNER JOIN `sampling_sites` ON (`sampling_sites`.`id` = `sampling_sites_filter_samples_join`.`sampling_site_id`)   LIMIT 0, 20
+#  belongs_to :sampling_site, :include => :sampling
+#Mysql::Error: Unknown column 'filter_samples.sampling_site_id' in 'on clause': SELECT `filter_samples`.* FROM `filter_samples`   INNER JOIN `samplings` ON `samplings`.id = `filter_samples`.sampling_id  INNER JOIN `wfilters` ON `wfilters`.id = `filter_samples`.wfilter_id  INNER JOIN `sampling_sites` ON `sampling_sites`.id = `filter_samples`.sampling_site_id   LIMIT 0, 20
+#    belongs_to :sampling_site, :through => :sampling
+#Unknown key(s): through
+
+
   #used for NESTED Model
   #validates_presence_of :sampling
 
@@ -36,6 +44,9 @@ class FilterSample < ActiveRecord::Base
   validates_presence_of :wfilter
 
   has_one :filter_sample_preparations#, :null => true
+
+  #20120201 add table nucleic acid
+  has_many :nucleic_acids
 
   #In order for form_for to work,
   attr_reader :verbose_me

@@ -68,40 +68,38 @@ class FilterSamplesController < AuthController
     else
         #@filter_samples = FilterSample.all
         #@cond = "sampling_id"
-        filter_samples = FilterSample.find(:all) do
+        #filter_samples = FilterSample.find(:all, :joins => [:sampling, :wfilter, :sampling_site]) do
+        filter_samples = FilterSample.find(:all, :joins => [:sampling, :wfilter]) do
             if params[:_search] == "true"
-                xsample_name =~ "%#{params[:sample_name]}%" if params[:sample_name].present?
+                sampling.volume =~ "%#{params[:sample_name]}%" if params[:sample_name].present?
+                #sampling.sampling_site.code =~ "%#{params[:sample_name]}%" if params[:sample_name].present?
                 code =~ "%#{params[:code]}%" if params[:code].present?
                 barcode =~ "%#{params[:barcode]}%" if params[:barcode].present?
-                #xfilter_name >= "%#{params[:filter_name]}%" if params[:filter_name].present?
-                pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+                #wfilter.pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+                wfilter.pore_size =~ "%#{params[:filter_name]}%" if params[:filter_name].present?
+                #pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
                 volume =~ "%#{params[:volume]}%" if params[:volume].present?
                 num_filters =~ "%#{params[:num_filters]}%" if params[:num_filters].present?
             end
             paginate :page => params[:page], :per_page => params[:rows]      
-            order_by "#{params[:sidx]} #{params[:sord]}"
+            if params[:sidx] == "filter_name"
+                order_by "wfilters.pore_size #{params[:sord]}"
+            elsif params[:sidx] == "sample_name"
+                order_by "samplings.code #{params[:sord]}"
+            #After set join conditions we fall in Mysql::Error: Column 'volume' in order clause is ambiguous
+            #set the database table name and column
+            elsif params[:sidx] == "code"
+                order_by "filter_samples.code #{params[:sord]}"
+            elsif params[:sidx] == "num_filters"
+                order_by "filter_samples.num_filters #{params[:sord]}"
+            elsif params[:sidx] == "volume"
+                order_by "filter_samples.volume #{params[:sord]}"
+            else
+                order_by "#{params[:sidx]} #{params[:sord]}"
+            end
         end
     end
-#    filter_samples = FilterSample.find(:all, :conditions => [ "sampling_id = ?", @cond]) do
-#    #@filter_samples.each do |filter_samples|  Kappao
-#        if params[:_search] == "true"
-#            code =~ "%#{params[:code_name]}%" if params[:code_name].present?
-#            barcode =~ "%#{params[:code_name]}%" if params[:code_name].present?
-#            pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
-#            volume >= "%#{params[:volume]}%" if params[:volume].present?
-#            num_filters >= "%#{params[:num_filters]}%" if params[:num_filters].present?
-#        end
-#        paginate :page => params[:page], :per_page => params[:rows]      
-#        order_by "#{params[:sidx]} #{params[:sord]}"
-#    end
 
-#<th>Sampling</th>
-#<th>Code</th>
-#<th>Partner</th>
-#<th>Filter</th>
-#<th>Tube</th>
-#<th>Volume</th>
-#<th>Barcode</th>
 
     respond_to do |format|
         format.html # index.html.erb

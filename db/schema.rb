@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120116141436) do
+ActiveRecord::Schema.define(:version => 20120130230807) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -317,6 +317,28 @@ ActiveRecord::Schema.define(:version => 20120116141436) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "nucleic_acid_types", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "nucleic_acids", :force => true do |t|
+    t.integer  "filter_sample_id"
+    t.integer  "nucleic_acid_type_id"
+    t.date     "date"
+    t.integer  "partner_id"
+    t.string   "code"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "nucleic_acids", ["filter_sample_id"], :name => "index_nucleic_acids_on_filter_sample_id"
+  add_index "nucleic_acids", ["nucleic_acid_type_id"], :name => "index_nucleic_acids_on_nucleic_acid_type_id"
+  add_index "nucleic_acids", ["partner_id"], :name => "index_nucleic_acids_on_partner_id"
 
   create_table "oligo_sequences", :force => true do |t|
     t.string   "dna_sequence",                        :null => false

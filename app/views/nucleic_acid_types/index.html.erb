@@ -1,4 +1,7 @@
-<h1>Listing nucleic_acid_types</h1>
+<h1>Listing nucleic acid types</h1>
+<%= link_to 'New nucleic acid type', new_nucleic_acid_type_path %>
+<br />
+<br />
 
 <table>
   <tr>
@@ -9,14 +12,17 @@
 <% @nucleic_acid_types.each do |nucleic_acid_type| %>
   <tr>
     <td><%=h nucleic_acid_type.name %></td>
-    <td><%=h nucleic_acid_type.description %></td>
+    <td><%=h nucleic_acid_type.desc_ellipsis %></td>
     <td><%= link_to 'Show', nucleic_acid_type %></td>
     <td><%= link_to 'Edit', edit_nucleic_acid_type_path(nucleic_acid_type) %></td>
-    <td><%= link_to 'Destroy', nucleic_acid_type, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', nucleic_acid_type, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
+<br />
+<%= link_to 'New nucleic acid type', new_nucleic_acid_type_path %>
+<br />
 
-<%= link_to 'New nucleic_acid_type', new_nucleic_acid_type_path %>
+
