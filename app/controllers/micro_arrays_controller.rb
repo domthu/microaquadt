@@ -51,7 +51,7 @@ class MicroArraysController < ApplicationController
     @title = "Micro array"
 
     @partners = Partner.find(:all)
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @pt = get_partner
     unless @pt.nil?
       #set the selected item
       @micro_array.partner_id = @pt.id
@@ -136,6 +136,14 @@ class MicroArraysController < ApplicationController
         format.html { redirect_to(@micro_array, :notice => 'MicroArray was successfully created.') }
         format.xml  { render :xml => @micro_array, :status => :created, :location => @micro_array }
       else
+
+        @partners = Partner.find(:all)
+        @pt = get_partner
+        unless @pt.nil?
+          #set the selected item
+          @micro_array.partner_id = @pt.id
+        end
+
         format.html { render :action => "new" }
         format.xml  { render :xml => @micro_array.errors, :status => :unprocessable_entity }
       end

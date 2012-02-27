@@ -13,10 +13,9 @@
       </td><td>
         <h2><%= link_to h(user.name), user %></h2>
         <h3>
-          <% @partner = Partner.find(:first, :conditions => [ "user_id = ?", user.id])
-          #@partner = Partner.find_by_user(:first, :conditions => [ "user_id = ?", user.id])
-          if !@partner.nil? %>
-            <%= @partner.name %>
+          <% @pt = get_partner
+          if !@pt.nil? %>
+            <%= @pt.name %>
           <% end %>
         </h3>
       </td></tr></table>

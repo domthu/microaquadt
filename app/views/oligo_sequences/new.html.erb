@@ -1,5 +1,5 @@
-<%= jqgrid_stylesheets %>
-<%= jqgrid_javascripts %> 
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag 'viewxml/XMLDisplayBio.js' %>
 
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
@@ -44,11 +44,11 @@
 
   <div class="field select">
     <%= f.label :partner_id, "Partner" %><br />
-    <%= select :oligo_sequence,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :oligo_sequence,:partner_id,Partner.find(:all, :conditions => ["id = ? ", @pt.id]).collect{|p| [p.verbose_me, p.id]}%>
   </div>
   <div class="field select">
     <%= f.label :people_id, "Person" %><br />
-    <%= select :oligo_sequence,:people_id,Person.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :oligo_sequence,:people_id, peoples_by_partner.collect{|p| [p.verbose_me, p.id]}%>
   </div>
 
   <div class="field date">
@@ -85,141 +85,159 @@ N (Any base A, C, G, T, or U)   "  %><br />
 
 </fieldset>
 
+
 <fieldset><legend class="leg">ORGANISM</legend>
 
-<table width="95%"><tr><td>
+<table width="95%"><tr><td style="width:20%">
 
     <div class="field ">
         <%= f.label :taxonomy_id, "Taxonomy identifier" %><br />
         <%= f.hidden_field :taxonomy_id %><br />
-        <label id="ed_tax_id" name="ed_tax_id"></label>
+        <label class="hide" id="ed_tax_id" name="ed_tax_id"><%=h @oligo_sequence.taxonomy_id %></label>
+        <h3><a href='http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=<%=h @oligo_sequence.taxonomy_id %>' title='Show taxonomy identifier into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_id %></a></h3>
     </div>
     <div class="field ">
         <%= f.label :taxonomy_name, "Taxonomy name" %><br />
         <%= f.hidden_field :taxonomy_name %><br />
-        <label id="ed_tax_name" name="ed_tax_name"></label><br />
+        <label class="hide" id="ed_tax_name" name="ed_tax_name"><%=h @oligo_sequence.taxonomy_id %></label><br />
+        <h3><a href='http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?name=<%=h @oligo_sequence.taxonomy_name %>' title='Show taxonomy definition and lineage into the NCBI web site'  target='_blank'><%=h @oligo_sequence.taxonomy_name %></a></h3>
     </div>
 
-</td><td>
+    <div class="field ">
+        <% if !@oligo_sequence.taxonomy_id.nil? %>
+            <center>
+                <input type="button" onClick="RemoveSelect();" value="remove association" 
+                   title="remove taxonomy name and id associated to this oligo sequence">
+            </center>
+        <% end %>
+    </div>
 
-<%= javascript_tag "//something" %>
+</td><td style="width:80%">
+
 <script type="text/javascript" >
-    function lookupBio() {
-        //alert('lookupBio');
-        //< % = link_to "Name", url_path, :remote => true
-        var id_value_string = $('search_tax').value;
-        //alert('lookupBio v1: ' + id_value_string);
-        //id_value_string = $('search_tax').val();
-        //alert('lookupBio v2: ' + id_value_string);
-        id_value_string == "265554"
-        if (id_value_string == "") {
-            // if the id is empty remove all data and do not do any ajax
-            //$("resbio value").remove();
+function RemoveSelect() { 
+    try {
+        if (confirm('Remove this taxonomy id(' + $('oligo_sequence_taxonomy_id').value + ') with name ' + $('oligo_sequence_taxonomy_name').value + '?')) {
+            $('oligo_sequence_taxonomy_id').value = '';
+            $('oligo_sequence_taxonomy_name').value = '';
+            $('oligo_sequence_submit').click();
         }
-        else {
-
-            // Send the request and update text area or JTree
-            //    dataType: "json",
-            //    url: '/oligo_sequences/lookup/' + id_value_string,
-            //    url: '/oligo_sequences/lookup/' + id_value_string,
-            //    url: '/lookforbio/' + id_value_string,
-            $.ajax({
-                dataType: "xml",
-                cache: false,
-                url: '/lookforbio',
-                timeout: 2000,
-                error: function(XMLHttpRequest, errorTextStatus, error){
-                    alert("Failed to submit : "+ errorTextStatus+" ;"+error);
-                },
-                success: function(data){               
-                    alert('OK!')
-                    //$("resbio").val(data)
-                    // Clear all options from sub category select
-                    //$("resbio value").remove();
-                    //put in a empty default line
-                    var row = "<option value=\"" + "" + "\">" + "" + "</option>";
-                    $(row).appendTo("resbio");                        
-                    // Fill sub category select
-                    $.each(data, function(i, j){
-                        row = "<option value=\"" + j.sub_section.id + "\">" + j.sub_section.name + "</option>";  
-                        $(row).appendTo("resbio");                    
-                    });            
-                 }
-            });
-        }
+    }
+    catch (e){alert('error RemoveSelect: ' + e.message);}
+    return false;
+}
+var biourl = '<%= resolve_dxhtml %>'
+function SetName(req) { 
+    //alert('SetName: ' + req);
+    var str = ''
+    try {
+        var tmp = new Date().getTime();
+        tmp='';
+        str = LoadEsearchTextDom($('dvName').id, req.responseText)
+        $('preName').innerText =  tmp + '<br /> ' + str
+        //$('dvName').innerText =  tmp + '<br /> ' + str
+        $('taName').value =  tmp + str
+        str = str.replace('[','').replace(']','').replace(/"/g,'')
 
     }
-//Ko remote_function use Prototype as Ajax.Request
-//use $.ajax with jQuery
+    catch (e){alert('error loading SetName: ' + e.message);}
 
-    jQuery('#btnbiocall').bind('click', function() {
 
-        //jQuery.ajax({
-        //  async:true, 
-        //  url:'/oligo_sequences/lookup',
-        //  type:'POST',
-        //  data: {_method:'PUT', oligo_sequences: {accept: jQuery(this).is(':checked')}}, 
-        //  success: function(){alert('ok')},
-        //  error:function(request){ alert('Sorry, there was an error!!!')}
-        //})
-
-        var id_value_string = $(this).val();
-        id_value_string = $('search_tax').value;
-        id_value_string = $('search_tax').val();
-
-        if (id_value_string == "") {
-            // if the id is empty remove all data and do not do any ajax
-            $("resbio value").remove();
+    if (str.indexOf('renew session') == 0) {
+         $('oligo_sequence_submit').click();
+    }
+    else if ((str != '') && (str.indexOf('nothing') != 0)) {
+        try {
+            $('search_tax').value = str;
+            $('btnbiocall').click();
         }
-        else {
+        catch (e){alert('error SetName: ' + e.message);}
+    } else { $('search_tax').value = ''; $('treeBox').value = '';}
 
-            // Send the request and update text area or JTree
-            //    dataType: "json",
-            $.ajax({
-                dataType: "xml",
-                cache: false,
-                url: '/oligo_sequences/lookup/' + id_value_string,
-                timeout: 2000,
-                error: function(XMLHttpRequest, errorTextStatus, error){
-                    alert("Failed to submit : "+ errorTextStatus+" ;"+error);
-                },
-                success: function(data){               
-                    alert('OK!')
-                    $("resbio").val(data)
-                    // Clear all options from sub category select
-                    $("resbio value").remove();
-                    //put in a empty default line
-                    var row = "<option value=\"" + "" + "\">" + "" + "</option>";
-                    $(row).appendTo("resbio");                        
-                    // Fill sub category select
-                    $.each(data, function(i, j){
-                        row = "<option value=\"" + j.sub_section.id + "\">" + j.sub_section.name + "</option>";  
-                        $(row).appendTo("resbio");                    
-                    });            
-                 }
-            });
-        }
-    return false
-    })
-
+}
 </script>
 
+    <h5><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root" target="_blank">Taxonomy database maintained by NCBI/GenBank</a></h5>
+    <br /><b>Research using taxonomy name:</b>
+    <input type="text" id="search_name" name=""></input>&nbsp;<button type="button" id="btnbiocallname" 
+        onclick="<%= remote_function(
+                               :url => { :action => :esearch } , 
+                               :with => "'es='+$('search_name').value",
+                               :success => "SetName(request);",
+                               :failure => "alert('HTTP Error ' + request.status + '!')"
+                    ); 
+                %>"
+        text="Browse" title="the name must be an existing word in the database">Find by name</button><br />
+    <div id="dvName" style="width:200;height:200"></div>
+    <pre id="preName"></pre>
+    <textarea id="taName" class="hide bioarea"rows="10" cols="100">
+    </textarea>
+
+<script type="text/javascript" >
+function SetTaxo2(req) { //alert('SetTaxo: ' + req);
+    //DOM
+    try {
+        var xmlDoc = req.responseXML
+        LoadXMLDom($('treeBox').id, xmlDoc)
+
+        try {
+            var Xml2String = ""
+            if (xmlDoc.xml) {
+                Xml2String=xmlDoc.xml  // Converts the xml object to string  (  For IE)
+            }else{
+                Xml2String= new XMLSerializer().serializeToString(xmlDoc); // Converts the xml object to string (For rest browsers, mozilla, etc)
+            }
+            //var Message =req.getAllResponseHeaders()
+            $('resbio').innerHTML = Xml2String
+        }
+        catch (e){alert('error loading xmlDoc: ' + e.message);}
+
+    }
+    catch (e){alert('error loading XMLDisplay: ' + e.message);}
+}
+
+function RecalTaxo(tax_id) { 
+    try {
+        $('search_tax').value = tax_id;
+        //do javascript click
+        $('btnbiocall').click();
+    }
+    catch (e){alert('error RecalTaxo: ' + e.message);}
+    return false;
+}
+
+function AutoSelect(tax_id, ScientificName) { 
+    try {
+        //$('dialog-confirm').dialog("open"); 
+        if (confirm('Set this taxonomy id(' + tax_id + ') with name ' + ScientificName + '?')) {
+            $('oligo_sequence_taxonomy_id').value = tax_id;
+            $('oligo_sequence_taxonomy_name').value = ScientificName;
+            $('oligo_sequence_submit').click();
+        }
+    }
+    catch (e){alert('error AutoSelect: ' + e.message);}
+    return false;
+}
+</script>
+ <br />
     <b>Research using taxonomy id:</b>
     <input type="text" id="search_tax" name=""></input>&nbsp;<button type="button" id="btnbiocall" 
         ondbclick="lookupBio(); return false;"
         onclick="<%= remote_function(
-                                   :update => "resbio" ,
-                                   :url => { :action => :lookup } , 
-                                   :with => "'st='+$('search_tax').value"
-                                ); 
+                           :url => { :action => :lookup } , 
+                           :with => "'st='+$('search_tax').value",
+                           :success => "SetTaxo2(request);",
+                           :failure => "alert('HTTP Error ' + request.status + '!')"
+                    ); 
                 %>"
-        text="Browse">Click me!</button><br />
-    <textarea id="resbio" rows="10" cols="20">
-    <%= @tree2 %>
+        text="Browse" title="you can add multiple ids separated by virgule">Find by id(s)</button><br />
+<div id="treeBox" style="width:200;height:200"></div>
+    <textarea id="resbio" class="hide bioarea"  rows="10" cols="100">
+        <%= @tree2 %>
     </textarea> <br />
-    <%= @tree2 %>
-
-    <br /><h5><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root" target="_blank">Taxonomy database maintained by NCBI/GenBank</a></h5>
+    <h5><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Root" target="_blank">Taxonomy database maintained by NCBI/GenBank</a></h5>
+    <br />
+<%= @tree2 %>
 
 </td><tr></table>
 

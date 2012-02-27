@@ -47,7 +47,8 @@ class MicroArrayValidationsController < ApplicationController
       return
     end
 
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @partners = Partner.find(:all)
+    @pt = get_partner
     if @pt.nil?
       @ma = MicroArray.all()
     else
@@ -78,6 +79,15 @@ class MicroArrayValidationsController < ApplicationController
         format.html { redirect_to(@micro_array_validation, :notice => 'MicroArrayValidation was successfully created.') }
         format.xml  { render :xml => @micro_array_validation, :status => :created, :location => @micro_array_validation }
       else
+
+        @partners = Partner.find(:all)
+        @pt = get_partner
+        if @pt.nil?
+          @ma = MicroArray.all()
+        else
+          @ma = MicroArray.all(:conditions => [ "partner_id = ?", @pt.id])
+        end
+
         format.html { render :action => "new" }
         format.xml  { render :xml => @micro_array_validation.errors, :status => :unprocessable_entity }
       end

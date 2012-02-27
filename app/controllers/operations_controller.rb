@@ -47,7 +47,7 @@ class OperationsController < ApplicationController
       return
     end
 
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @pt = get_partner
     @prot = Protocol.all()
 #    if @pt.nil?
 #      @prot = Protocol.all()
@@ -81,6 +81,10 @@ class OperationsController < ApplicationController
         format.html { redirect_to(@operation, :notice => 'Operation was successfully created.') }
         format.xml  { render :xml => @operation, :status => :created, :location => @operation }
       else
+
+        @pt = get_partner
+        @prot = Protocol.all()
+
         format.html { render :action => "new" }
         format.xml  { render :xml => @operation.errors, :status => :unprocessable_entity }
       end

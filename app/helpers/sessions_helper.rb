@@ -82,5 +82,13 @@ module SessionsHelper
   def clear_return_to
     session[:return_to] = nil
   end
+
+  def get_partner
+    if signed_in_and_master?
+        Partner.find(1)
+    else
+        Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    end
+  end
 end
 

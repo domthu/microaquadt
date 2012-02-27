@@ -84,7 +84,20 @@ include SamplingsHelper
 
   #has_one :sampling_equipments, :null => true
   #belongs_to :sampling_equipments, :null => true
-  has_one :sampling_equipments
+  #has_one :sampling_equipments
+#KAPPAO: Association named 'sampling_equipment' was not found; perhaps you misspelled it?
+  #has_one :sampling_equipment
+#Mysql::Error: Unknown column 'sampling_equipments.sampling_id' in 'on clause': SELECT `samplings`.* FROM `samplings`   INNER JOIN `sampling_equipments` ON sampling_equipments.sampling_id = samplings.id  INNER JOIN `partners` ON `partners`.id = `samplings`.partner_id  INNER JOIN `sampling_sites` ON `sampling_sites`.id = `samplings`.sampling_site_id   LIMIT 0, 20
+    #belongs_to :sampling_equipment
+#Mysql::Error: Unknown column 'samplings.sampling_equipment_id' in 'on clause': SELECT `samplings`.* FROM `samplings`   INNER JOIN `sampling_equipments` ON `sampling_equipments`.id = `samplings`.sampling_equipment_id  INNER JOIN `partners` ON `partners`.id = `samplings`.partner_id  INNER JOIN `sampling_sites` ON `sampling_sites`.id = `samplings`.sampling_site_id   LIMIT 0, 20
+    belongs_to :sampling_equipments
+##Add reference to :sampling_equipments for Sampling
+#change_table :samplings do |t|
+#KAPPAO    t.references :sampling_equipments --> have to be sampling_equipment  
+#         create sampling_equipments_id but must be sampling_equipment_id in order to construct the right association
+#end
+
+
 
   #In order for form_for to work,
   attr_reader :verbose_me
@@ -150,6 +163,13 @@ include SamplingsHelper
         Partner.find(partner_id).verbose_me
     end
 
+    def sampling_equipment_name
+        #sampling_equipments.verbose_me
+#KAPPAO uninitialized constant Sampling::SamplingEquipments
+#        sampling_equipment.verbose_me
+#KAPPAO undefined local variable or method `sampling_equipment' for #<Sampling:0xb6db2f98>
+        SamplingEquipment.find(sampling_equipments_id).verbose_me
+    end
 
     #used for NESTED Model
 # -----ATTENTION----- this don't call the filter_sample attribute

@@ -22,7 +22,7 @@
 
   <div class="field select">
     <%= f.label :filter_sample, "Filter sample" %><br />
-    <%= select :nucleic_acid,:filter_sample_id, @fs.collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :nucleic_acid,:filter_sample_id, @fs.collect{|p| [p.code + ' ' + p.verbose_me, p.id]}%>
   </div>
 
 </td><td>

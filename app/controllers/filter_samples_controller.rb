@@ -105,7 +105,7 @@ class FilterSamplesController < AuthController
         format.html # index.html.erb
         #format.xml  { render :xml => @filter_samples }
         format.json { render :json => filter_samples.to_jqgrid_json(
-            [:id, "act",:sample_name,"code","barcode","filter_name",:num_filters,:volume,"edit"],
+            [:id, "act","code",:sample_name,"barcode","filter_name",:num_filters,:volume,"edit"],
             params[:page], params[:rows], filter_samples.total_entries) }			
     end
   end
@@ -149,7 +149,7 @@ class FilterSamplesController < AuthController
       return
     end
 
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @pt = get_partner
     if @pt.nil?
       @s = Sampling.all()
     else
@@ -204,7 +204,8 @@ class FilterSamplesController < AuthController
         format.xml  { render :xml => @filter_sample, :status => :created, :location => @filter_sample }
       else
         @s_c = Sampling.count()
-        @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+
+        @pt = get_partner
         if @pt.nil?
           @s = Sampling.all()
         else

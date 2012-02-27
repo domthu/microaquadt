@@ -36,6 +36,9 @@ function LoadEsearchTextDom(ParentElementID,str)
 		var xmlHolderElement = GetParentElement(ParentElementID);
 		if (xmlHolderElement==null) { return ''; }
 		while (xmlHolderElement.childNodes.length) { xmlHolderElement.removeChild(xmlHolderElement.childNodes.item(xmlHolderElement.childNodes.length-1));	}
+
+        if (Result.indexOf('<title>Microaqua | Sign in</title>') > 0) { return 'renew session...' }
+        if (Result.indexOf('nil-classes') > 0) { return 'nothing find...' }
         var ids_array = Result.split(',')
         var id = undefined
         for (var i = 0; i < ids_array.length; ++i) {
@@ -259,10 +262,12 @@ function GetNewNode(NestingIndent, TaxId, ScientificName, Rank, IDCounter){
     var TagActionSel = document.createElement('div');
     TagActionSel.onclick = function() { AutoSelect(' ' + TaxId, ScientificName); };
     TagActionSel.className = 'taxosel pointer';
+    TagActionSel.title = 'click for set this taxonomy id to the oligo sequence';
 
     var TagActionLookUp = document.createElement('div');
     TagActionLookUp.onclick = function() { RecalTaxo(' ' + TaxId); };
     TagActionLookUp.className = 'taxolookup pointer';
+    TagActionLookUp.title = 'click for new taxonomy id search at this level';
 
     var TagElement = document.createElement('div');
     //TagElement.onclick = function() {RecalTaxo("'" + TaxId + "'"); } 
@@ -289,6 +294,7 @@ function GetNewEsearch(TaxId){
     //TagElement.onclick = function() { RecalTaxo(' ' + TaxId); };
     //TagElement.id = 'div_empty_' + IDCounter;	
     TagElement.className = 'bioesearch pointer';
+    TagElement.title = 'click for taxonomy id search';
     TagElement.style.cursor = 'pointer';
     TagElement.style.position = 'relative';
     TagElement.style.float = 'left';

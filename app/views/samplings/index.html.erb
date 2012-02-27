@@ -33,10 +33,11 @@
 	[
 		{ :field => "id", :label => "ID", :width => 50, :resizable => false, :sortable => false, :editable => false, :hidden => true},
         { :field => "act", :label => "", :width => 50 , :resizable => false, :sortable => false, :search => false },
+		{ :field => "code", :label => "Code", :width => 150, :search => true, :sortable => true },
 		{ :field => "site_name", :label => "Sampling site", :search => true, :width => 250, :sortable => true  },
 		{ :field => "volume", :label => "Volume (lt)", :width => 90, :class => "taright"  },
-		{ :field => "code", :label => "Microaqua code", :width => 250, :search => true, :sortable => true },
 		{ :field => "partner_name", :label => "Partner", :search => true, :sortable => true, :editable => false, :width => 100 },
+		{ :field => "sampling_equipment_name", :label => "Equipment", :search => false, :width => 100, :sortable => false  },
 		{ :field => "edit_link", :label => "edit", :search => false, :sortable => false, :width => 50 , :resizable => false},
 	], 
     {   :add => false, 
@@ -56,8 +57,8 @@
                 :columns => [
 		            { :field => "id", :label => "ID", :width => 35, :resizable => false, :sortable => false, :editable => false, :hidden => true, :search => false},
                     { :field => "act", :label => "", :width => 35, :sortable => false, :resizable => false, :search => false },
+  		            { :field => "code", :label => "Code", :width => "150", :search => false },
 		            { :field => "sample_name", :label => "Sampling", :sortable => false, :editable => false, :width => "200", :hidden => true, :search => false  },
-		           { :field => "code", :label => "Filter Microaqua code", :width => "200", :search => false },
 		            { :field => "barcode", :label => "Partner barcode", :editable => false, :width => 200, :search => false },
 		            { :field => "filter_name", :label => "pore size (µm)", :sortable => false, :editable => false, :width => 60, :class => "taright", :search => false },
 		            { :field => "num_filters", :label => "n° Tube", :width => 50, :class => "taright", :search => false },

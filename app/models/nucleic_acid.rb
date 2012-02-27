@@ -36,7 +36,7 @@ class NucleicAcid < ActiveRecord::Base
 
     attr_reader :filter_sample_name
     def filter_sample_name
-        self.filter_sample.verbose_me
+        self.filter_sample.code  #verbose_me
     end
 
     attr_reader :partner_name

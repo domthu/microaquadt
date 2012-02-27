@@ -41,13 +41,15 @@ include OligoSequencesHelper
   belongs_to :partner
   #validates_presence_of :partner
   belongs_to :person
+  #KAPPAO: migrate person generate people table belongs_to :people
   #validates_presence_of :person  
     #<%=h @oligo_sequence.people.verbose_me %>
     #undefined method `people' for #<OligoSequence:0xb6c7cee4>
     #<%=h @oligo_sequence.person.verbose_me %>
     #undefined method `verbose_me' for nil:NilClass  --> non reccupera il people_id?
 
-  has_many :partner_people
+  #has_many :partner_people
+  belongs_to :partner_person
 
   #TODO: table does not exist yet
   #belongs_to :tax_id, :class_name => "Name"

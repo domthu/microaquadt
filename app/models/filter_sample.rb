@@ -79,11 +79,19 @@ class FilterSample < ActiveRecord::Base
         Sampling.find(sampling_id).verbose_me
     end
 
-    def code_name
+    def cod_name
         if barcode.nil?
             code
         else
             barcode
+        end
+    end
+
+    def full_name
+        if barcode.nil?
+            code + '  ' + verbose_me
+        else
+            code + '  ' + barcode + '  ' + verbose_me
         end
     end
 

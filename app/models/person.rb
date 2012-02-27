@@ -9,6 +9,7 @@ class Person < ActiveRecord::Base
 
   attr_reader :verbose_me
   def verbose_me
+    #return '(' + self.id.to_s + ') ' + self.firstname.upcase + ' ' + self.lastname.capitalize
     return self.firstname.upcase + ' ' + self.lastname.capitalize
   end
 

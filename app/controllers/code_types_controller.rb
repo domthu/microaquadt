@@ -36,7 +36,7 @@ class CodeTypesController < AuthController   # < AuthController
     @title = "code type"
 
     @partners = Partner.find(:all)
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @pt = get_partner
     unless @pt.nil?
       #set the selected item
       @code_type.partner_id = @pt.id
@@ -66,6 +66,14 @@ class CodeTypesController < AuthController   # < AuthController
         format.html { redirect_to(@code_type, :notice => 'CodeType was successfully created.') }
         format.xml  { render :xml => @code_type, :status => :created, :location => @code_type }
       else
+
+        @partners = Partner.find(:all)
+        @pt = get_partner
+        unless @pt.nil?
+          #set the selected item
+          @code_type.partner_id = @pt.id
+        end
+
         format.html { render :action => "new" }
         format.xml  { render :xml => @code_type.errors, :status => :unprocessable_entity }
       end

@@ -91,7 +91,13 @@ class OligoSequencesController < AuthController   #ApplicationController
     @oligo_sequences = OligoSequence.all
     @title = "List of oligo sequences"
 
-    oligo_sequences = OligoSequence.find(:all) do
+    #oligo_sequences = OligoSequence.find(:all, :joins => [:people, :partner]) do
+#KAPPAO: Association named 'people' was not found; perhaps you misspelled it?
+    #oligo_sequences = OligoSequence.find(:all, :joins => [:person, :partner]) do
+#Mysql::Error: Unknown column 'oligo_sequences.person_id' in 'on clause': SELECT `oligo_sequences`.* FROM `oligo_sequences`   INNER JOIN `people` ON `people`.id = `oligo_sequences`.person_id  INNER JOIN `partners` ON `partners`.id = `oligo_sequences`.partner_id   LIMIT 0, 20
+#KAPPAO: migrate person generate people table but the rails do not re-construct right renaming
+    _str = ""
+    oligo_sequences = OligoSequence.find(:all, :joins => [:partner]) do
         if params[:_search] == "true"
             name =~ "%#{params[:verbose_me]}%" if params[:verbose_me].present?
 #            verbose_me =~ "%#{params[:verbose_me]}%" if params[:verbose_me].present?
@@ -101,10 +107,33 @@ class OligoSequencesController < AuthController   #ApplicationController
             taxonomy_name =~ "%#{params[:taxonomy_name]}%" if params[:taxonomy_name].present?
 #            taxonomy_name =~ "%#{params[:taxo_name_id]}%" if params[:taxo_name_id].present?
             taxonomy_id =~ "%#{params[:taxonomy_id]}%" if params[:taxonomy_id].present?
-            available = "%#{params[:available]}%" if params[:available].present?
+            if params[:available].present?
+                _str = params[:available].strip.downcase                
+                if _str == "true" or _str="1"
+                    available = "true"
+                else
+                    available = "false"
+                end
+            end    
+            partner.code =~ "%#{params[:partner_name]}%" if params[:partner_name].present?
+            people.firstname =~ "%#{params[:people_name]}%" if params[:people_name].present?
         end
         paginate :page => params[:page], :per_page => params[:rows]      
-        order_by "#{params[:sidx]} #{params[:sord]}"
+        if params[:sidx] == "verbose_me"
+            order_by "oligo_sequences.name #{params[:sord]}"
+        elsif params[:sidx] == "dna_ellipsis"
+            order_by "dna_sequence #{params[:sord]}"
+        #After set join conditions we fall in Mysql::Error: Column 'volume' in order clause is ambiguous
+        #set the database table name and column
+        elsif params[:sidx] == "code"
+            order_by "oligo_sequences.code #{params[:sord]}"
+        elsif params[:sidx] == "partner_name"
+            order_by "partners.code #{params[:sord]}"
+        elsif params[:sidx] == "people_name"
+            order_by "peoples.firstname #{params[:sord]}, people.lastname #{params[:sord]}"
+        else
+            order_by "#{params[:sidx]} #{params[:sord]}"
+        end
     end
 
     respond_to do |format|
@@ -159,8 +188,7 @@ class OligoSequencesController < AuthController   #ApplicationController
 
     #<%= collection_select(:oligo_sequence, :partner_id, @partners, :id, :verbose_me, options ={}, :class =>"partner") %>
 
-    @partners = Partner.find(:all)
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @pt = get_partner
     unless @pt.nil?
       #set the selected item
       @oligo_sequence.partner_id = @pt.id
@@ -199,11 +227,25 @@ class OligoSequencesController < AuthController   #ApplicationController
 
     @oligo_sequence.dna_sequence = @oligo_sequence.dna_sequence.upcase
 
+    @asso = PartnerPerson.find(:first, 
+        :conditions => [ "person_id = ? AND partner_id = ?", @oligo_sequence.people_id, @oligo_sequence.partner_id])
+    unless @asso.nil?
+      #set the selected item
+      @oligo_sequence.partner_people_id = @asso.id
+    end
+
     respond_to do |format|
       if @oligo_sequence.save
         format.html { redirect_to(@oligo_sequence, :notice => 'OligoSequence was successfully created.') }
         format.xml  { render :xml => @oligo_sequence, :status => :created, :location => @oligo_sequence }
       else
+
+        @pt = get_partner
+        unless @pt.nil?
+          #set the selected item
+          @oligo_sequence.partner_id = @pt.id
+        end
+
         format.html { render :action => "new" }
         format.xml  { render :xml => @oligo_sequence.errors, :status => :unprocessable_entity }
       end

@@ -1,4 +1,4 @@
-class NucleicAcidTypesController < ApplicationController
+class NucleicAcidTypesController < AuthController   #ApplicationController
   # GET /nucleic_acid_types
   # GET /nucleic_acid_types.xml
   def index

@@ -9,6 +9,7 @@ class SamplingsController < AuthController
     @samplings = Sampling.all
     @title = "List of samplings"
 
+    #samplings = Sampling.find(:all, :joins=> [:sampling_equipments, :partner, :sampling_site]) do
     samplings = Sampling.find(:all, :joins=> [:partner, :sampling_site]) do
         if params[:_search] == "true"
             volume =~ "%#{params[:volume]}%" if params[:volume].present?
@@ -18,6 +19,7 @@ class SamplingsController < AuthController
             partner.code =~ "%#{params[:partner_name]}%" if params[:partner_name].present?
             #KAPPAO because it done an AND operator between ID and CODE
             #partner.id =~ "%#{params[:partner_name]}%" if params[:partner_name].present?
+            sampling_equipment.name =~ "%#{params[:sampling_equipment_name]}%" if params[:sampling_equipment_name].present?
         end
         paginate :page => params[:page], :per_page => params[:rows]      
         if params[:sidx] == "site_name"
@@ -27,6 +29,8 @@ class SamplingsController < AuthController
             order_by "partners.code #{params[:sord]}"
         elsif params[:sidx] == "code"
             order_by "samplings.code #{params[:sord]}"
+        elsif params[:sidx] == "sampling_equipment_name"
+            order_by "sampling_equipments.name #{params[:sord]}"
         else
             order_by "#{params[:sidx]} #{params[:sord]}"
         end
@@ -41,7 +45,7 @@ class SamplingsController < AuthController
         format.html # index.html.erbs directly,
         #format.xml  { render :xml => @samplings }
         format.json { render :json => samplings.to_jqgrid_json(
-            [:id, "act",:site_name,:volume,:code,"partner_name","edit"],
+            [:id, "act",:code,:site_name,:volume,"partner_name", "sampling_equipment_name","edit"],
             params[:page], params[:rows], samplings.total_entries) }			
     end
   end
@@ -97,7 +101,7 @@ class SamplingsController < AuthController
     #</div>
 
     @partners = Partner.find(:all)
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @pt = get_partner
     unless @pt.nil?
       #set the selected item
       @sampling.partner_id = @pt.id
@@ -170,7 +174,7 @@ class SamplingsController < AuthController
       end
     end
 
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @pt = get_partner
     @sampling.code = get_code(@pt, @sampling.samplingDate, nil)
 
     @title = "Sampling"
@@ -213,6 +217,7 @@ class SamplingsController < AuthController
         #@partners = Partner.find(:all)
         @codegen = @sampling.code
         @attr_index = 1
+        @pt = get_partner
 
         format.html { render :action => "new" }
         format.xml  { render :xml => @sampling.errors, :status => :unprocessable_entity }

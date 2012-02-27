@@ -48,7 +48,7 @@ class ProtocolsController < AuthController
       return
     end
 
-    @pt = Partner.find(:first, :conditions => [ "user_id = ?", current_user.id])
+    @pt = get_partner
     if @pt.nil?
       @s = Sampling.all()
     else
@@ -79,6 +79,14 @@ class ProtocolsController < AuthController
         format.html { redirect_to(@protocol, :notice => 'Protocol was successfully created.') }
         format.xml  { render :xml => @protocol, :status => :created, :location => @protocol }
       else
+
+        @pt = get_partner
+        if @pt.nil?
+          @s = Sampling.all()
+        else
+          @s = Sampling.all(:conditions => [ "partner_id = ?", @pt.id])
+        end
+
         format.html { render :action => "new" }
         format.xml  { render :xml => @protocol.errors, :status => :unprocessable_entity }
       end

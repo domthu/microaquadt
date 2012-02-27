@@ -6,18 +6,23 @@
   </td></tr>
 </table>
 
+<%= link_to 'Edit', edit_nucleic_acid_path(@nucleic_acid) %> |
+<%= link_to 'Back', nucleic_acids_path %>
+<br />
+<br />
+
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
 <table width="95%"><tr><td>
 
     <div class="show select">
       <b>Sampling:</b>
-      <h3><%=h link_to @nucleic_acid.filter_sample.sampling.verbose_me, sampling_path(@nucleic_acid.filter_sample.sampling) %></h3>
+      <h3><%=h link_to @nucleic_acid.filter_sample.sampling.full_name, sampling_path(@nucleic_acid.filter_sample.sampling) %></h3>
     </div>
 
     <div class="show select">
       <b>Filter sample:</b>
-      <h3><%=h link_to @nucleic_acid.filter_sample.verbose_me, filter_sample_path(@nucleic_acid.filter_sample) %></h3>
+      <h3><%=h link_to @nucleic_acid.filter_sample.full_name, filter_sample_path(@nucleic_acid.filter_sample) %></h3>
     </div>
 
     <div class="show select">
@@ -51,5 +56,7 @@
       <%=h @nucleic_acid.description %>
     </div>
 
+
+<br />
 <%= link_to 'Edit', edit_nucleic_acid_path(@nucleic_acid) %> |
 <%= link_to 'Back', nucleic_acids_path %>
