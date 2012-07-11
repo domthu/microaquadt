@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120130230807) do
+ActiveRecord::Schema.define(:version => 20120201222202) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20120130230807) do
     t.datetime "samplingDate",                                                                              :null => false
     t.integer  "wfilter_id",                                                                                :null => false
     t.decimal  "pore_size",                                  :precision => 5, :scale => 3, :default => 0.0
-    t.integer  "num_filters",                   :limit => 2,                               :default => 0
+    t.integer  "num_filters",                   :limit => 2, :precision => 2, :scale => 0, :default => 0
     t.decimal  "avg_qta",                                    :precision => 4, :scale => 2, :default => 0.0
     t.decimal  "volume",                                     :precision => 4, :scale => 2,                  :null => false
     t.string   "barcode",                                                                                   :null => false
@@ -379,6 +379,7 @@ ActiveRecord::Schema.define(:version => 20120130230807) do
     t.datetime "updated_at"
   end
 
+  add_index "partner_people", ["partner_id", "person_id"], :name => "index_partner_people_on_partner_id_and_person_id", :unique => true
   add_index "partner_people", ["partner_id"], :name => "index_partner_people_on_partner_id"
   add_index "partner_people", ["person_id"], :name => "index_partner_people_on_person_id"
 
@@ -411,6 +412,8 @@ ActiveRecord::Schema.define(:version => 20120130230807) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "people", ["email"], :name => "index_people_on_email", :unique => true
 
   create_table "posts", :force => true do |t|
     t.string   "name",       :null => false
@@ -445,29 +448,33 @@ ActiveRecord::Schema.define(:version => 20120130230807) do
   end
 
   create_table "sampling_sites", :force => true do |t|
-    t.string   "code",                                                                   :null => false
+    t.string   "code",                                                                  :null => false
     t.string   "name"
-    t.integer  "altitude_types_id",                                  :default => 1
-    t.integer  "catchment_areas_id",                                 :default => 1
-    t.integer  "size_typologies_id",                                 :default => 1
-    t.integer  "geologies_id",                                       :default => 1
-    t.integer  "depth_id",                                           :default => 1
+    t.integer  "altitude_types_id",                                 :default => 1
+    t.integer  "catchment_areas_id",                                :default => 1
+    t.integer  "size_typologies_id",                                :default => 1
+    t.integer  "geologies_id",                                      :default => 1
+    t.integer  "depth_id",                                          :default => 1
     t.string   "link"
-    t.integer  "water_types_id",                                                         :null => false
-    t.integer  "water_uses_id",                                                          :null => false
-    t.integer  "land_use_mappings_id",                                                   :null => false
-    t.integer  "geos_id"
-    t.string   "geos_type",                                          :default => "Site"
+    t.integer  "water_type_id",                                                         :null => false
+    t.integer  "water_use_id",                                                          :null => false
+    t.integer  "land_use_mapping_id",                                                   :null => false
+    t.integer  "geo_id"
+    t.string   "geos_type",                                         :default => "Site"
     t.text     "note"
-    t.decimal  "distance_to_source",   :precision => 8, :scale => 2, :default => 0.0
+    t.decimal  "distance_to_source",  :precision => 8, :scale => 2, :default => 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sampling_sites", ["geos_id"], :name => "iss_gi"
-  add_index "sampling_sites", ["land_use_mappings_id"], :name => "iss_lumi"
-  add_index "sampling_sites", ["water_types_id"], :name => "iss_wti"
-  add_index "sampling_sites", ["water_uses_id"], :name => "iss_wui"
+  add_index "sampling_sites", ["geo_id"], :name => "index_sampling_sites_on_geo_id"
+  add_index "sampling_sites", ["geo_id"], :name => "iss_gi"
+  add_index "sampling_sites", ["land_use_mapping_id"], :name => "index_sampling_sites_on_land_use_mapping_id"
+  add_index "sampling_sites", ["land_use_mapping_id"], :name => "iss_lumi"
+  add_index "sampling_sites", ["water_type_id"], :name => "index_sampling_sites_on_water_type_id"
+  add_index "sampling_sites", ["water_type_id"], :name => "iss_wti"
+  add_index "sampling_sites", ["water_use_id"], :name => "index_sampling_sites_on_water_use_id"
+  add_index "sampling_sites", ["water_use_id"], :name => "iss_wui"
 
   create_table "samplings", :force => true do |t|
     t.string   "code"
@@ -547,7 +554,7 @@ ActiveRecord::Schema.define(:version => 20120130230807) do
   create_table "wfilters", :force => true do |t|
     t.string   "name",                                                   :default => ""
     t.decimal  "pore_size",                :precision => 5, :scale => 3, :default => 0.0
-    t.integer  "num_filters", :limit => 2,                               :default => 0
+    t.integer  "num_filters", :limit => 2, :precision => 2, :scale => 0, :default => 0
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"

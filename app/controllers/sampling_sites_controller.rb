@@ -15,12 +15,12 @@ class SamplingSitesController < AuthController
     #@wu = WaterUse.find(@sampling_site.water_uses_id)
     #@wt = WaterType.find(@sampling_site.water_types_id)
     #@lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
-    #@g = Geo.find(@sampling_site.geos_id)
+    #@g = Geo.find(@sampling_site.geo_id)
 
     #sampling_sites = SamplingSite.find(:all, :joins => [:water_use, :water_type, :geo, :land_use_mapping]) do
     #sampling_sites = SamplingSite.find(:all, :joins => [:geo]) do
-#Mysql::Error: Unknown column 'sampling_sites.geo_id' in 'on clause': SELECT `sampling_sites`.* FROM `sampling_sites`   INNER JOIN `geos` ON `geos`.id = `sampling_sites`.geo_id   LIMIT 0, 20
-    #water_types_id 	water_uses_id 	land_use_mappings_id geos_id
+#Mysql::Error: Unknown column 'sampling_sites.geo_id' in 'on clause': SELECT `sampling_sites`.* FROM `sampling_sites`   INNER JOIN `geo` ON `geo`.id = `sampling_sites`.geo_id   LIMIT 0, 20
+    #water_types_id 	water_uses_id 	land_use_mappings_id geo_id
     sampling_sites = SamplingSite.find(:all) do
     #@sampling_sites do --> Kappao
         if params[:_search] == "true"
@@ -40,7 +40,7 @@ class SamplingSitesController < AuthController
         elsif params[:sidx] == "land_name"
             order_by "land_use_mappings.name #{params[:sord]}"
         elsif params[:sidx] == "geo_name"
-            order_by "geos.name #{params[:sord]}"
+            order_by "geo.name #{params[:sord]}"
         else
             order_by "#{params[:sidx]} #{params[:sord]}"
         end
@@ -49,7 +49,7 @@ class SamplingSitesController < AuthController
 #    <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>
 #    <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
 #    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
-#    <td><%=h Geo.find(sampling_site.geos_id).name %></td>
+#    <td><%=h Geo.find(sampling_site.geo_id).name %></td>
 
     @map = GMap.new("map_div_id")
     @map.control_init(:large_map => true, :map_type => true)
@@ -57,7 +57,7 @@ class SamplingSitesController < AuthController
      
     for ss in @sampling_sites
         g = ss.geo
-        g = Geo.find(ss.geos_id) #undefined method `lat' for nil:NilClass
+        g = Geo.find(ss.geo_id) #undefined method `lat' for nil:NilClass
         marker = GMarker.new([g.lat,  g.lon],
           :title => g.name, :info_window => g.verbose_me)
         @map.overlay_init(marker)
@@ -100,7 +100,7 @@ class SamplingSitesController < AuthController
     @wu = WaterUse.find(@sampling_site.water_uses_id)
     @wt = WaterType.find(@sampling_site.water_types_id)
     @lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
-    @geo = Geo.find(@sampling_site.geos_id)
+    @geo = Geo.find(@sampling_site.geo_id)
 
     @at = AltitudeType.find(@sampling_site.altitude_types_id)
     @ca = CatchmentArea.find(@sampling_site.catchment_areas_id)
@@ -221,7 +221,7 @@ end
 #    <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>
 #    <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
 #    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
-#    <td><%=h Geo.find(sampling_site.geos_id).name %></td>
+#    <td><%=h Geo.find(sampling_site.geo_id).name %></td>
 #    <td><%= link_to 'Show', sampling_site %></td>
 #    <td><%= link_to 'Edit', edit_sampling_site_path(sampling_site) %></td>
 #    <td><%= link_to 'Delete', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>
