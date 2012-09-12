@@ -1,6 +1,9 @@
 class CreateMicroArrays < ActiveRecord::Migration
-  def self.up
+  
+
+ def self.up
     create_table :micro_arrays do |t|
+      t.references :experiment
       t.string :gpr_title
       t.string :gpr_file_title
       t.binary :gpr_file
@@ -46,11 +49,12 @@ class CreateMicroArrays < ActiveRecord::Migration
       t.timestamps
     end
     add_index :micro_arrays, :partner_id
-
+    add_index :micro_arrays, :experiment_id
 end
 
   def self.down
     remove_index :micro_arrays, :partner_id
+    remove_index :micro_arrays, :experiment_id
     drop_table :micro_arrays
   end
 end

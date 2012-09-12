@@ -1,7 +1,7 @@
 class CreateMicroArrayDatas < ActiveRecord::Migration
   def self.up
     create_table :micro_array_datas do |t|
-      t.references :microarray
+      t.references :experiment
       t.text :note
       t.decimal :D_Index, :precision => 8, :scale => 2
       t.decimal :D_Array_Row, :precision => 8, :scale => 2
@@ -69,11 +69,11 @@ class CreateMicroArrayDatas < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :micro_array_datas, :microarray_id
+    add_index :micro_array_datas, :experiment_id
 end
 
   def self.down
-    remove_index :micro_array_datas, :microarray_id
+    remove_index :micro_array_datas, :experiment_id
     drop_table :micro_array_datas
   end
 end

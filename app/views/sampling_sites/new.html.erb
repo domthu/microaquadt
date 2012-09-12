@@ -38,20 +38,20 @@
   </div>
   <div class="field select">
     <%= f.label :water_types_id, "Select Water Type" %><br />
-    <%= select :sampling_site,:water_types_id,WaterType.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :sampling_site,:water_type_id,WaterType.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
   <div class="field select">
     <%= f.label :water_uses_id, "Select Water Use" %><br />
-    <%= select :sampling_site,:water_uses_id,WaterUse.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :sampling_site,:water_use_id,WaterUse.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
   <div class="field select">
     <%= f.label :land_use_mappings_id, "Select Land use mapping" %><br />
-    <%= select :sampling_site,:land_use_mappings_id,LandUseMapping.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :sampling_site,:land_use_mapping_id,LandUseMapping.find(:all).collect{|p| [p.verbose_me, p.id]}%>
     <div style="display:none"> t.string   "geos_type" </div>
   </div>
   <div class="field select">
     <%= f.label :geos_id, "Select Geographical place" %><br />
-    <%= select :sampling_site,:geos_id,Geo.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <%= select :sampling_site,:geo_id,Geo.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
   <div class="field txt">
     <%= f.label :link, "Link" %><br />

@@ -19,7 +19,7 @@ class CreateOligoSequences < ActiveRecord::Migration
       t.integer :taxonomy_id, :null => true
       t.string :taxonomy_name
       t.datetime :oligoDate, :null => true
-      t.boolean :available, :default => 1
+      t.boolean :available, :default => 0
 
       t.timestamps
     end

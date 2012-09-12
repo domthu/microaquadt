@@ -1,0 +1,65 @@
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %> 
+
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<h2>Microarray .gal files information</h2>
+<%= link_to 'New microarraygal', new_microarraygal_path %>
+<br />
+<br />
+
+<script type="text/javascript" >
+
+//jQuery("#ngbgrid").jqGrid('navGrid','hideCol',"ID"); }); 
+
+     function handleSelection(id) {
+        <%= remote_function(:url => {:controller=> 'microarraygals',
+                     :action => 'show'},
+                     :with => "id= " + String(id))
+        %>
+     }
+//use, :selection_handler => "handleSelection", :direct_selection => true
+//use, :grid_complete => "grid_complete" 
+</script>
+
+<%= jqgrid("List of .gal files: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", microarraygals_path,
+	[
+	{ :field => "id", :label => "ID", :width => 50, :resizable => false, :sortable => false, :editable => false, :hidden => true},
+        { :field => "act", :label => "", :width => 50 , :resizable => false, :sortable => false, :search => false },
+
+        { :field => "gal_f_code", :label => "GAL code", :width => 250, :search => true, :sortable => true },
+		{ :field => "partner_name", :label => "Partner", :width => 100, :class => "taright"  },
+		{ :field => "title", :label => "GAL title", :search => true, :sortable => true, :editable => false, :width => 250 },
+		{ :field => "bcode", :label => "Barcode", :search => false, :width => 100, :sortable => false  },
+                { :field => "gal_upload_date", :label => "Upload date", :search => false, :width => 100, :sortable => false  },	
+	{ :field => "edit_link", :label => "edit", :search => false, :sortable => false, :width => 50 , :resizable => false}
+	], 
+    {   :add => false, 
+        :edit => false, 
+        :inline_edit => false, 
+        :delete => false, 
+        :rows_per_page => "50", 
+        :height => 400, 
+        :rownumbers => 'false',
+        
+
+ }
+
+) %>
+
+<br />
+<br />
+<%= link_to 'New microarraygal', new_microarraygal_path %>
+<br />
+

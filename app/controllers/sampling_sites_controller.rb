@@ -5,8 +5,8 @@ class SamplingSitesController < AuthController
 
   #before_filter :find_water_use, :only => [:show, :edit, :update]
   #private def find_water_use
-  #  #Model name
-  #  @wu = WaterUse.find(params[:water_uses_id])
+  # #Model name
+  # @wu = WaterUse.find(params[:water_uses_id])
   #end
 
   def index
@@ -15,12 +15,12 @@ class SamplingSitesController < AuthController
     #@wu = WaterUse.find(@sampling_site.water_uses_id)
     #@wt = WaterType.find(@sampling_site.water_types_id)
     #@lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
-    #@g = Geo.find(@sampling_site.geo_id)
+    #@g = Geo.find(@sampling_site.geos_id)
 
     #sampling_sites = SamplingSite.find(:all, :joins => [:water_use, :water_type, :geo, :land_use_mapping]) do
     #sampling_sites = SamplingSite.find(:all, :joins => [:geo]) do
-#Mysql::Error: Unknown column 'sampling_sites.geo_id' in 'on clause': SELECT `sampling_sites`.* FROM `sampling_sites`   INNER JOIN `geo` ON `geo`.id = `sampling_sites`.geo_id   LIMIT 0, 20
-    #water_types_id 	water_uses_id 	land_use_mappings_id geo_id
+#Mysql::Error: Unknown column 'sampling_sites.geo_id' in 'on clause': SELECT `sampling_sites`.* FROM `sampling_sites` INNER JOIN `geos` ON `geos`.id = `sampling_sites`.geo_id LIMIT 0, 20
+    #water_types_id water_uses_id land_use_mappings_id geos_id
     sampling_sites = SamplingSite.find(:all) do
     #@sampling_sites do --> Kappao
         if params[:_search] == "true"
@@ -31,7 +31,7 @@ class SamplingSitesController < AuthController
             land_use_mapping.name =~ "%#{params[:land_name]}%" if params[:land_name].present?
             geo.name =~ "%#{params[:geo_name]}%" if params[:geo_name].present?
         end
-        paginate :page => params[:page], :per_page => params[:rows]      
+        paginate :page => params[:page], :per_page => params[:rows]
         #for sort use join condition. Not requires by search because of reflection model
         if params[:sidx] == "w_use_name"
             order_by "water_uses.name #{params[:sord]}"
@@ -40,16 +40,16 @@ class SamplingSitesController < AuthController
         elsif params[:sidx] == "land_name"
             order_by "land_use_mappings.name #{params[:sord]}"
         elsif params[:sidx] == "geo_name"
-            order_by "geo.name #{params[:sord]}"
+            order_by "geos.name #{params[:sord]}"
         else
             order_by "#{params[:sidx]} #{params[:sord]}"
         end
     end
 
-#    <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>
-#    <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
-#    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
-#    <td><%=h Geo.find(sampling_site.geo_id).name %></td>
+# <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>
+# <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
+# <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
+# <td><%=h Geo.find(sampling_site.geos_id).name %></td>
 
     @map = GMap.new("map_div_id")
     @map.control_init(:large_map => true, :map_type => true)
@@ -58,36 +58,36 @@ class SamplingSitesController < AuthController
     for ss in @sampling_sites
         g = ss.geo
         g = Geo.find(ss.geo_id) #undefined method `lat' for nil:NilClass
-        marker = GMarker.new([g.lat,  g.lon],
+        marker = GMarker.new([g.lat, g.lon],
           :title => g.name, :info_window => g.verbose_me)
         @map.overlay_init(marker)
     end
 
     respond_to do |format|
         format.html # index.html.erb
-        #format.xml  { render :xml => @sampling_sites }     
+        #format.xml { render :xml => @sampling_sites }
         format.json { render :json => sampling_sites.to_jqgrid_json(
             [:id, "act",:code,:name,:w_use_name,:w_type_name,"land_name","geo_name","edit"],
-            params[:page], params[:rows], sampling_sites.total_entries) }			
+            params[:page], params[:rows], sampling_sites.total_entries) }	
     end
   end
-#{ :field => "water_uses_id", :label => "Water use", :edittype => "select", :editoptions => { :data => [WaterUse.all, :id, :name] }  },	
+#{ :field => "water_uses_id", :label => "Water use", :edittype => "select", :editoptions => { :data => [WaterUse.all, :id, :name] } },
 
 
-#  def post_data
-#    if params[:oper] == "del"
-#      User.find(params[:id]).destroy
-#    else
-#      user_params = { :pseudo => params[:pseudo], :firstname => params[:firstname], :lastname => params[:lastname], 
-#                      :email => params[:email], :role => params[:role] }
-#      if params[:id] == "_empty"
-#        User.create(user_params)
-#      else
-#        User.find(params[:id]).update_attributes(user_params)
-#      end
-#    end
-#    render :nothing => true
-#  end
+# def post_data
+# if params[:oper] == "del"
+# User.find(params[:id]).destroy
+# else
+# user_params = { :pseudo => params[:pseudo], :firstname => params[:firstname], :lastname => params[:lastname],
+# :email => params[:email], :role => params[:role] }
+# if params[:id] == "_empty"
+# User.create(user_params)
+# else
+# User.find(params[:id]).update_attributes(user_params)
+# end
+# end
+# render :nothing => true
+# end
 
   # GET /sampling_sites/1
   # GET /sampling_sites/1.xml
@@ -100,7 +100,7 @@ class SamplingSitesController < AuthController
     @wu = WaterUse.find(@sampling_site.water_uses_id)
     @wt = WaterType.find(@sampling_site.water_types_id)
     @lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
-    @geo = Geo.find(@sampling_site.geo_id)
+    @geo = Geo.find(@sampling_site.geos_id)
 
     @at = AltitudeType.find(@sampling_site.altitude_types_id)
     @ca = CatchmentArea.find(@sampling_site.catchment_areas_id)
@@ -110,15 +110,15 @@ class SamplingSitesController < AuthController
 
     @map = GMap.new("map_div_id")
     @map.control_init(:large_map => true, :map_type => true)
-    @map.center_zoom_init([@geo.lat,  @geo.lon], 4)
+    @map.center_zoom_init([@geo.lat, @geo.lon], 4)
      
-    marker = GMarker.new([@geo.lat,  @geo.lon],
+    marker = GMarker.new([@geo.lat, @geo.lon],
       :title => @geo.name, :info_window => @geo.verbose_me)
     @map.overlay_init(marker)
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @sampling_site }
+      format.xml { render :xml => @sampling_site }
     end
   end
 
@@ -130,7 +130,7 @@ class SamplingSitesController < AuthController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @sampling_site }
+      format.xml { render :xml => @sampling_site }
     end
   end
 
@@ -149,10 +149,10 @@ class SamplingSitesController < AuthController
     respond_to do |format|
       if @sampling_site.save
         format.html { redirect_to(@sampling_site, :notice => 'SamplingSite was successfully created.') }
-        format.xml  { render :xml => @sampling_site, :status => :created, :location => @sampling_site }
+        format.xml { render :xml => @sampling_site, :status => :created, :location => @sampling_site }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @sampling_site.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @sampling_site.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -166,10 +166,10 @@ class SamplingSitesController < AuthController
     respond_to do |format|
       if @sampling_site.update_attributes(params[:sampling_site])
         format.html { redirect_to(@sampling_site, :notice => 'SamplingSite was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @sampling_site.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @sampling_site.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -197,7 +197,7 @@ class SamplingSitesController < AuthController
 
         respond_to do |format|
           format.html { redirect_to(sampling_sites_url) }
-          format.xml  { head :ok }
+          format.xml { head :ok }
         end
     end
   end
@@ -205,37 +205,38 @@ end
 
 
 #<table>
-#  <tr>
-#    <th>Code</th>
-#    <th>Name</th>
-#    <th>Water type</th>
-#    <th>Water use</th>
-#    <th>Land use</th>
-#    <th>Geo</th>
-#  </tr>
+# <tr>
+# <th>Code</th>
+# <th>Name</th>
+# <th>Water type</th>
+# <th>Water use</th>
+# <th>Land use</th>
+# <th>Geo</th>
+# </tr>
 
 #<% @sampling_sites.each do |sampling_site| %>
-#  <tr>
-#    <td><%=h sampling_site.code %></td>
-#    <td><%=h sampling_site.name %></td>
-#    <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>
-#    <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
-#    <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
-#    <td><%=h Geo.find(sampling_site.geo_id).name %></td>
-#    <td><%= link_to 'Show', sampling_site %></td>
-#    <td><%= link_to 'Edit', edit_sampling_site_path(sampling_site) %></td>
-#    <td><%= link_to 'Delete', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>
-#  </tr>
+# <tr>
+# <td><%=h sampling_site.code %></td>
+# <td><%=h sampling_site.name %></td>
+# <td><%=h WaterUse.find(sampling_site.water_uses_id).name %></td>
+# <td><%=h WaterType.find(sampling_site.water_types_id).name %></td>
+# <td><%=h LandUseMapping.find(sampling_site.land_use_mappings_id).name %></td>
+# <td><%=h Geo.find(sampling_site.geos_id).name %></td>
+# <td><%= link_to 'Show', sampling_site %></td>
+# <td><%= link_to 'Edit', edit_sampling_site_path(sampling_site) %></td>
+# <td><%= link_to 'Delete', sampling_site, :confirm => 'Are you sure?', :method => :delete %></td>
+# </tr>
 #<% end %>
 #</table>
 
 
 #<script type="text/javascript">
 #function handleSelection(id) {
-#	alert('ID selected %>: ' + id);
+# alert('ID selected %>: ' + id);
 #}
 #</script>
 #{ :selection_handler => "handleSelection", :direct_selection => true, :edit => true }
+
 
 
 

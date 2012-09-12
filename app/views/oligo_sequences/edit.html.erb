@@ -37,6 +37,11 @@
 
 <table width="95%"><tr><td>
 
+  <div class="field select">
+    <%= f.label "Partner" %><br />
+    <h3><%= @pt.verbose_me %></h3>
+  </div>
+   
   <div class="field txt">
     <%= f.label :name, "Description" %><br />
     <h3><%= f.text_field :name %></h3>
@@ -47,17 +52,28 @@
     <h3><%= f.text_field :code %></h3>
   </div>
 
-    <div class="field chk">
+   <div class="field select">
+  <%= f.label :experiment_id, "Experiment code" %><br />
+  <%= select :oligo_sequence, :experiment_id, Experiment.find(:all).collect{|p| [p.exp_code, p.id]} %>
+  </div>
+
+  <div class="field cod">
+    <%= f.label :oligo_exp_code, "Microarray experiment oligo code" %><br />
+    <h2><%= @oligo_exp_code %></h2>
+  </div>
+
+
+</td><td>
+
+  <div class="field chk">
       <b>Available:</b>
       <%= f.check_box :available %>
     </div>
 
-</td><td>
-
-  <div class="field select">
-    <%= f.label "Partner" %><br />
-    <h3><%= @pt.verbose_me %></h3>
-  </div>
+ <div class="field select">
+ <%= label :galCode, "Associate gal file" %><br />
+ <%= select :oligo_sequence, :galCode, Microarraygal.find(:all).collect{|p| [p.verbose_me]}%>
+ </div>   
 
   <div class="field select">
     <%= f.label "Person" %><br />

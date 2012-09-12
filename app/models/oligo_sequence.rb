@@ -2,12 +2,13 @@ class OligoSequence < ActiveRecord::Base
 
 include ActionController::UrlWriter
 include OligoSequencesHelper
+require "fastercsv"
 #include CodeTypesHelper
 #include SessionsHelper
 
   validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
   validates_length_of :name, :maximum=>100
-  validates_length_of :code, :maximum=>20
+  validates_length_of :code, :maximum=>30
   #validates_uniqueness_of :name, :case_sensitive => false
   validates_presence_of :dna_sequence, :message => "Can't be empty, field is mandatory. "
   #validates_uniqueness_of :dna_sequence, :case_sensitive => false
@@ -38,6 +39,13 @@ include OligoSequencesHelper
 
   validates_numericality_of :taxonomy_id, :allow_nil => true #, :less_than => 100
 
+  belongs_to :microarraygals
+
+  belongs_to :experiment
+
+  belongs_to :sampling
+
+
   belongs_to :partner
   #validates_presence_of :partner
   belongs_to :person
@@ -67,10 +75,10 @@ include OligoSequencesHelper
 
   attr_reader :dna_ellipsis
   def dna_ellipsis
-      if self.dna_sequence.length < 20
+      if self.dna_sequence.length < 30
         return self.dna_sequence.upcase
       else
-        return self.dna_sequence[0..20].upcase + '...'
+        return self.dna_sequence[0..30].upcase + '...'
       end
   end
 
@@ -85,7 +93,15 @@ include OligoSequencesHelper
       else
         return ""
       end
-  end
+  end    
+
+    #def oligo_code
+     #   self.oligo_exp_code
+    #end
+
+    def gCode
+        self.galCode
+    end
 
     def partner_name
         Partner.find(partner_id).verbose_me
@@ -117,7 +133,20 @@ include OligoSequencesHelper
     def act
         "<a href='" + oligo_sequence_path(self) + "' title='Show selected row'><div class='ui-pg-div' title='Show selected row'><span class='ui-icon ui-icon-info' title='Show selected row'></span></div></a>"
     end
+  
 
-
+    def to_csv 
+       self.to_csv(options = {})
+        FasterCSV.generate(options) do |csv|
+        csv << column_names
+        all.each do |oligo_sequence|
+        csv << oligo_sequence.attributes.values_at(*column_names)
+         end
+       end
+    end
+	#[ "code", "dna_ellipsis", "partner_name", "people_name", "taxonomy_name", "taxonomy_id" ]
 end
+
+
+
 

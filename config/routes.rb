@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :microarraygals
+
   map.resources :nucleic_acids
 
   map.resources :nucleic_acid_types
@@ -19,7 +21,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :altitude_types
 
- map.resources :micro_arrays
+  map.resources :micro_arrays
+
+  map.resources :microarraygals
+
+  map.resources :experiments
 
   map.resources :micro_array_images
 
@@ -29,9 +35,17 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :micro_array_datas
 
+  map.resources :microarray_oligos
+
   map.resources :names
   
   map.resources :oligo_sequences
+  map.export 'oligo_sequences/export', :controller => 'oligo_sequences', :action => 'export'
+  
+  #map.resources :oligo_sequences, :collection => { :oligo_sequences => :get, :export => :get }
+  #map.connect 'oligo_sequences/export.xls', :controller => 'oligo_sequences', :action => 'export'
+
+  
   map.lookforbio '/lookforbio', :controller => 'oligo_sequences', :action => 'lookup'
   map.lookforbio '/searchforbio', :controller => 'oligo_sequences', :action => 'esearch'
 
@@ -129,5 +143,7 @@ ActionController::Routing::Routes.draw do |map|
   # consider removing or commenting them out if you're using named routes and resources.
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action.:format'
+  
 end
 

@@ -1,0 +1,208 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<% if auth_user(@microarraygal.partner_id) %>
+  <%= link_to 'Edit', edit_microarraygal_path(@microarraygal) %> |
+<% end %>
+<%= link_to 'Back', microarraygals_path %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#versioninfo").click(function() {
+          alert(this.getAttribute("data-message"));
+          return false;
+        })
+      })
+</script>
+
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#blockcount").click(function() {
+          alert(this.getAttribute("data-message"));
+          return false;
+        })
+      })
+</script>
+
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#rowinfo").click(function() {
+          alert(this.getAttribute("data-message"));
+          return false;
+        })
+      })
+</script>
+
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#columninfo").click(function() {
+          alert(this.getAttribute("data-message"));
+          return false;
+        })
+      })
+</script>
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#headerinfo").click(function() {
+          alert(this.getAttribute("data-message"));
+          return false;
+        })
+      })
+</script>
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#blockinfo").click(function() {
+          alert(this.getAttribute("data-message"));
+          return false;
+        })
+      })
+</script>
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#idinfo").click(function() {
+          alert(this.getAttribute("data-message"));
+          return false;
+        })
+      })
+</script>
+<script type="text/javascript" charset="utf-8">
+      $(function() {
+        $("#nameinfo").click(function() {
+          alert(this.getAttribute("data-message"));
+          return false;
+        })
+      })
+</script>
+
+<table width="95%"><tr><td>
+
+  <div>
+  <b>GAL title:</b>
+  <em><%=h @microarraygal.gal_title %></em>
+  </div>
+  <br>
+
+  <div> 
+  <b>Partner:</b>
+  <%=h @microarraygal.partner.verbose_me %>
+  </div>
+   <br>
+
+  <div>
+  <b>Loaded at:</b>
+  <%=h @microarraygal.loaded_at.to_s %>
+  </div>
+   <br>
+
+  <div>
+  <b><%= link_to "CSV download microarray .gal file", :controller => 'microarraygals', :action=> 'download_csv', :id => @microarraygal.id  %></b>
+  </div>
+   <br>
+
+  <div>
+  <b>Note:</b>
+  <%=h @microarraygal.note %>
+  </div>
+ 
+  </td>
+  <td>
+  
+  <div>
+  <b>Barcode:</b>
+  <%=h @microarraygal.barcode %>
+  </div>
+   <br>
+
+  <div>
+  <b>Microarray GAL code:</b> 
+  <%=h @microarraygal.verbose_me %> 
+  </div>
+  <br>
+
+  <div>
+      <b>GAL ID:</b>
+      <%=h @microarraygal.id %> 
+  </div>
+  
+  </td></tr>
+  <tr><td>
+ 
+  <br>
+  <br>
+  <div>
+<input type="button" value="Microarray GAL version #" data-message="<%= extract_version_info %>" id="versioninfo" />
+   </div>
+   <br>
+   <br>
+
+  <div>
+<input type="button" value="Microarray GAL block count" data-message="<%= extract_block_count %>" id="blockcount" />
+   </div>
+   <br>
+   <br>
+
+   <div>
+<input type="button" value="#rows per block in GAL file" data-message="<%= extract_row_count %>" id="rowinfo" />
+   </div>
+   <br>
+   <br>
+
+   <div>
+<input type="button" value="#Columns per block in GAL file" data-message="<%= extract_column_count %>" id="columninfo" />
+   </div>
+   <br>
+   <br>
+
+   <div>
+<input type="button" value="Microarray GAL file header" data-message="<%= extract_header_info %>" id="headerinfo" />
+   </div>
+   <br>
+   <br>
+  
+  <div>
+  <input type="button" value="Microarray GAL file Blocks" data-message="<%= extract_block_info %>" id="blockinfo" />
+  </div>
+  <br>
+  <br>
+  
+  <div>
+  <input type="button" value="Microarray GAL file data (IDs)" data-message="<%= extract_id_info %>" id="idinfo" />
+  </div>
+  <br>
+  <br>
+  
+  <div>
+  <input type="button" value="Microarray GAL file data (Oligos)" data-message="<%= extract_name_info %>" id="nameinfo" />
+  </div>
+  
+  </td>
+
+  <td>
+  <div>   
+  <textarea id="parseheader" rows="50" cols="150"><%=h extract_gal_info() %></textarea>
+  </div>
+  
+  </td></tr>
+  </table>
+
+
+
+<% if auth_user(@microarraygal.partner_id) %>
+  <%= link_to 'Edit', edit_microarraygal_path(@microarraygal) %> |
+<% end %>
+<%= link_to 'Back', microarraygals_path %>
+

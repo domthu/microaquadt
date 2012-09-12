@@ -1,0 +1,87 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<% if auth_user(@experiment.partner_id) %>
+  <%= link_to 'Edit', edit_experiment_path(@experiment) %> |
+<% end %>
+<%= link_to 'Back', experiments_path %>
+<br />
+<br />
+
+<fieldset><legend class="leg">GENERAL DATA</legend>
+
+<table width="95%"><tr><td>
+
+   
+   <div class="show id" style="display:none;">
+    <= f.label :microarraygal_id ><br />
+    <%= @mg.id  %>
+  </div>
+    
+     <p>
+    <div class="show cod">
+      <b>Filter Microaqua code:</b>
+      <%=h @experiment.filter_sample_code %> 
+    </div>
+      </p>
+
+      <p>
+     <div>
+     <b>Partner:</b>
+       <%=h @experiment.partner_id %>
+     </div>
+      <p>
+
+     <p>
+    <div class="GAL file title">
+      <b>Microarray experiment code:</b>
+      <%=h link_to @experiment.code %>
+    </div>
+     <p>
+
+
+</td><td>
+
+    <div class="show cod">
+      <b>Partner barcode:</b>
+      <%=h @experiment.barcode %>
+    </div>
+
+    <div class="show date">
+      <b>Microarray Experiment date:</b>
+      <%=h @experiment.experiment_date.strftime("%A %d %B %Y") %>
+    </div>
+
+     <div class="GAL file title">
+      <b>Microarray GAL file Title:</b>
+      <%=h link_to @experiment.galTitle %>
+    </div>
+
+</td><tr></table>
+
+<p>
+  <b>Note:</b>
+  <%=h @experiment.note %>
+</p>
+
+</fieldset>
+
+
+
+<br />
+<% if auth_user(@experiment.partner_id) %>
+  <%= link_to 'Edit', edit_experiment_path(@experiment) %> |
+<% end %>
+<%= link_to 'Back', experiments_path %>
+
+

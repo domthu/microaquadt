@@ -217,7 +217,7 @@ class SamplingsController < AuthController
         #@partners = Partner.find(:all)
         @codegen = @sampling.code
         @attr_index = 1
-        @pt = get_partner
+        @pt = get_partner	
 
         format.html { render :action => "new" }
         format.xml  { render :xml => @sampling.errors, :status => :unprocessable_entity }

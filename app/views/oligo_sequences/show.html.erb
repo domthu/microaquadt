@@ -18,6 +18,11 @@
 
 <table width="95%"><tr><td>
 
+     <div class="show select">
+      <b>Partner:</b>
+      <%=h @oligo_sequence.partner.verbose_me %>
+    </div>
+
     <div class="show txt">
       <b>Description:</b>
       <%=h @oligo_sequence.name %>
@@ -36,8 +41,8 @@
 </td><td>
 
     <div class="show select">
-      <b>Partner:</b>
-      <%=h @oligo_sequence.partner.verbose_me %>
+      <b>Microarray GAL code:</b>
+      <%=h @oligo_sequence.gCode %>
     </div>
 
     <div class="show select">

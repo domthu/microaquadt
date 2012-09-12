@@ -1,0 +1,63 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<h1>New Microarray *.GAL File</h1>
+
+<%= link_to 'Back', microarraygals_path %>
+
+<% form_for(@microarraygal, :html => {:multipart => true}) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+
+<fieldset><legend class="leg">General data</legend>
+  <div class="field select">
+    <%= f.label :partner_id %><br />
+    <%= select :microarraygal,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.verbose_me]}%>
+  </div>
+
+   <div class="field select">
+    <%= f.label :code %><br />
+    <%= select :microarraygal,:code,Partner.find(:all).collect{|p| [p.code, p.code]}%>
+  </div>
+	 
+   <div class="field txt">
+    <%= f.label :barcode, "Partner barcode" %><br />
+    <%= f.text_field :barcode %>
+  </div>
+  
+  <div class="field txt">
+    <%= f.label :gal_file, "Load the GAL file" %><br />
+    <%= file_field(:microarraygal, :gal_file, :accept => 'text/csv') %>
+  </div>
+  <div class="field date">
+    <%= f.label :loaded_at, "Uploaded at" %><br />
+    <%= f.date_select :loaded_at %>
+  </div>
+</fieldset>
+
+  <div class="field area">
+    <%= f.label :note %><br />
+    <%= f.text_area :note %>
+  </div
+
+  <div class="actions">
+    <%= f.submit 'Create' %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Back', microarraygals_path %>
+

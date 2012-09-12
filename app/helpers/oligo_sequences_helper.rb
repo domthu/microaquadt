@@ -3,6 +3,8 @@ module OligoSequencesHelper
 include CodeTypesHelper
 #include SessionsHelper
 
+
+
 require 'bio'
 srv = Bio::NCBI::REST::EFetch
 #    srv.default_email = "dom_thual@yahoo.fr"
@@ -60,6 +62,8 @@ Bio::NCBI.default_tool ||= 'unicamBio'
 #Comment.find(ids)
 #current_user.comments.find(ids)
 #current_user.comments.select { |c| ids.include?(c.id) }
+
+    
 
 
 end

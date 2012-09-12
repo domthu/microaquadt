@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201222202) do
+ActiveRecord::Schema.define(:version => 20120831194202) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -57,6 +57,34 @@ ActiveRecord::Schema.define(:version => 20120201222202) do
     t.text     "description"
   end
 
+  create_table "experiments", :force => true do |t|
+    t.integer  "filter_sample_id"
+    t.string   "filter_sample_code",           :null => false
+    t.integer  "microarraygal_id"
+    t.integer  "micro_array_id"
+    t.integer  "micro_array_validation_id"
+    t.integer  "micro_array_image_id"
+    t.integer  "micro_array_data_id"
+    t.integer  "micro_array_analysis_file_id"
+    t.integer  "partner_id"
+    t.string   "code"
+    t.string   "barcode",                      :null => false
+    t.date     "experiment_date"
+    t.string   "galTitle",                     :null => false
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "experiments", ["filter_sample_id"], :name => "index_experiments_on_filter_sample_id"
+  add_index "experiments", ["micro_array_analysis_file_id"], :name => "index_experiments_on_micro_array_analysis_file_id"
+  add_index "experiments", ["micro_array_data_id"], :name => "index_experiments_on_micro_array_data_id"
+  add_index "experiments", ["micro_array_id"], :name => "index_experiments_on_micro_array_id"
+  add_index "experiments", ["micro_array_image_id"], :name => "index_experiments_on_micro_array_image_id"
+  add_index "experiments", ["micro_array_validation_id"], :name => "index_experiments_on_micro_array_validation_id"
+  add_index "experiments", ["microarraygal_id"], :name => "index_experiments_on_microarraygal_id"
+  add_index "experiments", ["partner_id"], :name => "index_experiments_on_partner_id"
+
   create_table "filter_sample_preparations", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -69,7 +97,7 @@ ActiveRecord::Schema.define(:version => 20120201222202) do
     t.datetime "samplingDate",                                                                              :null => false
     t.integer  "wfilter_id",                                                                                :null => false
     t.decimal  "pore_size",                                  :precision => 5, :scale => 3, :default => 0.0
-    t.integer  "num_filters",                   :limit => 2, :precision => 2, :scale => 0, :default => 0
+    t.integer  "num_filters",                   :limit => 2,                               :default => 0
     t.decimal  "avg_qta",                                    :precision => 4, :scale => 2, :default => 0.0
     t.decimal  "volume",                                     :precision => 4, :scale => 2,                  :null => false
     t.string   "barcode",                                                                                   :null => false
@@ -124,19 +152,15 @@ ActiveRecord::Schema.define(:version => 20120201222202) do
   end
 
   create_table "micro_array_analysis_files", :force => true do |t|
-    t.integer  "microarray_id"
+    t.integer  "experiment_id"
     t.text     "note"
     t.string   "MIANE_Standard"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "protocol"
-    t.text     "consumables"
   end
 
-  add_index "micro_array_analysis_files", ["microarray_id"], :name => "index_micro_array_analysis_files_on_microarray_id"
-
   create_table "micro_array_datas", :force => true do |t|
-    t.integer  "microarray_id"
+    t.integer  "experiment_id"
     t.text     "note"
     t.decimal  "D_Index",                  :precision => 8, :scale => 2
     t.decimal  "D_Array_Row",              :precision => 8, :scale => 2
@@ -204,10 +228,8 @@ ActiveRecord::Schema.define(:version => 20120201222202) do
     t.datetime "updated_at"
   end
 
-  add_index "micro_array_datas", ["microarray_id"], :name => "index_micro_array_datas_on_microarray_id"
-
   create_table "micro_array_images", :force => true do |t|
-    t.integer  "microarray_id"
+    t.integer  "experiment_id"
     t.text     "note"
     t.string   "name"
     t.binary   "image"
@@ -226,10 +248,8 @@ ActiveRecord::Schema.define(:version => 20120201222202) do
     t.datetime "updated_at"
   end
 
-  add_index "micro_array_images", ["microarray_id"], :name => "index_micro_array_images_on_microarray_id"
-
   create_table "micro_array_validations", :force => true do |t|
-    t.integer  "microarray_id"
+    t.integer  "experiment_id"
     t.text     "note"
     t.decimal  "CellCount",     :precision => 8, :scale => 2
     t.decimal  "QPCR_decimal",  :precision => 8, :scale => 2
@@ -239,9 +259,8 @@ ActiveRecord::Schema.define(:version => 20120201222202) do
     t.datetime "updated_at"
   end
 
-  add_index "micro_array_validations", ["microarray_id"], :name => "index_micro_array_validations_on_microarray_id"
-
   create_table "micro_arrays", :force => true do |t|
+    t.integer  "experiment_id"
     t.string   "gpr_title"
     t.string   "gpr_file_title"
     t.binary   "gpr_file"
@@ -285,11 +304,40 @@ ActiveRecord::Schema.define(:version => 20120201222202) do
     t.string   "NI_Normalization_Method"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "protocols_id"
-    t.text     "consumables"
   end
 
+  add_index "micro_arrays", ["experiment_id"], :name => "index_micro_arrays_on_experiment_id"
   add_index "micro_arrays", ["partner_id"], :name => "index_micro_arrays_on_partner_id"
+
+  create_table "microarray_oligos", :force => true do |t|
+    t.integer  "microarraygal_id"
+    t.integer  "oligo_sequence_id"
+    t.date     "tested_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "microarray_oligos", ["microarraygal_id"], :name => "index_microarray_oligos_on_microarraygal_id"
+  add_index "microarray_oligos", ["oligo_sequence_id"], :name => "index_microarray_oligos_on_oligo_sequence_id"
+
+  create_table "microarraygals", :force => true do |t|
+    t.string   "gal_title"
+    t.string   "gal_file_title"
+    t.binary   "gal_file"
+    t.string   "code"
+    t.date     "loaded_at"
+    t.string   "barcode",           :null => false
+    t.integer  "partner_id",        :null => false
+    t.integer  "experiment_id"
+    t.integer  "oligo_sequence_id"
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "microarraygals", ["experiment_id"], :name => "index_microarraygals_on_experiment_id"
+  add_index "microarraygals", ["oligo_sequence_id"], :name => "index_microarraygals_on_oligo_sequence_id"
+  add_index "microarraygals", ["partner_id"], :name => "index_microarraygals_on_partner_id"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -554,7 +602,7 @@ ActiveRecord::Schema.define(:version => 20120201222202) do
   create_table "wfilters", :force => true do |t|
     t.string   "name",                                                   :default => ""
     t.decimal  "pore_size",                :precision => 5, :scale => 3, :default => 0.0
-    t.integer  "num_filters", :limit => 2, :precision => 2, :scale => 0, :default => 0
+    t.integer  "num_filters", :limit => 2,                               :default => 0
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"

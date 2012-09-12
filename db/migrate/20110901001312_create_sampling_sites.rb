@@ -22,19 +22,19 @@ class CreateSamplingSites < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :sampling_sites, :water_types_id, :name => 'iss_wti'
-    add_index :sampling_sites, :water_uses_id, :name => 'iss_wui'
-    add_index :sampling_sites, :land_use_mappings_id, :name => 'iss_lumi'
-    add_index :sampling_sites, :geos_id, :name => 'iss_gi'
+    add_index :sampling_sites, :water_type_id, :name => 'iss_wti'
+    add_index :sampling_sites, :water_use_id, :name => 'iss_wui'
+    add_index :sampling_sites, :land_use_mapping_id, :name => 'iss_lumi'
+    add_index :sampling_sites, :geo_id, :name => 'iss_gi'
     #add_index :sampling_sites, :country_id, :name => 'iss_ci'
 
   end
 
   def self.down
-    remove_index :sampling_sites, :water_types_id
-    remove_index :sampling_sites, :water_uses_id
-    remove_index :sampling_sites, :land_use_mappings_id
-    remove_index :sampling_sites, :geos_id
+    remove_index :sampling_sites, :water_type_id
+    remove_index :sampling_sites, :water_use_id
+    remove_index :sampling_sites, :land_use_mapping_id
+    remove_index :sampling_sites, :geo_id
     #remove_index :sampling_sites, :country_id
 
     drop_table :sampling_sites

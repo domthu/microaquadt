@@ -1,5 +1,5 @@
 <%= jqgrid_stylesheets %>
-<%= jqgrid_javascripts %> 
+<%= jqgrid_javascripts %>
 <%= GMap.header %>
 
 <table>
@@ -31,28 +31,28 @@
         %>
      }
 //use, :selection_handler => "handleSelection", :direct_selection => true
-//use, :grid_complete => "grid_complete" 
+//use, :grid_complete => "grid_complete"
 </script>
 
 
-<%= jqgrid("List of sampling sites:  you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", sampling_sites_path,
-	[
-		{ :field => "id", :label => "ID", :width => 35, :resizable => false, :sortable => false, :editable => false, :hidden => true, :search => false },
+<%= jqgrid("List of sampling sites: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", sampling_sites_path,
+[
+{ :field => "id", :label => "ID", :width => 35, :resizable => false, :sortable => false, :editable => false, :hidden => true, :search => false },
         { :field => "act", :label => "", :width => 35 , :resizable => false, :sortable => false, :resizable => false, :search => false },
-		{ :field => "code", :label => "Code" },
-		{ :field => "name", :label => "Name" },
-		{ :field => "w_use_name", :label => "Water use", :sortable => false, :resizable => false, :search => false},
-		{ :field => "w_type_name", :label => "Water type", :sortable => false, :resizable => false, :search => false},
-		{ :field => "land_name", :label => "Land", :sortable => false, :resizable => false, :search => false},
-		{ :field => "geo_name", :label => "Geo pos.", :sortable => false, :resizable => false, :search => false},
-		{ :field => "edit_link", :label => "edit", :width => 35, :sortable => false, :resizable => false, :search => false},
-	], 
-    {   :add => false, 
-        :edit => false, 
-        :inline_edit => false, 
-        :rows_per_page => "30", 
+{ :field => "code", :label => "Code" },
+{ :field => "name", :label => "Name" },
+{ :field => "w_use_name", :label => "Water use", :sortable => false, :resizable => false, :search => false},
+{ :field => "w_type_name", :label => "Water type", :sortable => false, :resizable => false, :search => false},
+{ :field => "land_name", :label => "Land", :sortable => false, :resizable => false, :search => false},
+{ :field => "geo_name", :label => "Geo pos.", :sortable => false, :resizable => false, :search => false},
+{ :field => "edit_link", :label => "edit", :width => 35, :sortable => false, :resizable => false, :search => false},
+],
+    { :add => false,
+        :edit => false,
+        :inline_edit => false,
+        :rows_per_page => "30",
         :height => 400,
-        :delete => false, 
+        :delete => false,
         :rownumbers => 'false' }
     
 ) %>
@@ -63,4 +63,6 @@
 <br />
 <%= @map.to_html %>
 <%= @map.div(:width => 600, :height => 400) %>
+
+
 

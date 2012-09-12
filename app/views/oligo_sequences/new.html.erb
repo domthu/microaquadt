@@ -25,6 +25,16 @@
 
 <table width="95%"><tr><td>
 
+  <div class="field select">
+    <%= f.label :partner_id, "Partner" %><br />
+    <%= select :oligo_sequence,:partner_id,Partner.find(:all, :conditions => ["id = ? ", @pt.id]).collect{|p| [p.verbose_me, p.id]}%>
+  </div>
+
+  <div class="field select">
+  <%= f.label :experiment_id, "Experiment code" %><br />
+  <%= select :oligo_sequence,:experiment_id, Experiment.find(:all).collect{|p| [p.exp_code, p.id]}, :include_blank => 'None', :prompt => 'Select associated experiment ID' %>
+  </div>
+
   <div class="field txt">
     <%= f.label :name, "Description" %><br />
     <%= f.text_field :name %>
@@ -35,17 +45,26 @@
     <%= f.text_field :code %>
   </div>
 
-    <div class="field chk">
+  <div class="field cod ">
+    <%= f.label :oligo_exp_code, "Microaqua code" %><br />
+    <h2><%= @codegen %></h2>
+  </div>
+
+    
+
+</td><td>
+
+ <div class="field chk">
       <b>Available:</b>
       <%= f.check_box :available %>
     </div>
 
-</td><td>
+ <div class="field select">
+ <%= label :galCode, "Associate gal file" %><br />
+ <%= select :oligo_sequence, :galCode, Microarraygal.find(:all).collect{|p| [p.verbose_me]}, :include_blank => 'None', :prompt => 'Select associated GAL file'%>
+ </div>
 
-  <div class="field select">
-    <%= f.label :partner_id, "Partner" %><br />
-    <%= select :oligo_sequence,:partner_id,Partner.find(:all, :conditions => ["id = ? ", @pt.id]).collect{|p| [p.verbose_me, p.id]}%>
-  </div>
+  
   <div class="field select">
     <%= f.label :people_id, "Person" %><br />
     <%= select :oligo_sequence,:people_id, peoples_by_partner.collect{|p| [p.verbose_me, p.id]}%>

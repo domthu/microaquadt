@@ -1,7 +1,7 @@
 class CreateMicroArrayImages < ActiveRecord::Migration
   def self.up
     create_table :micro_array_images do |t|
-      t.references :microarray
+      t.references :experiment
       t.text :note
       t.string :name
       t.binary :image
@@ -20,11 +20,11 @@ class CreateMicroArrayImages < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :micro_array_images, :microarray_id
+    add_index :micro_array_images, :experiment_id
 end
 
   def self.down
-    remove_index :micro_array_images, :microarray_id
+    remove_index :micro_array_images, :experiment_id
     drop_table :micro_array_images
   end
 end

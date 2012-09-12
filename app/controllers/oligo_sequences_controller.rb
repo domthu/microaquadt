@@ -1,5 +1,7 @@
 class OligoSequencesController < AuthController   #ApplicationController
 
+require "fastercsv"
+
   #only Requiring the right user to change own contents
   before_filter :correct_user, :only => [:edit, :update, :delete, :destroy]
 
@@ -90,14 +92,27 @@ class OligoSequencesController < AuthController   #ApplicationController
   def index
     @oligo_sequences = OligoSequence.all
     @title = "List of oligo sequences"
+    
+# if params[:id].present?
+ #  logger.warn("#{Time.now} - oligo_sequence filtered by: #{params[:id]}")
+        #@filter_samples = FilterSample.all(:conditions => [ "sampling_id = ?", params[:id]])
+        #@cond = params[:id]
+ # oligo_sequences = OligoSequence.find(:all, :conditions => [ "experiment_id = ?", params[:id]]) do
+#            if params[:_search] == "true"
+#                xsample_name =~ "%#{params[:sample_name]}%" if params[:sample_name].present?
+#                code =~ "%#{params[:code]}%" if params[:code].present?
+#                #xfilter_name >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+#                pore_size >= "%#{params[:filter_name]}%" if params[:filter_name].present?
+#                volume =~ "%#{params[:volume]}%" if params[:volume].present?
+#                num_filters =~ "%#{params[:num_filters]}%" if params[:num_filters].present?
+#            end
+  #          paginate :page => params[:page], :per_page => params[:rows]      
+   #         order_by "#{params[:sidx]} #{params[:sord]}"
+    #    end
+    #else
 
-    #oligo_sequences = OligoSequence.find(:all, :joins => [:people, :partner]) do
-#KAPPAO: Association named 'people' was not found; perhaps you misspelled it?
-    #oligo_sequences = OligoSequence.find(:all, :joins => [:person, :partner]) do
-#Mysql::Error: Unknown column 'oligo_sequences.person_id' in 'on clause': SELECT `oligo_sequences`.* FROM `oligo_sequences`   INNER JOIN `people` ON `people`.id = `oligo_sequences`.person_id  INNER JOIN `partners` ON `partners`.id = `oligo_sequences`.partner_id   LIMIT 0, 20
-#KAPPAO: migrate person generate people table but the rails do not re-construct right renaming
     _str = ""
-    oligo_sequences = OligoSequence.find(:all, :joins => [:partner]) do
+    oligo_sequences = OligoSequence.find(:all) do
         if params[:_search] == "true"
             name =~ "%#{params[:verbose_me]}%" if params[:verbose_me].present?
 #            verbose_me =~ "%#{params[:verbose_me]}%" if params[:verbose_me].present?
@@ -109,7 +124,7 @@ class OligoSequencesController < AuthController   #ApplicationController
             taxonomy_id =~ "%#{params[:taxonomy_id]}%" if params[:taxonomy_id].present?
             if params[:available].present?
                 _str = params[:available].strip.downcase                
-                if _str == "true" or _str="1"
+                if _str == "true" or _str == "1"
                     available = "true"
                 else
                     available = "false"
@@ -119,7 +134,11 @@ class OligoSequencesController < AuthController   #ApplicationController
             people.firstname =~ "%#{params[:people_name]}%" if params[:people_name].present?
         end
         paginate :page => params[:page], :per_page => params[:rows]      
-        if params[:sidx] == "verbose_me"
+        
+        if params[:sidx] == "oligo_exp_code"
+            order_by "oligo_sequences.oligo_exp_code #{params[:sord]}"
+
+        elsif params[:sidx] == "verbose_me"
             order_by "oligo_sequences.name #{params[:sord]}"
         elsif params[:sidx] == "dna_ellipsis"
             order_by "dna_sequence #{params[:sord]}"
@@ -131,16 +150,21 @@ class OligoSequencesController < AuthController   #ApplicationController
             order_by "partners.code #{params[:sord]}"
         elsif params[:sidx] == "people_name"
             order_by "peoples.firstname #{params[:sord]}, people.lastname #{params[:sord]}"
+        elsif params[:sidx] == "gCode"
+            order_by "oligo_sequences.galCode #{params[:sord]}"
         else
             order_by "#{params[:sidx]} #{params[:sord]}"
         end
-    end
+      end
 
+    
     respond_to do |format|
       format.html # index.html.erb
-      #format.xml  { render :xml => @oligo_sequences }
+      format.xml  { render :xml => @oligo_sequences }
+      format.csv { render @oligo_sequences.to_csv }
+      format.xls # { send_data @products.to_csv(col_sep: "\t") }
       format.json { render :json => oligo_sequences.to_jqgrid_json(
-            [:id, "act", :code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", :taxonomy_name, :taxonomy_id, :available, "edit"],
+            [:id, "act",:code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", "oligo_exp_code", :taxonomy_name, :taxonomy_id,"gCode", :available,"edit"],
             params[:page], params[:rows], oligo_sequences.total_entries) }			
 #The order of the fields in the first parameter matters, it should be the same than the display order in your datagrid. 
 #            "verbose_me","dna_ellipsis",:name,:dna_sequence
@@ -168,16 +192,23 @@ class OligoSequencesController < AuthController   #ApplicationController
   # GET /oligo_sequences/1.xml
   def show
     @oligo_sequence = OligoSequence.find(params[:id])
+    if @oligo_sequence.nil?
+        redirect_to :action => "index"
+    end
     @title = "Oligo sequence"
+    @e = Experiment.find(@oligo_sequence.experiment_id)
+
+
+    
     #@pt = Partner.find(@oligo_sequence.partner_id)
     #<%=h @pt.name %>
     #@taxo = Name.find(@oligo_sequence.tax_id_id)
     #<%=h @taxo.verbose_me %>
-
+ 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @oligo_sequence }
-    end
+       format.html # show.html.erb
+       format.xml  { render :xml => @oligo_sequence }
+      end   
   end
 
   # GET /oligo_sequences/new
@@ -186,13 +217,27 @@ class OligoSequencesController < AuthController   #ApplicationController
     @oligo_sequence = OligoSequence.new
     @title = "Oligo sequence"
 
-    #<%= collection_select(:oligo_sequence, :partner_id, @partners, :id, :verbose_me, options ={}, :class =>"partner") %>
+    @e_c = Experiment.count()
+    if @e_c.nil? or @e_c == 0
+      flash[:error] = "No experiment found! create first someone..."
+      redirect_to :action => "index"
+      return
+    end
 
     @pt = get_partner
-    unless @pt.nil?
-      #set the selected item
-      @oligo_sequence.partner_id = @pt.id
+    if @pt.nil?
+      @e = Experiment.all()
+    else
+      @e = Experiment.all(:conditions => [ "partner_id = ?", @pt.id])
     end
+    @ex = @e.first
+    if !@ex.nil?
+        @codegen = get_code(@ex.id)
+    else
+      flash[:error] = "No Experiment created by you found! create your own first experiment before inserting oligo sequence..."
+      redirect_to :action => "index"
+      return
+    end 
 
     respond_to do |format|
       format.html # new.html.erb
@@ -205,6 +250,9 @@ class OligoSequencesController < AuthController   #ApplicationController
     @oligo_sequence = OligoSequence.find(params[:id])
     @title = "oligo sequence"
 
+    @oligo_exp_code = @oligo_sequence.oligo_exp_code
+    @experiment = Experiment.find(@oligo_sequence.experiment_id)
+
     @pt = Partner.find(@oligo_sequence.partner_id)
     @peo = Person.find(@oligo_sequence.people_id)
 
@@ -216,15 +264,16 @@ class OligoSequencesController < AuthController   #ApplicationController
     #    @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(265554, 'xml')
     #else
         @tree2 =  Bio::NCBI::REST::EFetch.taxonomy(@oligo_sequence.taxonomy_id, 'xml')
-    end
+    end    
   end
 
   # POST /oligo_sequences
   # POST /oligo_sequences.xml
   def create
     @oligo_sequence = OligoSequence.new(params[:oligo_sequence])
-    @title = "oligo sequence"
+    @title = "Oligo_sequence"
 
+    @oligo_sequence.code = get_code(@oligo_sequence.experiment_id)
     @oligo_sequence.dna_sequence = @oligo_sequence.dna_sequence.upcase
 
     @asso = PartnerPerson.find(:first, 
@@ -234,18 +283,27 @@ class OligoSequencesController < AuthController   #ApplicationController
       @oligo_sequence.partner_people_id = @asso.id
     end
 
+    #deprecated field self.pore_size   
+#    @wf = Wfilter.find(@filter_sample.wfilter_id) 
+#    if !@wf.nil?
+#        @filter_sample.pore_size = @wf.pore_size  
+#    else
+#        @filter_sample.pore_size = 0  
+#    end 
+
     respond_to do |format|
       if @oligo_sequence.save
-        format.html { redirect_to(@oligo_sequence, :notice => 'OligoSequence was successfully created.') }
-        format.xml  { render :xml => @oligo_sequence, :status => :created, :location => @oligo_sequence }
+        format.html { redirect_to(@oligo_sequence, :notice => 'Oligo sequence was successfully created.') }
+        format.xml  { render :xml => @oligo_sequence, :status => :created, :location => @filter_sample }
       else
+        @e_c = Experiment.count()
 
         @pt = get_partner
-        unless @pt.nil?
-          #set the selected item
-          @oligo_sequence.partner_id = @pt.id
+        if @pt.nil?
+          @e = Experiment.all()
+        else
+          @e = Experiment.all(:conditions => [ "partner_id = ?", @pt.id])
         end
-
         format.html { render :action => "new" }
         format.xml  { render :xml => @oligo_sequence.errors, :status => :unprocessable_entity }
       end
@@ -285,7 +343,7 @@ class OligoSequencesController < AuthController   #ApplicationController
 
   # DELETE /oligo_sequences/1
   # DELETE /oligo_sequences/1.xml
-  def destroy
+	  def destroy
     @oligo_sequence = OligoSequence.find(params[:id])
     @oligo_sequence.destroy
     @title = "oligo sequence"
@@ -300,8 +358,9 @@ class OligoSequencesController < AuthController   #ApplicationController
   private
 
     def correct_user
-      @oligo = OligoSequence.find(params[:id])
-      @partner = Partner.find(@oligo.partner_id)
+      @oligo_sequence = OligoSequence.find(params[:id])
+      @experiment = Experiment.find(@oligo_sequence.experiment_id)
+      @partner = Partner.find(@experiment.partner_id)
       @user = User.find(@partner.user_id)
       #uses the current_user? method,
       #which (as with deny_access) we will define in the Sessions helper
@@ -312,5 +371,79 @@ class OligoSequencesController < AuthController   #ApplicationController
       flash[:notice] = "Only the partner who create the oligo sequence can modify it."
       redirect_to(oligo_sequences_path)
     end
+
+    
+    def get_code(pexperiment_id)
+      @codegen = "???"
+      if pexperiment_id.nil?
+        return @codegen
+      end
+#      psampling_id = psampling.id
+#      if psampling_id.nil?
+#        return @codegen
+#      end
+
+      @pt = Experiment.find(pexperiment_id)
+      if not @pt.nil?
+          @codegen = @pt.code
+      end      
+      @codegen += "-"
+      @codegen += "Oligo"
+    
+      #@cnt = FilterSample.calculate(:count, :all, :conditions => ['sampling_id = ' + @pid.to_s ])
+      @cnt = OligoSequence.count(:conditions => ['experiment_id = ' + pexperiment_id.to_s ])
+      if @cnt.nil? or @cnt == 0
+        @cnt = 1
+      else
+         @cnt += 1 
+      end
+
+      #2011 create increment number by registered date
+      #@cnt = FilterSample.created_at(Time.now)
+      #undefined method `where' for #<Class:0xb6d5ec18>
+      #@cnt = FilterSample.where("samplingDate >= :start AND samplingDate < :end",
+      #         :start => Date.today,
+      #         :end   => 1.day.from_now.to_date)
+#      @cnt = FilterSample.count(:conditions => ['samplingDate >= ? AND samplingDate < ? ', Date.today, 2.day.from_now.to_date ]
+#      if @cnt.nil? or @cnt == 0
+#        @cnt = 1
+#      else
+#         @cnt += 1 
+#      end
+      @codegen += "%02d" % @cnt
+
+      return @codegen
+    end
+
+
+
 end
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
