@@ -8,12 +8,11 @@ include ActionController::UrlWriter
   validates_presence_of :gal_file, :message => "Can't be empty, field is mandatory. "
 
   
-  belongs_to :experiment
+  has_one :experiment
   belongs_to :partner
-  has_many :oligo_sequences, :dependent => :destroy, :class_name => 'OligoSequence'
-  accepts_nested_attributes_for :oligo_sequences, :allow_destroy => true
-
-
+  has_many :oligos, :dependent => :destroy
+  has_one :gal_header, :dependent => :destroy
+  has_many :gal_blocks, :dependent => :destroy
 
   attr_reader :verbose_me
   def verbose_me
@@ -22,9 +21,9 @@ include ActionController::UrlWriter
         file_part = $1
       end
       if barcode.nil?
-            self.id.to_s + '-' +  self.code  + '-' + file_part.to_s
+            self.id.to_s + '_' +  self.code  + '_' + file_part.to_s
         else
-            return self.id.to_s + '-' +  self.code  + '-' + self.barcode  + '-' + file_part.to_s
+            return self.id.to_s + '_' +  self.code  + '_' + self.barcode  + '_' + file_part.to_s
         end   
   end
 

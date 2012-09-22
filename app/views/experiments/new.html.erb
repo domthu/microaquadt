@@ -27,12 +27,12 @@
 
 <table width="95%"><tr><td>
   
-  <div class="field cod hide">
+  <div class="field select">
     <%= f.label :microarraygal_id %><br />
     <%= select :experiment,:microarraygal_id, Microarraygal.find(:all).collect{|p| [p.id]}%>
   </div> 
 
-  <div class="field cod hide">
+  <div class="field select">
     <%= f.label :filter_sample_id, "Filter sample ID" %><br />
     <%= select :experiment,:filter_sample_id, FilterSample.find(:all).collect{|p| [p.id]} %>
   </div>

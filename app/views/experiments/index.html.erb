@@ -50,22 +50,22 @@
         :inline_edit => true, 
         :delete => true, 
         :rows_per_page => "10", 
-        :height => 200, 
+        :height => 400, 
         :rownumbers => 'false',
         :subgrid=> { 
-                :url => oligo_sequences_path,
-                :rows_per_page => 10,
-                :sort_column => 'oligo_exp_code',
+                :url => oligos_path,
+                :rows_per_page => 40,
+                :sort_column => 'microarraygal_id',
                 :sort_order => 'asc',
                 :search => 'false',
                 :rownumbers => 'false',
                 :columns => [
-		            { :field => "id", :label => "ID", :width => 35, :resizable => false, :sortable => false, :editable => false, :hidden => true, :search => false},
-                            { :field => "act", :label => "", :width => 35, :sortable => false, :resizable => false, :search => false },
-                            { :field => "edit_link", :label => "edit", :sortable => false, :width => 35 , :resizable => false, :search => false}
-					  ]
-					}
-
+		            { :field => "id", :label => "ID", :width => 50, :resizable => false, :sortable => false, :editable => false, :hidden => true},
+        { :field => "act", :label => "", :width => 30 , :resizable => false, :sortable => false, :search => false },
+		{ :field => "oligo_id", :label => "Oligo ID", :search => true, :sortable => true, :editable => false, :width => 100 },
+		{ :field => "oligo", :label => "Oligo Name", :search => false, :width => 180, :sortable => false  },	
+	{ :field => "edit_link", :label => "edit", :search => false, :sortable => false, :width => 50 , :resizable => false}
+]}
 }
 ) %>
 

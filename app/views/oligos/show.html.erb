@@ -1,0 +1,74 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+
+<%= link_to 'Edit', edit_oligo_path(@oligo) %> |
+<%= link_to 'Back', oligos_path %>
+<br />
+<br />
+
+<fieldset><legend class="leg">Individual Block Data</legend>
+
+<table width="95%"><tr><td>  
+   <div class="show cod">
+      <b>GAL ID:</b>
+      <%= @oligo.microarraygal_id %> 
+  </div>    
+  <div class="show cod">
+      <b>Header ID:</b>
+      <%=h @oligo.gal_header_id %> 
+  </div>
+</td><td>
+    <div class="show date">
+      <b>Date:</b>
+      <%=h @oligo.created_at.strftime("%A %d %B %Y") %>
+    </div>
+</td></tr>
+<tr><td> 
+    <div class="show cod">
+      <b>Block ID:</b>
+      <%=h @oligo.gal_block_id %> 
+    </div>
+</td><td>
+
+    <div class="show date">
+      <b>Row#:</b>
+      <%=h @oligo.row_number %>
+    </div>
+</td></tr>
+<tr><td> 
+    <div class="show cod">
+      <b>Column#:</b>
+      <%=h @oligo.column_number %> 
+    </div>
+</td></tr>
+<tr><td> 
+    <div class="show cod">
+      <b>Oligo ID:</b>
+      <%=h @oligo.oligo_sequence_id %> 
+    </div>
+</td><td>
+
+    <div class="show date">
+      <b>Oligo Name:</b>
+      <%=h @oligo.oligo %>
+    </div>
+</td></tr>
+</table>
+
+</fieldset>
+<br />
+
+<%= link_to 'Edit', edit_oligo_path(@oligo) %> |
+<%= link_to 'Back', oligos_path %>
+

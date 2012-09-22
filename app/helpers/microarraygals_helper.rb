@@ -5,6 +5,23 @@ module MicroarraygalsHelper
     return auth_user(@mag.partner_id)
   end
 
+  
+ def extract_block_type
+       name = Microarraygal.find(params[:id]).gal_title
+       directory = "public/microarrays/"  
+       path1 = File.join(directory, name)
+       str = IO.read(path1)
+       line = str.to_str
+    
+       #f = File.open(path)
+       
+       #f.each do |line|
+            if line =~  /(BlockType=)(\d)/m 
+            return "#{$2}"          
+            end
+  end
+
+
   def extract_row_count
        name = Microarraygal.find(params[:id]).gal_title
        directory = "public/microarrays/"  
@@ -135,7 +152,7 @@ module MicroarraygalsHelper
        #f = File.open(path)
        
        #f.each do |line|
-          if line =~ /(\d\s\d+\s\d+\s)(\w+\s)(\w+[+\-\s\w]+\s)/m     
+          if line =~ /(\d+)\s(\d+)\s(\d+)\s(\w+[\s\w]+)\s(\w+[+\-\s\w]+)/m     
           return $3
          end  
   end

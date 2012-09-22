@@ -71,22 +71,6 @@
         })
       })
 </script>
-<script type="text/javascript" charset="utf-8">
-      $(function() {
-        $("#idinfo").click(function() {
-          alert(this.getAttribute("data-message"));
-          return false;
-        })
-      })
-</script>
-<script type="text/javascript" charset="utf-8">
-      $(function() {
-        $("#nameinfo").click(function() {
-          alert(this.getAttribute("data-message"));
-          return false;
-        })
-      })
-</script>
 
 <table width="95%"><tr><td>
 
@@ -178,16 +162,6 @@
   </div>
   <br>
   <br>
-  
-  <div>
-  <input type="button" value="Microarray GAL file data (IDs)" data-message="<%= extract_id_info %>" id="idinfo" />
-  </div>
-  <br>
-  <br>
-  
-  <div>
-  <input type="button" value="Microarray GAL file data (Oligos)" data-message="<%= extract_name_info %>" id="nameinfo" />
-  </div>
   
   </td>
 

@@ -1,0 +1,79 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
+      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
+      <li><%= link_to "micro array images", micro_array_images_path %></li>
+      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
+      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+    </ul>
+  </td></tr>
+</table>
+
+<h1>Editing GAL Header </h1>
+
+<%= link_to 'Show', @oligo %> |
+<%= link_to 'Back', oligos_path %>
+
+<% form_for(@oligo) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+
+<fieldset><legend class="leg">Oligo's associated DATA</legend>
+
+  <div class="field txt">
+    <%= f.label :microarraygal_id, "Associated GAL ID" %><br />
+    <h3><%= @oligo.microarraygal_id %></h3>
+  </div>
+  <div class="field date">
+    <%= f.label :loaded_at, "Uploaded at" %><br />
+    <h3><%= @oligo.created_at.to_s %></h3>
+  </div>
+</fieldset>
+
+
+<fieldset><legend class="leg">HEADER</legend>
+  <div class="field txt">
+    <%= f.label :gal_header_id, "Header ID" %><br />
+    <%= f.text_field :gal_header_id %>
+  </div>
+  <div class="field num">
+    <%= f.label :gal_block_id, "Block ID" %><br />
+    <%= f.text_field :gal_block_id %>
+  </div>
+  <div class="field num">
+    <%= f.label :row_number, "Row#" %><br />
+    <%= f.text_field :row_number %>
+  </div>
+  <div class="field num">
+    <%= f.label :column_number, "Column#" %><br />
+    <%= f.text_field :column_number %>
+  </div>
+  <div class="field num">
+    <%= f.label :oligo_sequence_id, "Oligo ID" %><br />
+    <%= f.text_field :oligo_sequence_id  %>
+  </div>
+  <div class="field num">
+    <%= f.label :oligo_name, "Oligo Name" %><br />
+    <%= f.text_field :oligo %>
+  </div>
+  <div class="field num">
+    <%= f.label :created_at, "Loading Date" %><br />
+    <%= f.text_field :created_at %>
+  </div>
+</fieldset>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @oligo %> |
+<%= link_to 'Back', oligos_path %>
+
+
+

@@ -9,27 +9,18 @@ class Experiment < ActiveRecord::Base
   #validates_presence_of :micro_array_id, :message => "Can't be empty, field is mandatory. "
   #validates_presence_of :galTitle, :message => "This field is required to create new microarray experiment. Please upload gal file first."
 
- validates_presence_of :partner
+  validates_presence_of :partner
 
   belongs_to :filter_sample
+
+  belongs_to :oligo_sequence
   
   belongs_to :partner
   
   belongs_to :microarraygal
 
-  has_many :oligo_sequences
-  accepts_nested_attributes_for :oligo_sequences, :allow_destroy => true
-  
-
-  #belongs_to :micro_arrays, :dependent => :destroy, :class_name => 'MicroArray'
-  #accepts_nested_attributes_for :micro_arrays, :allow_destroy => true
-
-  has_many :micro_array_validations, :dependent => :destroy, :class_name => 'MicroArrayValidation'
-  has_many :micro_array_images, :dependent => :destroy, :class_name => 'MicroArrayImage'
-  has_many :micro_array_datas, :dependent => :destroy, :class_name => 'MicroArrayData'
-  has_many :micro_array_analysis_files, :dependent => :destroy, :class_name => 'MicroArrayAnalysisFile'
-
-
+  has_many :oligos, :through => :microarraygals, :source => "microarraygal_id"
+ 
   belongs_to :person
   
   belongs_to :partner_person

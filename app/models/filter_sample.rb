@@ -10,6 +10,8 @@ class FilterSample < ActiveRecord::Base
   named_scope :created_after, lambda { |date| {:conditions => ["samplingDate > ?", date]} }
   named_scope :created_at, lambda { |date| {:conditions => ["samplingDate = ?", date]} }
   named_scope :coded, lambda { |name| {:conditions => {:code => name}} }
+  
+  
 
 
   validates_presence_of :code, :message => "Can't be empty, field is mandatory. "

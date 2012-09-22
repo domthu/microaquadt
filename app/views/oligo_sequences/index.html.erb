@@ -15,12 +15,17 @@
 <%= link_to 'Export selected oligos as Excel file', 'oligo_sequences.xls' %>
 <br />	
 
+<button type='submit' onclick='x(); return false;'>load selected</button>
 <script type="text/javascript" >
+	function x() {
+var listchk = $("input:checked"); 
+alert ('listchk: ' + listchk.length)
 
+}
 //jQuery('#ngbgrid').editRow(id, true, formatEditors);
 
   function handleSelection(id) {
-        <%= remote_function (:url => {:controller=> 'sampling_sites',
+        <%= remote_function (:url => {:controller=> 'oligo_sequences',
                  :action => 'show'},
                  :with => "id= " + String(id))
         %>
@@ -50,10 +55,8 @@
       { :field => "partner_name", :label => "Partner", :sortable => true, :width => 70, :search => true, :searchtype => "select", :searchoptions => { :data => [Partner.all, :id, :code] }, :edittype => 'select', :editable => true, :editoptions => { :data => [Partner.all, :id, :code] } },
 		
       { :field => "people_name", :label => "Person", :search => false, :sortable => false, :editable => false, :width => 100 },
-      { :field => "oligo_code", :label => "Experiment code", :search => false, :sortable => false, :editable => false, :width => 150 },
       { :field => "taxonomy_name", :label => "Taxonomy name", :search => true, :width => 100, :sortable => true  },
       { :field => "taxonomy_id", :label => "TaxID", :search => true, :width => 50, :sortable => true  },
-      { :field => "gCode", :label => "gal Code", :search => true, :width => 250, :sortable => true  },
 
       { :field => "available", :label => "Select Oligos", :width => 25 , :resizable => true, :sortable => false, :search => false, :formatter => 'checkbox', :formatoptions => { :disabled => false }, :searchoptions => { :value => "Yes:No" } , :editable => true, :edittype => 'checkbox', :editoptions => { :value => "No" }, :align => 'center'  },	
 
@@ -68,12 +71,24 @@
         :height => 800, 
         :rownumbers => 'false',
         :grid_loaded => 'grdloaded',
-        :multiselect => 'true'
-     })
-     
-     
+        :multiselect => 'true',
+        :subgrid=> { 
+                :url => experiments_path,
+                :rows_per_page => 40,
+                :sort_column => 'microarraygal_id',
+                :sort_order => 'asc',
+                :search => 'false',
+                :rownumbers => 'false',
+                :columns => [
+		            { :field => "id", :label => "ID", :width => 50, :resizable => false, :sortable => false, :editable => false, :hidden => true},
+        { :field => "act", :label => "", :width => 30 , :resizable => false, :sortable => false, :search => false, :resizable => true },
+        { :field => "exp_code", :label => "Microarray exp. code", :search => true, :width => 130, :sortable => true, :resizable => true },
+        { :field => "gal_code", :label => "GAL code", :search => true, :sortable => true, :editable => false, :width => 250, :resizable => true },
+        { :field => "exp_date", :label => "Exp. date", :search => true, :sortable => true, :editable => false, :width => 100, :resizable => true },
+	{ :field => "edit", :label => "Edit", :search => false, :sortable => false, :width => 50 , :resizable => true}
+]}
 
-%>
+}) %>
 
 <br />
 <%= link_to 'New oligo_sequence', new_oligo_sequence_path %>

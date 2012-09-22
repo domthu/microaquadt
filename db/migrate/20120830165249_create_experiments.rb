@@ -11,9 +11,8 @@ class CreateExperiments < ActiveRecord::Migration
       t.references :partner
       t.string :code, :null => true
       t.string :barcode, :null => false
-      #t.references :people, :null => false
-      #t.references :partner_people, :null => true
       t.date :experiment_date
+      t.string :galTitle
       t.text :note
       t.timestamps
     end

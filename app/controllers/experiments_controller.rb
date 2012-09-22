@@ -8,35 +8,46 @@ class ExperimentsController < ApplicationController
   # GET /experiments
   # GET /experiments.xml
   def index
-    @experiments = Experiment.all
+   # @experiments = Experiment.all
+   
     @title = "Microarray experiments"
+  
+   if params[:id].present?
 
-    #samplings = Sampling.find(:all, :joins=> [:sampling_equipments, :partner, :sampling_site]) do
-    experiments = Experiment.find(:all, :joins=>[:partner, :filter_sample, :microarraygal]) do
-        if params[:_search] == "true"
-            #code =~ "%#{params[:exp_code]}%" if params[:exp_code].present?
-            #filter_sample.code =~ "%#{params[:filter_name]}%" if params[:filter_name].present?
-           # microarraygal.verbose_me =~ "%#{params[:gal_code]}%" if params[:gal_code].present?
-           # partner.code =~ "%#{params[:partner_name]}%" if params[:partner_name].present?
-           # experiment_date =~ "%#{params[:exp_date]}%" if params[:exp_date].present?
+     logger.warn("#{Time.now} - experiments filtered by: #{params[:id]}")
+            
+            ol = Oligo.find_all_by_oligo_sequence_id(params[:id]).collect{|p| p.microarraygal_id} 
 
-     end
+             if !ol.blank?
+	   
+		    experiments = Experiment.find(:all, :conditions => [ "microarraygal_id IN (?)", ol])  do
+		    paginate :page => params[:page], :per_page => params[:rows]      
+		    order_by "#{params[:sidx]} #{params[:sord]}"
+		    end
+             else 
+                   experiments = Experiment.find(:all, :conditions => [ "filter_sample_id = ?", params[:id]]) do
+		    paginate :page => params[:page], :per_page => params[:rows]      
+		    order_by "#{params[:sidx]} #{params[:sord]}"
+		    end
+             end
+
+         respond_to do |format|
+        format.html 
+        format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","gal_code","exp_date","edit"], params[:page], params[:rows], experiments.total_entries) }		
+       end
+
+
+
+      else
+        experiments = Experiment.find(:all, :joins=>[:partner, :filter_sample, :microarraygal]) do
+        
         paginate :page => params[:page], :per_page => params[:rows]      
-        #if params[:sidx] == "filter_name"
-        #    order_by "filter_samples.code #{params[:sord]}"
-      #  elsif params[:sidx] == "partner_name"
-       #     order_by "partners.code #{params[:sord]}"
-       # elsif params[:sidx] == "code"
-        #    order_by "experiments.code #{params[:sord]}"
-        #else
-         #   order_by "#{params[:sidx]} #{params[:sord]}"
-        #end
-     end
-
-    respond_to do |format|
-        format.html # index.html.erbs directly,
-        #format.xml  { render :xml => @samplings }
- format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","filter_name","partner_name","gal_code","exp_date","edit"], params[:page], params[:rows], experiments.total_entries) }			
+       end
+        
+        respond_to do |format|
+        format.html      
+        format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","filter_name","partner_name","gal_code","exp_date","edit"], params[:page], params[:rows], experiments.total_entries) }			
+          end
     end
  end
  
@@ -56,7 +67,6 @@ class ExperimentsController < ApplicationController
     end
     @pt = Partner.find(@experiment.partner_id)
 
-    @fs = OligoSequence.all(:conditions => ['experiment_id = ?', @experiment.id ])
     @mg = Microarraygal.find(@experiment.microarraygal_id)
     if @mg.nil?
       flash.now[:error] = "No Microarray .gal file found! create some..."
@@ -146,7 +156,9 @@ class ExperimentsController < ApplicationController
             end 
         end 
 
-        format.html { redirect_to(@experiment, :notice => 'New experiment is successfully created.') }
+        format.html { 
+                    flash[:notice] = 'New experiment is successfully created (You can check the oligos, used in this experiment, by clicking on the "+" sign on individual experiments row!!!)'
+                    redirect_to :action => "index"  }
         format.xml  { render :xml => @experiment, :status => :created, :location => @experiment }
       else
 
@@ -287,6 +299,5 @@ class ExperimentsController < ApplicationController
 
       return @codegen
     end
-
 
 end

@@ -41,7 +41,9 @@ require "fastercsv"
 
   belongs_to :microarraygals
 
-  belongs_to :experiment
+  #has_many :experiments, :through => :oligos, :source => "oligo_sequence_id"
+
+  has_many :oligos, :dependent => :destroy
 
   belongs_to :sampling
 

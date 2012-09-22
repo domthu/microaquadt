@@ -25,6 +25,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :microarraygals
 
+  map.resources :gal_headers
+
+  map.resources :gal_blocks
+
+  map.resources :oligos
+
   map.resources :experiments
 
   map.resources :micro_array_images

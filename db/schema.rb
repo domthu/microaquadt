@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831194202) do
+ActiveRecord::Schema.define(:version => 20120916225054) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20120831194202) do
     t.integer  "micro_array_data_id"
     t.integer  "micro_array_analysis_file_id"
     t.integer  "partner_id"
+    t.integer  "people_id"
     t.string   "code"
     t.string   "barcode",                      :null => false
     t.date     "experiment_date"
@@ -309,34 +310,20 @@ ActiveRecord::Schema.define(:version => 20120831194202) do
   add_index "micro_arrays", ["experiment_id"], :name => "index_micro_arrays_on_experiment_id"
   add_index "micro_arrays", ["partner_id"], :name => "index_micro_arrays_on_partner_id"
 
-  create_table "microarray_oligos", :force => true do |t|
-    t.integer  "microarraygal_id"
-    t.integer  "oligo_sequence_id"
-    t.date     "tested_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "microarray_oligos", ["microarraygal_id"], :name => "index_microarray_oligos_on_microarraygal_id"
-  add_index "microarray_oligos", ["oligo_sequence_id"], :name => "index_microarray_oligos_on_oligo_sequence_id"
-
   create_table "microarraygals", :force => true do |t|
     t.string   "gal_title"
     t.string   "gal_file_title"
     t.binary   "gal_file"
     t.string   "code"
     t.date     "loaded_at"
-    t.string   "barcode",           :null => false
-    t.integer  "partner_id",        :null => false
+    t.string   "barcode",        :null => false
     t.integer  "experiment_id"
-    t.integer  "oligo_sequence_id"
+    t.integer  "partner_id",     :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "microarraygals", ["experiment_id"], :name => "index_microarraygals_on_experiment_id"
-  add_index "microarraygals", ["oligo_sequence_id"], :name => "index_microarraygals_on_oligo_sequence_id"
   add_index "microarraygals", ["partner_id"], :name => "index_microarraygals_on_partner_id"
 
   create_table "microposts", :force => true do |t|

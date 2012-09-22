@@ -1,0 +1,1000 @@
+ 1004  irb
+ 1005  cd Documents/examples_ruby/
+ 1006  ls
+ 1007  rm -rf *.rb~
+ 1008  ls
+ 1009  rm -rf *.*~
+ 1010  ls
+ 1011  ruby web_scraper_test.rb
+ 1012  cd Doc
+ 1013  cd Documents/ebooks_programming/code/affinity-trip/
+ 1014  ls
+ 1015  ruby test_test.rb
+ 1016  cd ..
+ 1017  cd examples_ruby/
+ 1018  ls
+ 1019  ruby web_scraper_test.rb
+ 1020  gedit
+ 1021  cd Documents/examples_ruby
+ 1022  ruby web_scraper_test.rb
+ 1023  irb
+ 1024  skype
+ 1025  ruby -v
+ 1026  rails -v
+ 1027  rvm list gemsets
+ 1028  rvm use ruby-1.8.7-p358@rails2
+ 1029  git clone git@github.com:domthu/microaquadt.git
+ 1030  ls
+ 1031  cd microaquadt/
+ 1032  ls
+ 1033  script/server
+ 1034  gedit .gitignore
+ 1035  gem install activerecord-mysql2-adapter
+ 1036  gem install mysql -->
+ 1037  gem list
+ 1038  script/server
+ 1039  gem uninstall mysql --> 2.3.11
+ 1040  gem uninstall mysql
+ 1041  gem install mysql2 --> 0.3
+ 1042  gem install mysql2 -v 0.2.7
+ 1043  rake db:migrate
+ 1044  script/server
+ 1045  ls
+ 1046  cd microaquadt/
+ 1047  rake db:create
+ 1048  rake db:migrate
+ 1049  gem install rails -v=2.3.11
+ 1050  rake db:create
+ 1051  list gems
+ 1052  gem list
+ 1053  ruby -v
+ 1054  rvm use 1.8.7-p352@rails2 --default
+ 1055  rvm list gemsets
+ 1056  rvm use ruby-1.8.7-p358 --default
+ 1057  gem list
+ 1058  gem install mysql2 --> 0.3.2
+ 1059  gem install mysql2 -v 0.2.7
+ 1060  gem install mysql --> 2.3.11
+ 1061  gem list
+ 1062  rake db:create
+ 1063  rake db:migrate
+ 1064  gem install bio
+ 1065  gem list
+ 1066  cd microaquadt/
+ 1067  list gem
+ 1068  gem list
+ 1069  gem bio -v
+ 1070  gem bio -version
+ 1071  gem -v
+ 1072  mysql -u root -p
+ 1073  cd microaquadt/
+ 1074  irb
+ 1075  cd ..
+ 1076  ls
+ 1077  cd rails_latest/
+ 1078  ls
+ 1079  cd sample_app
+ 1080  ls
+ 1081  irb
+ 1082  rails console
+ 1083  cd microaqua
+ 1084  cd microaquadt/
+ 1085  rails console
+ 1086  script/console
+ 1087  cd microaquadt/
+ 1088  ls
+ 1089  script/server
+ 1090  cd microaquadt/
+ 1091  script/server
+ 1092  cd Downloads
+ 1093  cd ..
+ 1094  unzip /home/kumar/Downloads/eclipse-jee-juno-linux-gtk-x86_64.tar.gz
+ 1095  cd eclipse/
+ 1096  ls
+ 1097  ./eclipse
+ 1098  cd ..
+ 1099  eclipse
+ 1100  ls -la
+ 1101  rm -rf .bashrc~
+ 1102  ls -la
+ 1103  gedit .bashrc
+ 1104  exit
+ 1105  eclipse
+ 1106  bluefish
+ 1107  cd microaquadt/
+ 1108  ls
+ 1109  script/server
+ 1110  cd microaquadt/
+ 1111  ls
+ 1112  script/console
+ 1113  exit
+ 1114  cd microaquadt/
+ 1115  l
+ 1116  ls
+ 1117  script/server
+ 1118  exit
+ 1119  ls
+ 1120  cd microaquadt/
+ 1121  ls
+ 1122  script/server
+ 1123  exit
+ 1124  cd microaquadt/
+ 1125  script/console
+ 1126  exit
+ 1127  eclipse
+ 1128  skype
+ 1129  gedit
+ 1130  ls
+ 1131  cd microaquadt/
+ 1132  ls
+ 1133  script/server
+ 1134  eclipse
+ 1135  skype
+ 1136  eclipse
+ 1137  skype
+ 1138  ls
+ 1139  cd microaquadt/
+ 1140  ls
+ 1141  script/server
+ 1142  ls
+ 1143  cd Doc
+ 1144  cd Documents/
+ 1145  ls
+ 1146  perl pui.pl
+ 1147  cd microaquadt/
+ 1148  script/server
+ 1149  padre
+ 1150  cd Documents/
+ 1151  perl script.pl
+ 1152  clear
+ 1153  perl script.pl
+ 1154  mysql -u root -p
+ 1155  exit
+ 1156  skype
+ 1157  ls
+ 1158  cd microaquadt/
+ 1159  ls
+ 1160  rake import:import
+ 1161  rake db:import
+ 1162  cd microaquadt/
+ 1163  script/server
+ 1164  exit
+ 1165  cd microaquadt/
+ 1166  script/console
+ 1167  exit
+ 1168  cd microaquadt/
+ 1169  ls -la
+ 1170  cd .git
+ 1171  ls
+ 1172  gedit config
+ 1173  gedit index
+ 1174  cd logs
+ 1175  ls
+ 1176  cd refs
+ 1177  ;s
+ 1178  ls
+ 1179  cd heads
+ 1180  ls
+ 1181  gedit master
+ 1182  cd ..
+ 1183  ls -la
+ 1184  cd microaquadt/
+ 1185  gedit .rvmrc
+ 1186  ssh git@github.com
+ 1187  git add .rvmrc
+ 1188  gedit .gitignore
+ 1189  git status
+ 1190  git checkout master
+ 1191  git remote add upstream https://github.com/domthu/microaquadt.git
+ 1192  git checkout master
+ 1193  git branch kumarbranch
+ 1194  git checkout kumarbranch
+ 1195  git checkout -b kumarbranch
+ 1196  git status
+ 1197  git add .
+ 1198  git commit -m "changes in the lib/tasks/import.rake file and data upload"
+ 1199  git push
+ 1200  git push kumarbranch
+ 1201  git push remote upstream
+ 1202  git status
+ 1203  git push origin
+ 1204  git add .
+ 1205  git commit -a -m "changes in the lib/tasks/import.rake file and data upload"
+ 1206  git merge kumarbranch
+ 1207  git push origin
+ 1208  cd microaquadt/
+ 1209  rake --tasks
+ 1210  rake db:populate
+ 1211  rake db:addfilters
+ 1212  rake db:populate
+ 1213  rake db:addfilters
+ 1214  rake db:addperson
+ 1215  rake db:addsubtable
+ 1216  rake db:addoligo
+ 1217  rake db:addoligoreal
+ 1218  cd ..
+ 1219  git config --list
+ 1220  github connect
+ 1221  ssh git@github.com
+ 1222  ssh git@github.com kumarsaurabh20
+ 1223  cd microaquadt/
+ 1224  gem install fastercsv
+ 1225  gem install spreadsheet-excel
+ 1226  gem install csv
+ 1227  rails generate controller Array to_csv export
+ 1228  ls
+ 1229  cd script
+ 1230  ls
+ 1231  cd microaquadt/
+ 1232  ls
+ 1233  script/server
+ 1234  cd microaquadt/
+ 1235  ls la
+ 1236  ls -la
+ 1237  rm rf .rvmrc
+ 1238  rm -rf .rvmrc
+ 1239  rm -rf .rvmrc~
+ 1240  cd ..
+ 1241  cd microaquadt/
+ 1242  rails generate controller Array to_csv export
+ 1243  ls
+ 1244  cd app
+ 1245  ls
+ 1246  cd controllers/
+ 1247  ls
+ 1248  cd microaquadt/
+ 1249  script/server
+ 1250  cd microaquadt/
+ 1251  ls
+ 1252  script/server
+ 1253  cd microaquadt/
+ 1254  ls
+ 1255  script/server
+ 1256  cd microaquadt/
+ 1257  script/server
+ 1258  gedit
+ 1259  skype
+ 1260  cd microaquadt/
+ 1261  script/server
+ 1262  cd microaquadt/
+ 1263  list gemsets;
+ 1264  list gemset;
+ 1265  gem list
+ 1266  exit
+ 1267  skype
+ 1268  clear
+ 1269  cd microaquadt/
+ 1270  script/console
+ 1271  exit
+ 1272  cd microaquadt/
+ 1273  script/server
+ 1274  exit
+ 1275  cd microaquadt/
+ 1276  rake db:migration
+ 1277  rake db:create
+ 1278  rake db:migration
+ 1279  rake db:migrate:redo
+ 1280  exit
+ 1281  ls
+ 1282  cd microaquadt/
+ 1283  script/server
+ 1284  list gems
+ 1285  list gem
+ 1286  gem list
+ 1287  script/server
+ 1288  cd microaquadt/
+ 1289  rake routes
+ 1290  cd microaquadt/
+ 1291  script/server
+ 1292  cd microaquadt/
+ 1293  script/console
+ 1294  exit
+ 1295  padre
+ 1296  cd microaquadt/
+ 1297  script/server
+ 1298  ls
+ 1299  cd /
+ 1300  ls
+ 1301  sudo cp /home/kumar/Documents/html_docs/test.php /var/WWW/ 
+ 1302  sudo mv /home/kumar/Documents/html_docs/test.php /var/WWW/ 
+ 1303  sudo mv /home/kumar/Documents/html_docs/test.php /var/WWW 
+ 1304  ls
+ 1305  cd var
+ 1306  ls
+ 1307  cd www
+ 1308  ls
+ 1309  cd ..
+ 1310  rm -rf WWW
+ 1311  sudo rm -rf WWW
+ 1312  ls
+ 1313  sudo mv /home/kumar/Documents/html_docs/test.php /var/www/
+ 1314  ls
+ 1315  cd www
+ 1316  ls
+ 1317  sudo gedit test.php
+ 1318  sudo rm test.php
+ 1319  ls
+ 1320  sudo rm test.php~
+ 1321  ls
+ 1322  sudo mv /home/kumar/Documents/html_docs/test.php /var/www/
+ 1323  ls
+ 1324  sudo rm test.php
+ 1325  ls
+ 1326  sudo mv /home/kumar/Documents/html_docs/test.php /var/www/
+ 1327  ls
+ 1328  sudo rm test.php
+ 1329  ls
+ 1330  sudo mv /home/kumar/Documents/html_docs/test.php /var/www/
+ 1331  ls
+ 1332  sudo rm test.php
+ 1333  sudo mv /home/kumar/Documents/html_docs/test.php /var/www/
+ 1334  ls
+ 1335  sudo rm test.php
+ 1336  ls
+ 1337  sudo mv /home/kumar/Documents/html_docs/test.php /var/www/
+ 1338  ls
+ 1339  sudo rm test.php
+ 1340  ls
+ 1341  sudo mv /home/kumar/Documents/html_docs/test.php /var/www/
+ 1342  ls
+ 1343  skype
+ 1344  wine
+ 1345  wine --help
+ 1346  wine --version
+ 1347  mysql -u root -p
+ 1348  cd /
+ 1349  cd var
+ 1350  ls
+ 1351  cd www
+ 1352  sudo mv /home/kumar/Documents/html_docs/world_update.php
+ 1353  sudo mv /home/kumar/Documents/html_docs/world_update.php /var/www/
+ 1354  ls
+ 1355  cd ..
+ 1356  cd ,,
+ 1357  cd ..
+ 1358  cd home/kumar/Documents
+ 1359  ls
+ 1360  cd html_docs
+ 1361  ls
+ 1362  rm -rf *~
+ 1363  ls
+ 1364  cd /
+ 1365  \cd var/www
+ 1366  sudo mv /home/kumar/Documents/html_docs/connect_info.php /var/www/
+ 1367  ls
+ 1368  exit
+ 1369  exit
+ 1370  cd /
+ 1371  cd var/www
+ 1372  ls
+ 1373  sudo rm -rf world_update.php 
+ 1374  sudo mv /home/kumar/Documents/html_docs/world_update.php /var/www/
+ 1375  ls
+ 1376  sudo rm -rf world_update.php 
+ 1377  ls
+ 1378  sudo mv /home/kumar/Documents/html_docs/world_update.php /var/www/
+ 1379  ls
+ 1380  exit
+ 1381  mysql -u root -p
+ 1382  exit
+ 1383  irb
+ 1384  ri GC
+ 1385  ri --help
+ 1386  ri --classes
+ 1387  exit
+ 1388  cd microaquadt/
+ 1389  script/console
+ 1390  script/generate scaffold microarraygal
+ 1391  script/generate model Experiment
+ 1392  script/generate model GalFileInfo
+ 1393  script/console
+ 1394  rake db:create
+ 1395  rake db:migrate
+ 1396  script/console
+ 1397  rake db:migrate
+ 1398  rake db:migrate --trace
+ 1399  rake db:migrate
+ 1400  exit
+ 1401  ls
+ 1402  tar -zxvf RubyMine-4.5.2.tar.gz 
+ 1403  ls
+ 1404  rm -rf RubyMine-4.5.2.tar.gz 
+ 1405  ls
+ 1406  cd RubyMine-4.5.2/
+ 1407  ls
+ 1408  cd bin
+ 1409  ls
+ 1410  ./rubymine.sh 
+ 1411  clear
+ 1412  cd ..
+ 1413  ls
+ 1414  cd microaquadt/
+ 1415  script/server
+ 1416  cd ..
+ 1417  script/server
+ 1418  cd microaquadt/
+ 1419  script/server
+ 1420  exit
+ 1421  cd microaquadt/
+ 1422  ls
+ 1423  script/about
+ 1424  cd ..
+ 1425  ls
+ 1426  cd rails_latest
+ 1427  ls
+ 1428  rails -v
+ 1429  ruby -v
+ 1430  rails upload
+ 1431  ls
+ 1432  cd upload
+ 1433  mkdir ~/public/data
+ 1434  mkdir ~/rails_latest/upload/public/data
+ 1435  ls
+ 1436  cd public
+ 1437  ls
+ 1438  ls -la
+ 1439  cd ..
+ 1440  script/generate model DataFile
+ 1441  script/generate controller Upload
+ 1442  cd ..
+ 1443  cd microaquadt/
+ 1444  rake db:migrate
+ 1445  rake db:create
+ 1446  rake db:migrate
+ 1447  rake db:migrate --trace
+ 1448  rake db:migrate 
+ 1449  rake db:migrate:up VERSION=20120821151756
+ 1450  cd microaquadt/
+ 1451  script/server
+ 1452  cd ..
+ 1453  cd rails_latest/
+ 1454  cd upload
+ 1455  script/server
+ 1456  cd ..
+ 1457  cd microaquadt/
+ 1458  script/server
+ 1459  cd microaquadt/
+ 1460  rake db:migrate:up VERSION=20120821151756
+ 1461  script/generate model Microarraygal
+ 1462  script/generate model Experiment
+ 1463  script/generate model GalFileInfo
+ 1464  rake db:create
+ 1465  rake db:migrate
+ 1466  rake db:migrate:up VERSION=20120822112316
+ 1467  rake db:migrate:up VERSION=20120822112257
+ 1468  cd microaquadt/
+ 1469  script/server
+ 1470  cd microaquadt/
+ 1471  script/server
+ 1472  exit
+ 1473  cd microaquadt/
+ 1474  cd Documents/
+ 1475  ls
+ 1476  cd ..
+ 1477  ls
+ 1478  rm -rf *.*~
+ 1479  ls
+ 1480  ruby input.rb
+ 1481  ruby file_open.rb
+ 1482  ruby input.rb
+ 1483  ruby file_open.rb
+ 1484  ruby input.rb
+ 1485  exit
+ 1486  cd microaquadt/
+ 1487  script/server
+ 1488  cd microaquadt/
+ 1489  script/generate model Microarraygal
+ 1490  rake db:migrate
+ 1491  cd microaquadt/
+ 1492  rake db:migrate
+ 1493  ls
+ 1494  script/generate model Experiment
+ 1495  rake db:migrate:up VERSION=20120824165629
+ 1496  rake db:migrate:up VERSION=20120824175043
+ 1497  rake db:migrate:up VERSION=20120824165629
+ 1498  script/generate model Microarraygal
+ 1499  script/generate model Experiment
+ 1500  rake db:migrate:up VERSION=20120824181907
+ 1501  rake db:migrate:up VERSION=20120824181915
+ 1502  rake db:migrate:up VERSION=20120824181907
+ 1503  rake db:migrate:up VERSION=20120824181908
+ 1504  exit
+ 1505  ls
+ 1506  rm -rf *.*~
+ 1507  ls
+ 1508  ruby input.rb
+ 1509  exit
+ 1510  script/server
+ 1511  exit
+ 1512  cd microaquadt/
+ 1513  script/console
+ 1514  cd microaquadt/
+ 1515  script/server
+ 1516  mysql -u root -p
+ 1517  cd microaquadt/
+ 1518  ls
+ 1519  script/console
+ 1520  cd ..
+ 1521  ls
+ 1522  ruby file_open.rb
+ 1523  ruby input.rb
+ 1524  ruby file_open.rb
+ 1525  ruby input.rb
+ 1526  ruby file_open.rb
+ 1527  ruby input.rb
+ 1528  cd microaquadt/
+ 1529  cd microaquadt/
+ 1530  script/server
+ 1531  gedit
+ 1532  cd microaquadt/
+ 1533  script/generate controller Experiment show edit
+ 1534  rake db:migrate:up VERSION=20120824181915
+ 1535  script/generate model Experiment
+ 1536  rake db:migrate:up VERSION=20120825230746
+ 1537  exit
+ 1538  cd microaquadt/
+ 1539  script/server
+ 1540  cd microaquadt/
+ 1541  script/server
+ 1542  cd microaquadt/
+ 1543  cd ..
+ 1544  ruby input.rb
+ 1545  cd microaquadt/
+ 1546  script/console
+ 1547  cd microaquadt/
+ 1548  script/console
+ 1549  cd microaquadt/
+ 1550  script/server
+ 1551  cd microaquadt/
+ 1552  script/server
+ 1553  cd mi
+ 1554  cd microaquadt/
+ 1555  script/console
+ 1556  cd microaquadt/
+ 1557  script/server
+ 1558  cd microaquadt/
+ 1559  script/console
+ 1560  cd microaquadt/
+ 1561  script/console
+ 1562  clear
+ 1563  script/generate model Microarraygal
+ 1564  script/generate model Experiment
+ 1565  script/generate model MicroArray
+ 1566  script/generate model MicroArrayValidation
+ 1567  script/generate model MicroArrayImage
+ 1568  script/generate model MicroArrayData
+ 1569  script/generate model MicroArrayAnalysisFile
+ 1570  rake db:migrate:up VERSION=20120830151124
+ 1571  rake db:migrate:up VERSION=20120830151139
+ 1572  rake db:migrate:up VERSION=20120830151109
+ 1573  rake db:migrate:up VERSION=20120830151241
+ 1574  rake db:migrate:up VERSION=20120830151313
+ 1575  rake db:migrate:up VERSION=20120830151335
+ 1576  rake db:migrate:up VERSION=20120830151400
+ 1577  rake db:migrate:up VERSION=20120830151335
+ 1578  rake db:migrate:up VERSION=20120830151313
+ 1579  rake db:migrate:up VERSION=20120830151124
+ 1580  script/generate model Experiment
+ 1581  rake db:migrate:up VERSION=20120830165249
+ 1582  script/generate model Microarraygal
+ 1583  rake db:migrate:up VERSION=20120830165453
+ 1584  script/generate model MicroArray
+ 1585  rake db:migrate:up VERSION=20120830165744
+ 1586  exit
+ 1587  cd microaquadt/
+ 1588  script/sevrer
+ 1589  script/server
+ 1590  exit
+ 1591  skype
+ 1592  exit
+ 1593  cd microaquadt/
+ 1594  script/server
+ 1595  cd microaquadt/
+ 1596  script/generate model MicroarrayOligos
+ 1597  cd microaquadt/
+ 1598  script/console
+ 1599  exit
+ 1600  script/server
+ 1601  cd microaquadt/
+ 1602  script/server
+ 1603  exit
+ 1604  cd microaquadt/
+ 1605  script/server
+ 1606  exit
+ 1607  cd microaquadt/
+ 1608  rake db:migrate:up VERSION=20120830224203
+ 1609  script/generate scaffold ModelName ControllerName 
+ 1610  script/generate scaffold MicroarrayOligo MicroarrayOligo
+ 1611  script/generate model MicroarrayOligo
+ 1612  script/generate controller MicroarrayOligo show edit new create
+ 1613  rake db:migrate:up VERSION=20120831194202
+ 1614  exit
+ 1615  cd microaquadt/
+ 1616  script/server
+ 1617  exit
+ 1618  cd mo
+ 1619  cd microaquadt/
+ 1620  script/console
+ 1621  exit
+ 1622  skype
+ 1623  cd microaquadt/
+ 1624  script/server
+ 1625  c dmi
+ 1626  cd microaquadt/
+ 1627  script/server
+ 1628  cd Documents
+ 1629  mkdir Perl_microarray
+ 1630  cd Perl_microarray/
+ 1631  unzip /home/kumar/Downloads/Microarray-0.45c.zip 
+ 1632  ls
+ 1633  cd Microarray-0.45c/
+ 1634  ls
+ 1635  perl Makefile.pl
+ 1636  perl Makefile.PL
+ 1637  make
+ 1638  make test
+ 1639  make install
+ 1640  sudo make install
+ 1641  ls
+ 1642  exit
+ 1643  cd microaquadt/
+ 1644  cd ..
+ 1645  ls
+ 1646  rm -rf *.*~
+ 1647  ls
+ 1648  ruby input.rb
+ 1649  cd microaquadt/
+ 1650  script/server
+ 1651  exit
+ 1652  cd microaquadt/
+ 1653  script/server
+ 1654  exit
+ 1655  cd microaquadt/
+ 1656  rails -v
+ 1657  ruby -v
+ 1658  exit
+ 1659  cd microaquadt/
+ 1660  cd microaquadt/
+ 1661  script/server
+ 1662  cd microaquadt/
+ 1663  script/server
+ 1664  exit
+ 1665  ruby input.rb
+ 1666  exit
+ 1667  cd microaquadt/
+ 1668  script/server
+ 1669  exit
+ 1670  cd rails
+ 1671  cd microaquadt/
+ 1672  script/server
+ 1673  exit
+ 1674  cd microaquadt/
+ 1675  cd ..
+ 1676  git --version
+ 1677  which git
+ 1678  sudo apt-get install git-core
+ 1679  git --version
+ 1680  echo $PATH
+ 1681  git config
+ 1682  ls
+ 1683  ls -la
+ 1684  rm -rf *.*~
+ 1685  ls -la
+ 1686  rm -rf .gitconfig~
+ 1687  ls -la
+ 1688  gedit .gitconfig
+ 1689  git config user.email
+ 1690  git config user.name
+ 1691  git config user
+ 1692  git config user.name
+ 1693  git config --global color.ui true
+ 1694  open .
+ 1695  cd microaquadt/
+ 1696  open .
+ 1697  cd ..
+ 1698  cd microaquadt/
+ 1699  git status
+ 1700  cd ..
+ 1701  cd rails
+ 1702  rails microaquadt -d mysql
+ 1703  cd microaquadt/
+ 1704  ls
+ 1705  git --version
+ 1706  git status
+ 1707  ls -a
+ 1708  ls -la
+ 1709  ls
+ 1710  cd ..
+ 1711  cd /
+ 1712  cd home/kumar
+ 1713  ls
+ 1714  cd microaquadt/
+ 1715  script/server
+ 1716  exit
+ 1717  cd microaquadt/
+ 1718  git status
+ 1719  git add .
+ 1720  git status
+ 1721  ls 
+ 1722  ls -la
+ 1723  rm -rf .gitignore~
+ 1724  gedit .gitignore 
+ 1725  git status
+ 1726  git add .
+ 1727  git status
+ 1728  gitk
+ 1729  git branch experimental-1
+ 1730  git branch
+ 1731  git checkout experimental-1 
+ 1732  git commit -am "added a branch to develop microarray module"
+ 1733  git status
+ 1734  gitk
+ 1735  git log --oneline --graph --all --decorate
+ 1736  gitk
+ 1737  git log
+ 1738  git log --oneline --graph --all --decorate >> log.txt
+ 1739  ls
+ 1740  git branch -d kumarbranch
+ 1741  git branch
+ 1742  gitk
+ 1743  exit
+ 1744  cd microaquadt/
+ 1745  script/server
+ 1746  exit
+ 1747  cd rails_latest/jqgrid_demo_app/
+ 1748  script/server
+ 1749  cd ..
+ 1750  ls
+ 1751  cd upload
+ 1752  script/server
+ 1753  exit
+ 1754  cd microaquadt/
+ 1755  cd ..
+ 1756  cd rails_latest/
+ 1757  git clone git://github.com/ahe/jqgrid_demo_app.git
+ 1758  cd ..
+ 1759  git clone git://github.com/ahe/jqgrid_demo_app.git
+ 1760  git clone https://github.com/ahe/jqgrid_demo_app.git
+ 1761  ls
+ 1762  cd jqgrid_demo_app/
+ 1763  script/plugin install git://github.com/ahe/2dc_jqgrid.git
+ 1764  rails -v
+ 1765  ruby -v
+ 1766  gem list
+ 1767  list ruby
+ 1768  ruby list
+ 1769  rvm list gemsets
+ 1770  cd ..
+ 1771  cd /
+ 1772  cd home/kumar
+ 1773  rvm list gemsets
+ 1774  cd rails_latest/
+ 1775  rvm list gemsets
+ 1776  cd ..
+ 1777  ls -la
+ 1778  cd .config
+ 1779  ls
+ 1780  cd ..
+ 1781  cd .rvm
+ 1782  ls
+ 1783  cd config
+ 1784  ls
+ 1785  cd ..
+ 1786  ls la
+ 1787  ls -la
+ 1788  cd environments/
+ 1789  ls
+ 1790  cd default
+ 1791  cd ..
+ 1792  ls
+ 1793  cd config/
+ 1794  ls
+ 1795  cd ..
+ 1796  ls -la
+ 1797  rm -rf .bashrc~
+ 1798  gedit .bashrc
+ 1799  cd microaquadt/
+ 1800  ls -la
+ 1801  cd config/
+ 1802  ls
+ 1803  rm -rf database.yml~
+ 1804  rm -rf environment.rb~
+ 1805  ls
+ 1806  rm -rf routes.rb~
+ 1807  ls
+ 1808  rm -rf gmaps_api_key.yml~
+ 1809  ls
+ 1810  rm -rf boot.rb~
+ 1811  ls
+ 1812  ls -la
+ 1813  gedit application.rb\ ~ 
+ 1814  rm -rf application.rb\ ~ 
+ 1815  ls
+ 1816  gedit environment
+ 1817  gedit environment.rb
+ 1818  cd ..
+ 1819  cd rails_latest/
+ 1820  ls
+ 1821  git clone https://github.com/ahe/jqgrid_demo_app.git
+ 1822  ls
+ 1823  cd jqgrid_demo_app/
+ 1824  ls
+ 1825  sudo gem install -v=2.3.2 rails
+ 1826  gem install -v=2.3.2 rails
+ 1827  ls
+ 1828  cd config
+ 1829  ls
+ 1830  gedit environment.rb
+ 1831  script/plugin install git://github.com/ahe/2dc_jqgrid.git
+ 1832  cd ..
+ 1833  script/plugin install git://github.com/ahe/2dc_jqgrid.git
+ 1834  script/plugin install https://github.com/ahe/2dc_jqgrid.git
+ 1835  script/plugin install https://github.com/thoughtbot/squirrel.git
+ 1836  ls
+ 1837  cd config
+ 1838  ls
+ 1839  gedit database.yml
+ 1840  rake db:create
+ 1841  rake db:migrate
+ 1842  rake db:create
+ 1843  rake db:migrate
+ 1844  exit
+ 1845  perl nicolaprogram.pl test.txt
+ 1846  perl nicola.pl test.txt
+ 1847  exit
+ 1848  cd microaquadt/
+ 1849  script/server
+ 1850  cd ..
+ 1851  cd rails_latest/
+ 1852  ls
+ 1853  cd upload
+ 1854  script/server
+ 1855  exit
+ 1856  ruby add_and_power.rb
+ 1857  exit
+ 1858  irb
+ 1859  exit
+ 1860  cd ruby_ex/
+ 1861  ruby age.rb
+ 1862  ruby age.rb66
+ 1863  ruby age.rb
+ 1864  ruby carmodel.rb
+ 1865  exit
+ 1866  cd ruby_ex/
+ 1867  ls
+ 1868  rm -rf *.*~
+ 1869  ls
+ 1870  cd ..
+ 1871  ls
+ 1872  rm -rf *.*~
+ 1873  ls
+ 1874  cd ruby_ex/
+ 1875  ruby loop.rb
+ 1876  ruby classes.rb
+ 1877  cd ruby_ex/
+ 1878  ruby classes.rb
+ 1879  ruby methods.rb
+ 1880  exit
+ 1881  cd ruby_ex/
+ 1882  ruby module.rb
+ 1883  ruby exceptions.rb
+ 1884  ruby mixin.rb
+ 1885  ruby account.rb
+ 1886  cd ..
+ 1887  cd microaquadt/
+ 1888  git remote
+ 1889  git branch -a
+ 1890  exit
+ 1891  cd microaquadt/
+ 1892  script/server
+ 1893  cd ..
+ 1894  cd rails_latest/
+ 1895  cd upload
+ 1896  ls
+ 1897  script/server
+ 1898  exit
+ 1899  cd microaquadt/
+ 1900  exit
+ 1901  cd microaquadt/
+ 1902  script/generate model GalHeader
+ 1903  script/generate model GalBlock
+ 1904  script/generate model Oligo
+ 1905  exit
+ 1906  cd microaquadt/
+ 1907  script/server
+ 1908  exit
+ 1909  cd microaquadt/
+ 1910  script/server
+ 1911  exit
+ 1912  cd miw
+ 1913  cd microaquadt/
+ 1914  script/server
+ 1915  exit
+ 1916  exit
+ 1917  cd microaquadt/
+ 1918  script/server
+ 1919  exit
+ 1920  cd microaquadt/
+ 1921  exit
+ 1922  cd microaquadt/
+ 1923  script/server
+ 1924  cd microaquadt/
+ 1925  script/generate model Test
+ 1926  rake db:migrate VERSION=20120916213510
+ 1927  script/generate model GalHeader
+ 1928  script/generate model GalBlock
+ 1929  script/generate model Oligo
+ 1930  rake db:migrate VERSION=20120916222917
+ 1931  rake db:migrate VERSION=20120916222940
+ 1932  rake db:migrate VERSION=20120916222950
+ 1933  script/generate model Oligo
+ 1934  rake db:migrate VERSION=20120916224807
+ 1935  script/generate model Oligo
+ 1936  rake db:migrate VERSION=20120916225054
+ 1937  script/generate controller GalHeader index show new edit update create destroy
+ 1938  script/generate controller GalBlock index show new edit 
+ 1939  script/generate controller Oligo index show new edit 
+ 1940  cd microaquadt/
+ 1941  script/server
+ 1942  cd mi
+ 1943  cd microaquadt/
+ 1944  script/console
+ 1945  ruby input.rb
+ 1946  script/console
+ 1947  cd ..
+ 1948  cd ruby_ex/
+ 1949  ruby proc.rb
+ 1950  cd ..
+ 1951  cd microaquadt/
+ 1952  ruby input.rb
+ 1953  ruby proc.rb
+ 1954  ruby input.rb
+ 1955  cd microaquadt/
+ 1956  exit
+ 1957  cd microaquadt/
+ 1958  script/server
+ 1959  exit
+ 1960  cd microaquadt/
+ 1961  rake db:addoligo
+ 1962  rake db:addoligoreal
+ 1963  exit
+ 1964  cd microaquadt/
+ 1965  script/sevrer
+ 1966  script/server
+ 1967  exit
+ 1968  cd microaquadt/
+ 1969  script/server
+ 1970  exit
+ 1971  cd microaquadt/
+ 1972  exit
+ 1973  cd microaquadt/
+ 1974  script/server
+ 1975  exit
+ 1976  cd microaquadt/
+ 1977  script/generate model Oligo
+ 1978  rake db:migrate VERSION=20120919122525
+ 1979  script/console
+ 1980  exit
+ 1981  cd microaquadt/
+ 1982  script/server
+ 1983  exit
+ 1984  cd microaquadt/
+ 1985  script/console
+ 1986  exit
+ 1987  cd microaquadt/
+ 1988  script/server
+ 1989  cd microaquadt/
+ 1990  script/console
+ 1991  script/server
+ 1992  exit
+ 1993  cd microaquadt/
+ 1994  script/server
+ 1995  exit
+ 1996  cd microaquadt/
+ 1997  exit
+ 1998  sudo apt-get install ecryptfs-utils
+ 1999  ssh engeebe1@engeebee.com
+ 2000  cd microaquadt/
+ 2001  ls
+ 2002  history
+ 2003  history >> history.txt

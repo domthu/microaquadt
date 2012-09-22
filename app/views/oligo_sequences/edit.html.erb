@@ -52,11 +52,6 @@
     <h3><%= f.text_field :code %></h3>
   </div>
 
-   <div class="field select">
-  <%= f.label :experiment_id, "Experiment code" %><br />
-  <%= select :oligo_sequence, :experiment_id, Experiment.find(:all).collect{|p| [p.exp_code, p.id]} %>
-  </div>
-
   <div class="field cod">
     <%= f.label :oligo_exp_code, "Microarray experiment oligo code" %><br />
     <h2><%= @oligo_exp_code %></h2>
@@ -69,11 +64,6 @@
       <b>Available:</b>
       <%= f.check_box :available %>
     </div>
-
- <div class="field select">
- <%= label :galCode, "Associate gal file" %><br />
- <%= select :oligo_sequence, :galCode, Microarraygal.find(:all).collect{|p| [p.verbose_me]}%>
- </div>   
 
   <div class="field select">
     <%= f.label "Person" %><br />
@@ -159,9 +149,10 @@ function SetName(req) {
     //alert('SetName: ' + req);
     var str = ''
     try {
+	reptxt = (req.responseText == 'undefined' ? req : req.responseText )
         var tmp = new Date().getTime();
         tmp='';
-        str = LoadEsearchTextDom($('dvName').id, req.responseText)
+        str = LoadEsearchTextDom($('dvName').id, reptxt)
         $('preName').innerText =  tmp + '<br /> ' + str
         //$('dvName').innerText =  tmp + '<br /> ' + str
         $('taName').value =  tmp + str
