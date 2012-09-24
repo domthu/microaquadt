@@ -5,6 +5,8 @@ class CreateFilterSamples < ActiveRecord::Migration
       #t.integer :sampling_id, :null => false
       t.references :sampling, :null => false
       t.datetime :samplingDate, :null => false
+     
+      t.references :partner
 
       t.references :wfilter, :null => false
       t.decimal :pore_size, :default => 0, :precision => 5, :scale => 3

@@ -9,6 +9,8 @@ class Partner < ActiveRecord::Base
   #validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   has_many :person
+  has_many :filter_samples
+  has_many :experiments
   has_many :samplings
   has_one :country #, :null => false
 

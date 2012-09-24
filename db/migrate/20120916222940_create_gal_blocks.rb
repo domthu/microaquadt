@@ -1,6 +1,7 @@
 class CreateGalBlocks < ActiveRecord::Migration
   def self.up
     create_table :gal_blocks do |t|
+      t.string :block_number
       t.string :xOrigin
       t.string :yOrigin
       t.string :feature_diameter

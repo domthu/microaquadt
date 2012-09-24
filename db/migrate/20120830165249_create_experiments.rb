@@ -9,10 +9,9 @@ class CreateExperiments < ActiveRecord::Migration
       t.references :micro_array_data
       t.references :micro_array_analysis_file
       t.references :partner
-      t.string :code, :null => true
+      t.string :ecode, :null => true
       t.string :barcode, :null => false
       t.date :experiment_date
-      t.string :galTitle
       t.text :note
       t.timestamps
     end

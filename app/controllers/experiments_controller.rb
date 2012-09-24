@@ -86,14 +86,24 @@ class ExperimentsController < ApplicationController
   # GET /experiments/new.xml
   def new
     logger.debug "::::::::::::::::::::microarray experiment create new (" + current_user.name + "):::::::::::::::::::: "
+    
     @experiment = Experiment.new
     @title = "Microarray experiments"
-  
 
+    @mg_c = Microarraygal.count()
+    if @mg_c.nil? or @mg_c == 0
+      flash[:error] = "No microarraygal found! create first someone..."
+      redirect_to :action => "index"
+      return
+    end
+  
     @partners = Partner.find(:all)
     @pt = get_partner
-    unless @pt.nil?
-      #set the selected item
+    if @pt.nil?
+      @mg = Microarraygal.all()
+      
+    else
+      @mg = Microarraygal.all(:conditions => [ "partner_id = ?", @pt.id])
       @experiment.partner_id = @pt.id
     end
 
@@ -107,16 +117,18 @@ class ExperimentsController < ApplicationController
   def edit
     @experiment = Experiment.find(params[:id])
     @title = "Microarray experiments"
-    @code = @experiment.code
+    @code = @experiment.ecode
   end
 
   # POST /experiments
-  # POST /experiments.xml
+  # POST /experimentsxml
   def create
     logger.debug "::::::::::::::::::::microarray experiments create action (" + current_user.name + "):::::::::::::::::::: "
-    @experiment = Experiment.new(params[:experiment])
+    
+     @experiment = Experiment.new(params[:experiment])
     @title = "Microarray experiments"
-
+     
+     
     
     @valid = false
     if @experiment.partner.nil?
@@ -133,28 +145,29 @@ class ExperimentsController < ApplicationController
     end
 
     @pt = get_partner
-    @experiment.code = get_code(@pt, @experiment.experiment_date, nil)
+    @experiment.ecode = get_code(@pt, @experiment.experiment_date, nil)
 
     @title = "Experiment"
 
     respond_to do |format|
       if @experiment.save
-
+     
         #Change the child code attribute here because the parent code is yet created
         @mg = Microarraygal.count(:all, :conditions => ['experiment_id = ' + @experiment.id.to_s ])
-        print ('----Change childs attributes here -------- parent (id-'+@experiment.id.to_s+') code is: '+@experiment.code+'. Childs are -['+@mg.to_s+']-\n' )
+        print ('----Change childs attributes here -------- parent (id-'+@experiment.id.to_s+') code is: '+@experiment.ecode+'. Childs are -['+@mg.to_s+']-\n' )
 
-        unless @mg.nil? and @mg > 0
-            #generate the Microaqua code for all child yet created to this parent
-            @mg = Microarraygal.all(:conditions => ['experiment_id = ' +@experiment.id.to_s ])
-            @mg.each_with_index do |child, index|
-                print('----Change childs Old code:(-%s)\n', child.code)
-                #child.code = child.code[0..11] + ("-F%02d" % (index + 1))
-                child.code = @experiment.code + ("-F%02d" % (index + 1))
-                print('----Change childs New code:(-%s)\n', child.code)
-                child.save()
-            end 
-        end 
+		unless @mg.nil? and @mg > 0
+		    #generate the Microaqua code for all child yet created to this parent
+		    @mg = Microarraygal.all(:conditions => ['experiment_id = ' +@experiment.id.to_s ])
+		    @mg.each_with_index do |child, index|
+		        print('----Change childs Old code:(-%s)\n', child.code)
+		        #child.code = child.code[0..11] + ("-F%02d" % (index + 1))
+		        child.code = @experiment.code + ("-F%02d" % (index + 1))
+		        print('----Change childs New code:(-%s)\n', child.code)
+		        child.save()
+		    end 
+
+		end 
 
         format.html { 
                     flash[:notice] = 'New experiment is successfully created (You can check the oligos, used in this experiment, by clicking on the "+" sign on individual experiments row!!!)'
@@ -173,7 +186,8 @@ class ExperimentsController < ApplicationController
     end
   end
 
-    # PUT /experiments/1
+
+  # PUT /experiments/1
   # PUT /experiments/1.xml
   def update
     @experiment = Experiment.find(params[:id])
@@ -208,6 +222,7 @@ class ExperimentsController < ApplicationController
         end
     end
   end
+
 
   private
 
@@ -267,14 +282,14 @@ class ExperimentsController < ApplicationController
       #2011 create increment number by registered date and partner
 #      @cnt = Sampling.calculate(:count, :all, :conditions => ['partner_id =  ? AND samplingDate >= ? AND samplingDate < ? ',  @pid.to_s, Date.today, 1.day.from_now.to_date ])
 #      @cnt = Sampling.calculate(:count, :all, :conditions => ['code LIKE ? ', '%'+@codegen+'%'])
-      @cnt_objs = Experiment.all(:select => "DISTINCT code", :conditions => ['code LIKE ? ', '%'+@codegen+'%'], :order => 'code DESC')
+      @cnt_objs = Experiment.all(:select => "DISTINCT ecode", :conditions => ['ecode LIKE ? ', '%'+@codegen+'%'], :order => 'ecode DESC')
       @cnt = 1 
       if not @cnt_objs.nil? 
           @cnt_obj = @cnt_objs[0] 
           if not @cnt_obj.nil? 
              #P03-110129-xx
-             if not @cnt_obj.code.nil? 
-                @end_str = @cnt_obj.code[11..12]
+             if not @cnt_obj.ecode.nil? 
+                @end_str = @cnt_obj.ecode[11..12]
                 if not @end_str.nil? 
                     @end = @end_str.to_i
                     @cnt = @end + 1

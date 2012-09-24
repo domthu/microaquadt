@@ -44,6 +44,8 @@ class FilterSample < ActiveRecord::Base
   #has_many :wfilters, :dependent => :delete_all
   belongs_to :wfilter #, :null => false
   validates_presence_of :wfilter
+  
+  belongs_to :partner
 
   has_one :filter_sample_preparations#, :null => true
 

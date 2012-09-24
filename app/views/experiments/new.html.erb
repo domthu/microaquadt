@@ -26,16 +26,11 @@
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
 <table width="95%"><tr><td>
-  
-  <div class="field select">
-    <%= f.label :microarraygal_id %><br />
-    <%= select :experiment,:microarraygal_id, Microarraygal.find(:all).collect{|p| [p.id]}%>
-  </div> 
 
   <div class="field select">
-    <%= f.label :filter_sample_id, "Filter sample ID" %><br />
-    <%= select :experiment,:filter_sample_id, FilterSample.find(:all).collect{|p| [p.id]} %>
-  </div>
+    <%= f.label :microarraygal_id, "Associate .gal file title" %><br />
+    <%= select :experiment,:microarraygal_id, @mg.collect{|p| [p.verbose_me, p.id]}%>
+   </div>
   
   <div class="field cod hide">
     <%= f.label :code, "Filter Microaqua code" %><br />
@@ -47,12 +42,6 @@
     <%= select :experiment,:partner_id, Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
 
-
-   <div class="field select">
-    <%= f.label :filter_sample_code  %><br />
-    <%= select :experiment,:filter_sample_code, FilterSample.find(:all).collect{|p| [p.code]}%>
-  </div>
-
    <div class="field select">
     <%= f.label :people_id, "Person" %><br />
     <%= select :experiment,:people_id, peoples_by_partner.collect{|p| [p.verbose_me, p.id]}%>
@@ -60,6 +49,12 @@
  
 
 </td><td>
+
+   <div class="field select">
+    <%= f.label :filter_sample_id, "Filter Sample Code" %><br />
+    <%= select :experiment,:filter_sample_id, FilterSample.find(:all).collect{|p| [p.code, p.id]} %>
+  </div>
+
 
    <div class="field txt">
     <%= f.label :barcode, "Partner barcode" %><br />
@@ -71,9 +66,6 @@
     <%= f.date_select :experiment_date %>
   </div> 
 
-  <div class="field select">
-    <%= f.label :galTitle, "Associated .gal file title" %><br />
-    <%= select :experiment,:galTitle,Microarraygal.find(:all).collect{|p| [p.verbose_me]}%>
 
 </td><tr></table>
 

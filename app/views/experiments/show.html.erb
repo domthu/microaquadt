@@ -19,64 +19,67 @@
 <br />
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
+<table width="95%">
+	<tr>
+		<td>
+			<div class="show cod">
+			<b>Microarray experiment code:</b>
+			<%=h link_to @experiment.ecode %>
+			</div>
+		</td>
+		<td>    
+			<div class="show cod">
+			<b>Partner barcode:</b>
+			<%=h @experiment.barcode %>
+		</div>
+		</td>
+	</tr>
 
-<table width="95%"><tr><td>
+	<tr>
+		<td> 
+			<div class="show cod">
+			<b>Filter Microaqua code:</b>
+			<%=h @experiment.filter_name %> 
+			</div>    
+		</td>
+		<td>
+			<div class="show date">
+			<b>Microarray Experiment date:</b>
+			<%=h @experiment.experiment_date.strftime("%A %d %B %Y") %>
+			</div>
+		</td>
+	</tr>
 
-   
-   <div class="show id" style="display:none;">
-    <= f.label :microarraygal_id ><br />
-    <%= @mg.id  %>
-  </div>
-    
-     <p>
-    <div class="show cod">
-      <b>Filter Microaqua code:</b>
-      <%=h @experiment.filter_sample_code %> 
-    </div>
-      </p>
-
-      <p>
-     <div>
-     <b>Partner:</b>
-       <%=h @experiment.partner_id %>
-     </div>
-      <p>
-
-     <p>
-    <div class="GAL file title">
-      <b>Microarray experiment code:</b>
-      <%=h link_to @experiment.code %>
-    </div>
-     <p>
-
-
-</td><td>
-
-    <div class="show cod">
-      <b>Partner barcode:</b>
-      <%=h @experiment.barcode %>
-    </div>
-
-    <div class="show date">
-      <b>Microarray Experiment date:</b>
-      <%=h @experiment.experiment_date.strftime("%A %d %B %Y") %>
-    </div>
-
-     <div class="GAL file title">
-      <b>Microarray GAL file Title:</b>
-      <%=h link_to @experiment.galTitle %>
-    </div>
-
-</td><tr></table>
-
-<p>
-  <b>Note:</b>
-  <%=h @experiment.note %>
-</p>
-
+	<tr>
+		<td> 
+			<div class="show cod">
+			<b>Partner:</b>
+			<%=h @experiment.partner_name %>
+			</div>
+		</td>
+		<td>
+			<div class="show cod">
+			<b>Microarray GAL code:</b>
+			<%=h link_to @experiment.gal_code %>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="show id" style="display:none;">
+			<= f.label :microarraygal_id ><br />
+			<%= @mg.id  %>
+			</div>    
+		</td>
+		<td>
+			<div>
+			<b>Note:</b>
+			<%=h @experiment.note %>
+			</div>
+		</td>
+	</tr>
+</table>
 </fieldset>
-
-
 
 <br />
 <% if auth_user(@experiment.partner_id) %>

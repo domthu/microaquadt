@@ -28,7 +28,7 @@ class Experiment < ActiveRecord::Base
 
   attr_reader :verbose_me
   def verbose_me
-   return self.id.to_s + '-' +  self.code  + '-' + self.barcode  + '-' + self.experiment_date.to_s
+   return self.id.to_s + '-' +  self.ecode  + '-' + self.barcode  + '-' + self.experiment_date.to_s
   end
   
   def edit
@@ -45,9 +45,8 @@ class Experiment < ActiveRecord::Base
     end
 
     
-    
     def filter_name
-        return self.filter_sample_code
+        return FilterSample.find(filter_sample_id).code
     end
 
     def partner_name
@@ -55,7 +54,7 @@ class Experiment < ActiveRecord::Base
     end
 
     def gal_code
-        return self.galTitle
+        return Microarraygal.find(microarraygal_id).verbose_me
     end
 
     def exp_date
@@ -63,9 +62,10 @@ class Experiment < ActiveRecord::Base
     end
 
     def exp_code
-        return self.code
+        return self.ecode
     end
     
+   
 
 
 end

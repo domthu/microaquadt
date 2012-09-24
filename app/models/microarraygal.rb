@@ -8,7 +8,7 @@ include ActionController::UrlWriter
   validates_presence_of :gal_file, :message => "Can't be empty, field is mandatory. "
 
   
-  has_one :experiment
+  has_many :experiment
   belongs_to :partner
   has_many :oligos, :dependent => :destroy
   has_one :gal_header, :dependent => :destroy
@@ -20,10 +20,10 @@ include ActionController::UrlWriter
       if just_filename =~ /(^\d+)?\s.+$/
         file_part = $1
       end
-      if barcode.nil?
-            self.id.to_s + '_' +  self.code  + '_' + file_part.to_s
+      if barcode.empty?
+            return self.id.to_s + '-' +  self.code  + '-' + file_part.to_s
         else
-            return self.id.to_s + '_' +  self.code  + '_' + self.barcode  + '_' + file_part.to_s
+            return self.id.to_s + '-' +  self.code  + '-' + self.barcode  + '-' + file_part.to_s
         end   
   end
 

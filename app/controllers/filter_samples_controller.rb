@@ -200,7 +200,7 @@ class FilterSamplesController < AuthController
 
     respond_to do |format|
       if @filter_sample.save
-        format.html { redirect_to(@filter_sample, :notice => 'FilterSample was successfully created.') }
+        format.html { redirect_to(@filter_sample, :notice => 'FilterSample is successfully created.') }
         format.xml  { render :xml => @filter_sample, :status => :created, :location => @filter_sample }
       else
         @s_c = Sampling.count()
