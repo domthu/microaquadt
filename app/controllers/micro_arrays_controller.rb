@@ -337,6 +337,11 @@ class MicroArraysController < ApplicationController
   # DELETE /micro_arrays/1
   # DELETE /micro_arrays/1.xml
   def destroy
+    if !signed_in_and_master?
+      flash[:notice] = "Sorry. Only technical manager can delete data. Please, contact Roberto SPURIO to do it."
+      redirect_to water_types_path
+    else
+
         @micro_array = MicroArray.find(params[:id])
         @micro_array.destroy
         @title = "Micro array"
@@ -354,6 +359,7 @@ class MicroArraysController < ApplicationController
           format.html { redirect_to(micro_arrays_url) }
           format.xml  { head :ok }
         end
+    end
   end
 
   private

@@ -1,6 +1,7 @@
 class OligoSequencesController < AuthController   #ApplicationController
 
-require "fastercsv"
+require 'faster_csv'
+require 'fastercsv'
 
   #only Requiring the right user to change own contents
   before_filter :correct_user, :only => [:edit, :update, :delete, :destroy]
@@ -111,7 +112,7 @@ require "fastercsv"
             taxonomy_id =~ "%#{params[:taxonomy_id]}%" if params[:taxonomy_id].present?
             if params[:available].present?
                 _str = params[:available].strip.downcase                
-                if _str == "true" or _str="1"
+                if _str == "true" or _str == "1"
                     available = "true"
                 else
                     available = "false"
@@ -141,9 +142,7 @@ require "fastercsv"
     
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @oligo_sequences }
-      format.csv { render @oligo_sequences.to_csv }
-      format.xls # { send_data @products.to_csv(col_sep: "\t") }
+      format.xml  { render :xml => @oligo_sequences } 
       format.json { render :json => oligo_sequences.to_jqgrid_json(
             [:id, "act", :code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", :taxonomy_name, :taxonomy_id, :available, "edit"],
             params[:page], params[:rows], oligo_sequences.total_entries) }			
@@ -291,7 +290,7 @@ require "fastercsv"
 
   # DELETE /oligo_sequences/1
   # DELETE /oligo_sequences/1.xml
-	  def destroy
+  def destroy
     @oligo_sequence = OligoSequence.find(params[:id])
     @oligo_sequence.destroy
     @title = "oligo sequence"
@@ -300,6 +299,61 @@ require "fastercsv"
       format.html { redirect_to(oligo_sequences_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def export_to_csv
+      
+    data = params['data'].split(',')
+    @oligos = OligoSequence.find(:all, :conditions => [ "id IN (?)", data])
+    
+    file = FasterCSV.generate do |line|
+    cols = ["ID","Details","PartnerCode","DNASequence","Date","Partner","Person","TaxName","TaxID"]
+    line << cols
+
+    @oligos.each do |entry|                
+    line << [entry.id, entry.description, entry.code, entry.dna_ellipsis, entry.oligoDate, entry.name, entry.people_name, entry.taxonomy_name, entry.taxonomy_id ]
+        end  
+
+    end
+     
+    #respond_to do |format|
+	#   format.xls { render :xls => @oligos }
+	#end
+    send_data(file)
+
+
+  end
+
+  def export_all
+
+    @oligos = OligoSequence.all
+
+    csv = FasterCSV.generate do |line|
+    cols = ["ID","Details","PartnerCode","DNASequence","Date","Partner","Person","TaxName","TaxID"]
+    line << cols
+
+    @oligos.each do |entry|                
+    line << [entry.id, entry.description, entry.code, entry.dna_ellipsis, entry.oligoDate, entry.name, entry.people_name, entry.taxonomy_name, entry.taxonomy_id ]
+        end  
+
+    end
+    
+    send_data(csv, 
+    :type => 'text/csv; charset=iso-8859-1; header=present', 
+    :disposition => "attachment; filename=Oligo_data_#{Time.now.strftime('%d%m%y-%H%M')}.csv")
+     
+
+  end
+
+  def export_all_xls
+
+    @oligos = OligoSequence.all
+
+    respond_to do |format|
+	   format.xls { render :xls => @oligos }
+	end
+     
+
   end
 
 
@@ -319,20 +373,7 @@ require "fastercsv"
       redirect_to(oligo_sequences_path)
     end
 
-    #def export
-        #headers[’Content-Type’] = “application/vnd.ms-excel”
-        #headers[’Content-Disposition’] = 'attachment; filename="export.xls"'
-        #headers[’Cache-Control’] = ''
-        #@oligo_sequences = OligoSequence.all
-        #respond_to do |format|
-        #format.html # index.html.erb
-        #format.xml  { render :xml => @oligo_sequences }
-        #format.csv { send_data @oligo_sequences.to_csv }
-        #format.xls # { send_data @products.to_csv(col_sep: "\t") }
-        #end 
     
-    #GET /oligo_sequences/export.xls
-    #end
 
 
 end

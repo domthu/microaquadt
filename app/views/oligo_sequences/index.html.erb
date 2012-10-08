@@ -1,5 +1,7 @@
 <%= jqgrid_stylesheets %>
 <%= jqgrid_javascripts %> 
+<%= javascript_include_tag 'json.js' %>
+<%= javascript_include_tag 'json_parse.js' %>
 
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
@@ -10,26 +12,52 @@
 </table>
 
 <h1>Oligo sequences</h1>
-<%= link_to 'New oligo sequence', new_oligo_sequence_path %>
-<br />	
-<%= link_to 'Export selected oligos as Excel file', 'oligo_sequences.xls' %>
-<br />	
+<table>
+<tr><td><%= link_to 'New oligo sequence', new_oligo_sequence_path %></td>
+    <td><a href="<%= '/export_all' %>">Export all oligos as CSV</a></td>
+</tr>
+<tr><td><a href="<%= '/export_to_csv' %>" onclick="x(); return false;">Export selected oligos as CSV</a></td>
+    <td><a href="<%= 'export_all_xls.xls' %>">Export all oligos as Excel</a></td>
+</tr>
+</table>
 
-<button type='submit' onclick='x(); return false;'>load selected</button>
 <script type="text/javascript" >
-	function x() {
-var listchk = $("input:checked"); 
-alert ('listchk: ' + listchk.length)
 
-}
+function x() {
+
+var obj = jQuery("input:checked").map(function() { return jQuery(this).parents('tr').attr('id'); });
+     
+     var result = null;
+     var arr = jQuery.makeArray(obj);
+     var data = arr.join(',');
+     
+     
+   $.ajax({
+	     url : '<%= url_for :controller => "oligo_sequences", :action => "export_to_csv" %>',
+             type : 'POST',
+	     data : {data:data},
+	     dataType : 'string',
+             async: false,
+             success : function(response) { result = response;}
+                
+              }); 
+
+   window.open( "data:text/csv;charset=utf-8," + escape(result)) 
+    
+      
+};
+
+
 //jQuery('#ngbgrid').editRow(id, true, formatEditors);
-
-  function handleSelection(id) {
+  
+ function handleSelection(id) {
         <%= remote_function (:url => {:controller=> 'oligo_sequences',
                  :action => 'show'},
                  :with => "id= " + String(id))
         %>
     }
+
+  
  function grdloaded(){
         //alert('Loaded')
     }
@@ -44,18 +72,20 @@ alert ('listchk: ' + listchk.length)
 
 </script>
 
+
+
     
 <%= jqgrid("List of oligo sequences: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", oligo_sequences_path,
 	[
 		{ :field => "id", :label => "ID", :width => 25, :resizable => false, :sortable => false, :editable => false, :hidden => true},
         { :field => "act", :label => "Details", :width => 25, :align => 'center', :resizable => true, :sortable => false, :search => false },
-	{ :field => "code", :label => "Partner code", :width => 100, :search => true, :sortable => true  },
+	{ :field => "code", :label => "PartnerCode", :width => 100, :search => true, :sortable => true  },
 		{ :field => "verbose_me", :label => "Description", :search => true, :width => 140, :sortable => true  },
-		{ :field => "dna_ellipsis", :label => "DNA sequence", :width => 200, :search => true, :sortable => true  },
+		{ :field => "dna_ellipsis", :label => "DNASequence", :width => 200, :search => true, :sortable => true  },
       { :field => "partner_name", :label => "Partner", :sortable => true, :width => 70, :search => true, :searchtype => "select", :searchoptions => { :data => [Partner.all, :id, :code] }, :edittype => 'select', :editable => true, :editoptions => { :data => [Partner.all, :id, :code] } },
 		
       { :field => "people_name", :label => "Person", :search => false, :sortable => false, :editable => false, :width => 100 },
-      { :field => "taxonomy_name", :label => "Taxonomy name", :search => true, :width => 100, :sortable => true  },
+      { :field => "taxonomy_name", :label => "TaxName", :search => true, :width => 100, :sortable => true  },
       { :field => "taxonomy_id", :label => "TaxID", :search => true, :width => 50, :sortable => true  },
 
       { :field => "available", :label => "Select Oligos", :width => 25 , :resizable => true, :sortable => false, :search => false, :formatter => 'checkbox', :formatoptions => { :disabled => false }, :searchoptions => { :value => "Yes:No" } , :editable => true, :edittype => 'checkbox', :editoptions => { :value => "No" }, :align => 'center'  },	
@@ -63,7 +93,6 @@ alert ('listchk: ' + listchk.length)
 		{ :field => "edit_link", :label => "edit", :search => false, :sortable => false, :width => 25, :align => 'center', :resizable => false}
 	], 
     {   :add => false, 
-        :excel => true,
         :edit => false, 
         :inline_edit => false, 
         :delete => true, 
@@ -91,9 +120,13 @@ alert ('listchk: ' + listchk.length)
 }) %>
 
 <br />
-<%= link_to 'New oligo_sequence', new_oligo_sequence_path %>
-<br />	
-<%= link_to 'Export selected oligos as Excel file', 'oligo_sequences.xls' %>
-
+<table>
+<tr><td><%= link_to 'New oligo sequence', new_oligo_sequence_path %></td>
+    <td><a href="<%= '/export_all' %>">Export all oligos as CSV</a></td>
+</tr>
+<tr><td><a href="<%= '/export_to_csv' %>" onclick="x(); return false;">Export selected oligos as CSV</a></td>
+    <td><a href="<%= 'export_all_xls.xls' %>">Export all oligos as Excel</a></td>
+</tr>
+</table>
 
 

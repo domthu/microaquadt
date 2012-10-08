@@ -17,7 +17,7 @@
         <Cell><Data ss:Type="String">Taxonomy Name</Data></Cell>
         <Cell><Data ss:Type="String">Taxonomy ID</Data></Cell>
       </Row>
-    <% @oligo_sequences.each do |oligo_sequence| %>
+    <% @oligos.each do |oligo_sequence| %>
       <Row>
         <Cell><Data ss:Type="Number"><%= oligo_sequence.id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= oligo_sequence.description %></Data></Cell>

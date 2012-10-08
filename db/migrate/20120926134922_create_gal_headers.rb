@@ -8,14 +8,13 @@ class CreateGalHeaders < ActiveRecord::Migration
       t.string :block_type
       t.string :block_count
       t.string :supplier
-      t.references :microarraygal	
+      t.references :microarraygal
+
       t.timestamps
     end
-    add_index :gal_headers, :microarraygal_id 
   end
 
   def self.down
-    remove_index :gal_headers, :microarraygal_id
     drop_table :gal_headers
   end
 end

@@ -8,7 +8,7 @@ include ActionController::UrlWriter
   validates_presence_of :gal_file, :message => "Can't be empty, field is mandatory. "
 
   
-  has_many :experiment
+  has_one :experiment
   belongs_to :partner
   has_many :oligos, :dependent => :destroy
   has_one :gal_header, :dependent => :destroy

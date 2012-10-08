@@ -4,7 +4,10 @@ class MicroArray < ActiveRecord::Base
   validates_presence_of :gpr_file, :message => "Can't be empty, field is mandatory. "
 
   belongs_to :partner
-  belongs_to :experiment
+  has_many :micro_array_validations, :dependent => :destroy, :class_name => 'MicroArrayValidation'
+  has_many :micro_array_images, :dependent => :destroy, :class_name => 'MicroArrayImage'
+  has_many :micro_array_datas, :dependent => :destroy, :class_name => 'MicroArrayData'
+  has_many :micro_array_analysis_files, :dependent => :destroy, :class_name => 'MicroArrayAnalysisFile'
 
 
   #In order for form_for to work,

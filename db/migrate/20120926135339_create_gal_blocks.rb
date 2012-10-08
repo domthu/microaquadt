@@ -11,13 +11,12 @@ class CreateGalBlocks < ActiveRecord::Migration
       t.string :ySpacing
       t.references :gal_header
       t.references :microarraygal
+
       t.timestamps
     end
-   add_index :gal_blocks, :microarraygal_id 
   end
 
   def self.down
-    remove_index :gal_blocks, :microarraygal_id
     drop_table :gal_blocks
   end
 end

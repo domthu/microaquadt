@@ -1,5 +1,5 @@
 class MicroArrayAnalysisFile < ActiveRecord::Base
-  belongs_to :experiment
+  belongs_to :microarray
 
   #In order for form_for to work,
   attr_reader :verbose_me

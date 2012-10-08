@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120916225054) do
+ActiveRecord::Schema.define(:version => 20120926144219) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -59,30 +59,18 @@ ActiveRecord::Schema.define(:version => 20120916225054) do
 
   create_table "experiments", :force => true do |t|
     t.integer  "filter_sample_id"
-    t.string   "filter_sample_code",           :null => false
     t.integer  "microarraygal_id"
-    t.integer  "micro_array_id"
-    t.integer  "micro_array_validation_id"
-    t.integer  "micro_array_image_id"
-    t.integer  "micro_array_data_id"
-    t.integer  "micro_array_analysis_file_id"
     t.integer  "partner_id"
-    t.integer  "people_id"
-    t.string   "code"
-    t.string   "barcode",                      :null => false
+    t.string   "ecode"
+    t.string   "barcode"
     t.date     "experiment_date"
-    t.string   "galTitle",                     :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "people_id"
   end
 
   add_index "experiments", ["filter_sample_id"], :name => "index_experiments_on_filter_sample_id"
-  add_index "experiments", ["micro_array_analysis_file_id"], :name => "index_experiments_on_micro_array_analysis_file_id"
-  add_index "experiments", ["micro_array_data_id"], :name => "index_experiments_on_micro_array_data_id"
-  add_index "experiments", ["micro_array_id"], :name => "index_experiments_on_micro_array_id"
-  add_index "experiments", ["micro_array_image_id"], :name => "index_experiments_on_micro_array_image_id"
-  add_index "experiments", ["micro_array_validation_id"], :name => "index_experiments_on_micro_array_validation_id"
   add_index "experiments", ["microarraygal_id"], :name => "index_experiments_on_microarraygal_id"
   add_index "experiments", ["partner_id"], :name => "index_experiments_on_partner_id"
 
@@ -103,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20120916225054) do
     t.decimal  "volume",                                     :precision => 4, :scale => 2,                  :null => false
     t.string   "barcode",                                                                                   :null => false
     t.string   "code"
+    t.integer  "partner_id",                                                                                :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -112,6 +101,38 @@ ActiveRecord::Schema.define(:version => 20120916225054) do
 
   add_index "filter_samples", ["sampling_id"], :name => "index_filter_samples_on_sampling_id"
   add_index "filter_samples", ["wfilter_id"], :name => "index_filter_samples_on_wfilter_id"
+
+  create_table "gal_blocks", :force => true do |t|
+    t.string   "block_number"
+    t.string   "xOrigin"
+    t.string   "yOrigin"
+    t.string   "feature_diameter"
+    t.string   "xFeatures"
+    t.string   "xSpacing"
+    t.string   "yFeatures"
+    t.string   "ySpacing"
+    t.integer  "gal_header_id"
+    t.integer  "microarraygal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gal_blocks", ["microarraygal_id"], :name => "index_gal_blocks_on_microarraygal_id"
+
+  create_table "gal_headers", :force => true do |t|
+    t.string   "gal_version_info"
+    t.string   "number_data_column"
+    t.string   "gal_row_count"
+    t.string   "gal_column_count"
+    t.string   "block_type"
+    t.string   "block_count"
+    t.string   "supplier"
+    t.integer  "microarraygal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gal_headers", ["microarraygal_id"], :name => "index_gal_headers_on_microarraygal_id"
 
   create_table "geologies", :force => true do |t|
     t.string   "name"
@@ -316,9 +337,8 @@ ActiveRecord::Schema.define(:version => 20120916225054) do
     t.binary   "gal_file"
     t.string   "code"
     t.date     "loaded_at"
-    t.string   "barcode",        :null => false
-    t.integer  "experiment_id"
-    t.integer  "partner_id",     :null => false
+    t.string   "barcode"
+    t.integer  "partner_id"
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -393,6 +413,21 @@ ActiveRecord::Schema.define(:version => 20120916225054) do
 
   add_index "oligo_sequences", ["partner_id"], :name => "index_oligo_sequences_on_partner_id"
   add_index "oligo_sequences", ["people_id"], :name => "index_oligo_sequences_on_people_id"
+
+  create_table "oligos", :force => true do |t|
+    t.string   "code"
+    t.integer  "oligo_sequence_id"
+    t.integer  "gal_header_id"
+    t.integer  "gal_block_id"
+    t.string   "row_number"
+    t.string   "column_number"
+    t.integer  "microarraygal_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "oligos", ["oligo_sequence_id", "microarraygal_id"], :name => "index_oligos_on_oligo_sequence_id_and_microarraygal_id", :unique => true
+  add_index "oligos", ["oligo_sequence_id"], :name => "index_oligos_on_oligo_sequence_id"
 
   create_table "operations", :force => true do |t|
     t.integer  "protocol_id"

@@ -41,16 +41,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :micro_array_datas
 
-  map.resources :microarray_oligos
-
   map.resources :names
   
   map.resources :oligo_sequences
-  map.export 'oligo_sequences/export', :controller => 'oligo_sequences', :action => 'export'
-  
-  #map.resources :oligo_sequences, :collection => { :oligo_sequences => :get, :export => :get }
-  #map.connect 'oligo_sequences/export.xls', :controller => 'oligo_sequences', :action => 'export'
 
+ # map.export_all '/export_all', :controller => 'oligo_sequences', :action => 'export_all'
   
   map.lookforbio '/lookforbio', :controller => 'oligo_sequences', :action => 'lookup'
   map.lookforbio '/searchforbio', :controller => 'oligo_sequences', :action => 'esearch'
@@ -150,6 +145,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action.:format'
+  map.connect '/export_all', :controller => 'oligo_sequences', :action => 'export_all'
+  map.connect '/export_to_csv', :controller => 'oligo_sequences', :action => 'export_to_csv'
+  map.connect '/export_all_xls.xls', :controller => 'oligo_sequences', :action => 'export_all_xls'
   
 end
 

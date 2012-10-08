@@ -152,22 +152,6 @@ class ExperimentsController < ApplicationController
     respond_to do |format|
       if @experiment.save
      
-        #Change the child code attribute here because the parent code is yet created
-        @mg = Microarraygal.count(:all, :conditions => ['experiment_id = ' + @experiment.id.to_s ])
-        print ('----Change childs attributes here -------- parent (id-'+@experiment.id.to_s+') code is: '+@experiment.ecode+'. Childs are -['+@mg.to_s+']-\n' )
-
-		unless @mg.nil? and @mg > 0
-		    #generate the Microaqua code for all child yet created to this parent
-		    @mg = Microarraygal.all(:conditions => ['experiment_id = ' +@experiment.id.to_s ])
-		    @mg.each_with_index do |child, index|
-		        print('----Change childs Old code:(-%s)\n', child.code)
-		        #child.code = child.code[0..11] + ("-F%02d" % (index + 1))
-		        child.code = @experiment.code + ("-F%02d" % (index + 1))
-		        print('----Change childs New code:(-%s)\n', child.code)
-		        child.save()
-		    end 
-
-		end 
 
         format.html { 
                     flash[:notice] = 'New experiment is successfully created (You can check the oligos, used in this experiment, by clicking on the "+" sign on individual experiments row!!!)'

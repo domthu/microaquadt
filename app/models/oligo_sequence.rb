@@ -2,7 +2,6 @@ class OligoSequence < ActiveRecord::Base
 
 include ActionController::UrlWriter
 include OligoSequencesHelper
-require "fastercsv"
 #include CodeTypesHelper
 #include SessionsHelper
 
@@ -41,12 +40,11 @@ require "fastercsv"
 
   belongs_to :microarraygals
 
-  #has_many :experiments, :through => :oligos, :source => "oligo_sequence_id"
-
   has_many :oligos, :dependent => :destroy
 
   belongs_to :sampling
 
+  belongs_to :export
 
   belongs_to :partner
   #validates_presence_of :partner
@@ -95,15 +93,7 @@ require "fastercsv"
       else
         return ""
       end
-  end    
-
-    #def oligo_code
-     #   self.oligo_exp_code
-    #end
-
-    def gCode
-        self.galCode
-    end
+  end
 
     def partner_name
         Partner.find(partner_id).verbose_me
@@ -137,18 +127,6 @@ require "fastercsv"
     end
   
 
-    def to_csv 
-       self.to_csv(options = {})
-        FasterCSV.generate(options) do |csv|
-        csv << column_names
-        all.each do |oligo_sequence|
-        csv << oligo_sequence.attributes.values_at(*column_names)
-         end
-       end
-    end
-	#[ "code", "dna_ellipsis", "partner_name", "people_name", "taxonomy_name", "taxonomy_id" ]
+
 end
-
-
-
 

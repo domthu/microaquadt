@@ -313,7 +313,6 @@ class MicroarraygalsController < ApplicationController
              end
          @oligos.microarraygal_id = @microarraygal.id 
          @oligos.gal_header_id = @gal_header.id
-        # @oligos.experiment_id = @experiment.id
          @oligos.save
         end
       end 

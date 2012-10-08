@@ -1,4 +1,4 @@
-	# == Schema Information
+# == Schema Information
 # Schema version: <timestamp>
 #
 # Table name: users

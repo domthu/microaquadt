@@ -3,12 +3,6 @@ class Experiment < ActiveRecord::Base
  include ActionController::UrlWriter
  include ExperimentHelper
 
-
-  #validates_presence_of :filter_sample_id, :message => "Can't be empty, field is mandatory. "
-  #validates_presence_of :microarraygal_id, :message => "Can't be empty, field is mandatory. "
-  #validates_presence_of :micro_array_id, :message => "Can't be empty, field is mandatory. "
-  #validates_presence_of :galTitle, :message => "This field is required to create new microarray experiment. Please upload gal file first."
-
   validates_presence_of :partner
 
   belongs_to :filter_sample

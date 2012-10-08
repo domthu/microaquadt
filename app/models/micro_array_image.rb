@@ -3,7 +3,6 @@ class MicroArrayImage < ActiveRecord::Base
 	validates_length_of   :name, :maximum => 50
 
   belongs_to :microarraydata
-  belongs_to :experiment
 
   #In order for form_for to work,
   attr_reader :verbose_me

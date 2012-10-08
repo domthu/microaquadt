@@ -11,17 +11,17 @@ class AddSomeIndex < ActiveRecord::Migration
 #    add_index :sampling_sites, :geos_id, :name => 'iss_gi'
 #--> KAPPAO  add_index :sampling_sites, :water_types_id,
 
-   # remove_index :sampling_sites, :water_type_id
-   # remove_index :sampling_sites, :water_use_id
-   # remove_index :sampling_sites, :land_use_mapping_id
-   # remove_index :sampling_sites, :geo_id
+    remove_index :sampling_sites, :water_types_id
+    remove_index :sampling_sites, :water_uses_id
+    remove_index :sampling_sites, :land_use_mappings_id
+    remove_index :sampling_sites, :geos_id
 
-    #change_table :sampling_sites do |t|
-     # t.rename :water_types_id, :water_type_id 
-     # t.rename :water_uses_id, :water_use_id
-      #t.rename :land_use_mappings_id, :land_use_mapping_id
-      #t.rename :geos_id, :geo_id
-    #end
+    change_table :sampling_sites do |t|
+      t.rename :water_types_id, :water_type_id 
+      t.rename :water_uses_id, :water_use_id
+      t.rename :land_use_mappings_id, :land_use_mapping_id
+      t.rename :geos_id, :geo_id
+    end
 
     add_index :sampling_sites, :water_type_id
     add_index :sampling_sites, :water_use_id

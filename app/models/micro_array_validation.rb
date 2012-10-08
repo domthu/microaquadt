@@ -6,7 +6,6 @@ class MicroArrayValidation < ActiveRecord::Base
   validates_numericality_of :Chemscan, :allow_nil => true, :less_than => 100
 
   belongs_to :microarraydata
-  belongs_to :experiment
 
   #In order for form_for to work,
   attr_reader :verbose_me
