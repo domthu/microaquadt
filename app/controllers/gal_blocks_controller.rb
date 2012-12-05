@@ -5,7 +5,19 @@ class GalBlocksController < ApplicationController
 	    @gal_blocks = GalBlock.all
             @title = "GAL file blocks information"
            gal_blocks = GalBlock.find(:all) do
-           paginate :page => params[:page], :per_page => params[:rows]      
+           
+          if params[:_search] == "true"
+	     microarraygal.id =~ "%#{params[:gal_id]}%" if params[:gal_id].present?
+	  end
+
+	       paginate :page => params[:page], :per_page => params[:rows]
+	       order_by "#{params[:sidx]} #{params[:sord]}" 
+
+          if params[:sidx] == "gal_id"
+	     order_by "microarraygals.id #{params[:sord]}"   
+          end  
+
+      
           end
 
         respond_to do |format|

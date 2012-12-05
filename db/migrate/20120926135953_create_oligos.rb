@@ -2,7 +2,7 @@ class CreateOligos < ActiveRecord::Migration
   def self.up
     create_table :oligos do |t|
       t.string :code
-      t.references :oligo_sequence
+      t.string :oligo_id
       t.references :gal_header
       t.references :gal_block
       t.string :row_number

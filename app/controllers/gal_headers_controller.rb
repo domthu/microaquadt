@@ -7,7 +7,34 @@ class GalHeadersController < ApplicationController
     @gal_headers = GalHeader.all
     @title = "GAL file header information"
            gal_headers = GalHeader.find(:all) do
-           paginate :page => params[:page], :per_page => params[:rows]      
+
+               if params[:_search] == "true"
+			   microarraygal.id =~ "%#{params[:gal_id]}%" if params[:gal_id].present?
+			   gal_row_count =~ "%#{params[:row_count]}%" if params[:row_count].present?
+			   gal_column_count =~ "%#{params[:column_count]}%" if params[:column_count].present?
+                           block_count =~ "%#{params[:bcount]}%" if params[:bcount].present?
+                           block_type =~ "%#{params[:block_type]}%" if params[:block_type].present?
+                           supplier =~ "%#{params[:company]}%" if params[:company].present?
+			   
+			end
+
+	       paginate :page => params[:page], :per_page => params[:rows]
+	       order_by "#{params[:sidx]} #{params[:sord]}" 
+
+		       if params[:sidx] == "gal_id"
+			  order_by "microarraygals.id #{params[:sord]}"
+		       elsif params[:sidx] == "row_count"
+			  order_by "gal_row_count #{params[:sord]}"
+		       elsif params[:sidx] == "column_count"
+			  order_by "gal_column_count #{params[:sord]}"
+                       elsif params[:sidx] == "bcount"
+			  order_by "block_count #{params[:sord]}"
+                       elsif params[:sidx] == "block_type"
+			  order_by "block_type #{params[:sord]}"
+                       elsif params[:sidx] == ":company"
+			  order_by "supplier #{params[:sord]}"    
+		       end  
+
           end
 
         respond_to do |format|

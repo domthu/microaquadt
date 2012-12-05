@@ -141,8 +141,8 @@ class MicroarraygalsController < ApplicationController
         self.parse_blocks
         self.parse_oligo_data
         format.html { 
-            flash[:notice] = 'Microarray GAL was successfully saved. Create new Experiment below and associate your GAL file!!!'
-      redirect_to :controller => "experiments", :action => "new" }
+            flash[:notice] = 'Microarray GAL file is successfully saved. Upload GPR file or Create new Microarray Experiment by associating your GAL file!!!'
+      redirect_to :controller => "microarraygprs", :action => "new" }
         format.xml  { render :xml => @microarraygal, :status => :created, :location => @microarraygal }
       else
         @partners = Partner.find(:all)
@@ -297,17 +297,27 @@ class MicroarraygalsController < ApplicationController
        path = File.join(@microarraygal.gal_file_title, @microarraygal.gal_title)
        str = IO.read(path)
        line = str.to_str
-       if line =~ /(\d+\s\d+\s\d+\s\d+\s\w+[+\-\s\w]+)/m
-        $1.each do |line|
+       
+       #if line =~ /(\d+\s\d+\s\d+\s\d+\s\w+[+\-\s\w]+)/m
+
+       #if we are not including IDs and gal having same data in ID and Name column
+       data = line.scan(/\d\s\d+\s\d+\s[\w\d][a-zA-Z0-9_\-]+\s\w[a-zA-Z0-9_\-]+/).flatten
+
+        #$1.each do |line|
+
+        data.each do |line|
            
               @oligos = Oligo.create!(params[:oligos])
         
-              if line =~ /(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\w+[+\-\s\w]+)/
+              #if line =~ /(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\w+[+\-\s\w]+)/
+      
+      #if we are not including IDs and gal having same data in ID and Name column
+      if line =~ /(\d)\s(\d+)\s(\d+)\s([\w\d][a-zA-Z0-9_\-]+)\s([\w\d][a-zA-Z0-9_\-]+)/
 
 		@oligos.gal_block_id = $1.to_s 
                 @oligos.row_number = $2.to_s
                 @oligos.column_number = $3.to_s 		  
-                @oligos.oligo_sequence_id = $4.to_s 		     
+                @oligos.oligo_id = $4.to_s 		     
                 @oligos.code = $5.to_s 
                  
              end
@@ -315,7 +325,7 @@ class MicroarraygalsController < ApplicationController
          @oligos.gal_header_id = @gal_header.id
          @oligos.save
         end
-      end 
+      #end 
    
       rescue => err
       flash.now[:error] = "Exception parse_file: #{err}..."

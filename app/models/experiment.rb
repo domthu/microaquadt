@@ -6,12 +6,14 @@ class Experiment < ActiveRecord::Base
   validates_presence_of :partner
 
   belongs_to :filter_sample
-
-  belongs_to :oligo_sequence
   
   belongs_to :partner
   
   belongs_to :microarraygal
+
+  belongs_to :microarraygpr
+
+  has_many :gpr_datas, :through => :microarraygprs, :source => "microarraygpr_id"
 
   has_many :oligos, :through => :microarraygals, :source => "microarraygal_id"
  
@@ -49,6 +51,10 @@ class Experiment < ActiveRecord::Base
 
     def gal_code
         return Microarraygal.find(microarraygal_id).verbose_me
+    end
+
+    def gpr_code
+        return Microarraygpr.find(microarraygpr_id).verbose_me
     end
 
     def exp_date

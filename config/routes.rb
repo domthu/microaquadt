@@ -1,5 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :microarraygals
+
+  map.resources :microarraygprs
+
+  map.resources :gpr_headers
+
+  map.resources :gpr_datas
 
   map.resources :nucleic_acids
 
@@ -38,8 +43,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :micro_array_analysis_files
 
   map.resources :micro_array_validations
-
-  map.resources :micro_array_datas
 
   map.resources :names
   

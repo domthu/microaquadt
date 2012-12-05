@@ -307,8 +307,10 @@ require 'fastercsv'
     @oligos = OligoSequence.find(:all, :conditions => [ "id IN (?)", data])
     
     file = FasterCSV.generate do |line|
-    cols = ["ID","Details","PartnerCode","DNASequence","Date","Partner","Person","TaxName","TaxID"]
-    line << cols
+    row1 = ["Selected oligo data exported on #{Time.now.strftime('%d/%m/%y-%H:%M')}"]
+    line << row1
+    row2 = ["ID","Details","PartnerCode","DNASequence","Date","Partner","Person","TaxName","TaxID"]
+    line << row2
 
     @oligos.each do |entry|                
     line << [entry.id, entry.description, entry.code, entry.dna_ellipsis, entry.oligoDate, entry.name, entry.people_name, entry.taxonomy_name, entry.taxonomy_id ]
@@ -316,11 +318,9 @@ require 'fastercsv'
 
     end
      
-    #respond_to do |format|
-	#   format.xls { render :xls => @oligos }
-	#end
-    send_data(file)
-
+    send_data(file,
+    :type => 'text/csv;charset=utf-8;header=present', 
+    :disposition => 'attachment')
 
   end
 
@@ -328,7 +328,7 @@ require 'fastercsv'
 
     @oligos = OligoSequence.all
 
-    csv = FasterCSV.generate do |line|
+    file = FasterCSV.generate do |line|
     cols = ["ID","Details","PartnerCode","DNASequence","Date","Partner","Person","TaxName","TaxID"]
     line << cols
 
@@ -338,9 +338,9 @@ require 'fastercsv'
 
     end
     
-    send_data(csv, 
-    :type => 'text/csv; charset=iso-8859-1; header=present', 
-    :disposition => "attachment; filename=Oligo_data_#{Time.now.strftime('%d%m%y-%H%M')}.csv")
+    send_data(file, 
+    :type => 'text/csv;charset=utf-8;header=present', 
+    :disposition => "attachment;filename=Oligo_data_#{Time.now.strftime('%d%m%y-%H%M')}.csv")
      
 
   end

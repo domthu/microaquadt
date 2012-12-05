@@ -1,0 +1,227 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", microarraygprs_path %></li>
+      <li><%= link_to "Microarray Images", micro_array_images_path %></li>
+      <li><%= link_to "Microarray Analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray Validations", micro_array_validations_path %></li> 
+    </ul>
+  </td></tr>
+</table>
+
+<h1>Editing GAL Header </h1>
+
+<%= link_to 'Show', @gpr_header %> |
+<%= link_to 'Back', gpr_headers_path %>
+
+<% form_for(@gpr_header) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+
+<fieldset><legend class="leg">GENERAL DATA</legend>
+<table width="95%">
+<tr><td>
+<div class="field txt">
+<%= f.label :microarraygpr_id, "Associated GPR ID :" %>
+<%= @gpr_header.microarraygpr_id %>
+</div>
+</td>
+<td>
+<div class="field date">
+<%= f.label :loaded_at, "Updated at :" %>
+<%= @gpr_header.updated_at.strftime("%A %d %B %Y") %>
+</div>
+</td></tr>
+</table>
+</fieldset>
+
+
+<fieldset><legend class="leg">HEADER</legend>
+<table width="95%">
+<tr><td>
+<div class="field txt">
+<%= f.label :gprVersion, "ATF Version" %><br />
+<%= f.text_field :gprVersion %>
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :supplier, "Supplier" %><br />
+<%= f.text_field :supplier %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :gprtype, "GPR Type" %><br />
+<%= f.text_field :gprtype %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :settings, "Settings" %><br />
+<%= f.text_field :settings %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :pixelsize, "Pixel Size" %><br />
+<%= f.text_field :pixelsize %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :wavelengths, "Wavelengths" %><br />
+<%= f.text_field :wavelengths %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :normalizationmethod, "Normalization Method" %><br />
+<%= f.text_field :normalizationmethod %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :normalizationfactors, "Normalization factors" %><br />
+<%= f.text_field :normalizationfactors %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :stddev, "Standard dev." %><br />
+<%= f.text_field :stddev %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :ratioformulations, "Ratio Formulations" %><br />
+<%= f.text_field :ratioformulations %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :featuretype, "Feature Type" %><br />
+<%= f.text_field :featuretype %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :barcode, "Barcode" %><br />
+<%= f.text_field :barcode %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :backgroundsubtraction, "Background sub." %><br />
+<%= f.text_field :backgroundsubtraction %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :imageorigin, "Image Origin" %><br />
+<%= f.text_field :imageorigin %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :jpegorigin, "Jpeg Origin" %><br />
+<%= f.text_field :jpegorigin %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :creator, "Creator" %><br />
+<%= f.text_field :creator %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :scanner, "Scanner" %><br />
+<%= f.text_field :scanner %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :focusposition, "Focus Position" %><br />
+<%= f.text_field :focusposition %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :temp, "Temp" %><br />
+<%= f.text_field :temp %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :linesavg, "Lines avg." %><br />
+<%= f.text_field :linesavg %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :pmtgain, "PMT Gain" %><br />
+<%= f.text_field :pmtgain %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :comment, "Comment" %><br />
+<%= f.text_field :comment %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :scanpower, "Scan Power" %><br />
+<%= f.text_field :scanpower %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :laserpower, "Laser Power" %><br />
+<%= f.text_field :laserpower %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :scanregion, "Scan Region" %><br />
+<%= f.text_field :scanregion %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :filters, "Filters" %><br />
+<%= f.text_field :filters %>
+</div>
+</td></tr>
+
+</table>
+  
+</fieldset>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @gpr_header %> |
+<%= link_to 'Back', gpr_headers_path %>
+
+
+

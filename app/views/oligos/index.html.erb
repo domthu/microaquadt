@@ -6,11 +6,10 @@
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
       <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
-      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
-      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
-      <li><%= link_to "micro array images", micro_array_images_path %></li>
-      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
-      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray .GPR", microarraygprs_path %></li>
+      <li><%= link_to "Microarray Images", micro_array_images_path %></li>
+      <li><%= link_to "Microarray Analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray Validations", micro_array_validations_path %></li> 
     </ul>
   </td></tr>
   <tr class="taleft" width="70%"><td class="taleft">
@@ -44,9 +43,8 @@
         { :field => "act", :label => "", :width => 30 , :resizable => false, :sortable => false, :search => false },
 
         { :field => "gal_o_code", :label => "GAL code", :width => 300, :search => true, :sortable => true },
-		{ :field => "array_info", :label => "Array Information", :width => 200, :class => "taright"  },
-		{ :field => "oligo_id", :label => "Oligo ID", :search => true, :sortable => true, :editable => false, :width => 100 },
-		{ :field => "oligo", :label => "Oligo Name", :search => false, :width => 180, :sortable => false  },
+		{ :field => "array_info", :label => "Array Information", :search => false, :width => 200, :class => "taright"  },
+		{ :field => "oligo", :label => "Oligo Name", :search => true, :width => 180, :sortable => false  },
                 { :field => "oligo_upload_date", :label => "Upload date", :search => false, :width => 170, :sortable => false  },	
 	{ :field => "edit_link", :label => "edit", :search => false, :sortable => false, :width => 50 , :resizable => false}
 	], 

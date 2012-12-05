@@ -6,7 +6,7 @@ class GalBlock < ActiveRecord::Base
   
   belongs_to :microarraygal
   belongs_to :gal_header
-  
+  has_many :gpr_datas
   has_many :oligos
 
   def edit

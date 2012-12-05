@@ -8,7 +8,7 @@ include OligoSequencesHelper
   validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
   validates_length_of :name, :maximum=>100
   validates_length_of :code, :maximum=>30
-  #validates_uniqueness_of :name, :case_sensitive => false
+  validates_uniqueness_of :code, :case_sensitive => false
   validates_presence_of :dna_sequence, :message => "Can't be empty, field is mandatory. "
   #validates_uniqueness_of :dna_sequence, :case_sensitive => false
   validates_length_of :dna_sequence, :maximum=>100
@@ -44,24 +44,11 @@ include OligoSequencesHelper
 
   belongs_to :sampling
 
-  belongs_to :export
-
   belongs_to :partner
   #validates_presence_of :partner
   belongs_to :person
-  #KAPPAO: migrate person generate people table belongs_to :people
-  #validates_presence_of :person  
-    #<%=h @oligo_sequence.people.verbose_me %>
-    #undefined method `people' for #<OligoSequence:0xb6c7cee4>
-    #<%=h @oligo_sequence.person.verbose_me %>
-    #undefined method `verbose_me' for nil:NilClass  --> non reccupera il people_id?
-
   #has_many :partner_people
   belongs_to :partner_person
-
-  #TODO: table does not exist yet
-  #belongs_to :tax_id, :class_name => "Name"
-  #validates_presence_of :tax_id_id
 
   #In order for form_for to work,
   attr_reader :verbose_me

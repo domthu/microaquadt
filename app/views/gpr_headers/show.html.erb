@@ -1,0 +1,221 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", microarraygprs_path %></li>
+      <li><%= link_to "Microarray Images", micro_array_images_path %></li>
+      <li><%= link_to "Microarray Analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray Validations", micro_array_validations_path %></li> 
+    </ul>
+  </td></tr>
+</table>
+
+
+<%= link_to 'Edit', edit_gpr_header_path(@gpr_header) %> |
+<%= link_to 'Back', gpr_headers_path %>
+<br />
+<br />
+
+<fieldset><legend class="leg">GENERAL DATA</legend>
+
+<table width="95%">
+
+<tr><td>
+<div class="show id" style="display:none;">
+<%= @gpr_header.microarraygpr_id  %>
+</div>
+<div class="show cod">
+<b>GPR ATF Version:</b>
+<%=h @gpr_header.gprVersion %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Date:</b>
+<%=h @gpr_header.created_at.strftime("%A %d %B %Y") %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>GPR Type:</b>
+<%=h @gpr_header.gprtype %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Settings:</b>
+<%=h @gpr_header.settings %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Pixel Size:</b>
+<%=h @gpr_header.pixelsize %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Wavelengths:</b>
+<%=h @gpr_header.wavelengths %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Normalization Method:</b>
+<%=h @gpr_header.normalizationmethod %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Normalization Factors:</b>
+<%=h @gpr_header.normalizationfactors %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Standard Deviation:</b>
+<%=h @gpr_header.stddev %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Ratio Formulations:</b>
+<%=h @gpr_header.ratioformulations %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Feature Type:</b>
+<%=h @gpr_header.featuretype %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Barcode:</b>
+<%=h @gpr_header.barcode %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Background Sub.:</b>
+<%=h @gpr_header.backgroundsubtraction %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Image Origin:</b>
+<%=h @gpr_header.imageorigin %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Jpeg Origin.:</b>
+<%=h @gpr_header.jpegorigin %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Creator:</b>
+<%=h @gpr_header.creator %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Scanner:</b>
+<%=h @gpr_header.scanner %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Focus Position:</b>
+<%=h @gpr_header.focusposition %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Temp:</b>
+<%=h @gpr_header.temp %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Lines avg.:</b>
+<%=h @gpr_header.linesavg %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>PMT Gain:</b>
+<%=h @gpr_header.pmtgain %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Comment:</b>
+<%=h @gpr_header.comment %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Scan Power:</b>
+<%=h @gpr_header.scanpower %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Laser Power:</b>
+<%=h @gpr_header.laserpower %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Scan Region:</b>
+<%=h @gpr_header.scanregion %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Filters:</b>
+<%=h @gpr_header.filters %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>Supplier:</b>
+<%=h @gpr_header.supplier %> 
+</div>
+
+</td><td>
+<div class="show date">
+<b>Image Files:</b>
+<%=h @gpr_header.imagefiles %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="show cod">
+<b>GAL File:</b>
+<%=h @gpr_header.galfile %> 
+</div>
+</td></tr>
+
+</table>
+
+</fieldset>
+
+<br />
+<%= link_to 'Edit', edit_gpr_header_path(@gpr_header) %> |
+<%= link_to 'Back', gpr_headers_path %>

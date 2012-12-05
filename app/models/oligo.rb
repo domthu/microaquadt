@@ -29,8 +29,8 @@ class Oligo < ActiveRecord::Base
         self.created_at.to_s
     end
 
-    def oligo_id
-        self.oligo_sequence_id
+    def oligoId
+        self.oligo_id
     end
 
     def oligo
@@ -38,7 +38,7 @@ class Oligo < ActiveRecord::Base
     end
 
     def array_info
-        "Block:" + self.gal_block_id.to_s + "-" + "Row:" + self.row_number.to_s + "-" + "Column:" + self.column_number.to_s
+        "Block:" + "<b>" + self.gal_block_id.to_s + "</b>" + "-" + "Row:" + "<b>" + self.row_number.to_s + "</b>" + "-" + "Column:" + "<b>" + self.column_number.to_s + "</b>"
     end 
    
 

@@ -97,10 +97,10 @@ class SamplingSitesController < AuthController
         redirect_to :action => "index"
     end
     @title = "Sampling sites"
-    @wu = WaterUse.find(@sampling_site.water_uses_id)
-    @wt = WaterType.find(@sampling_site.water_types_id)
-    @lum = LandUseMapping.find(@sampling_site.land_use_mappings_id)
-    @geo = Geo.find(@sampling_site.geos_id)
+    @wu = WaterUse.find(@sampling_site.water_use_id)
+    @wt = WaterType.find(@sampling_site.water_type_id)
+    @lum = LandUseMapping.find(@sampling_site.land_use_mapping_id)
+    @geo = Geo.find(@sampling_site.geo_id)
 
     @at = AltitudeType.find(@sampling_site.altitude_types_id)
     @ca = CatchmentArea.find(@sampling_site.catchment_areas_id)

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926144219) do
+ActiveRecord::Schema.define(:version => 20121129124328) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120926144219) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "people_id"
+    t.integer  "microarraygpr_id"
   end
 
   add_index "experiments", ["filter_sample_id"], :name => "index_experiments_on_filter_sample_id"
@@ -91,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20120926144219) do
     t.decimal  "volume",                                     :precision => 4, :scale => 2,                  :null => false
     t.string   "barcode",                                                                                   :null => false
     t.string   "code"
-    t.integer  "partner_id",                                                                                :null => false
     t.text     "note"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -153,6 +153,106 @@ ActiveRecord::Schema.define(:version => 20120926144219) do
 
   add_index "geos", ["country_id"], :name => "index_geos_on_country_id"
 
+  create_table "gpr_datas", :force => true do |t|
+    t.integer  "microarraygpr_id"
+    t.integer  "gpr_header_id"
+    t.integer  "gal_block_id"
+    t.string   "oligo_row"
+    t.string   "oligo_column"
+    t.string   "oligo_id"
+    t.string   "oligo_name"
+    t.string   "x"
+    t.string   "y"
+    t.string   "dia"
+    t.string   "f635_median"
+    t.string   "f635_mean"
+    t.string   "f635_sd"
+    t.string   "f635_cv"
+    t.string   "b635"
+    t.string   "b635_Median"
+    t.string   "b635_mean"
+    t.string   "b635_sd"
+    t.string   "b635_cv"
+    t.string   "percent_b635_1_sd"
+    t.string   "percent_b635_2_sd"
+    t.string   "f635_perc_sat"
+    t.string   "f532_median"
+    t.string   "f532_mean"
+    t.string   "f532_sd"
+    t.string   "f532_cv"
+    t.string   "b532"
+    t.string   "b532_median"
+    t.string   "b532_mean"
+    t.string   "b532_sd"
+    t.string   "b532_cv"
+    t.string   "percent_b532_1_sd"
+    t.string   "percent_b532_2_sd"
+    t.string   "f532_perc_sat"
+    t.string   "ratio_of_medians"
+    t.string   "ratio_of_means"
+    t.string   "median_of_ratios"
+    t.string   "mean_of_ratios"
+    t.string   "ratios_sd"
+    t.string   "rgn_ratio"
+    t.string   "rgn_r2"
+    t.string   "f_pixels"
+    t.string   "b_pixels"
+    t.string   "circularity"
+    t.string   "sum_of_medians"
+    t.string   "sum_of_means"
+    t.string   "log_ratio"
+    t.string   "f635_median_minus_b635"
+    t.string   "f532_median_minus_b635"
+    t.string   "f635_mean_minus_b635"
+    t.string   "f532_mean_minus_b635"
+    t.string   "f635_total_intensity"
+    t.string   "f532_total_intensity"
+    t.string   "snr_635"
+    t.string   "snr_532"
+    t.string   "flags"
+    t.string   "normalize"
+    t.string   "autoflag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gpr_headers", :force => true do |t|
+    t.string   "gprVersion"
+    t.string   "number_data_column"
+    t.string   "gprtype"
+    t.string   "datetime"
+    t.string   "settings"
+    t.string   "galfile"
+    t.string   "pixelsize"
+    t.string   "wavelengths"
+    t.string   "imagefiles"
+    t.string   "normalizationmethod"
+    t.string   "normalizationfactors"
+    t.string   "jpegimage"
+    t.string   "stddev"
+    t.string   "ratioformulations"
+    t.string   "featuretype"
+    t.string   "barcode"
+    t.string   "backgroundsubtraction"
+    t.string   "imageorigin"
+    t.string   "jpegorigin"
+    t.string   "creator"
+    t.string   "scanner"
+    t.string   "focusposition"
+    t.string   "temp"
+    t.string   "linesavg"
+    t.string   "comment"
+    t.string   "pmtgain"
+    t.string   "scanpower"
+    t.string   "laserpower"
+    t.string   "filters"
+    t.string   "scanregion"
+    t.string   "supplier"
+    t.integer  "microarraygpr_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "land_use_mappings", :force => true do |t|
     t.string   "name",       :null => false
     t.text     "note"
@@ -177,75 +277,6 @@ ActiveRecord::Schema.define(:version => 20120926144219) do
     t.integer  "experiment_id"
     t.text     "note"
     t.string   "MIANE_Standard"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "micro_array_datas", :force => true do |t|
-    t.integer  "experiment_id"
-    t.text     "note"
-    t.decimal  "D_Index",                  :precision => 8, :scale => 2
-    t.decimal  "D_Array_Row",              :precision => 8, :scale => 2
-    t.decimal  "D_Array_Column",           :precision => 8, :scale => 2
-    t.decimal  "D_Spot_Row",               :precision => 8, :scale => 2
-    t.decimal  "D_Spot_Column",            :precision => 8, :scale => 2
-    t.decimal  "D_Name",                   :precision => 8, :scale => 2
-    t.decimal  "D_ID",                     :precision => 8, :scale => 2
-    t.decimal  "D_X",                      :precision => 8, :scale => 2
-    t.decimal  "D_Y",                      :precision => 8, :scale => 2
-    t.decimal  "D_Diameter",               :precision => 8, :scale => 2
-    t.decimal  "D_F_Pixels",               :precision => 8, :scale => 2
-    t.decimal  "D_B_Pixels",               :precision => 8, :scale => 2
-    t.decimal  "D_Footprint",              :precision => 8, :scale => 2
-    t.decimal  "D_Flags",                  :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_Median",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_Mean",               :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_SD",                 :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_B_Median",           :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_B_Mean",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_B_SD",               :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_B_1_SD",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_B_2_SD",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_F_Sat",              :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_Median_B",           :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_Mean_B",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_SignalNoiseRatio",   :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Median",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Mean",               :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_SD",                 :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_B_Median",           :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_B_Mean",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_B_SD",               :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_B_1_SD",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_B_2_SD",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_F_Sat",              :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Median_B",           :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Mean_B",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_SignalNoiseRatio",   :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Ratio_of_Medians",   :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Ratio_of_Means",     :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Median_of_Ratios",   :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Mean_of_Ratios",     :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Ratios_SD",          :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Rgn_Ratio",          :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Rgn_R",              :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_Log_Ratio",          :precision => 8, :scale => 2
-    t.decimal  "D_Sum_of_Medians",         :precision => 8, :scale => 2
-    t.decimal  "D_Sum_of_Means",           :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_N_Median",           :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_N_Mean",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_N_MedianB",          :precision => 8, :scale => 2
-    t.decimal  "D_Ch1_N_MeanB",            :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_Median",           :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_Mean",             :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_MedianB",          :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_MeanB",            :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_Ratio_of_Medians", :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_Ratio_of_Means",   :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_Median_of_Ratios", :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_Mean_of_Ratios",   :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_Rgn_Ratio",        :precision => 8, :scale => 2
-    t.decimal  "D_Ch2_N_Log_Ratio",        :precision => 8, :scale => 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -281,56 +312,6 @@ ActiveRecord::Schema.define(:version => 20120926144219) do
     t.datetime "updated_at"
   end
 
-  create_table "micro_arrays", :force => true do |t|
-    t.integer  "experiment_id"
-    t.string   "gpr_title"
-    t.string   "gpr_file_title"
-    t.binary   "gpr_file"
-    t.text     "note"
-    t.date     "loaded_at"
-    t.integer  "partner_id"
-    t.string   "H_name"
-    t.decimal  "H_ScanArrayCSVFileFormat",         :precision => 8, :scale => 2
-    t.decimal  "H_ScanArray_Express",              :precision => 8, :scale => 2
-    t.integer  "H_Number_of_Columns"
-    t.datetime "I_DateTime"
-    t.string   "I_GalFile"
-    t.string   "I_Scanner"
-    t.string   "I_User_Name"
-    t.string   "I_Computer_Name"
-    t.string   "I_Protocol"
-    t.string   "I_Quantitation_Method"
-    t.string   "I_Quality_Confidence_Calculation"
-    t.text     "I_User_comments"
-    t.string   "I_Image_Origin"
-    t.decimal  "I_Temperature",                    :precision => 4, :scale => 2
-    t.string   "I_Laser_Powers"
-    t.decimal  "I_Laser_On_Time",                  :precision => 8, :scale => 2
-    t.string   "I_PMT_Voltages"
-    t.integer  "QP_Min_Percentile"
-    t.integer  "QP_Max_Percentile"
-    t.integer  "QM_Max_Footprint"
-    t.string   "API_Units"
-    t.integer  "API_Array_Rows"
-    t.integer  "API_Array_Columns"
-    t.integer  "API_Spot_Rows"
-    t.integer  "API_Spot_Columns"
-    t.decimal  "API_Array_Row_Spacing",            :precision => 8, :scale => 2
-    t.decimal  "API_Array_Column_Spacing",         :precision => 8, :scale => 2
-    t.decimal  "API_Spot_Row_Spacing",             :precision => 8, :scale => 2
-    t.decimal  "API_Spot_Column_Spacing",          :precision => 8, :scale => 2
-    t.integer  "API_Spot_Diameter"
-    t.integer  "API_Interstitial"
-    t.integer  "API_Spots_Per_Array"
-    t.integer  "API_Total_Spots"
-    t.string   "NI_Normalization_Method"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "micro_arrays", ["experiment_id"], :name => "index_micro_arrays_on_experiment_id"
-  add_index "micro_arrays", ["partner_id"], :name => "index_micro_arrays_on_partner_id"
-
   create_table "microarraygals", :force => true do |t|
     t.string   "gal_title"
     t.string   "gal_file_title"
@@ -345,6 +326,19 @@ ActiveRecord::Schema.define(:version => 20120926144219) do
   end
 
   add_index "microarraygals", ["partner_id"], :name => "index_microarraygals_on_partner_id"
+
+  create_table "microarraygprs", :force => true do |t|
+    t.string   "gpr_title"
+    t.string   "gpr_file_title"
+    t.binary   "gpr_file"
+    t.string   "code"
+    t.date     "loaded_at"
+    t.string   "barcode"
+    t.integer  "partner_id"
+    t.text     "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -416,7 +410,7 @@ ActiveRecord::Schema.define(:version => 20120926144219) do
 
   create_table "oligos", :force => true do |t|
     t.string   "code"
-    t.integer  "oligo_sequence_id"
+    t.string   "oligo_id"
     t.integer  "gal_header_id"
     t.integer  "gal_block_id"
     t.string   "row_number"
@@ -426,8 +420,8 @@ ActiveRecord::Schema.define(:version => 20120926144219) do
     t.datetime "updated_at"
   end
 
-  add_index "oligos", ["oligo_sequence_id", "microarraygal_id"], :name => "index_oligos_on_oligo_sequence_id_and_microarraygal_id", :unique => true
-  add_index "oligos", ["oligo_sequence_id"], :name => "index_oligos_on_oligo_sequence_id"
+  add_index "oligos", ["code", "microarraygal_id"], :name => "index_oligos_on_code_and_microarraygal_id"
+  add_index "oligos", ["code"], :name => "index_oligos_on_code"
 
   create_table "operations", :force => true do |t|
     t.integer  "protocol_id"

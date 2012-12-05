@@ -1,0 +1,414 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", microarraygprs_path %></li>
+      <li><%= link_to "Microarray Images", micro_array_images_path %></li>
+      <li><%= link_to "Microarray Analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray Validations", micro_array_validations_path %></li> 
+    </ul>
+  </td></tr>
+</table>
+
+<h1>Editing .GPR Data </h1>
+
+<%= link_to 'Show', @gpr_data %> |
+<%= link_to 'Back', gpr_datas_path %>
+
+<% form_for(@gpr_data) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+
+<fieldset><legend class="leg">GPR's associated DATA</legend>
+<table width="95%">
+<tr><td>
+  <div class="field txt">
+    <%= f.label :microarraygpr_id, "Associated GPR ID :" %>
+    <%= @gpr_data.microarraygpr_id %>
+  </div>
+</td>
+<td>
+  <div class="field date">
+    <%= f.label :loaded_at, "Updated at :" %>
+    <%= @gpr_data.updated_at.strftime("%A %d %B %Y") %>
+  </div>
+</td></tr>
+</table>
+</fieldset>
+
+
+<fieldset><legend class="leg">HEADER</legend>
+<table width="95%">
+<tr><td>
+<div class="field txt">
+<%= f.label :oligo_name, "Oligo Name" %><br />
+<%= f.text_field :oligo_name %>
+</div>
+</td>
+<td>
+<div class="field txt">
+<%= f.label :x, "X" %><br />
+<%= f.text_field :x %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :y, "Y" %><br />
+<%= f.text_field :y %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :dia, "Diameter" %><br />
+<%= f.text_field :dia %>
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f635_median, "Median F635" %><br />
+<%= f.text_field :f635_median %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :f635_mean, "Mean F635" %><br />
+<%= f.text_field :f635_mean %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f635_sd, "SD F635" %><br />
+<%= f.text_field :f635_sd %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :f635_cv, "CV F635" %><br />
+<%= f.text_field :f635_cv %> 
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :b635, "Background 635" %><br />
+<%= f.text_field :b635 %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :b635_Median, "Median B635" %><br />
+<%= f.text_field :b635_Median %> 
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :b635_mean, "Mean B635" %><br />
+<%= f.text_field :b635_mean %>  
+</div>
+
+</td><td>
+
+<div class="field txt">
+<%= f.label :b635_sd, "SD B635" %><br />
+<%= f.text_field :b635_sd %>  
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :b635_cv, "CV B635" %><br />
+<%= f.text_field :b635_cv %>  
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :percent_b635_1_sd, "% B635 +1 SD" %><br />
+<%= f.text_field :percent_b635_1_sd %>  
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :percent_b635_2_sd, "% B635 +2 SD" %><br />
+<%= f.text_field :percent_b635_2_sd %>  
+</div>
+
+</td><td>
+
+<div class="field txt">
+<%= f.label :f635_perc_sat, "% Sat F635" %><br />
+<%= f.text_field :f635_perc_sat %>  
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f532_median, "Median F532" %><br />
+<%= f.text_field :f532_median %>  
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :f532_mean, "Mean F532" %><br />
+<%= f.text_field :f532_mean %>  
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f532_sd, "SD F532" %><br />
+<%= f.text_field :f532_sd %>  
+</div>
+
+</td><td>
+
+<div class="field txt">
+<%= f.label :f532_cv, "CV F532" %><br />
+<%= f.text_field :f532_cv %>  
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :b532, "B532" %><br />
+<%= f.text_field :b532 %>  
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :b532_median, "Median B532" %><br />
+<%= f.text_field :b532_median %>  
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :b532_mean, "Mean B532" %><br />
+<%= f.text_field :b532_mean %>  
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :b532_sd, "SD B532" %><br />
+<%= f.text_field :b532_sd %>  
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :b532_cv, "CV B532" %><br />
+<%= f.text_field :b532_cv %>  
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :percent_b532_1_sd, "% B532 +1 SD" %><br />
+<%= f.text_field :percent_b532_1_sd %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :percent_b532_2_sd, "% B532 +2 SD" %><br />
+<%= f.text_field :percent_b532_2_sd %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f532_perc_sat, "% F532 Sat" %><br />
+<%= f.text_field :f532_perc_sat %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :ratio_of_medians, "Ratio of Medians" %><br />
+<%= f.text_field :ratio_of_medians %> 
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :ratio_of_means, "Ratio of Means" %><br />
+<%= f.text_field :ratio_of_means %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :median_of_ratios, "Median of ratios" %><br />
+<%= f.text_field :median_of_ratios %> 
+</div>
+
+</td></tr>
+
+<tr><td>
+
+<div class="field txt">
+<%= f.label :mean_of_ratios, "Mean of Ratios" %><br />
+<%= f.text_field :mean_of_ratios %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :ratios_sd, "Ratio's SD" %><br />
+<%= f.text_field :ratios_sd %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :rgn_ratio, "Regression Ratio" %><br />
+<%= f.text_field :rgn_ratio %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :rgn_r2, "Regression R2" %><br />
+<%= f.text_field :rgn_r2 %> 
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f_pixels, "F Pixels" %><br />
+<%= f.text_field :f_pixels %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :b_pixels, "B Pixels" %><br />
+<%= f.text_field :b_pixels %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :circularity, "Circularity" %><br />
+<%= f.text_field :circularity %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :sum_of_medians, "Sum of Medians" %><br />
+<%= f.text_field :sum_of_medians %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :sum_of_means, "Sum of Means" %><br />
+<%= f.text_field :sum_of_means %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :log_ratio, "Log Ratio" %><br />
+<%= f.text_field :log_ratio %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f635_median_minus_b635, "Median F635 - B635" %><br />
+<%= f.text_field :f635_median_minus_b635 %> 
+</div>
+
+</td><td>
+
+<div class="field txt">
+<%= f.label :f532_median_minus_b635, "Median F532 - B635" %><br />
+<%= f.text_field :f532_median_minus_b635 %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f635_mean_minus_b635, "Mean F635 - B635" %><br />
+<%= f.text_field :f635_mean_minus_b635 %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :f532_mean_minus_b635, "Mean F532 - B635" %><br />
+<%= f.text_field :f532_mean_minus_b635 %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :f635_total_intensity, "Total int. F635" %><br />
+<%= f.text_field :f635_total_intensity %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :f532_total_intensity, "Total int. F532" %><br />
+<%= f.text_field :f532_total_intensity %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :snr_635, "SNR 635" %><br />
+<%= f.text_field :snr_635 %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :snr_532, "SNR 532" %><br />
+<%= f.text_field :snr_532 %> 
+</div>
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :flags, "Flags" %><br />
+<%= f.text_field :flags %> 
+</div>
+
+</td><td>
+<div class="field txt">
+<%= f.label :normalize, "Normalize" %><br />
+<%= f.text_field :normalize %> 
+</div>
+
+</td></tr>
+
+<tr><td>
+<div class="field txt">
+<%= f.label :autoflag, "Autoflag" %><br />
+<%= f.text_field :autoflag %> 
+</div>
+</td></tr>
+
+</table>
+</fieldset>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @gpr_data %> |
+<%= link_to 'Back', gpr_datas_path %>
+
+
+

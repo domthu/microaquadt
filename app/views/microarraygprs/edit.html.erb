@@ -1,0 +1,49 @@
+<table>
+  <tr class="taleft" width="70%"><td class="taleft">
+    <ul class="navigation round taleft">
+      <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
+      <li><%= link_to "Microarray .GPR", microarraygprs_path %></li>
+      <li><%= link_to "Microarray Images", micro_array_images_path %></li>
+      <li><%= link_to "Microarray Analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray Validations", micro_array_validations_path %></li> 
+    </ul>
+  </td></tr>
+</table>
+
+<h1>Editing Microarray .GPR </h1>
+
+<%= link_to 'Show', @microarraygpr %> |
+<%= link_to 'Back', microarraygprs_path %>
+
+<% form_for(@microarraygpr) do |f| %>
+  <%= f.error_messages %>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+
+<fieldset><legend class="leg">GENERAL DATA</legend>
+  <div class="field select">
+    <%= f.label :partner_id, "Partner" %><br />
+    <div style="display:none;">  select :microarraygpr,:partner_id,Partner.find(:all).collect{|p| [p.verbose_me, p.id]} </div>
+    <h3><%= @partner.verbose_me %></h3>
+  </div>
+
+  <div class="field txt">
+    <%= f.label :gpr_title, "File" %><br />
+    <h3><%= @microarraygpr.gpr_title %></h3>
+  </div>
+  <div class="field date">
+    <%= f.label :loaded_at, "Uploaded at" %><br />
+    <h3><%= @microarraygpr.loaded_at.to_s %></h3>
+  </div>
+</fieldset>
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', @microarraygpr %> |
+<%= link_to 'Back', microarraygprs_path %>
+

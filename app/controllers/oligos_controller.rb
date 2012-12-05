@@ -14,18 +14,36 @@ class OligosController < ApplicationController
 
          respond_to do |format|
         format.html 
-        format.json { render :json => oligos.to_jqgrid_json([:id,"act","oligo_id","oligo","edit"], params[:page], params[:rows], oligos.total_entries) }			
+        format.json { render :json => oligos.to_jqgrid_json([:id,"act","oligo","edit"], params[:page], params[:rows], oligos.total_entries) }			
       end
       
     
         else
         
-		oligos = Oligo.find(:all) do
-		paginate :page => params[:page], :per_page => params[:rows]      
-		end
+	  oligos = Oligo.find(:all) do
+
+			if params[:_search] == "true"
+			   microarraygal.id =~ "%#{params[:gal_o_code]}%" if params[:gal_o_code].present?
+			   #oligo_sequence.id =~ "%#{params[:oligo_id]}%" if params[:oligo_id].present?
+			   oligo_sequence.code =~ "%#{params[:oligo]}%" if params[:oligo].present?
+			   
+			end
+
+	       paginate :page => params[:page], :per_page => params[:rows]
+	       order_by "#{params[:sidx]} #{params[:sord]}" 
+
+		       if params[:sidx] == "gal_o_code"
+			  order_by "microarraygals.id #{params[:sord]}"
+		      # elsif params[:sidx] == "oligo_id"
+			  #order_by "oligo_sequences.id #{params[:sord]}"
+		       elsif params[:sidx] == "oligo"
+			  order_by "oligo_sequences.code #{params[:sord]}"    
+		       end  
+     
+       end
 		respond_to do |format|
 		format.html 
-		format.json { render :json => oligos.to_jqgrid_json([:id,"act","gal_o_code","array_info","oligo_id","oligo","oligo_upload_date","edit"], params[:page], params[:rows], oligos.total_entries) }			
+		format.json { render :json => oligos.to_jqgrid_json([:id,"act","gal_o_code","array_info","oligo","oligo_upload_date","edit"], params[:page], params[:rows], oligos.total_entries) }			
 	      end
     end       
   end

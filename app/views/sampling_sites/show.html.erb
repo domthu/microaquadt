@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'ym4r-gm.js' %>
 <%= GMap.header %>
 
 <table>
@@ -39,7 +40,6 @@
 
   <div class="show select">
       <b>Water type:</b>
-      <%=h @sampling_site.water_type %>
       <%=h @wt.code + " " + @wt.name %>
   </div>
 

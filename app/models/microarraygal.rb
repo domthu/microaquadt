@@ -21,9 +21,9 @@ include ActionController::UrlWriter
         file_part = $1
       end
       if barcode.empty?
-            return self.id.to_s + '-' +  self.code  + '-' + file_part.to_s
+            return 'GAL-' + self.id.to_s + '-' +  self.code  + '-' + file_part.to_s
         else
-            return self.id.to_s + '-' +  self.code  + '-' + self.barcode  + '-' + file_part.to_s
+            return 'GAL-' + self.id.to_s + '-' +  self.code  + '-' + self.barcode  + '-' + file_part.to_s
         end   
   end
 

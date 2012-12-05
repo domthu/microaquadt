@@ -2,11 +2,10 @@
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
       <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
-      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
-      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
-      <li><%= link_to "micro array images", micro_array_images_path %></li>
-      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
-      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray .GPR", microarraygprs_path %></li>
+      <li><%= link_to "Microarray Images", micro_array_images_path %></li>
+      <li><%= link_to "Microarray Analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray Validations", micro_array_validations_path %></li> 
     </ul>
   </td></tr>
 </table>
@@ -31,43 +30,47 @@
     <%= f.label :microarraygal_id, "Associate .gal file title" %><br />
     <%= select :experiment,:microarraygal_id, @mg.collect{|p| [p.verbose_me, p.id]}%>
    </div>
-  
+  </td><td>
+    <div class="field select">
+    <%= f.label :microarraygpr_id, "Associate .gpr file title" %><br />
+    <%= select :experiment,:microarraygpr_id, @gp.collect{|p| [p.verbose_me, p.id]}%>
+   </div>
+ </td></tr>
+<tr><td>
   <div class="field cod hide">
     <%= f.label :code, "Filter Microaqua code" %><br />
     <h2><%= @codegen %></h2>
   </div>
-
+</td><td>
   <div class="field select">
     <%= f.label :partner_id %><br />
     <%= select :experiment,:partner_id, Partner.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
-
+</td></tr>
+<tr><td>
    <div class="field select">
     <%= f.label :people_id, "Person" %><br />
     <%= select :experiment,:people_id, peoples_by_partner.collect{|p| [p.verbose_me, p.id]}%>
   </div>
- 
-
-</td><td>
-
-   <div class="field select">
+ </td><td>
+  <div class="field select">
     <%= f.label :filter_sample_id, "Filter Sample Code" %><br />
     <%= select :experiment,:filter_sample_id, FilterSample.find(:all).collect{|p| [p.code, p.id]} %>
   </div>
-
+</td></tr>
+<tr><td>
 
    <div class="field txt">
     <%= f.label :barcode, "Partner barcode" %><br />
     <%= f.text_field :barcode %>
   </div>
- 
+</td><td> 
   <div class="field date">
     <%= f.label :experiment_date, "Uploaded at" %><br />
     <%= f.date_select :experiment_date %>
   </div> 
 
-
-</td><tr></table>
+</td></tr></table>
 
 </fieldset>
 

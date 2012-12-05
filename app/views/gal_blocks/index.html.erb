@@ -6,11 +6,10 @@
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
       <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
-      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
-      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
-      <li><%= link_to "micro array images", micro_array_images_path %></li>
-      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
-      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray .GPR", microarraygprs_path %></li>
+      <li><%= link_to "Microarray Images", micro_array_images_path %></li>
+      <li><%= link_to "Microarray Analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray Validations", micro_array_validations_path %></li> 
     </ul>
   </td></tr>
   <tr class="taleft" width="70%"><td class="taleft">
@@ -42,12 +41,12 @@
 	[
 	{ :field => "id", :label => "ID", :width => 50, :resizable => false, :sortable => false, :editable => false, :hidden => true},
         { :field => "act", :label => "", :width => 30 , :resizable => false, :sortable => false, :search => false },
-        { :field => "gal_id", :label => "GAL ID", :width => 70, :resizable => false, :sortable => false, :search => false },
-        { :field => "block", :label => "Block#", :width => 100, :search => true, :sortable => true },
-        { :field => "x_origin", :label => "xOrigin", :width => 100, :class => "taright"  },
-	{ :field => "y_origin", :label => "yOrigin", :search => true, :sortable => true, :editable => false, :width => 100 },
+        { :field => "gal_id", :label => "GAL ID", :width => 70, :resizable => false, :sortable => false, :search => true },
+        { :field => "block", :label => "Block#", :width => 100, :search => false, :sortable => true },
+        { :field => "x_origin", :label => "xOrigin", :width => 100, :class => "taright", :search => false },
+	{ :field => "y_origin", :label => "yOrigin", :search => false, :sortable => true, :editable => false, :width => 100 },
 	{ :field => "featureDiameter", :label => "Feature Diameter", :search => false, :width => 100, :sortable => false  },
-        { :field => "x_feature", :label => "xFeature", :search => true, :sortable => true, :editable => false, :width => 100 },
+        { :field => "x_feature", :label => "xFeature", :search => false, :sortable => true, :editable => false, :width => 100 },
         { :field => "x_spacing", :label => "xSpacing", :search => false, :width => 100, :sortable => false  },
         { :field => "y_feature", :label => "yFeature", :search => false, :width => 100, :sortable => false  },
         { :field => "y_spacing", :label => "ySpacing", :search => false, :width => 100, :sortable => false  },

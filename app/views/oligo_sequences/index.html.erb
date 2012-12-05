@@ -1,7 +1,6 @@
 <%= jqgrid_stylesheets %>
+<div style="display:none" javascript_include_tag('jqgrid/jquery.js') ></div>
 <%= jqgrid_javascripts %> 
-<%= javascript_include_tag 'json.js' %>
-<%= javascript_include_tag 'json_parse.js' %>
 
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
@@ -11,13 +10,13 @@
   </td></tr>
 </table>
 
+
 <h1>Oligo sequences</h1>
 <table>
 <tr><td><%= link_to 'New oligo sequence', new_oligo_sequence_path %></td>
-    <td><a href="<%= '/export_all' %>">Export all oligos as CSV</a></td>
 </tr>
-<tr><td><a href="<%= '/export_to_csv' %>" onclick="x(); return false;">Export selected oligos as CSV</a></td>
-    <td><a href="<%= 'export_all_xls.xls' %>">Export all oligos as Excel</a></td>
+<tr><td><a href="<%= '/export_all' %>">Export all oligos as CSV</a><b>(</b><a href="<%= 'export_all_xls.xls' %>">Excel</a><b>)</b></td>
+    <td><a href="<%= '/export_to_csv' %>" onclick="x(); return false;">Export selected oligos as CSV</a></td>
 </tr>
 </table>
 
@@ -38,13 +37,11 @@ var obj = jQuery("input:checked").map(function() { return jQuery(this).parents('
 	     data : {data:data},
 	     dataType : 'string',
              async: false,
-             success : function(response) { result = response;}
-                
-              }); 
+             success : function(response) { result = response; }
+         }); 
 
-   window.open( "data:text/csv;charset=utf-8," + escape(result)) 
-    
-      
+    window.open('data:text/csv;charset=utf-8,' + escape(result));
+
 };
 
 
@@ -121,11 +118,10 @@ var obj = jQuery("input:checked").map(function() { return jQuery(this).parents('
 
 <br />
 <table>
-<tr><td><%= link_to 'New oligo sequence', new_oligo_sequence_path %></td>
-    <td><a href="<%= '/export_all' %>">Export all oligos as CSV</a></td>
+<tr><td><a href="<%= '/export_all' %>">Export all oligos as CSV</a><b>(</b><a href="<%= 'export_all_xls.xls' %>">Excel</a><b>)</b></td>
+    <td><a href="<%= '/export_to_csv' %>" onclick="x(); return false;">Export selected oligos as CSV</a></td>
 </tr>
-<tr><td><a href="<%= '/export_to_csv' %>" onclick="x(); return false;">Export selected oligos as CSV</a></td>
-    <td><a href="<%= 'export_all_xls.xls' %>">Export all oligos as Excel</a></td>
+<tr><td><%= link_to 'New oligo sequence', new_oligo_sequence_path %></td>
 </tr>
 </table>
 

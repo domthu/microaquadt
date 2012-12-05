@@ -2,11 +2,10 @@
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
       <li><%= link_to "Microarray .GAL", microarraygals_path %></li>
-      <li><%= link_to "Microarray .GPR", micro_arrays_path %></li>
-      <li><%= link_to "micro array datas", micro_array_datas_path %></li>
-      <li><%= link_to "micro array images", micro_array_images_path %></li>
-      <li><%= link_to "micro array validations", micro_array_validations_path %></li>
-      <li><%= link_to "micro array analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray .GPR", microarraygprs_path %></li>
+      <li><%= link_to "Microarray Images", micro_array_images_path %></li>
+      <li><%= link_to "Microarray Analysis files", micro_array_analysis_files_path %></li>
+      <li><%= link_to "Microarray Validations", micro_array_validations_path %></li> 
     </ul>
   </td></tr>
 </table>
@@ -55,7 +54,7 @@
 <tr><td> 
     <div class="show cod">
       <b>Oligo ID:</b>
-      <%=h @oligo.oligo_sequence_id %> 
+      <%=h @oligo.oligo_id %> 
     </div>
 </td><td>
 
