@@ -9,13 +9,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129124328) do
+ActiveRecord::Schema.define(:version => 20121227155856) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+  end
+
+  create_table "assets", :force => true do |t|
+    t.integer  "batch_oligo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "fiolse_file_name"
+    t.string   "fiolse_content_type"
+    t.integer  "fiolse_file_size"
+    t.datetime "fiolse_updated_at"
+  end
+
+  create_table "batch_oligos", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "fiolse_file_name"
+    t.string   "fiolse_content_type"
+    t.integer  "fiolse_file_size"
+    t.datetime "fiolse_updated_at"
   end
 
   create_table "catchment_areas", :force => true do |t|

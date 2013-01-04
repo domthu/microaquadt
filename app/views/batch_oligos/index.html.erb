@@ -1,0 +1,18 @@
+<h1>Listing batch_oligos</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @batch_oligos.each do |batch_oligo| %>
+  <tr>
+    <td><%= link_to 'Show', batch_oligo %></td>
+    <td><%= link_to 'Edit', edit_batch_oligo_path(batch_oligo) %></td>
+    <td><%= link_to 'Destroy', batch_oligo, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New batch_oligo', new_batch_oligo_path %>

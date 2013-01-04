@@ -1,3 +1,8 @@
+<%= jqgrid_stylesheets %>
+<div style="display:none" javascript_include_tag('jqgrid/jquery.js') ></div>
+<%= jqgrid_javascripts %>
+
+
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
@@ -41,6 +46,11 @@
     <%= f.label :gal_file, "Load the GAL file" %><br />
     <%= file_field(:microarraygal, :gal_file, :accept => 'text/csv') %>
   </div>
+
+   <div class="field txt">
+     <%= f.file_field :mufile %>
+   <div>
+
   <div class="field date">
     <%= f.label :loaded_at, "Uploaded at" %><br />
     <%= f.date_select :loaded_at %>
@@ -55,6 +65,11 @@
   <div class="actions">
     <%= f.submit 'Create' %>
   </div>
+
+<script type="text/javascript">
+//$(window).ready(function() { alert("window is ready"); });
+</script>
+
 
 <% end %>
 

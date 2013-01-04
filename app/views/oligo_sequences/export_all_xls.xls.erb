@@ -9,6 +9,7 @@
       <Row>
         <Cell><Data ss:Type="String">ID</Data></Cell>
         <Cell><Data ss:Type="String">Description</Data></Cell>
+        <Cell><Data ss:Type="String">Partner Code</Data></Cell>
         <Cell><Data ss:Type="String">DNA Sequence</Data></Cell>      
         <Cell><Data ss:Type="String">Oligo Date</Data></Cell>
         <Cell><Data ss:Type="String">Organism Name</Data></Cell>
@@ -21,6 +22,7 @@
       <Row>
         <Cell><Data ss:Type="Number"><%= oligo_sequence.id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= oligo_sequence.description %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= oligo_sequence.code %></Data></Cell>
         <Cell><Data ss:Type="String"><%= oligo_sequence.dna_ellipsis %></Data></Cell>
         <Cell><Data ss:Type="String"><%= oligo_sequence.oligoDate %></Data></Cell>
         <Cell><Data ss:Type="String"><%= oligo_sequence.name %></Data></Cell>

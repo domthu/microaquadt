@@ -1,0 +1,12 @@
+<h1>Editing batch_oligo</h1>
+
+<% form_for(@batch_oligo) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @batch_oligo %> |
+<%= link_to 'Back', batch_oligos_path %>

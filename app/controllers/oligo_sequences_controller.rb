@@ -12,7 +12,9 @@ require 'fastercsv'
 
   def esearch()
     logger.debug('esearch here')
+   
     xsearch = params[:es]
+   
     if !xsearch.nil?
         if !xsearch.include?('[Subtree]')
             xsearch = xsearch + '[Subtree]'
@@ -35,7 +37,9 @@ require 'fastercsv'
 
   def lookup()
     logger.debug('lookup here')
+    
     xsearch = params[:st]
+    
     if !xsearch.nil?
 #onclick="<%= remote_function(
 #                           :update => "resbio" ,
@@ -146,27 +150,9 @@ require 'fastercsv'
       format.json { render :json => oligo_sequences.to_jqgrid_json(
             [:id, "act", :code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", :taxonomy_name, :taxonomy_id, :available, "edit"],
             params[:page], params[:rows], oligo_sequences.total_entries) }			
-#The order of the fields in the first parameter matters, it should be the same than the display order in your datagrid. 
-#            "verbose_me","dna_ellipsis",:name,:dna_sequence
-#            [:id, "act", :code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", "taxo_name_id", :available, "edit"],
+
     end
   end
-
-#, :searchtype => "select", :searchoptions => { :data => [Partner.all, :id, :verbose_me] } },
-#, :searchtype => "select", :searchoptions => { :value => [["admin","admin"], ["player", "player"], ["defender","defender"]] }
-
-#<table><tr><th>Name</th><th>Dna sequence</th><th>Partner</th><th>Person</th></tr>
-#<% @oligo_sequences.each do |oligo_sequence| %><tr>
-#    <td><%=h oligo_sequence.verbose_me %></td>
-#    <td><%=h oligo_sequence.dna_ellipsis %></td>
-#    <td><%=h oligo_sequence.partner_name %></td>
-#    <td><%=h oligo_sequence.people_name %></td>
-#    <td><%= link_to 'Show', oligo_sequence %></td>
-#    <% if auth_user(oligo_sequence.partner_id) or signed_in_and_master? %>
-#      <td><%= link_to 'Edit', edit_oligo_sequence_path(oligo_sequence) %></td>
-#      <td><%= link_to 'Delete', oligo_sequence, :confirm => 'Are you sure?', :method => :delete %></td>
-#    <% end %>
-#</tr><% end %></table>
 
   # GET /oligo_sequences/1
   # GET /oligo_sequences/1.xml
@@ -187,14 +173,14 @@ require 'fastercsv'
   # GET /oligo_sequences/new
   # GET /oligo_sequences/new.xml
   def new
+   
+   logger.debug "::::::::::::::::::::Oligo Sequence new (" + current_user.name + "):::::::::::::::::::: "
     @oligo_sequence = OligoSequence.new
     @title = "Oligo sequence"
 
-    #<%= collection_select(:oligo_sequence, :partner_id, @partners, :id, :verbose_me, options ={}, :class =>"partner") %>
-
     @pt = get_partner
     unless @pt.nil?
-      #set the selected item
+      
       @oligo_sequence.partner_id = @pt.id
     end
 
@@ -226,6 +212,9 @@ require 'fastercsv'
   # POST /oligo_sequences
   # POST /oligo_sequences.xml
   def create
+    
+  logger.debug "::::::::::::::::::::Oligo Sequence create action (" + current_user.name + "):::::::::::::::::::: "
+
     @oligo_sequence = OligoSequence.new(params[:oligo_sequence])
     @title = "oligo sequence"
 

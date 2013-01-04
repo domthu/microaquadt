@@ -76,7 +76,7 @@ class MicroarraygalsController < ApplicationController
   # POST /microarraygals
   # POST /microarraygals.xml
   def create
-    logger.debug "::::::::::::::::::::micro array create action (" + current_user.name + "):::::::::::::::::::: "
+  logger.debug "::::::::::::::::::::micro array create action (" + current_user.name + "):::::::::::::::::::: "
     @microarraygal = Microarraygal.new(params[:microarraygal])
     @title = "Microarray GAL files"
 
@@ -379,12 +379,6 @@ class MicroarraygalsController < ApplicationController
     begin
       logger.debug "::::::::::::::::::::microarray GAL download data (" + current_user.name + "):::::::::::::::::::: "
 
-#    # Only respond to known types to avoid code injection attacks
-#    raise UnknownTypeError unless %w(documents image_files audio video).member?(params[:type])
-#    
-#    # Ensure we load the correct object type
-#    type = params[:type] == "audio" ? "audio_recordings" : params[:type]
-
       @microarraygal = Microarraygal.find(params[:id])
       @filename = File.join(@microarraygal.gal_file_title, @microarraygal.gal_title)
 
@@ -397,15 +391,7 @@ class MicroarraygalsController < ApplicationController
         render :text => 'private_files_controller.not_found', :status => 404
       end 
 
-#    rescue ActiveRecord::RecordNotFound
-#      logger.warn("#{Time.now} - Requested File Not Found: #{params.inspect}")
-#      render :text => t('private_files_controller.not_found'), :status => 404
-#    rescue UnknownTypeError
-#      logger.warn("#{Time.now} - Unknown type requested: #{params.inspect}")
-#      render :text => t('private_files_controller.bad_request'), :status => 400
-#    rescue PermissionDeniedError
-#      logger.warn("#{Time.now} - Permission Denied While Requesting Private Item: #{params.inspect}")
-#      render :text => t('private_files_controller.unauthorized'), :status => 401
+
     rescue => err
       flash.now[:error] = "Exception extractFile: #{err}..."
       logger.warn("#{Time.now} - Unknown type requested: #{params.inspect}")

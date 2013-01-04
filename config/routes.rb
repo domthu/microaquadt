@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :batch_oligos
+
 
   map.resources :microarraygprs
 
@@ -44,15 +46,14 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :micro_array_validations
 
+  map.resources :micro_array_datas
+
   map.resources :names
   
   map.resources :oligo_sequences
-
- # map.export_all '/export_all', :controller => 'oligo_sequences', :action => 'export_all'
   
   map.lookforbio '/lookforbio', :controller => 'oligo_sequences', :action => 'lookup'
   map.lookforbio '/searchforbio', :controller => 'oligo_sequences', :action => 'esearch'
-
 
   map.resources :nodes
 

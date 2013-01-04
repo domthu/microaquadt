@@ -5,18 +5,18 @@ include OligoSequencesHelper
 #include CodeTypesHelper
 #include SessionsHelper
 
-  validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
-  validates_length_of :name, :maximum=>100
-  validates_length_of :code, :maximum=>30
-  validates_uniqueness_of :code, :case_sensitive => false
-  validates_presence_of :dna_sequence, :message => "Can't be empty, field is mandatory. "
+ # validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
+ # validates_length_of :name, :maximum=>100
+ # validates_length_of :code, :maximum=>30
+ # validates_uniqueness_of :code, :case_sensitive => false
+ # validates_presence_of :dna_sequence, :message => "Can't be empty, field is mandatory. "
   #validates_uniqueness_of :dna_sequence, :case_sensitive => false
-  validates_length_of :dna_sequence, :maximum=>100
+ # validates_length_of :dna_sequence, :maximum=>100
 
   #C A T and G
   #validates_format_of :dna_sequence, :with => /^([^\d\W]|[-])*$/
   #IUPAC code table  for nucleotid
-  validates_format_of :dna_sequence, :with => /^[ACGTURYMKWSBDHVNacgturymkwsbdhvn]+$/, :message => "DNA is invalid, only IUPAC alfabet is possible -%{value}-" # "#{self.name}"
+ # validates_format_of :dna_sequence, :with => /^[ACGTURYMKWSBDHVNacgturymkwsbdhvn]+$/, :message => "DNA is invalid, only IUPAC alfabet is possible -%{value}-" # "#{self.name}"
 #validation dna seq --> IUPAC code table Nucleotid:  
 #A (Adenine) 
 #C (Cytosine)    
@@ -36,9 +36,11 @@ include OligoSequencesHelper
 #N (Any base A, C, G, T, or U)   
 
 
-  validates_numericality_of :taxonomy_id, :allow_nil => true #, :less_than => 100
+  #validates_numericality_of :taxonomy_id, :allow_nil => true #, :less_than => 100
 
-  belongs_to :microarraygals
+  belongs_to :microarraygal
+
+  belongs_to :batch_oligo
 
   has_many :oligos, :dependent => :destroy
 
