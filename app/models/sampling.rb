@@ -26,32 +26,33 @@ include SamplingsHelper
   validates_presence_of :code, :message => "Can't be empty, field is mandatory. "
   validates_uniqueness_of :code, :case_sensitive => false
   validates_length_of :code, :maximum=>15
+  
   #, :scope => :sampling_id --> kappao undefined method `samplingS_id'
 
-  validates_presence_of :volume, :message => "Can't be empty, field is mandatory. "
-  validates_numericality_of :volume, :less_than => 100
+  #validates_presence_of :volume, :message => "Can't be empty, field is mandatory. "
+  #validates_numericality_of :volume, :less_than => 100
 
-  validates_numericality_of :air_temperature, :allow_nil => true, :less_than => 100
-  validates_numericality_of :water_temperature, :allow_nil => true, :less_than => 100
-  validates_numericality_of :moisture, :allow_nil => true, :less_than => 100
-  validates_numericality_of :pressure, :allow_nil => true, :less_than => 100
-  validates_numericality_of :windSpeed, :allow_nil => true, :less_than => 100
-  validates_numericality_of :waterFlow, :allow_nil => true, :less_than => 100
-  validates_numericality_of :lightIntensity, :allow_nil => true, :less_than => 100
-  validates_numericality_of :rainfallEvents, :allow_nil => true, :less_than => 100
-  validates_numericality_of :depth, :allow_nil => true, :less_than => 100
-  validates_numericality_of :turbidity, :allow_nil => true, :less_than => 100
-  validates_numericality_of :salinity, :less_than => 100
-  validates_numericality_of :tidalRange, :less_than => 100
-  validates_numericality_of :conductivity, :allow_nil => true, :less_than => 100
-  validates_numericality_of :phosphates, :allow_nil => true, :less_than => 100
-  validates_numericality_of :nitrates, :allow_nil => true, :less_than => 100
-  validates_numericality_of :ph, :allow_nil => true, :less_than => 14
+  #validates_numericality_of :air_temperature, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :water_temperature, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :moisture, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :pressure, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :windSpeed, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :waterFlow, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :lightIntensity, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :rainfallEvents, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :depth, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :turbidity, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :salinity, :less_than => 100
+  #validates_numericality_of :tidalRange, :less_than => 100
+  #validates_numericality_of :conductivity, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :phosphates, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :nitrates, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :ph, :allow_nil => true, :less_than => 14
 
-  validates_numericality_of :nitrogen, :allow_nil => true, :less_than => 100
-  validates_numericality_of :bod5, :allow_nil => true, :less_than => 100
-  validates_numericality_of :cod, :allow_nil => true, :less_than => 100
-  validates_numericality_of :h2osat, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :nitrogen, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :bod5, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :cod, :allow_nil => true, :less_than => 100
+  #validates_numericality_of :h2osat, :allow_nil => true, :less_than => 100
 
   #name of the model in lowercase
   belongs_to :sampling_site  #, :null => false
@@ -81,6 +82,8 @@ include SamplingsHelper
   #  FROM relationships
   #  WHERE contact_id = #{id}
   #)
+
+  belongs_to :batch_sampling
 
   #has_one :sampling_equipments, :null => true
   #belongs_to :sampling_equipments, :null => true

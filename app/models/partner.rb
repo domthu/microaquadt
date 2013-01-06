@@ -13,6 +13,7 @@ class Partner < ActiveRecord::Base
   has_many :experiments
   has_many :samplings
   has_one :country #, :null => false
+  has_many :batch_samplings
 
   attr_reader :verbose
   def verbose

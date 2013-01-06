@@ -1,0 +1,12 @@
+<h1>Editing batch_sampling</h1>
+
+<% form_for(@batch_sampling) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @batch_sampling %> |
+<%= link_to 'Back', batch_samplings_path %>

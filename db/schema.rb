@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227155856) do
+ActiveRecord::Schema.define(:version => 20130105110448) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -31,10 +31,11 @@ ActiveRecord::Schema.define(:version => 20121227155856) do
   create_table "batch_oligos", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fiolse_file_name"
-    t.string   "fiolse_content_type"
-    t.integer  "fiolse_file_size"
-    t.datetime "fiolse_updated_at"
+  end
+
+  create_table "batch_samplings", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "catchment_areas", :force => true do |t|
@@ -522,6 +523,16 @@ ActiveRecord::Schema.define(:version => 20121227155856) do
   end
 
   add_index "protocols", ["sampling_id"], :name => "index_protocols_on_sampling_id"
+
+  create_table "sampling_assets", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "safi_file_name"
+    t.string   "safi_content_type"
+    t.integer  "safi_file_size"
+    t.datetime "safi_updated_at"
+    t.integer  "batch_sampling_id"
+  end
 
   create_table "sampling_equipments", :force => true do |t|
     t.string   "name"

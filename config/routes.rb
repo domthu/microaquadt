@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+ 
+  map.resources :batch_samplings
+
   map.resources :batch_oligos
 
 
@@ -150,6 +153,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id.:format'
   map.connect ':controller/:action.:format'
   map.connect '/export_all', :controller => 'oligo_sequences', :action => 'export_all'
+  map.connect '/download_sample_csv', :controller => 'batch_oligos', :action => 'download_sample_csv'
+  map.connect '/download_sample_sampling_csv', :controller => 'batch_samplings', :action => 'download_sample_sampling_csv'
   map.connect '/export_to_csv', :controller => 'oligo_sequences', :action => 'export_to_csv'
   map.connect '/export_all_xls.xls', :controller => 'oligo_sequences', :action => 'export_all_xls'
   

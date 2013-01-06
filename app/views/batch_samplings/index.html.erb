@@ -1,0 +1,18 @@
+<h1>Listing batch_samplings</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @batch_samplings.each do |batch_sampling| %>
+  <tr>
+    <td><%= link_to 'Show', batch_sampling %></td>
+    <td><%= link_to 'Edit', edit_batch_sampling_path(batch_sampling) %></td>
+    <td><%= link_to 'Destroy', batch_sampling, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New batch_sampling', new_batch_sampling_path %>

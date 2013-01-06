@@ -1,4 +1,9 @@
 class BatchOligosController < ApplicationController
+ 
+class UnknownTypeError < StandardError
+end
+
+
   # GET /batch_oligos
   # GET /batch_oligos.xml
   def index
@@ -55,7 +60,10 @@ class BatchOligosController < ApplicationController
          id = @batch_oligo.id
          self.parse_oligo_sequences(id)
        
-        format.html { redirect_to(@batch_oligo, :notice => 'BatchOligo was successfully created.') }
+        format.html { 
+              flash[:notice] = 'Files have been successfully saved and new oligo sequence entries are created!!'
+              redirect_to :controller => "oligo_sequences", :action => "index" }
+
         format.xml  { render :xml => @batch_oligo, :status => :created, :location => @batch_oligo }
       else
         format.html { render :action => "new" }
@@ -161,7 +169,38 @@ if line =~ /(\w+)[\t,](\S+)[\t,](\d)[\t,](\d+)[\t,](\w+[\s\w+]*)[\t,](\d+-\d+-\d
       end
  end
 
+ def download_sample_csv
+    begin
+      logger.debug "::::::::::::::::::::Sample Oligo download data (" + current_user.name + "):::::::::::::::::::: "
 
+     @oligo1 = OligoSequence.find(1)
+     @oligo2 = OligoSequence.find(2)
+
+    file = FasterCSV.generate do |line|
+    cols = ["DNASequence", "Code", "Partner ID","Person ID","Name","Date(YYYY-MM-DD)", "Description"]
+    line << cols
+                   
+    line << [ @oligo1.dna_sequence, @oligo1.code, @oligo1.partner_id, @oligo1.people_id, @oligo1.name, @oligo1.oligoDate, @oligo1.description ]
+
+    line << [ @oligo2.dna_sequence, @oligo2.code, @oligo2.partner_id, @oligo2.people_id, @oligo2.name, @oligo2.oligoDate, @oligo2.description ]
+        
+
+    end
+    
+    send_data(file, 
+    :type => 'text/csv;charset=utf-8;header=present', 
+    :disposition => "attachment;filename=Sample_Oligo_data_#{Time.now.strftime('%d%m%y-%H%M')}.csv")
+     
+
+
+    rescue => err
+      flash.now[:error] = "Exception extractFile: #{err}..."
+      logger.warn("#{Time.now} - Unknown type requested: #{params.inspect}")
+      #render :text => t('private_files_controller.bad_request'), :status => 400
+      render :text => 'private_files_controller.unauthorized: ' + err, :status => 401
+      return false
+    end  
+  end 
 
 
   # PUT /batch_oligos/1
