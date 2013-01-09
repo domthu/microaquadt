@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130105110448) do
+ActiveRecord::Schema.define(:version => 20130109054203) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(:version => 20130105110448) do
     t.string   "fiolse_content_type"
     t.integer  "fiolse_file_size"
     t.datetime "fiolse_updated_at"
+  end
+
+  create_table "batch_images", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "batch_oligos", :force => true do |t|
@@ -271,6 +276,16 @@ ActiveRecord::Schema.define(:version => 20130105110448) do
     t.integer  "microarraygpr_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "image_assets", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "batch_image_id"
   end
 
   create_table "land_use_mappings", :force => true do |t|
@@ -575,7 +590,7 @@ ActiveRecord::Schema.define(:version => 20130105110448) do
     t.decimal  "volume",                 :precision => 4, :scale => 2,                  :null => false
     t.integer  "sampling_site_id",                                                      :null => false
     t.integer  "partner_id",                                                            :null => false
-    t.datetime "samplingDate",                                                          :null => false
+    t.datetime "samplingDate"
     t.text     "note"
     t.decimal  "air_temperature",        :precision => 4, :scale => 2, :default => 0.0
     t.decimal  "moisture",               :precision => 8, :scale => 2, :default => 0.0

@@ -25,8 +25,8 @@ class MicroArrayImagesController < ApplicationController
         redirect_to :action => "index"
     end
 
-    @ma = MicroArray.find(@micro_array_image.microarray_id)
-    @pt = Partner.find(@ma.partner_id)
+    @ex = Experiment.find(@micro_array_image.experiment_id)
+    @pt = Partner.find(@ex.partner_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,18 +41,18 @@ class MicroArrayImagesController < ApplicationController
     @title = "Micro array image"
 
 
-    @ma_c = MicroArray.count()
-    if @ma_c.nil? or @ma_c == 0
-      flash[:error] = "No micro array found! create first some..."
+    @ex_c = Experiment.count()
+     if @ex_c.nil? or @ex_c == 0
+      flash[:error] = "No micro array experiment found! create first some..."
       redirect_to :action => "index"
       return
-    end
+     end
 
     @pt = get_partner
-    if @pt.nil?
-      @ma = MicroArray.all()
-    else
-      @ma = MicroArray.all(:conditions => [ "partner_id = ?", @pt.id])
+     if @pt.nil?
+      @ex = Experiment.all()
+     else
+      @ex = Experiment.all(:conditions => [ "partner_id = ?", @pt.id])
     end
 
     respond_to do |format|
@@ -65,7 +65,7 @@ class MicroArrayImagesController < ApplicationController
   def edit
     @micro_array_image = MicroArrayImage.find(params[:id])
     @title = "Micro array image"
-    @ma = MicroArray.find(@micro_array_image.microarray_id)
+    @ex = Experiment.find(@micro_array_image.experiment_id)
   end
 
   # POST /micro_array_images
@@ -81,11 +81,11 @@ class MicroArrayImagesController < ApplicationController
       else
 
         @pt = get_partner
-        if @pt.nil?
-          @ma = MicroArray.all()
-        else
-          @ma = MicroArray.all(:conditions => [ "partner_id = ?", @pt.id])
-        end
+         if @pt.nil?
+          @ex = Experiment.all()
+         else
+          @ex = Experiment.all(:conditions => [ "partner_id = ?", @pt.id])
+         end
 
         format.html { render :action => "new" }
         format.xml  { render :xml => @micro_array_image.errors, :status => :unprocessable_entity }
@@ -134,8 +134,8 @@ class MicroArrayImagesController < ApplicationController
 
     def correct_user
       @machild = MicroArrayImage.find(params[:id])
-      @ma = MicroArray.find(@machild.microarray_id)
-      @partner = Partner.find(@ma.partner_id)
+      @ex = Experiment.find(@machild.experiment_id)
+      @partner = Partner.find(@ex.partner_id)
       @user = User.find(@partner.user_id)
       reroute() unless current_user?(@user)
     end

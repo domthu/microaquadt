@@ -24,8 +24,8 @@
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
   <div class="field select">
-    <%= f.label :microarray %><br />
-    <%= select :micro_array_image,:microarray_id, MicroArray.find(:all).collect{|p| [p.verbose_me, p.id]}%>
+    <%= f.label :experiment %><br />
+    <%= select :micro_array_image,:experiment_id, Experiment.find(:all).collect{|p| [p.verbose_me, p.id]}%>
   </div>
 
   <div class="field txt">

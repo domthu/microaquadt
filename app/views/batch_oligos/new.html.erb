@@ -10,20 +10,32 @@
 <% form_for(@batch_oligo, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
+<style>
+
+.actionSubmit {
+                border:3px outset;
+                background-color:#0174DF;
+                color:#ffffff
+}
+
+
+</style>
+
+
 <table>
        <tr><td>
 		   <div class="add_file_button">
-		   <input type="button" id="add_files" value="Add Files" />
+		   <input type="button" id="add_files" style=" border:3px outset;background-color:#0174DF;color:#ffffff" value="Add Files" />
 		   </div>                  
            </td>
            <td>
 		   <div class="actions">
-		   <%= f.submit 'Save' %>
+		   <%= f.submit 'Save files', :class => 'actionSubmit' %>
 		   </div>
            </td>
            <td>
 		   <div>
-		   <b><a href="<%= '/download_sample_csv' %>">Download sample oligo sequence file</a></b>
+		   <b><a href="<%= '/download_sample_csv' %>" style=" border:3px outset;background-color:#0174DF;color:#ffffff" >Download sample oligo sequence file</a></b>
 		   </div>
            </td>
        </tr>
@@ -36,7 +48,7 @@
 	    <div class="paperclip">
 	    <% f.fields_for :assets do |asset| %><br>
             
-	    <%= asset.file_field :fiolse %><br>
+	 <%= asset.file_field :fiolse %> <br>
             
 	    <% end %>
 	    </div>  

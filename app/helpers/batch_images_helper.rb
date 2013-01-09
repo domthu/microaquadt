@@ -1,0 +1,2 @@
+module BatchImagesHelper
+end

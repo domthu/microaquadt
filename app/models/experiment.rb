@@ -21,6 +21,8 @@ class Experiment < ActiveRecord::Base
   
   belongs_to :partner_person
 
+  has_many :micro_array_images, :dependent => :destroy
+
 
   attr_reader :verbose_me
   def verbose_me

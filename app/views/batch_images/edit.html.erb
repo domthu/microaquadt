@@ -1,0 +1,12 @@
+<h1>Editing batch_image</h1>
+
+<% form_for(@batch_image) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @batch_image %> |
+<%= link_to 'Back', batch_images_path %>

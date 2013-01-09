@@ -132,6 +132,9 @@ N (Any base A, C, G, T, or U)   " %><br />
 </td><td style="width:80%">
 
 <script type="text/javascript" >
+
+//Codes in this section doesnt match codes in production enviornment. We do not know the real reason why the codes from //////development doesnt work on production especially for this section. Do not attempt to match or upload this file directly from //the development.
+
 function RemoveSelect() { 
     try {
         if (confirm('Remove this taxonomy id(' + $('oligo_sequence_taxonomy_id').value + ') with name ' + $('oligo_sequence_taxonomy_name').value + '?')) {
@@ -143,19 +146,19 @@ function RemoveSelect() {
     catch (e){alert('error RemoveSelect: ' + e.message);}
     return false;
 }
-var biourl = '<%= resolve_dxhtml %>'
+var biourl = '<%= resolve_dxhtml %>';
 function SetName(req) { 
     //alert('SetName: ' + req);
-    var str = ''
+    var str = '';
     try {
-	reptxt = (req.responseText == 'undefined' ? req : req.responseText )
+	reptxt = (req.responseText == 'undefined') ? req : req.responseText;
         var tmp = new Date().getTime();
         tmp='';
-        str = LoadEsearchTextDom($('dvName').id, reptxt)
-        $('preName').innerText =  tmp + '<br /> ' + str
+        str = LoadEsearchTextDom($('dvName').id, reptxt);
+        $('preName').innerText =  tmp + '<br /> ' + str;
         //$('dvName').innerText =  tmp + '<br /> ' + str
-        $('taName').value =  tmp + str
-        str = str.replace('[','').replace(']','').replace(/"/g,'')
+        $('taName').value =  tmp + str;
+        str = str.replace('[','').replace(']','').replace(/"/g,'');
 
     }
     catch (e){alert('error loading SetName: ' + e.message);}
@@ -195,18 +198,18 @@ function SetName(req) {
 function SetTaxo2(req) { //alert('SetTaxo: ' + req);
     //DOM
     try {
-        var xmlDoc = req.responseXML
-        LoadXMLDom($('treeBox').id, xmlDoc)
+        var xmlDoc = req.responseXML;
+        LoadXMLDom($('treeBox').id, xmlDoc);
 
         try {
-            var Xml2String = ""
+            var Xml2String = "";
             if (xmlDoc.xml) {
-                Xml2String=xmlDoc.xml  // Converts the xml object to string  (  For IE)
+                Xml2String=xmlDoc.xml;  // Converts the xml object to string  (  For IE)
             }else{
                 Xml2String= new XMLSerializer().serializeToString(xmlDoc); // Converts the xml object to string (For rest browsers, mozilla, etc)
             }
             //var Message =req.getAllResponseHeaders()
-            $('resbio').innerHTML = Xml2String
+            $('resbio').innerHTML = Xml2String;
         }
         catch (e){alert('error loading xmlDoc: ' + e.message);}
 

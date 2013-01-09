@@ -10,20 +10,28 @@
 <% form_for(@batch_sampling, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
+<style>
+.actionSubmit {
+                border:3px outset;
+                background-color:#0174DF;
+                color:#ffffff
+}
+</style>
+
 <table>
        <tr><td>
 		   <div class="add_file_button">
-		   <input type="button" id="add_files" value="Add Files" />
+		   <input type="button" id="add_files" style=" border:3px outset;background-color:#0174DF;color:#ffffff" value="Add Files" />
 		   </div>                  
            </td>
            <td>
 		   <div class="actions">
-		   <%= f.submit 'Save' %>
+		   <%= f.submit 'Save Files', :class => 'actionSubmit' %>
 		   </div>
            </td>
            <td>
 		   <div>
-		   <b><a href="<%= '/download_sample_sampling_csv' %>">Download sample samplings file</a></b>
+		   <b><a href="<%= '/download_sample_sampling_csv' %>" style=" border:3px outset;background-color:#0174DF;color:#ffffff" >Download sample samplings file</a></b>
 		   </div>
            </td>
        </tr>

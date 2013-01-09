@@ -2,7 +2,14 @@ class MicroArrayImage < ActiveRecord::Base
 	validates_presence_of :name, :message => "Can't be empty, field is mandatory. "
 	validates_length_of   :name, :maximum => 50
 
-  belongs_to :microarraydata
+  
+  belongs_to :experiment
+
+  belongs_to :partner
+
+
+
+
 
   #In order for form_for to work,
   attr_reader :verbose_me
