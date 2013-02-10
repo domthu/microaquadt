@@ -29,6 +29,8 @@ class BatchImagesController < ApplicationController
     @batch_image = BatchImage.new
     @title = "Batch upload of microarray images"
 
+    @b_is = BatchImage.all
+
 
     10.times {@batch_image.image_assets.build}
 

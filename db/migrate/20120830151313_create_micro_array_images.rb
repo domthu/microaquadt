@@ -1,7 +1,6 @@
 class CreateMicroArrayImages < ActiveRecord::Migration
   def self.up
     create_table :micro_array_images do |t|
-      t.references :experiment
       t.text :note
       t.string :name
       t.binary :image
@@ -9,7 +8,7 @@ class CreateMicroArrayImages < ActiveRecord::Migration
       t.string :II_Channel
       t.string :II_Image
       t.string :II_Fluorophore
-      t.string :II_Barcode
+      t.string :barcode
       t.string :II_Units
       t.decimal :II_X_Units_Per_Pixel, :precision => 8, :scale => 2
       t.decimal :II_Y_Units_Per_Pixel, :precision => 8, :scale => 2

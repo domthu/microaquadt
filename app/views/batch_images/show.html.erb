@@ -1,7 +1,11 @@
 
-<%= link_to 'Edit', edit_batch_image_path(@batch_image) %> 
+<%= link_to 'Edit', edit_batch_image_path(@batch_image) %> <br /><br />
+
+<% @batch_image.image_assets.each do | image | %>
+
+<%= link_to( image_tag(image.photo.url(:small)), image.photo.url(:original)) %><br />
+
+<% end unless @batch_image.image_assets.first.new_record? rescue nil %>
 
 
-
-
-<%= link_to 'Back', batch_images_path %>
+<br /><%= link_to 'Back', batch_images_path %>

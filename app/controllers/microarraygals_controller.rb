@@ -192,11 +192,11 @@ class MicroarraygalsController < ApplicationController
        if line =~ /(^ATF\s)(\d)/m 
        	  @gal_header.gal_version_info = $2.to_s
        end
-       if line =~ /(Block\d.\s\d+,\s\d+,\s\d+,\s)(\d+)(,\s\d+,\s)(\d+)(,\s\d+)/m 
-          @gal_header.gal_row_count = $4.to_s
+       if line =~ /Block\d=\s?\d+,\s?\d+,\s?\d+,\s?(\d+),\s?\d+,\s?\d+,\s?\d+[\s\n\b\r\t]/m 
+          @gal_header.gal_row_count = $1.to_s
        end
-       if line =~ /(Block\d.\s\d+,\s\d+,\s\d+,\s)(\d+)(,\s\d+,\s)(\d+)(,\s\d+)/m 
-          @gal_header.gal_column_count = $2.to_s
+       if line =~ /Block\d=\s?\d+,\s?\d+,\s?\d+,\s?\d+,\s?\d+,\s?(\d+),\s?\d+[\s\n\b\r\t]/m 
+          @gal_header.gal_column_count = $1.to_s
        end 
        if line =~ /(BlockType=)(\d)/m 
           @gal_header.block_type = $2.to_s
@@ -244,9 +244,9 @@ class MicroarraygalsController < ApplicationController
        if line =~ /(^Block\d.+)?Block\s/m
         $1.each do |line|
            
-              @gal_blocks = GalBlock.create!(params[:gal_blocks])
+              @gal_blocks = GalBlock.new(params[:gal_blocks])
         
-              if line =~ /Block(\d).\s(\d+),\s(\d+),\s(\d+),\s(\d+),\s(\d+),\s(\d+),\s(\d+)/
+              if line =~ /Block(\d)=\s?(\d+),\s?(\d+),\s?(\d+),\s?(\d+),\s?(\d+),\s?(\d+),\s?(\d+)[\s\n\b\r\t]/
 
 		@gal_blocks.block_number = $1.to_s 
                 @gal_blocks.xOrigin = $2.to_s
@@ -301,18 +301,18 @@ class MicroarraygalsController < ApplicationController
        #if line =~ /(\d+\s\d+\s\d+\s\d+\s\w+[+\-\s\w]+)/m
 
        #if we are not including IDs and gal having same data in ID and Name column
-       data = line.scan(/\d\s\d+\s\d+\s[\w\d][a-zA-Z0-9_\-]+\s\w[a-zA-Z0-9_\-]+/).flatten
+       data = line.scan(/\d+[\s\t]\d+[\s\t]\d+[\s\t][\w\d][a-zA-Z0-9_\-]+[\s\t][\w\d][a-zA-Z0-9_\-]+/).flatten
 
         #$1.each do |line|
 
         data.each do |line|
            
-              @oligos = Oligo.create!(params[:oligos])
+              @oligos = Oligo.new(params[:oligos])
         
               #if line =~ /(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\w+[+\-\s\w]+)/
       
       #if we are not including IDs and gal having same data in ID and Name column
-      if line =~ /(\d)\s(\d+)\s(\d+)\s([\w\d][a-zA-Z0-9_\-]+)\s([\w\d][a-zA-Z0-9_\-]+)/
+      if line =~ /(\d+)[\s\t](\d+)[\s\t](\d+)[\s\t]([\w\d][a-zA-Z0-9_\-]+)[\s\t]([\w\d][a-zA-Z0-9_\-]+)/
 
 		@oligos.gal_block_id = $1.to_s 
                 @oligos.row_number = $2.to_s

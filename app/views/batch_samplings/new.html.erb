@@ -2,7 +2,18 @@
 <div style="display:none" javascript_include_tag('jqgrid/jquery.js') ></div>
 <%= jqgrid_javascripts %> 
 
-<h2>New Samplings Multiple File Upload (*.csv & *.tsv)</h2>
+<table>
+      <tr>   
+          <td>
+          <h2>New Samplings Multiple File Upload (*.csv or *.tsv)</h2>
+          </td>
+          <td>               
+          <div>
+          <b><u><a href="<%= '/download_sample_sampling_csv' %>" >Download an example of sampling file</a></u></b>
+          </div>
+          </td>
+      </tr>
+</table>
 
 <%= link_to 'Back', samplings_path %>
 <br /><br />
@@ -27,11 +38,6 @@
            <td>
 		   <div class="actions">
 		   <%= f.submit 'Save Files', :class => 'actionSubmit' %>
-		   </div>
-           </td>
-           <td>
-		   <div>
-		   <b><a href="<%= '/download_sample_sampling_csv' %>" style=" border:3px outset;background-color:#0174DF;color:#ffffff" >Download sample samplings file</a></b>
 		   </div>
            </td>
        </tr>

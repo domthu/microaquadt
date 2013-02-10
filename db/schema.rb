@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130109054203) do
+ActiveRecord::Schema.define(:version => 20130117140517) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20130109054203) do
     t.datetime "updated_at"
     t.string   "people_id"
     t.integer  "microarraygpr_id"
+    t.integer  "micro_array_image_id"
   end
 
   add_index "experiments", ["filter_sample_id"], :name => "index_experiments_on_filter_sample_id"
@@ -281,11 +282,11 @@ ActiveRecord::Schema.define(:version => 20130109054203) do
   create_table "image_assets", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.integer  "batch_image_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "micro_array_image_id"
   end
 
   create_table "land_use_mappings", :force => true do |t|
@@ -317,7 +318,6 @@ ActiveRecord::Schema.define(:version => 20130109054203) do
   end
 
   create_table "micro_array_images", :force => true do |t|
-    t.integer  "experiment_id"
     t.text     "note"
     t.string   "name"
     t.binary   "image"
@@ -334,6 +334,8 @@ ActiveRecord::Schema.define(:version => 20130109054203) do
     t.string   "II_Status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "icode"
+    t.integer  "partner_id"
   end
 
   create_table "micro_array_validations", :force => true do |t|

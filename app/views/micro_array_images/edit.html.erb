@@ -10,12 +10,12 @@
   </td></tr>
 </table>
 
-<h1>Editing micro array image</h1>
+<h2>Editing micro array image</h2>
 
 <%= link_to 'Show', @micro_array_image %> |
 <%= link_to 'Back', micro_array_images_path %>
 
-<% form_for(@micro_array_image) do |f| %>
+<% form_for(@micro_array_image, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
 
   <div class="actions">
@@ -24,15 +24,91 @@
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
-  <div class="field select">
-    <%= f.label :microarray_id, "Microarray" %><br />
-    <h3><%= @ma.verbose_me %></h3>
-  </div>
-
   <div class="field txt">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+
+
+  <div class="field num">
+
+   <%= f.label "Remove image" %><br />
+   <% f.fields_for :image_assets do |asset|%>
+
+
+         <div class="paperclip">
+
+           <% if asset.object.new_record? %><br />
+           <br />
+            <%= asset.file_field :photo %><br />
+            <% end %>
+          </div>
+    
+        <div class="existingFiles">
+	  <% unless asset.object.new_record? || !asset.object.photo? %>
+           
+	   <%= link_to( image_tag(asset.object.photo.url(:small)), asset.object.photo.url(:original) ) %>           
+	   <%= asset.check_box :_destroy %>
+	  <% end %>
+        </div>
+
+   <% end %>
+  </div>
+
+<style>
+
+.actionSubmit {
+                border:3px outset;
+                background-color:#0174DF;
+                color:#ffffff
+}
+
+
+</style>
+
+<table>
+       <tr><td>
+		   <div class="add_file_button">
+		   <input type="button" id="add_files" style=" border:3px outset;background-color:#0174DF;color:#ffffff" value="Update images" />
+		   </div>                  
+           </td>
+           
+       </tr>
+       
+</table>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+$("div.paperclip > input").css("display","none");
+
+$("#add_files").click(function() {$("#micro_array_image_image_assets_attributes_3_photo").toggle("slow");
+
+ //Setup for the second click.
+   $(this).off('click');
+   $(this).on('click', function() {$("#micro_array_image_image_assets_attributes_4_photo").toggle("slow"); 
+//Setup for the third click.
+   $(this).off('click');
+   $(this).on('click', function() {$("#micro_array_image_image_assets_attributes_5_photo").toggle("slow"); 
+//Setup for the fourth click.
+   $(this).off('click');
+   $(this).on('click', function() {alert("Cannot add more files!!"); 
+
+});
+});
+});
+});
+</script>
+
+
+
+
+
+
+
+
+
+
 
 </fieldset>
 
@@ -59,8 +135,8 @@
     <%= f.text_field :II_Fluorophore %>
   </div>
   <div class="datas  num">
-    <%= f.label :II_Barcode, "Barcode" %><br />
-    <%= f.text_field :II_Barcode %>
+    <%= f.label :barcode, "Barcode" %><br />
+    <%= f.text_field :barcode %>
   </div>
   <div class="datas  num">
     <%= f.label :II_Units, "Units" %><br />

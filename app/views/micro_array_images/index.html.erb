@@ -1,3 +1,6 @@
+<%= jqgrid_stylesheets %>
+<%= jqgrid_javascripts %>
+
 <table>
   <tr class="taleft" width="70%"><td class="taleft">
     <ul class="navigation round taleft">
@@ -10,38 +13,52 @@
   </td></tr>
 </table>
 
-<h1>Micro array images</h1>
-<%= link_to 'Upload new image files', new_batch_image_path %>
+<h2>Microarray Images</h2>
+<%= link_to 'Upload new image file', new_micro_array_image_path %>
 <br />
 <br />
 
-<table>
-  <tr>
-    <th>Microarray</th>
-    <th>Name</th>
-    <th>image id</th>
-    <th>channel</th>
-    <th>status</th>
-  </tr>
+<script type="text/javascript" >
 
-<% @micro_array_images.each do |micro_array_image| %>
-  <tr>
-    <td><%=h micro_array_image.microarray %></td>
-    <td><%=h micro_array_image.name %></td>
-    <td><%=h micro_array_image.II_ImageID %></td>
-    <td><%=h micro_array_image.II_Channel %></td>
-    <td><%=h micro_array_image.II_Status %></td>
-    <td><%= link_to 'Show', micro_array_image %></td>
-    <% if auth_ma_user(micro_array_image.microarray_id) or signed_in_and_master? %>
-      <td><%= link_to 'Edit', edit_micro_array_image_path(micro_array_image) %></td>
-      <td><%= link_to 'Delete', micro_array_image, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
+//jQuery("#ngbgrid").jqGrid('navGrid','hideCol',"ID"); }); 
+
+     function handleSelection(id) {
+        <%= remote_function(:url => {:controller=> 'micro_array_images',
+                     :action => 'show'},
+                     :with => "id= " + String(id))
+        %>
+     }
+//use, :selection_handler => "handleSelection", :direct_selection => true
+//use, :grid_complete => "grid_complete" 
+</script>
+
+<%= jqgrid("List of microarray image files: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", micro_array_images_path,
+	[
+	{ :field => "id", :label => "ID", :width => 50, :resizable => false, :sortable => false, :editable => false, :hidden => true},
+        { :field => "act", :label => "Details", :width => 50 , :resizable => false, :sortable => false, :search => false },
+        { :field => "image_code", :label => "Image Code", :width => 200, :search => true, :sortable => true },
+	{ :field => "name", :label => "Name", :width => 100, :class => "taright"  },
+	{ :field => "II_ImageID", :label => "Image ID", :search => true, :sortable => true, :editable => false, :width => 100 },
+	{ :field => "II_Channel", :label => "Channel", :search => false, :width => 100, :sortable => false  },
+        { :field => "II_Status", :label => "Status", :search => false, :width => 100, :sortable => false  },
+	{ :field => "image_date", :label => "Upload date", :search => false, :width => 100, :sortable => false  },
+        { :field => "edit_link", :label => "edit", :search => false, :sortable => false, :width => 50 , :resizable => false}
+        
+	], 
+    {   :add => false, 
+        :edit => false, 
+        :inline_edit => false, 
+        :delete => false, 
+        :rows_per_page => "50", 
+        :height => 400, 
+        :rownumbers => 'false',
+ }
+
+) %>
+
 
 <br />
 <br />
-<%= link_to 'Upload new image files', new_batch_image_path %>
+<%= link_to 'Upload new image file', new_micro_array_image_path %>
 <br />
 

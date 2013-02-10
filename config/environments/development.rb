@@ -19,6 +19,6 @@ config.action_controller.perform_caching             = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 
-Paperclip.options[:image_magick_path] = '/usr/bin/'
+Paperclip.options[:image_magick_path] = '/usr/local/bin/'
 
 

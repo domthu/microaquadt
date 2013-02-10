@@ -14,6 +14,7 @@ class Partner < ActiveRecord::Base
   has_many :samplings
   has_one :country #, :null => false
   has_many :batch_samplings
+  has_many :micro_array_images
 
   attr_reader :verbose
   def verbose

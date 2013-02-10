@@ -14,7 +14,6 @@ include ActionController::UrlWriter
   has_one :gal_header, :dependent => :destroy
   has_many :gal_blocks, :dependent => :destroy
 
-  has_attached_file :mufile
 
   attr_reader :verbose_me
   def verbose_me

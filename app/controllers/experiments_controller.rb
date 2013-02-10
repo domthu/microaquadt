@@ -8,8 +8,8 @@ class ExperimentsController < ApplicationController
   # GET /experiments
   # GET /experiments.xml
   def index
-   # @experiments = Experiment.all
    
+    #@experiments = Experiment.all
     @title = "Microarray experiments"
   
    if params[:id].present?
@@ -73,7 +73,7 @@ class ExperimentsController < ApplicationController
         
         respond_to do |format|
         format.html      
-        format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","filter_name","gal_code","partner_name","gpr_code","exp_date","edit"], params[:page], params[:rows], experiments.total_entries) }			
+        format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","filter_name","gal_code","partner_name","gpr_code","exp_date","mi_image","edit"], params[:page], params[:rows], experiments.total_entries) }			
           end
     end
  end
@@ -129,10 +129,12 @@ class ExperimentsController < ApplicationController
     if @pt.nil?
       @mg = Microarraygal.all()
       @gp = Microarraygpr.all()
+      @img = MicroArrayImage.all()
       
     else
       @mg = Microarraygal.all(:conditions => [ "partner_id = ?", @pt.id])
       @gp = Microarraygpr.all(:conditions => [ "partner_id = ?", @pt.id])
+      @img = MicroArrayImage.all(:conditions => [ "partner_id = ?", @pt.id])
       @experiment.partner_id = @pt.id
     end
 
@@ -255,7 +257,7 @@ class ExperimentsController < ApplicationController
    def get_code(partner, pdate, ptype)
       @codegen = ""
       if partner.nil? and not signed_in_and_master?
-        return "P??"
+        return "E??"
       end
       @pid = 1
       unless partner.nil?

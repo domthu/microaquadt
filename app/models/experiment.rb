@@ -21,7 +21,7 @@ class Experiment < ActiveRecord::Base
   
   belongs_to :partner_person
 
-  has_many :micro_array_images, :dependent => :destroy
+  belongs_to :micro_array_image
 
 
   attr_reader :verbose_me
@@ -67,6 +67,15 @@ class Experiment < ActiveRecord::Base
         return self.ecode
     end
     
+    def mi_image
+
+     @micro_array_image = MicroArrayImage.find(micro_array_image_id)
+
+   "<a href='" + ImageAsset.find_by_micro_array_image_id(micro_array_image_id).photo.url(:original) + "'><img src='"+ ImageAsset.find_by_micro_array_image_id(micro_array_image_id).photo.url(:minute) +"' /></a>"
+
+#"<img src='" + ImageAsset.find(micro_array_image_id).photo.url(:minute) + "' />"
+
+    end
    
 
 

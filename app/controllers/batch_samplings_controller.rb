@@ -261,7 +261,7 @@ end
     
     send_data(file, 
     :type => 'text/csv;charset=utf-8;header=present', 
-    :disposition => "attachment;filename=Sample_sampling_data_#{Time.now.strftime('%d%m%y-%H%M')}.csv")
+    :disposition => "attachment;filename=example_sampling_data_#{Time.now.strftime('%d%m%y-%H%M')}.csv")
      
 
 

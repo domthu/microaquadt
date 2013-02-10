@@ -10,24 +10,45 @@
   </td></tr>
 </table>
 
-<% if auth_ma_user(@micro_array_image.microarray_id) or signed_in_and_master? %>
-  <%= link_to 'Edit', edit_micro_array_image_path(@micro_array_image) %> |
-<% end %>
+
+<%= link_to 'Edit', edit_micro_array_image_path(@micro_array_image) %> |
 <%= link_to 'Back', micro_array_images_path %>
 
 <br />
 
 <fieldset><legend class="leg">GENERAL DATA</legend>
 
-  <div class="field select">
-    <b>Microarray:</b>
-      <%=h @micro_array_image.microarray %>
-  </div>
+<table width="95%">
+   <tr>
+       <td>
 
+  <div class="field select">
+    <b>Microarray image code:</b>
+      <%=h @micro_array_image.icode %>
+  </div>
+       </td>
+       <td>
   <div class="field num">
       <b>Name:</b>
       <%=h @micro_array_image.name %>
   </div>
+      </td>
+      
+   <tr>
+       <td>
+  <div class="field num">
+      <b>Image:</b><br />
+      <% @micro_array_image.image_assets.each do |image| %>
+      <% unless image.new_record? || !image.photo? %>
+
+     <%= link_to( image_tag(image.photo.url(:small)), image.photo.url(:original)) %>
+
+<% end %>
+<% end %>
+  </div>
+   </td>
+   </tr>
+</table>
 
 
 </fieldset>
@@ -62,8 +83,8 @@
   </div>
 
   <div class="datas num">
-  <b>Ii barcode:</b>
-  <%=h @micro_array_image.II_Barcode %>
+  <b>Barcode:</b>
+  <%=h @micro_array_image.barcode %>
   </div>
 
   <div class="datas num">
@@ -105,8 +126,7 @@
 
 <br />
 
-<% if auth_ma_user(@micro_array_image.microarray_id) or signed_in_and_master? %>
-  <%= link_to 'Edit', edit_micro_array_image_path(@micro_array_image) %> |
-<% end %>
+
+<%= link_to 'Edit', edit_micro_array_image_path(@micro_array_image) %> |
 <%= link_to 'Back', micro_array_images_path %>
 
