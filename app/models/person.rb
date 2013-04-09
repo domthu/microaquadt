@@ -7,6 +7,8 @@ class Person < ActiveRecord::Base
 
   belongs_to :user
 
+  has_many :batch_oligos
+
   attr_reader :verbose_me
   def verbose_me
     #return '(' + self.id.to_s + ') ' + self.firstname.upcase + ' ' + self.lastname.capitalize

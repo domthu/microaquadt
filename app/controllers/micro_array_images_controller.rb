@@ -12,20 +12,25 @@ class MicroArrayImagesController < ApplicationController
     #@micro_array_images = MicroArrayImage.all
     @title = "List of micro array images"
 
-    micro_array_images = MicroArrayImage.find(:all, :joins=>[:partner]) do
-        #if params[:_search] == "true"
+    if !signed_in?
+	       flash.now[:notice] = "No Partner found!! Login with authenticated partner credentials!!!"
+	       redirect_to experiments_path
+    else
 
-       # end
-        paginate :page => params[:page], :per_page => params[:rows]      
-     
-     end
+	    micro_array_images = MicroArrayImage.find(:all, :joins=>[:partner]) do
+		#if params[:_search] == "true"
 
-    respond_to do |format|
-        format.html # index.html.erbs directly,
-        #format.xml  { render :xml => @samplings }
-        format.json { render :json => micro_array_images.to_jqgrid_json([:id,"act","image_code",:name,:II_ImageID,:II_Channel,:II_Status,"image_date","edit"], params[:page], params[:rows], micro_array_images.total_entries) }			
+	       # end
+		paginate :page => params[:page], :per_page => params[:rows]      
+	     
+	     end
+
+	    respond_to do |format|
+		format.html # index.html.erbs directly,
+		#format.xml  { render :xml => @samplings }
+		format.json { render :json => micro_array_images.to_jqgrid_json([:id,"act","image_code",:name,:II_ImageID,:II_Channel,:II_Status,"image_date","edit"], params[:page], params[:rows], micro_array_images.total_entries) }			
+	    end
     end
-
   end
 
   # GET /micro_array_images/1

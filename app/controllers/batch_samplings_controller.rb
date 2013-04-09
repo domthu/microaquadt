@@ -4,6 +4,8 @@ class BatchSamplingsController < ApplicationController
 class UnknownTypeError < StandardError
 end
 
+ #before_filter :authorize, :only => [:edit, :update, :delete, :destroy]
+
 
 
   # GET /batch_samplings
@@ -12,9 +14,15 @@ end
     @batch_samplings = BatchSampling.all
     @title = "Batch upload of Sampling data"
 
+    if !signed_in?
+	       flash.now[:notice] = "No Partner found!! Login with authenticated partner credentials!!!"
+	       redirect_to samplings_path
+    else
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @batch_samplings }
+      end
     end
   end
 
@@ -34,15 +42,23 @@ end
   # GET /batch_samplings/new
   # GET /batch_samplings/new.xml
   def new
+
     @batch_sampling = BatchSampling.new
     @title = "Batch upload of Sampling data"
 
-    10.times {@batch_sampling.sampling_assets.build}
+	 if !signed_in?
+	       flash.now[:notice] = "No Partner found!! Login with authenticated partner credentials!!!"
+	       redirect_to samplings_path
+	 else
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @batch_sampling }
-    end
+	    10.times {@batch_sampling.sampling_assets.build}
+
+	    respond_to do |format|
+	     
+		format.html # new.html.erb
+		format.xml  { render :xml => @batch_sampling }
+	       end
+	 end
   end
 
   # GET /batch_samplings/1/edit
@@ -112,7 +128,7 @@ end
 		#logger.debug "path "+ path.to_s
        
                  
-          data = line.scan(/(\d+[\t,]\d+[\t,]\d+-\d+-\d+[\t,]\d+[\t,].*?[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\w+[\D]*[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,][+-]*\d+[\s\n\r])/).flatten
+          data = line.scan(/(\w+[\t,]\w+[\t,]\d+[-\/]\d+[-\/]\d+[\t,]\d+[\t,].*?[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\w+[\D]*[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,][+-]*\d+[\s\n\r])/).flatten
 	          
            logger.debug "Data array " + data.to_s
            	
@@ -120,11 +136,19 @@ end
            
            @sampling = Sampling.new(params[:sampling])
 		
-         if line =~ /(\d+)[\t,](\d+)[\t,](\d+-\d+-\d+)[\t,](\d+)[\t,](.*?)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\w+[\D]*)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,]([+-]*\d+)[\n\r\s]/
+         if line =~ /(\w+)[\t,](\w+)[\t,](\d+[-\/]\d+[-\/]\d+)[\t,](\d+)[\t,](.*?)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\w+[\D]*)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,]([+-]*\d+)[\n\r\s]/
 
- 			@sampling.sampling_site_id = $1.to_s
-			@sampling.partner_id = $2.to_s
-			@sampling.samplingDate = $3.to_s
+ 			#@sampling.sampling_site_id = $1.to_s
+			#@sampling.partner_id = $2.to_s
+			site_code = $1
+                        @samplingsite = SamplingSite.find_by_code(site_code)
+                        @sampling.sampling_site_id = @samplingsite.id
+                        
+                        ptr_code = $2
+                        @ptnr = Partner.find_by_code(ptr_code)
+                        @sampling.partner_id = @ptnr.id
+
+                        @sampling.samplingDate = $3.to_s
 			@sampling.volume = $4.to_s
 			@sampling.note = $5.to_s
 			@sampling.air_temperature = $6.to_s
@@ -172,7 +196,7 @@ end
 		       str = IO.read(path)
 		       line = str.to_str	       
                   #if line =~ /\w+\s\w+[\t,][\S]+[\t,]\w+[\t,].*?[\t,]\d+-\d+-\d+[\t,]\d[\t,]\d+[\r\n]/m
-            data = line.scan(/(\d+[\t,]\d+[\t,]\d+-\d+-\d+[\t,]\d+[\t,].*?[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\w+[\D]*[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,][+-]*\d+[\s\n\r])/).flatten
+            data = line.scan(/(\w+[\t,]\w+[\t,]\d+[-\/]\d+[-\/]\d+[\t,]\d+[\t,].*?[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\w+[\D]*[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,]\S+[\t,][+-]*\d+[\s\n\r])/).flatten
 	          
            logger.debug "Data array " + data.to_s
            #$1.each do |line|	
@@ -180,12 +204,22 @@ end
            
            @sampling = Sampling.new(params[:sampling])
 		
-         if line =~ /(\d+)[\t,](\d+)[\t,](\d+-\d+-\d+)[\t,](\d+)[\t,](.*?)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\w+[\D]*)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,]([+-]*\d+)[\n\r\s]/
+         if line =~ /(\w+)[\t,](\w+)[\t,](\d+[-\/]\d+[-\/]\d+)[\t,](\d+)[\t,](.*?)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\w+[\D]*)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,](\S+)[\t,]([+-]*\d+)[\n\r\s]/
 
  #logger.debug "dan seq "+ $1 +"code "+$2+"partner_id "+$3+"people_id "+$4+"name "+$5+"oligodate "+$6+"description "+$7
-			@sampling.sampling_site_id = $1.to_s
-			@sampling.partner_id = $2.to_s
-			@sampling.samplingDate = $3.to_s
+			#@sampling.sampling_site_id = $1.to_s
+			#@sampling.partner_id = $2.to_s
+			
+                        #user will enter name and code below will change it to their respective IDs
+                        site_code = $1
+                        @samplingsite = SamplingSite.find_by_code(site_code)
+                        @sampling.sampling_site_id = @samplingsite.id
+                        
+                        ptr_code = $2
+                        @ptnr = Partner.find_by_code(ptr_code)
+                        @sampling.partner_id = @ptnr.id
+
+                        @sampling.samplingDate = $3.to_s
 			@sampling.volume = $4.to_s
 			@sampling.note = $5.to_s
 			@sampling.air_temperature = $6.to_s
@@ -240,21 +274,20 @@ end
     begin
       logger.debug "::::::::::::::::::::Sample sampling download data (" + current_user.name + "):::::::::::::::::::: "
 
-     @sample1 = Sampling.find(1)
-     @sample2 = Sampling.find(2)
+     #@sample1 = Sampling.find(1)
+     #@sample2 = Sampling.find(2)
 
     file = FasterCSV.generate do |line|
-    cols = ["Sampling Site", "Partner", "Sampling date(YYYY-MM-DD)","Volume","Comment","Air Temp.", "Moisture",
+    cols = ["Sampling Site", "Partner", "Sampling date(YYYY-MM-DD)","Volume","Comment","Air Temp. (default = 0.0)", "Moisture",
             "Pressure", "Wind Speed", "Wind Direction","Water Flow","Light Int.","Rainfall evts.", "Depth",
             "Turbidity", "Salinity", "Tidal Range","Operators","Water Temp.","Conductivity", "Phosphates",
-            "Nitrates", "pH", "Nitrogen","Bod5","Cod","H2OSat", "Sampling Equip.", "Storage(in degrees)"]
+            "Nitrates", "pH", "Nitrogen","Bod5","Cod","H2OSat", "Sampling Equip.(1=bucket, 2=pump)", "Storage(in degrees)"]
     line << cols
                
-    line << [ @sample1.sampling_site_id, @sample1.partner_id, @sample1.samplingDate, @sample1.volume, @sample1.note, @sample1.air_temperature, @sample1.moisture, @sample1.pressure, @sample1.windSpeed, @sample1.windDirection, @sample1.waterFlow, @sample1.lightIntensity, @sample1.rainfallEvents, @sample1.depth, @sample1.turbidity, @sample1.salinity, 
-@sample1.tidalRange, @sample1.operators, @sample1.water_temperature, @sample1.conductivity, @sample1.phosphates, @sample1.nitrates, @sample1.ph, @sample1.nitrogen, @sample1.bod5, @sample1.cod, @sample1.h2osat, @sample1.sampling_equipments_id, @sample1.storage ]
+    line << [ "canet", "unicam", "2013-01-06", "4", "This is test..for sampling data file 10/10/2013 60L
+", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "kumar", "0.0", "0.0", "0.0", "0.0","0.0", "0.0", "0.0", "0.0", "0.0", "1", "4" ]
 
-    line << [ @sample2.sampling_site_id, @sample2.partner_id, @sample2.samplingDate, @sample2.volume, @sample2.note, @sample2.air_temperature, @sample2.moisture, @sample2.pressure, @sample2.windSpeed, @sample2.windDirection, @sample2.waterFlow, @sample2.lightIntensity, @sample2.rainfallEvents, @sample2.depth, @sample2.turbidity, @sample2.salinity, 
-@sample2.tidalRange, @sample2.operators, @sample2.water_temperature, @sample2.conductivity, @sample2.phosphates, @sample2.nitrates, @sample2.ph, @sample2.nitrogen, @sample2.bod5, @sample2.cod, @sample2.h2osat, @sample2.sampling_equipments_id, @sample2.storage ]
+    #line << [ @sample2.sampling_site_id, @sample2.partner_id, @sample2.samplingDate, @sample2.volume, @sample2.note, @sample2.air_temperature, @sample2.moisture, @sample2.pressure, @sample2.windSpeed, @sample2.windDirection, @sample2.waterFlow, @sample2.lightIntensity, @sample2.rainfallEvents, @sample2.depth, @sample2.turbidity, @sample2.salinity, @sample2.tidalRange, @sample2.operators, @sample2.water_temperature, @sample2.conductivity, @sample2.phosphates, @sample2.nitrates, @sample2.ph, @sample2.nitrogen, @sample2.bod5, @sample2.cod, @sample2.h2osat, @sample2.sampling_equipments_id, @sample2.storage ]
   
 
     end
@@ -303,6 +336,7 @@ end
       format.xml  { head :ok }
     end
   end
+
 
 
  #for generating Sampling code while parsing values(Same as in sampling controller)

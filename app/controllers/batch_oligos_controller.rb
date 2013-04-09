@@ -10,10 +10,16 @@ end
     @batch_oligos = BatchOligo.all
     @title = "Batch upload of Oligo Sequence"
 
+   if !signed_in?
+	      flash.now[:notice] = "No Partner found!! Login with authenticated partner credentials!!!"
+	      redirect_to(oligo_sequences_path)
+   else
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @batch_oligos }
-    end
+      end
+   end
   end
 
   # GET /batch_oligos/1
@@ -34,11 +40,17 @@ end
     @batch_oligo = BatchOligo.new
     @title = "Batch upload of Oligo Sequence"
 
+    if !signed_in?
+	      flash.now[:notice] = "No Partner found!! Login with authenticated partner credentials!!!"
+	      redirect_to(oligo_sequences_path)
+    else
+
     10.times {@batch_oligo.assets.build}
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @batch_oligo }
+	      format.html # new.html.erb
+	      format.xml  { render :xml => @batch_oligo }
+	 end
     end
   end
 
@@ -100,21 +112,31 @@ end
 		       str = IO.read(path)
 		       line = str.to_str	       
                   #if line =~ /\w+\s\w+[\t,][\S]+[\t,]\w+[\t,].*?[\t,]\d+-\d+-\d+[\t,]\d[\t,]\d+[\r\n]/m
-                 data = line.scan(/(\w+[\t,]\S+[\t,]\d[\t,]\d+[\t,]\w+[\s\w+]*[\t,]\d+-\d+-\d+[\t,].*?[\r\s\n])/).flatten	          
+                 data = line.scan(/(\w+[\t,]\S+[\t,]\w+[\t,]\w+[\t,]\w+[\s\w+]*[\t,]\d+[-\/]\d+[-\/]\d+[\t,].*?[\r\s\n])/).flatten	          
                    #logger.debug "Data array " + data.to_s
                    #$1.each do |line|	
                    data.each do |line|		   
 		   #@oligo_sequences = OligoSequence.create!(params[:oligo_sequences])
                    @oligo_sequence = OligoSequence.new(params[:oligo_sequence])
 		
-		  if line =~ /(\w+)[\t,](\S+)[\t,](\d)[\t,](\d+)[\t,](\w+[\s\w+]*)[\t,](\d+-\d+-\d+)[\t,](.*?)[\r\s\n]/
+		  if line =~ /(\w+)[\t,](\S+)[\t,](\w+)[\t,](\w+)[\t,](\w+[\s\w+]*)[\t,](\d+[-\/]\d+[-\/]\d+)[\t,](.*?)[\r\s\n]/
 
  #logger.debug "dan seq "+ $1 +"code "+$2+"partner_id "+$3+"people_id "+$4+"name "+$5+"oligodate "+$6+"description "+$7
     
 		        @oligo_sequence.dna_sequence = $1.to_s 
                         @oligo_sequence.code = $2.to_s
-                        @oligo_sequence.partner_id = $3.to_s
-		        @oligo_sequence.people_id = $4.to_s
+
+                        #user will enter name and code below will change it to their respective IDs
+                        ptnr_code = $3
+                        @ptnr = Partner.find_by_code(ptnr_code)
+                        @oligo_sequence.partner_id = @ptnr.id
+                        #@oligo_sequence.partner_id = $3.to_s
+
+		        ppl_code = $4
+                        @ppl = Person.find_by_firstname(ppl_code)
+                        @oligo_sequence.people_id = @ppl.id
+                        #@oligo_sequence.people_id = $4.to_s
+
                         @oligo_sequence.name = $5.to_s
                         @oligo_sequence.oligoDate = $6.to_s 		  
 		        @oligo_sequence.description = $7.to_s		     
@@ -134,21 +156,31 @@ end
 		       str = IO.read(path)
 		       line = str.to_str	       
                   #if line =~ /\w+\s\w+[\t,][\S]+[\t,]\w+[\t,].*?[\t,]\d+-\d+-\d+[\t,]\d[\t,]\d+[\r\n]/m
-            data = line.scan(/(\w+[\t,]\S+[\t,]\d[\t,]\d+[\t,]\w+[\s\w+]*[\t,]\d+-\d+-\d+[\t,].*?[\r\s\n])/).flatten	          
+            data = line.scan(/(\w+[\t,]\S+[\t,]\w+[\t,]\w+[\t,]\w+[\s\w+]*[\t,]\d+[-\/]\d+[-\/]\d+[\t,].*?[\r\s\n])/).flatten	          
                    #logger.debug "Data array " + data.to_s
                    #$1.each do |line|	
                    data.each do |line|		   
 		   #@oligo_sequences = OligoSequence.create!(params[:oligo_sequences])
                    @oligo_sequence = OligoSequence.new(params[:oligo_sequence])
 		
-if line =~ /(\w+)[\t,](\S+)[\t,](\d)[\t,](\d+)[\t,](\w+[\s\w+]*)[\t,](\d+-\d+-\d+)[\t,](.*?)[\r\s\n]/
+if line =~ /(\w+)[\t,](\S+)[\t,](\w+)[\t,](\w+)[\t,](\w+[\s\w+]*)[\t,](\d+[-\/]\d+[-\/]\d+)[\t,](.*?)[\r\s\n]/
 
  #logger.debug "dan seq "+ $1 +"code "+$2+"partner_id "+$3+"people_id "+$4+"name "+$5+"oligodate "+$6+"description "+$7
     
 		        @oligo_sequence.dna_sequence = $1.to_s 
                         @oligo_sequence.code = $2.to_s
-                        @oligo_sequence.partner_id = $3.to_s
-		        @oligo_sequence.people_id = $4.to_s
+                       
+                       #user will enter name and code below will change it to their respective IDs
+                        ptnr_code = $3
+                        @ptnr = Partner.find_by_code(ptnr_code)
+                        @oligo_sequence.partner_id = @ptnr.id
+                        #@oligo_sequence.partner_id = $3.to_s
+
+		        ppl_code = $4
+                        @ppl = Person.find_by_firstname(ppl_code)
+                        @oligo_sequence.people_id = @ppl.id
+                        #@oligo_sequence.people_id = $4.to_s
+
                         @oligo_sequence.name = $5.to_s
                         @oligo_sequence.oligoDate = $6.to_s 		  
 		        @oligo_sequence.description = $7.to_s		     
@@ -173,16 +205,16 @@ if line =~ /(\w+)[\t,](\S+)[\t,](\d)[\t,](\d+)[\t,](\w+[\s\w+]*)[\t,](\d+-\d+-\d
     begin
       logger.debug "::::::::::::::::::::Sample Oligo download data (" + current_user.name + "):::::::::::::::::::: "
 
-     @oligo1 = OligoSequence.find(1)
-     @oligo2 = OligoSequence.find(2)
+     #@oligo1 = OligoSequence.find(1)
+     #@oligo2 = OligoSequence.find(2)
 
     file = FasterCSV.generate do |line|
-    cols = ["DNASequence", "Code", "Partner ID","Person ID","Name","Date(YYYY-MM-DD)", "Description"]
+    cols = ["DNASequence", "Code", "Partner(refer to manual)","Person(refer to manual)","Name","Date(YYYY-MM-DD)", "Description"]
     line << cols
                    
-    line << [ @oligo1.dna_sequence, @oligo1.code, @oligo1.partner_id, @oligo1.people_id, @oligo1.name, @oligo1.oligoDate, @oligo1.description ]
+    line << [ "TTTTTTTTTTTTTTTTTT", "Axx_Cxx_Pxx", "unicam", "roberto", "Amphora Coeff.", "2013-03-01", "This is test" ]
 
-    line << [ @oligo2.dna_sequence, @oligo2.code, @oligo2.partner_id, @oligo2.people_id, @oligo2.name, @oligo2.oligoDate, @oligo2.description ]
+    #line << [ @oligo2.dna_sequence, @oligo2.code, @oligo2.partner_id, @oligo2.people_id, @oligo2.name, @oligo2.oligoDate, @oligo2.description ]
         
 
     end

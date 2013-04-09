@@ -14,18 +14,26 @@ class MicroarraygalsController < ApplicationController
     @microarraygals = Microarraygal.all
     @title = "List of micro arrays GAL files"
 
-    microarraygals = Microarraygal.find(:all, :joins=>[:partner]) do
-        #if params[:_search] == "true"
+    if !signed_in?
+	       flash.now[:notice] = "No Partner found!! Login with authenticated partner credentials!!!"
+	       redirect_to experiments_path
+    else
 
-       # end
-        paginate :page => params[:page], :per_page => params[:rows]      
+	    microarraygals = Microarraygal.find(:all, :joins=>[:partner]) do
+		#if params[:_search] == "true"
+
+	       # end
+		paginate :page => params[:page], :per_page => params[:rows]      
+	     
+	     end
+
+	    respond_to do |format|
+		format.html # index.html.erbs directly,
+		#format.xml  { render :xml => @samplings }
+	 format.json { render :json => microarraygals.to_jqgrid_json([:id,"act","gal_f_code","partner_name","title","bcode","gal_upload_date","edit"], params[:page], params[:rows], microarraygals.total_entries) }			
+	    end
      
-     end
-
-    respond_to do |format|
-        format.html # index.html.erbs directly,
-        #format.xml  { render :xml => @samplings }
- format.json { render :json => microarraygals.to_jqgrid_json([:id,"act","gal_f_code","partner_name","title","bcode","gal_upload_date","edit"], params[:page], params[:rows], microarraygals.total_entries) }			
+     
     end
  end
 

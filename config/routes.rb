@@ -58,9 +58,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :names
   
   map.resources :oligo_sequences
+
+
   
   map.lookforbio '/lookforbio', :controller => 'oligo_sequences', :action => 'lookup'
   map.lookforbio '/searchforbio', :controller => 'oligo_sequences', :action => 'esearch'
+
 
   map.resources :nodes
 

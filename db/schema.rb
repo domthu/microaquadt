@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117140517) do
+ActiveRecord::Schema.define(:version => 20130301143938) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -36,11 +36,13 @@ ActiveRecord::Schema.define(:version => 20130117140517) do
   create_table "batch_oligos", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "partner_id"
   end
 
   create_table "batch_samplings", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "partner_id"
   end
 
   create_table "catchment_areas", :force => true do |t|
@@ -325,7 +327,7 @@ ActiveRecord::Schema.define(:version => 20130117140517) do
     t.string   "II_Channel"
     t.string   "II_Image"
     t.string   "II_Fluorophore"
-    t.string   "II_Barcode"
+    t.string   "barcode"
     t.string   "II_Units"
     t.decimal  "II_X_Units_Per_Pixel", :precision => 8, :scale => 2
     t.decimal  "II_Y_Units_Per_Pixel", :precision => 8, :scale => 2

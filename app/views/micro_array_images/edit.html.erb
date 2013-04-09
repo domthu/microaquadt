@@ -69,7 +69,7 @@
 <table>
        <tr><td>
 		   <div class="add_file_button">
-		   <input type="button" id="add_files" style=" border:3px outset;background-color:#0174DF;color:#ffffff" value="Update images" />
+		   <input type="button" id="add_files" style=" border:3px outset;background-color:#0174DF;color:#ffffff" value="Upload new images" />
 		   </div>                  
            </td>
            
@@ -82,14 +82,14 @@
 <script type="text/javascript">
 $("div.paperclip > input").css("display","none");
 
-$("#add_files").click(function() {$("#micro_array_image_image_assets_attributes_3_photo").toggle("slow");
+$("#add_files").click(function() {$("#micro_array_image_image_assets_attributes_3_photo").toggle("fast");
 
  //Setup for the second click.
    $(this).off('click');
-   $(this).on('click', function() {$("#micro_array_image_image_assets_attributes_4_photo").toggle("slow"); 
+   $(this).on('click', function() {$("#micro_array_image_image_assets_attributes_4_photo").toggle("fast"); 
 //Setup for the third click.
    $(this).off('click');
-   $(this).on('click', function() {$("#micro_array_image_image_assets_attributes_5_photo").toggle("slow"); 
+   $(this).on('click', function() {$("#micro_array_image_image_assets_attributes_5_photo").toggle("fast"); 
 //Setup for the fourth click.
    $(this).off('click');
    $(this).on('click', function() {alert("Cannot add more files!!"); 

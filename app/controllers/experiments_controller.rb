@@ -8,73 +8,79 @@ class ExperimentsController < ApplicationController
   # GET /experiments
   # GET /experiments.xml
   def index
-   
-    #@experiments = Experiment.all
-    @title = "Microarray experiments"
-  
-   if params[:id].present?
 
-         logger.warn("#{Time.now} - experiments filtered by: #{params[:id]}")  
-    
-        
-    begin
-
-         code_gen = OligoSequence.find_by_id(params[:id]).code
-         ol = Oligo.find_all_by_code(code_gen).collect{|p| p.microarraygal_id}
-       
-       
-      #if !ol.empty?
-         experiments = Experiment.find(:all, :conditions => [ "microarraygal_id IN (?)", ol])  do       
-		    
-	       paginate :page => params[:page], :per_page => params[:rows]      
-	       order_by "#{params[:sidx]} #{params[:sord]}"            
-	    end
-
-       rescue 
-	   
-          experiments = Experiment.find(:all, :conditions => [ "filter_sample_id = ?", params[:id]]) do    
-          paginate :page => params[:page], :per_page => params[:rows]      
-	  order_by "#{params[:sidx]} #{params[:sord]}"
-            end
-         end
-
-        respond_to do |format|
-        format.html 
-        format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","gal_code","exp_date","edit"], params[:page], params[:rows], experiments.total_entries) }		
-        end
-
-
+    if !signed_in?
+	       flash.now[:notice] = "No Partner found!! Login with authenticated partner credentials!!!"
+	       redirect_to samplings_path
     else
-        experiments = Experiment.find(:all, :joins=>[:partner, :filter_sample, :microarraygal]) do
-        
-        if params[:_search] == "true"
-           ecode =~ "%#{params[:exp_code]}%" if params[:exp_code].present?
-           filter_sample.code =~ "%#{params[:filter_name]}%" if params[:filter_name].present?
-           partner.code =~ "%#{params[:partner_name]}%" if params[:partner_name].present?
-           microarraygal.id =~ "%#{params[:gal_code]}%" if params[:gal_code].present?
-           experiment_date =~ "%#{params[:exp_date]}%" if params[:exp_date].present?
-	end
+   
+	    #@experiments = Experiment.all
+	    @title = "Microarray experiments"
+	  
+	   if params[:id].present?
 
-        paginate :page => params[:page], :per_page => params[:rows]      
-        order_by "#{params[:sidx]} #{params[:sord]}"
-                  
-	if params[:sidx] == "exp_code"
-	   order_by "experiments.ecode #{params[:sord]}"
-        elsif params[:sidx] == "filter_name"
-           order_by "filter_samples.code #{params[:sord]}"
-        elsif params[:sidx] == "partner_name"
-           order_by "partners.code #{params[:sord]}"
-        elsif params[:sidx] == "gal_code"
-           order_by "microarraygals.id #{params[:sord]}"
-        elsif params[:sidx] == "exp_date"
-           order_by "experiment_date #{params[:sord]}"    
-	end     
-     end
-        
-        respond_to do |format|
-        format.html      
-        format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","filter_name","gal_code","partner_name","gpr_code","exp_date","mi_image","edit"], params[:page], params[:rows], experiments.total_entries) }			
-          end
+		 logger.warn("#{Time.now} - experiments filtered by: #{params[:id]}")  
+	    
+		
+	    begin
+
+		 code_gen = OligoSequence.find_by_id(params[:id]).code
+		 ol = Oligo.find_all_by_code(code_gen).collect{|p| p.microarraygal_id}
+	       
+	       
+	      #if !ol.empty?
+		 experiments = Experiment.find(:all, :conditions => [ "microarraygal_id IN (?)", ol])  do       
+			    
+		       paginate :page => params[:page], :per_page => params[:rows]      
+		       order_by "#{params[:sidx]} #{params[:sord]}"            
+		    end
+
+	       rescue 
+		   
+		  experiments = Experiment.find(:all, :conditions => [ "filter_sample_id = ?", params[:id]]) do    
+		  paginate :page => params[:page], :per_page => params[:rows]      
+		  order_by "#{params[:sidx]} #{params[:sord]}"
+		    end
+		 end
+
+		respond_to do |format|
+		format.html 
+		format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","gal_code","exp_date","edit"], params[:page], params[:rows], experiments.total_entries) }		
+		end
+
+
+	    else
+		experiments = Experiment.find(:all, :joins=>[:partner, :filter_sample, :microarraygal]) do
+		
+		if params[:_search] == "true"
+		   ecode =~ "%#{params[:exp_code]}%" if params[:exp_code].present?
+		   filter_sample.code =~ "%#{params[:filter_name]}%" if params[:filter_name].present?
+		   partner.code =~ "%#{params[:partner_name]}%" if params[:partner_name].present?
+		   microarraygal.id =~ "%#{params[:gal_code]}%" if params[:gal_code].present?
+		   experiment_date =~ "%#{params[:exp_date]}%" if params[:exp_date].present?
+		end
+
+		paginate :page => params[:page], :per_page => params[:rows]      
+		order_by "#{params[:sidx]} #{params[:sord]}"
+		          
+		if params[:sidx] == "exp_code"
+		   order_by "experiments.ecode #{params[:sord]}"
+		elsif params[:sidx] == "filter_name"
+		   order_by "filter_samples.code #{params[:sord]}"
+		elsif params[:sidx] == "partner_name"
+		   order_by "partners.code #{params[:sord]}"
+		elsif params[:sidx] == "gal_code"
+		   order_by "microarraygals.id #{params[:sord]}"
+		elsif params[:sidx] == "exp_date"
+		   order_by "experiment_date #{params[:sord]}"    
+		end     
+	     end
+		
+		respond_to do |format|
+		format.html      
+		format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","filter_name","gal_code","partner_name","gpr_code","exp_date","mi_image","edit"], params[:page], params[:rows], experiments.total_entries) }			
+		  end
+	    end
     end
  end
  

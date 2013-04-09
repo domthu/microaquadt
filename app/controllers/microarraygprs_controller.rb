@@ -14,18 +14,25 @@ class MicroarraygprsController < ApplicationController
     @microarraygprs = Microarraygpr.all
     @title = "List of microarrays GPR files"
 
-    microarraygprs = Microarraygpr.find(:all, :joins=>[:partner]) do
-        #if params[:_search] == "true"
+    if !signed_in?
+	       flash.now[:notice] = "No Partner found!! Login with authenticated partner credentials!!!"
+	       redirect_to experiments_path
+    else
 
-       # end
-        paginate :page => params[:page], :per_page => params[:rows]      
-     
-     end
+	    microarraygprs = Microarraygpr.find(:all, :joins=>[:partner]) do
+		#if params[:_search] == "true"
 
-    respond_to do |format|
-        format.html # index.html.erbs directly,
-        
- format.json { render :json => microarraygprs.to_jqgrid_json([:id,"act","gpr_code","partner_name","title","bcode","gpr_upload_date","edit"], params[:page], params[:rows], microarraygprs.total_entries) }			
+	       # end
+		paginate :page => params[:page], :per_page => params[:rows]      
+	     
+	     end
+
+	    respond_to do |format|
+		format.html # index.html.erbs directly,
+		
+	 format.json { render :json => microarraygprs.to_jqgrid_json([:id,"act","gpr_code","partner_name","title","bcode","gpr_upload_date","edit"], params[:page], params[:rows], microarraygprs.total_entries) }			
+	    end
+
     end
   end
 
@@ -149,7 +156,7 @@ class MicroarraygprsController < ApplicationController
         self.parse_gpr_data
         format.html { 
 		flash[:notice] = 'Microarray .GPR file is successfully saved. Associate your GAL & GPR record with the new Microarray Experiment below....!'
-		redirect_to :controller => "experiments", :action => "new" }
+		redirect_to :controller => "micro_array_images", :action => "new" }
         format.xml  { render :xml => @microarraygpr, :status => :created, :location => @microarraygpr }
       else
 
