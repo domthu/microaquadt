@@ -148,7 +148,7 @@ require 'fastercsv'
       format.html # index.html.erb
       format.xml  { render :xml => @oligo_sequences } 
       format.json { render :json => oligo_sequences.to_jqgrid_json(
-            [:id, "act", :code,"verbose_me", "dna_ellipsis", "partner_name", "people_name", :taxonomy_name, :taxonomy_id, :available, "edit"],
+            [:id, "act", :code, "verbose_me", "dna_ellipsis", "partner_name", "people_name", :taxonomy_name, :taxonomy_id, :available, "edit"],
             params[:page], params[:rows], oligo_sequences.total_entries) }			
 
     end

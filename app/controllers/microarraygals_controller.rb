@@ -109,7 +109,7 @@ class MicroarraygalsController < ApplicationController
         
         if uploaded_io.to_s == "" 
           flash.now[:notice] = "File not selected. Empty..."
-          logger.debug "microarraygal create: dowload GAL file empty"  
+          logger.debug "microarraygal create: GAL file is empty"  
         else
             name =  Time.now.strftime("%Y%m%d%H%M%S ") + sanitize_filename(uploaded_io.original_filename)
             logger.debug "File uploaded original name: " + name + ", type: " + uploaded_io.content_type 

@@ -37,7 +37,7 @@
 
 <%= jqgrid("List of Microarray experiments: you can filter (using the lens icon in the bottom of the grid), sort (clicking on the header column), scroll the data in the grid (using the pagination system)", "ngbgrid", experiments_path,
 	[
-	{ :field => "id", :label => "ID", :width => 50, :resizable => false, :sortable => false, :editable => false, :hidden => true},
+	{ :field => "id", :label => "ID", :width => 60, :resizable => false, :sortable => false, :editable => false, :hidden => true},
         { :field => "act", :label => "", :width => 30 , :resizable => false, :sortable => false, :search => false, :resizable => true },
         { :field => "exp_code", :label => "Microarray exp. code", :search => true, :width => 130, :sortable => true, :resizable => true },
         { :field => "filter_name", :label => "Filter sample", :search => true, :width => 130, :sortable => true, :resizable => true },
@@ -46,8 +46,9 @@
         { :field => "gpr_code", :label => "GPR code", :search => true, :sortable => true, :editable => false, :width => 250, :resizable => true },
         { :field => "exp_date", :label => "Exp. date", :search => true, :sortable => true, :editable => false, :width => 100, :resizable => true },
         { :field => "mi_image", :label => "Image", :search => false, :sortable => true, :editable => false, :width => 55 },
-	{ :field => "edit", :label => "Edit", :search => false, :sortable => false, :width => 50 , :resizable => true}
-	], 
+	{ :field => "edit", :label => "Edit", :search => false, :sortable => false, :width => 25 , :resizable => true},
+	{ :field => "available", :label => "Select", :width => 40 , :resizable => true, :sortable => false, :search => false, :formatter => 'checkbox', :formatoptions => { :disabled => false }, :searchoptions => { :value => "Yes:No" } , :editable => true, :edittype => 'checkbox', :editoptions => { :value => "No" }, :align => 'center'  }
+         ], 
     {   :add => false, 
         :edit => false, 
         :inline_edit => true, 
@@ -55,6 +56,7 @@
         :rows_per_page => "10", 
         :height => 400, 
         :rownumbers => 'false',
+        :multiselect => 'true',
         :subgrid=> { 
                 :url => oligos_path,
                 :rows_per_page => 40,
