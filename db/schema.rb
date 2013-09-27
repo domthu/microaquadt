@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301143938) do
+ActiveRecord::Schema.define(:version => 20130927104846) do
 
   create_table "altitude_types", :force => true do |t|
     t.string   "name",        :null => false
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20130301143938) do
     t.string   "people_id"
     t.integer  "microarraygpr_id"
     t.integer  "micro_array_image_id"
+    t.boolean  "check",                :default => false
   end
 
   add_index "experiments", ["filter_sample_id"], :name => "index_experiments_on_filter_sample_id"
@@ -482,7 +483,6 @@ ActiveRecord::Schema.define(:version => 20130301143938) do
     t.datetime "updated_at"
   end
 
-  add_index "partner_people", ["partner_id", "person_id"], :name => "index_partner_people_on_partner_id_and_person_id", :unique => true
   add_index "partner_people", ["partner_id"], :name => "index_partner_people_on_partner_id"
   add_index "partner_people", ["person_id"], :name => "index_partner_people_on_person_id"
 
@@ -594,7 +594,7 @@ ActiveRecord::Schema.define(:version => 20130301143938) do
     t.decimal  "volume",                 :precision => 4, :scale => 2,                  :null => false
     t.integer  "sampling_site_id",                                                      :null => false
     t.integer  "partner_id",                                                            :null => false
-    t.datetime "samplingDate"
+    t.datetime "samplingDate",                                                          :null => false
     t.text     "note"
     t.decimal  "air_temperature",        :precision => 4, :scale => 2, :default => 0.0
     t.decimal  "moisture",               :precision => 8, :scale => 2, :default => 0.0

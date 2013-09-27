@@ -78,7 +78,7 @@ class ExperimentsController < ApplicationController
 		
 		respond_to do |format|
 		format.html      
-		format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","filter_name","gal_code","partner_name","gpr_code","exp_date","mi_image","edit"], params[:page], params[:rows], experiments.total_entries) }			
+		format.json { render :json => experiments.to_jqgrid_json([:id,"act","exp_code","filter_name","gal_code","partner_name","gpr_code","exp_date","mi_image", :check, "edit"], params[:page], params[:rows], experiments.total_entries) }			
 		  end
 	    end
     end
